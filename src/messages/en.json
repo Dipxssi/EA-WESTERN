@@ -1,0 +1,48 @@
+{
+  "navigation": {
+    "tours": "Tours",
+    "insurance": "Insurance",
+    "cars": "Car Hire",
+    "about": "About",
+    "contact": "Contact",
+    "bookNow": "Book Now"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Your Complete Kenya Experience",
+      "subtitle": "Tours • Insurance • Car Hire - Everything You Need",
+      "cta": "Discover Kenya"
+    },
+    "services": {
+      "tours": {
+        "title": "Safari Tours",
+        "description": "Big Five • Migration • Cultural Tours",
+        "cta": "Find Tours",
+        "price": "From $299"
+      },
+      "insurance": {
+        "title": "Travel Insurance",
+        "description": "Travel • Vehicle • Health Coverage",
+        "cta": "Get Quote",
+        "price": "From $49"
+      },
+      "cars": {
+        "title": "Car Hire",
+        "description": "Safari 4WD • City Cars • Luxury",
+        "cta": "Book Vehicle",
+        "price": "From $89"
+      }
+    },
+    "stats": {
+      "experience": "Years Experience",
+      "travelers": "Happy Travelers",
+      "destinations": "Safari Destinations",
+      "support": "24/7 Support"
+    },
+    "features": {
+      "licensed": "Licensed & Insured",
+      "guides": "Expert Local Guides",
+      "support": "24/7 Support"
+    }
+  }
+}

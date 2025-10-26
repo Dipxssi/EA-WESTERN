@@ -1,0 +1,36 @@
+{
+  "navigation": {
+    "tours": "Ziara",
+    "insurance": "Bima",
+    "cars": "Kukodisha Magari",
+    "about": "Kuhusu",
+    "contact": "Wasiliana",
+    "bookNow": "Weka Bukizi"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Uzoefu Wako Kamili wa Kenya",
+      "subtitle": "Ziara • Bima • Kukodisha Magari - Kila Kitu Unachohitaji"
+    },
+    "services": {
+      "tours": {
+        "title": "Ziara za Safari",
+        "description": "Big Five • Uhamiaji • Ziara za Kitamaduni",
+        "cta": "Tafuta Ziara",
+        "price": "Kuanzia $299"
+      },
+      "insurance": {
+        "title": "Bima ya Kusafiri",
+        "description": "Kusafiri • Magari • Huduma za Afya",
+        "cta": "Pata Bei",
+        "price": "Kuanzia $49"
+      },
+      "cars": {
+        "title": "Kukodisha Magari",
+        "description": "Safari 4WD • Magari ya Jiji • Anasa",
+        "cta": "Weka Bukizi la Gari",
+        "price": "Kuanzia $89"
+      }
+    }
+  }
+}
