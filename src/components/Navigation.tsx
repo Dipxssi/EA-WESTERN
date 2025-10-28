@@ -106,7 +106,7 @@ export function Navigation() {
                 className="w-full bg-blue-500 hover:bg-red-700 text-white py-4 font-light tracking-widest text-sm transition-all duration-300 uppercase"
                 onClick={() => setIsMenuOpen(false)}
               >
-                BOOK NOW
+                TALK WITH US
               </button>
             </div>
           </div>
