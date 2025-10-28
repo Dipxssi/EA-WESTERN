@@ -44,7 +44,7 @@ export function Navigation() {
             
             {/* Desktop CTA Button - Hidden on mobile */}
             <button className="hidden md:block bg-blue-500 hover:bg-red-500 text-white px-6 lg:px-8 py-3 font-light tracking-widest text-sm transition-all duration-300 uppercase">
-              BOOK NOW
+              TALK WITH US
             </button>
             
             {/* Mobile Menu Button */}
