@@ -37,7 +37,7 @@ export function ServiceCard({
           {description}
         </p>
         
-        <button className="bg-blue-500 hover:bg-red-500 text-white px-8 py-3 font-light tracking-widest text-sm transition-all duration-300 uppercase">
+        <button className="bg-blue-900 hover:bg-red-900 text-white px-8 py-3 font-light tracking-widest text-sm transition-all duration-300 uppercase">
           {ctaText}
         </button>
       </div>

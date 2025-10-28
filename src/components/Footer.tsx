@@ -1,12 +1,16 @@
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-200 py-16">
+    <footer className="bg-gray-50 border-t border-gray-200 py-16">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <div className="text-2xl font-light tracking-wider mb-6">
-              <span style={{ color: "#dc2626" }} className="font-bold">EA</span>
-              <span style={{ color: "#2563eb" }} className="font-thin">WESTERN</span>
+            {/* Logo instead of text */}
+            <div className="mb-6">
+              <img 
+                src="/logo/ea-western-logo.png" 
+                alt="EA Western" 
+                className="h-10 w-auto"
+              />
             </div>
             <p className="text-gray-600 font-light leading-relaxed max-w-md">
               Curating exceptional Kenya experiences through premium safaris, 
@@ -34,9 +38,25 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-gray-200 mt-16 pt-8 text-center">
-          <div className="text-xs tracking-[0.2em] text-gray-500 font-light uppercase">
-            © 2025 EA Western — All Rights Reserved
+        <div className="border-t border-gray-200 mt-16 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            {/* Copyright */}
+            <div className="text-xs tracking-[0.2em] text-gray-500 font-light uppercase">
+              © 2025 EA Western — All Rights Reserved
+            </div>
+            
+            {/* DigiNow Solutions Credit */}
+            <div className="text-xs tracking-[0.1em] text-gray-400 font-light">
+              Developed and maintained by{' '}
+              <a 
+                href="https://diginowsolutions.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 transition-colors duration-300 underline hover:no-underline"
+              >
+                @DigiNow Solutions
+              </a>
+            </div>
           </div>
         </div>
       </div>

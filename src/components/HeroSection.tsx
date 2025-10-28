@@ -11,21 +11,21 @@ export function HeroSection() {
       src: '/videos/safari-adventure.mp4',
       poster: '/images/safari-background.png',
       title: 'Safari Adventure',
-      focus: 'Explore East Africa'
+      focus: 'Guided Tours'
     },
     {
       type: 'video',
       src: '/videos/luxury-car.mp4', 
       poster: '/images/luxury-car-background.jpg',
       title: 'Premium Transport',
-      focus: 'Drive with Confidence'
+      focus: 'Reliable Car Hire'
     },
     {
       type: 'video',
       src: '/videos/happy-family.mp4',
       poster: '/images/happ-family-background.jpg', 
       title: 'Family Protection',
-      focus: 'Insure what Matters'
+      focus: 'Travel Insurance'
     }
   ];
 
@@ -71,31 +71,30 @@ export function HeroSection() {
       
       <div className="relative z-10 flex items-center justify-center min-h-screen py-20">
         <div className="max-w-5xl mx-auto text-center px-6">
-          {/* Dynamic subtitle based on current video */}
+
+          {/* Main Headline */}
+          <div className="mb-16">
+            <h1 className="text-sm font-light mb-8 leading-[0.9] text-white drop-shadow-lg">
+              Explore. Insure. Drive.
+            </h1>
+            <div className="w-24 h-px bg-black mx-auto mb-12 "></div>
+            <p className="text-4xl  text-white font-bold max-w-3xl mx-auto leading-relaxed mb-8 drop-shadow">
+              Your journey of adventure and security begins here
+              <br/>
+              Guided tours, reliable car hire, and travel insurance — all under one roof.
+            </p>
+          </div>
+
+          {/* Dynamic subtitle based on current video - UPDATED */}
           <div className="mb-4">
-            <div className="text-sm tracking-[0.3em] text-gray-600 font-light uppercase transition-all duration-500">
+            <div className="text-sm tracking-[0.3em] text-white font-light uppercase transition-all duration-500">
               {slides[currentSlide].focus}
             </div>
           </div>
 
-          {/* Main Headline */}
-          <div className="mb-16">
-            <h1 className="text-6xl md:text-8xl font-extralight mb-8 leading-[0.9] text-black drop-shadow-lg">
-              Explore. Insure.Drive.
-              <br/>
-              <span className="text-5xl md:text-6xl">— With Confidence.</span>
-            </h1>
-            <div className="w-24 h-px bg-black mx-auto mb-12"></div>
-            <p className="text-xl font-light text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8 drop-shadow">
-              At Eawestern, we make your next adventure effortless. From unforgettable East African tours 
-              and safaris to reliable car rentals and trusted insurance solutions — we handle every detail 
-              so you can live freely.
-            </p>
-          </div>
-
           {/* Main CTA Button Only */}
           <div>
-            <button className="bg-blue-500 hover:bg-red-700 text-white px-12 py-4 font-light tracking-widest text-lg transition-all duration-300 uppercase shadow-lg">
+         <button className="bg-blue-900 hover:bg-red-900 text-white px-12 py-4 font-light tracking-widest text-lg transition-all duration-300 uppercase shadow-lg rounded-full border-2 border-white hover:border-red-200">
               Explore Our Services
             </button>
           </div>
