@@ -6,7 +6,7 @@ export function StatsSection() {
   const [hasAnimated, setHasAnimated] = useState<boolean>(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  const finalValues: number[] = [15, 5000, 50, 247];
+  const finalValues: number[] = [15, 5000, 50, 0]; // 0 for support (24/7 is static)
   const labels: string[] = ['YEARS', 'TRAVELERS', 'DESTINATIONS', 'SUPPORT'];
 
   useEffect(() => {
@@ -16,33 +16,50 @@ export function StatsSection() {
           setHasAnimated(true);
           
           finalValues.forEach((finalValue: number, index: number) => {
-            let currentValue = 0;
-            const increment = finalValue / 100;
+            // Skip animation for support (index 3) as it's static "24/7"
+            if (index === 3) {
+              setCounters((prev: number[]) => {
+                const newCounters = [...prev];
+                newCounters[index] = 1; // Mark as animated
+                return newCounters;
+              });
+              return;
+            }
+
+            const duration = 2000; // 2 seconds
+            const steps = 60;
+            const increment = finalValue / steps;
+            let currentStep = 0;
             
             const timer = setInterval(() => {
-              currentValue += increment;
-              if (currentValue >= finalValue) {
-                currentValue = finalValue;
-                clearInterval(timer);
-              }
+              currentStep++;
+              const currentValue = Math.min(increment * currentStep, finalValue);
               
               setCounters((prev: number[]) => {
                 const newCounters = [...prev];
                 newCounters[index] = Math.round(currentValue);
                 return newCounters;
               });
-            }, 20);
+
+              if (currentStep >= steps) {
+                clearInterval(timer);
+              }
+            }, duration / steps);
           });
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, [hasAnimated, finalValues]);
 
   const formatNumber = (num: number, index: number): string => {
@@ -56,12 +73,14 @@ export function StatsSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gray-50">
+    <section ref={sectionRef} className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
           {counters.map((counter: number, index: number) => (
             <div key={index} className="group">
-              <div className="text-5xl font-extralight mb-3 text-black group-hover:text-blue-600 transition-colors duration-300">
+              <div className={`text-5xl font-extralight mb-3 transition-colors duration-300 ${
+                index === 2 ? 'text-blue-600' : 'text-black group-hover:text-blue-600'
+              }`}>
                 {formatNumber(counter, index)}
               </div>
               <div className="text-sm tracking-[0.2em] text-gray-600 font-light uppercase">
