@@ -10,8 +10,8 @@ import { ContactBlockSection } from '@/components/ContactBlockSection';
 import { StatsSection } from '@/components/StatsSection';
 import { Footer } from '@/components/Footer';
 
-export default function HomePage({ params }: { params: { locale: string } }) {
-  const { locale } = params;
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
 
   return (
     <div className="min-h-screen bg-white text-black">
