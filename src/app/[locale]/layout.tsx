@@ -1,15 +1,15 @@
 
 
 
-export default async function LocaleLayout({
+export default function LocaleLayout({
   children,
-  params
+  params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
-  
+  const { locale } = params;
+
   return (
     <div>
       {children}
