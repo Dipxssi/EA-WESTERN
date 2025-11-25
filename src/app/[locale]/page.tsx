@@ -10,10 +10,12 @@ import { ContactBlockSection } from '@/components/ContactBlockSection';
 import { StatsSection } from '@/components/StatsSection';
 import { Footer } from '@/components/Footer';
 
-export default function HomePage() {
+export default function HomePage({ params }: { params: { locale: string } }) {
+  const { locale } = params;
+
   return (
     <div className="min-h-screen bg-white text-black">
-      <Navigation />
+      <Navigation locale={locale} />
       <HeroSection />
       <ServiceCardsSection />
       <AboutSection />

@@ -1,8 +1,13 @@
 "use client";
 
+import Link from 'next/link';
 import { useState } from 'react';
 
-export function Navigation() {
+type NavigationProps = {
+  locale?: string;
+};
+
+export function Navigation({ locale = 'en' }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -15,15 +20,27 @@ export function Navigation() {
         <div className="flex justify-between items-center py-4 sm:py-6">
           {/* Logo */}
           <div className="flex items-center">
-            <img src="/logo/ea-western-logo.png" alt="EA Western" className="h-8 sm:h-10 w-auto" />
+            <Link href={`/${locale}`} className="flex items-center">
+              <img src="/logo/ea-western-logo.png" alt="EA Western" className="h-8 sm:h-10 w-auto" />
+            </Link>
           </div>
 
           {/* Desktop Navigation - Hidden on mobile */}
           <div className="hidden md:flex space-x-8 lg:space-x-16">
-            <a href="#tours" className="text-gray-800 hover:text-black font-light tracking-wide transition-all duration-300 relative group text-sm uppercase">
+            <Link
+              href={`/${locale}`}
+              className="text-gray-800 hover:text-black font-light tracking-wide transition-all duration-300 relative group text-sm uppercase"
+            >
+              HOME
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link
+              href={`/${locale}/safaris`}
+              className="text-gray-800 hover:text-black font-light tracking-wide transition-all duration-300 relative group text-sm uppercase"
+            >
               SAFARIS
               <span className="absolute bottom-0 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            </Link>
             <a href="#insurance" className="text-gray-800 hover:text-black font-light tracking-wide transition-all duration-300 relative group text-sm uppercase">
               INSURANCE
               <span className="absolute bottom-0 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
@@ -37,7 +54,7 @@ export function Navigation() {
           {/* Desktop CTA + Mobile Menu Button */}
           <div className="flex items-center space-x-4">
             {/* Language Selector - Hidden on small mobile */}
-            <select className="hidden sm:block bg-transparent border border-gray-300 rounded-none px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-black">
+      <select className="hidden sm:block bg-transparent border border-gray-300 rounded-none px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-black">
               <option value="en" className="bg-white">EN</option>
               <option value="sw" className="bg-white">SW</option>
             </select>
@@ -69,13 +86,20 @@ export function Navigation() {
           }`}>
           <div className="py-4 space-y-4 border-t border-gray-200">
             {/* Mobile Navigation Links */}
-            <a
-              href="#tours"
+            <Link
+              href={`/${locale}`}
+              className="block py-3 text-gray-800 hover:text-black font-light tracking-wide transition-colors duration-300 text-base uppercase"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-home-icon lucide-home"><path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" /></svg> HOME
+            </Link>
+            <Link
+              href={`/${locale}/safaris`}
               className="block py-3 text-gray-800 hover:text-black font-light tracking-wide transition-colors duration-300 text-base uppercase"
               onClick={() => setIsMenuOpen(false)}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-paw-print-icon lucide-paw-print"><circle cx="11" cy="4" r="2" /><circle cx="18" cy="8" r="2" /><circle cx="20" cy="16" r="2" /><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" /></svg> SAFARIS
-            </a>
+            </Link>
             <a
               href="#insurance"
               className="block py-3 text-gray-800 hover:text-black font-light tracking-wide transition-colors duration-300 text-base uppercase"
