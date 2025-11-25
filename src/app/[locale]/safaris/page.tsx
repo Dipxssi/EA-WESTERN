@@ -1,6 +1,7 @@
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SafariTestimonials } from '@/components/SafariTestimonials';
+import { BookingStepsSection } from '@/components/BookingStepsSection';
 import Link from 'next/link';
 import {
   Compass,
@@ -14,10 +15,6 @@ import {
   CalendarDays,
   MapPin,
   Camera,
-  ClipboardList,
-  MessagesSquare,
-  CreditCard,
-  SunMedium,
 } from 'lucide-react';
 
 const popularDestinations = [
@@ -104,29 +101,6 @@ const popularDestinations = [
       'Stunning forest views',
       'Perfect for adventurers',
     ],
-  },
-];
-
-const bookingSteps = [
-  {
-    title: 'Step 1 — Choose Your Tour',
-    description: 'Explore our packages or request a custom itinerary.',
-    icon: ClipboardList,
-  },
-  {
-    title: 'Step 2 — Talk to Our Team',
-    description: 'We confirm travel dates, pricing, preferences, and special needs.',
-    icon: MessagesSquare,
-  },
-  {
-    title: 'Step 3 — Secure Your Booking',
-    description: 'Send a deposit and receive instant confirmation.',
-    icon: CreditCard,
-  },
-  {
-    title: 'Step 4 — Show Up & Enjoy the Journey',
-    description: 'We handle transport, hotels, guides, park fees, and every detail.',
-    icon: SunMedium,
   },
 ];
 
@@ -308,12 +282,12 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
               </div>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {journeyHighlights.map(({ title, copy, icon: Icon, accent }) => (
+              {journeyHighlights.map(({ title, copy, icon: Icon }) => (
                 <div
                   key={title}
-                  className={`rounded-3xl border border-white/60 bg-gradient-to-b ${accent} p-6 shadow-md shadow-blue-100/30`}
+                  className="bg-white border border-blue-100 p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all"
                 >
-                  <div className="w-12 h-12 rounded-full bg-white text-blue-900 flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center mb-4">
                     <Icon size={22} />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
@@ -455,23 +429,7 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
           </div>
         </section>
 
-        {/* Booking Process */}
-        <section className="bg-blue-900 text-white py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <h2 className="text-3xl font-light mb-10">How Booking Works</h2>
-            <div className="grid md:grid-cols-4 gap-8">
-              {bookingSteps.map((step) => (
-                <div key={step.title} className="border border-white/20 p-6 rounded-2xl h-full bg-white/5 backdrop-blur">
-                  <div className="mb-4 inline-flex items-center justify-center w-14 h-14 rounded-full bg-white text-blue-900 shadow-lg">
-                    <step.icon size={24} />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-3">{step.title}</h3>
-                  <p className="text-white/80">{step.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <BookingStepsSection />
 
         <SafariTestimonials />
 
