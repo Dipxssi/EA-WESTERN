@@ -1,5 +1,6 @@
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { CarHireBookingSteps } from '@/components/CarHireBookingSteps';
 import Link from 'next/link';
 import {
   ShieldCheck,
@@ -76,21 +77,6 @@ const fleetCategories = [
   },
 ];
 
-const bookingSteps = [
-  {
-    title: 'Choose Your Car',
-    copy: 'Browse our fleet and select a vehicle that fits your mission.',
-  },
-  {
-    title: 'Make a Reservation',
-    copy: 'Tell us your schedule, routes, and preferences for a tailored quote.',
-  },
-  {
-    title: 'Enjoy Your Ride',
-    copy: 'Drive with confidence, or opt for a professional chauffeur for added convenience.',
-  },
-];
-
 const articles = [
   {
     title: 'Why Integrated Insurance Matters for Car Hire',
@@ -120,7 +106,7 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
         <section className="relative isolate">
           <div className="absolute inset-0">
             <img
-              src="/images/luxury-car-background.jpg"
+              src="/images/car%20image.jpg"
               alt=""
               className="h-full w-full object-cover"
             />
@@ -148,13 +134,13 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
         <section className="py-16 px-4 sm:px-6 bg-gradient-to-b from-white via-blue-50/40 to-white">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <p className="text-xs tracking-[0.3em] uppercase text-blue-900 mb-4">
+              <p className="text-sm tracking-[0.4em] uppercase text-blue-900 mb-5">
                 The Eawestern Advantage
               </p>
-              <h2 className="text-3xl font-light mb-4">
+              <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
                 Transparent Pricing. Unbeatable Value.
               </h2>
-              <p className="text-gray-700 text-lg leading-relaxed">
+              <p className="text-gray-700 text-xl leading-relaxed">
                 Every rental includes clear insurance, compliant licensing, and proactive service. We operate under NTSA
                 regulations, provide fully documented vehicles, and ensure each trip is backed by our 24/7 operations team.
               </p>
@@ -165,13 +151,13 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
                 return (
                   <div
                     key={item.title}
-                    className="bg-white/90 rounded-3xl border border-white/70 shadow-sm p-5 text-sm text-gray-700"
+                    className="bg-white rounded-3xl border border-blue-100 p-6 shadow-sm hover:shadow-xl transition-all"
                   >
-                    <div className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center mb-3">
-                      <Icon size={18} />
+                    <div className="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center mb-4">
+                      <Icon size={20} />
                     </div>
-                    <p className="font-semibold text-gray-900 mb-1">{item.title}</p>
-                    <p>{item.description}</p>
+                    <h3 className="text-base font-semibold text-gray-900 mb-2">{item.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
                   </div>
                 );
               })}
@@ -181,13 +167,18 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
 
         {/* Service Intro */}
         <section className="py-16 px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto text-center space-y-4">
-            <h2 className="text-3xl font-light">Kenya’s Reliable Car Hire Service — Tailored to You</h2>
-            <p className="text-lg text-gray-700">
-              Whether you’re travelling for work or leisure, our fleet is designed to meet every need. We offer SUVs,
-              saloons, vans, shuttles, luxury cars, and long-term corporate rentals. Every vehicle is inspected, serviced,
-              and sanitized for your safety and comfort.
-            </p>
+          <div className="max-w-5xl mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-[48px] border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] relative overflow-hidden">
+            <div className="absolute -top-10 -right-8 w-60 h-60 bg-blue-200/40 blur-3xl" aria-hidden />
+            <div className="absolute -bottom-16 -left-6 w-56 h-56 bg-indigo-200/40 blur-3xl" aria-hidden />
+            <div className="relative px-8 sm:px-16 py-14 text-center space-y-6">
+              <p className="text-xs tracking-[0.3em] uppercase text-blue-900/70">Car Hire</p>
+              <h2 className="text-3xl font-light text-gray-900">Kenya’s Reliable Car Hire Service — Tailored to You</h2>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Whether you’re travelling for work or leisure, our fleet is designed to meet every need. We offer SUVs,
+                saloons, vans, shuttles, luxury cars, and long-term corporate rentals. Every vehicle is inspected, serviced,
+                and sanitized for your safety and comfort.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -208,13 +199,13 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
                 return (
                   <div
                     key={category.title}
-                    className="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-xl transition-all"
+                    className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center mb-4">
-                      <Icon size={22} />
+                    <div className="w-12 h-12 rounded-xl bg-white border-2 border-blue-500 text-blue-600 flex items-center justify-center mb-6">
+                      <Icon size={24} />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{category.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{category.description}</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.title}</h3>
+                    <p className="text-gray-700 text-sm leading-relaxed">{category.description}</p>
                   </div>
                 );
               })}
@@ -242,28 +233,7 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
           </div>
         </section>
 
-        {/* Process */}
-        <section className="py-16 px-4 sm:px-6 bg-white">
-          <div className="max-w-4xl mx-auto text-center mb-10">
-            <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">How It Works</p>
-            <h2 className="text-3xl font-light mb-3">Easy Booking Process</h2>
-            <p className="text-gray-600">
-              Three quick steps to get on the road. Need a driver, special equipment, or cross-border permits? Consider it
-              handled.
-            </p>
-          </div>
-          <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
-            {bookingSteps.map((step, index) => (
-              <div key={step.title} className="bg-gray-50 border border-gray-200 rounded-3xl p-6 text-center shadow-sm">
-                <div className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center mx-auto mb-4 text-xl font-semibold">
-                  {index + 1}
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-600">{step.copy}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <CarHireBookingSteps />
 
         {/* CTA */}
         <section className="px-4 sm:px-6 py-16">
