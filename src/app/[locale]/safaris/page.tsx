@@ -224,8 +224,8 @@ const logisticsHighlights = [
   },
 ];
 
-export default function SafarisPage({ params }: { params: { locale: string } }) {
-  const { locale } = params;
+export default async function SafarisPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">
