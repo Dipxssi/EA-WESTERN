@@ -8,7 +8,7 @@ import {
   Settings,
   Headphones,
   CheckCircle2,
-  SteeringWheel,
+  CircleGauge,
   MapPin,
   Users,
   Truck,
@@ -61,7 +61,7 @@ const fleetCategories = [
     title: 'Self-Drive Convenience',
     description:
       'Drive yourself with full documentation, roadside support, and quick approvals for Kenyan and foreign licenses.',
-    icon: SteeringWheel,
+    icon: CircleGauge,
   },
   {
     title: 'Chauffeured Expertise',
