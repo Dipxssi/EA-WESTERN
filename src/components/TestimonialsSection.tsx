@@ -29,7 +29,7 @@ export function TestimonialsSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, 10000); // Increased from 5 seconds to 10 seconds for better readability
 
     return () => clearInterval(interval);
   }, [testimonials.length]);
@@ -93,7 +93,7 @@ export function TestimonialsSection() {
             {/* Carousel Container */}
             <div className="overflow-hidden">
               <div 
-                className="flex transition-transform duration-500 ease-in-out"
+                className="flex transition-transform duration-1000 ease-in-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
                 {testimonials.map((testimonial, index) => (

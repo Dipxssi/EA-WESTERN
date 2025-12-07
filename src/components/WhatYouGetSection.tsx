@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Route, ShieldCheck, Award } from 'lucide-react';
 
 export function WhatYouGetSection() {
   const contentRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,10 +24,39 @@ export function WhatYouGetSection() {
       observer.observe(contentRef.current);
     }
 
+    // Observe each card individually for staggered animation
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              setVisibleCards((prev) => {
+                const newVisible = [...prev];
+                newVisible[index] = true;
+                return newVisible;
+              });
+            }, index * 150); // Stagger by 150ms per card
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    cardRefs.current.forEach((card) => {
+      if (card) {
+        cardObserver.observe(card);
+      }
+    });
+
     return () => {
       if (contentRef.current) {
         observer.unobserve(contentRef.current);
       }
+      cardRefs.current.forEach((card) => {
+        if (card) {
+          cardObserver.unobserve(card);
+        }
+      });
     };
   }, []);
 
@@ -68,18 +99,24 @@ export function WhatYouGetSection() {
               const IconComponent = benefit.icon;
               return (
                 <div 
-                  key={index} 
-                  className="bg-blue-50 p-8 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 shadow-md"
+                  key={index}
+                  ref={(el) => (cardRefs.current[index] = el)}
+                  className={`group bg-blue-50 p-8 rounded-lg hover:shadow-xl transition-all duration-500 hover:scale-105 shadow-md transform cursor-pointer ${
+                    visibleCards[index] 
+                      ? 'opacity-100 translate-y-0 rotate-0' 
+                      : 'opacity-0 translate-y-8 rotate-1'
+                  }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <div className="flex justify-center mb-6">
-                    <div className={`${benefit.iconColor} bg-white p-4 rounded-full shadow-md`}>
-                      <IconComponent size={32} strokeWidth={2} />
+                    <div className={`${benefit.iconColor} bg-white p-4 rounded-full shadow-md transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg`}>
+                      <IconComponent size={32} strokeWidth={2} className="transition-transform duration-300" />
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-center text-gray-900">
+                  <h3 className="text-2xl font-bold mb-4 text-center text-gray-900 transition-colors duration-300 group-hover:text-blue-600">
                     {benefit.title}
                   </h3>
-                  <p className="text-base text-gray-700 leading-relaxed text-center">
+                  <p className="text-base text-gray-700 leading-relaxed text-center transition-all duration-300">
                     {benefit.description}
                   </p>
                 </div>

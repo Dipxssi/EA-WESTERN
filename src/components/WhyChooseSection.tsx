@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CheckCircle2, Shield, Headphones, MapPin, FileCheck, UserCheck } from 'lucide-react';
 
 export function WhyChooseSection() {
   const contentRef = useRef<HTMLDivElement>(null);
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -12,6 +14,10 @@ export function WhyChooseSection() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('opacity-100', 'translate-y-0');
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+            setHighlightedIndex(0); // Reset when out of view
           }
         });
       },
@@ -28,6 +34,17 @@ export function WhyChooseSection() {
       }
     };
   }, []);
+
+  // Auto-highlight cards one by one when section is visible
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const interval = setInterval(() => {
+      setHighlightedIndex((prev) => (prev + 1) % 5); // 5 cards total
+    }, 2000); // Change highlighted card every 2 seconds
+
+    return () => clearInterval(interval);
+  }, [isVisible]);
 
   const points = [
     {
@@ -66,10 +83,10 @@ export function WhyChooseSection() {
         >
           {/* Section Title */}
           <div className="text-center mb-8">
-            <div className="text-sm tracking-[0.3em] text-gray-500 font-light mb-4 uppercase">
+            <div className="text-lg lg:text-xl tracking-[0.3em] text-gray-500 font-light mb-4 uppercase">
               WHY CHOOSE EAWESTERN
             </div>
-            <h2 className="text-4xl lg:text-5xl font-light mb-6 text-black leading-tight">
+            <h2 className="text-2xl lg:text-3xl font-light mb-6 text-black leading-tight">
               Why Individuals, Families, and Businesses Trust Us
             </h2>
             <div className="w-24 h-px bg-black mx-auto"></div>
@@ -81,19 +98,30 @@ export function WhyChooseSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
               {points.slice(0, 3).map((point, index) => {
                 const IconComponent = point.icon;
+                const isHighlighted = highlightedIndex === index;
                 return (
                   <div 
                     key={index} 
-                    className="bg-white p-6 rounded-lg hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-blue-300 group"
+                    className={`bg-white p-6 rounded-lg hover:shadow-lg transition-all duration-500 border-2 group ${
+                      isHighlighted 
+                        ? 'border-blue-500 shadow-lg bg-blue-50' 
+                        : 'border-gray-200 hover:border-blue-300'
+                    }`}
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0">
-                        <div className="bg-blue-50 p-3 rounded-lg group-hover:bg-blue-100 transition-colors duration-300">
-                          <IconComponent className="text-blue-600" size={24} strokeWidth={2} />
+                        <div className={`p-3 rounded-lg transition-colors duration-300 ${
+                          isHighlighted ? 'bg-blue-100' : 'bg-blue-50 group-hover:bg-blue-100'
+                        }`}>
+                          <IconComponent className={`transition-colors duration-300 ${
+                            isHighlighted ? 'text-blue-700' : 'text-blue-600'
+                          }`} size={24} strokeWidth={2} />
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                        <h3 className={`text-lg font-semibold mb-2 transition-colors duration-300 ${
+                          isHighlighted ? 'text-blue-700' : 'text-gray-900 group-hover:text-blue-600'
+                        }`}>
                           {point.title}
                         </h3>
                         <p className="text-sm text-gray-600 leading-relaxed">
@@ -110,19 +138,31 @@ export function WhyChooseSection() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {points.slice(3, 5).map((point, index) => {
                 const IconComponent = point.icon;
+                const cardIndex = index + 3;
+                const isHighlighted = highlightedIndex === cardIndex;
                 return (
                   <div 
-                    key={index + 3} 
-                    className="bg-white p-6 rounded-lg hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-blue-300 group"
+                    key={cardIndex} 
+                    className={`bg-white p-6 rounded-lg hover:shadow-lg transition-all duration-500 border-2 group ${
+                      isHighlighted 
+                        ? 'border-blue-500 shadow-lg bg-blue-50' 
+                        : 'border-gray-200 hover:border-blue-300'
+                    }`}
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0">
-                        <div className="bg-blue-50 p-3 rounded-lg group-hover:bg-blue-100 transition-colors duration-300">
-                          <IconComponent className="text-blue-600" size={24} strokeWidth={2} />
+                        <div className={`p-3 rounded-lg transition-colors duration-300 ${
+                          isHighlighted ? 'bg-blue-100' : 'bg-blue-50 group-hover:bg-blue-100'
+                        }`}>
+                          <IconComponent className={`transition-colors duration-300 ${
+                            isHighlighted ? 'text-blue-700' : 'text-blue-600'
+                          }`} size={24} strokeWidth={2} />
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                        <h3 className={`text-lg font-semibold mb-2 transition-colors duration-300 ${
+                          isHighlighted ? 'text-blue-700' : 'text-gray-900 group-hover:text-blue-600'
+                        }`}>
                           {point.title}
                         </h3>
                         <p className="text-sm text-gray-600 leading-relaxed">

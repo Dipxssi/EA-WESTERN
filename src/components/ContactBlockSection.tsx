@@ -36,11 +36,7 @@ export function ContactBlockSection() {
           className="opacity-0 translate-y-8 transition-all duration-1000 ease-out"
         >
           {/* Contact Block */}
-          <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 rounded-2xl p-12 lg:p-16 text-center text-white relative overflow-hidden shadow-2xl">
-            {/* Decorative background elements */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-700 rounded-full -mr-48 -mt-48 opacity-20"></div>
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-700 rounded-full -ml-40 -mb-40 opacity-20"></div>
-            
+          <div className="rounded-2xl p-12 lg:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ backgroundColor: '#1e3a8a' }}>
             <div className="relative z-10">
               {/* Headline */}
               <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
@@ -51,12 +47,17 @@ export function ContactBlockSection() {
               <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
               
               {/* Description Text */}
-              <p className="text-lg lg:text-xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-lg lg:text-xl text-white mb-10 max-w-3xl mx-auto leading-relaxed font-light">
                 Whether you&apos;re planning your next safari, securing insurance, or booking a vehicle—our team is ready to help.
               </p>
               
               {/* CTA Button */}
-              <button className="bg-white hover:bg-gray-100 text-blue-900 px-12 py-4 text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform">
+              <button 
+                className="text-white px-12 py-4 text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform"
+                style={{ backgroundColor: '#d92323', border: '2px solid white' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#c11e1e'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#d92323'}
+              >
                 Contact Us Today
               </button>
             </div>

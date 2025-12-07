@@ -34,14 +34,14 @@ export function AboutSection() {
         {/* Image on the left */}
         <div className="relative h-full min-h-[500px] lg:min-h-screen">
           <img 
-            src="/images/luxury-car-background.jpg"
+            src="/images/promise.png"
             alt="About EA Western"
             className="w-full h-full object-cover"
           />
         </div>
         
         {/* Text content on the right */}
-        <div className="bg-blue-900 flex items-center px-8 lg:px-12 py-20">
+        <div className="flex items-center px-8 lg:px-12 py-20" style={{ backgroundColor: '#1e3a8a' }}>
           <div 
             ref={contentRef}
             className="max-w-2xl opacity-0 translate-y-8 transition-all duration-1000 ease-out"
@@ -67,7 +67,12 @@ export function AboutSection() {
             </div>
             
             {/* Red button */}
-            <button className="bg-red-900 hover:bg-red-800 text-white px-8 py-3 font-medium tracking-wider text-sm transition-all duration-300 uppercase rounded-full border-2 border-pink-200 hover:border-pink-300">
+            <button 
+              className="text-white px-8 py-3 font-medium tracking-wider text-sm transition-all duration-300 uppercase rounded-full"
+              style={{ backgroundColor: '#d92323', border: '2px solid white' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#c11e1e'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#d92323'}
+            >
               VIEW OUR STORY
             </button>
           </div>

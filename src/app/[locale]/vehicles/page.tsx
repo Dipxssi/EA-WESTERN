@@ -1,6 +1,7 @@
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { CarHireBookingSteps } from '@/components/CarHireBookingSteps';
+import { AnimatedCard } from '@/components/AnimatedCard';
 import Link from 'next/link';
 import {
   ShieldCheck,
@@ -82,16 +83,19 @@ const articles = [
     title: 'Why Integrated Insurance Matters for Car Hire',
     date: 'Nov 2025',
     excerpt: 'Avoid hidden liabilities by choosing a provider that manages insurance in-house.',
+    image: '/images/car image.jpg',
   },
   {
     title: '5 Tips for Corporate Fleet Leasing in Nairobi',
     date: 'Oct 2025',
     excerpt: 'How to balance cost, compliance, and reliability for teams on the move.',
+    image: '/images/luxury-car-background.jpg',
   },
   {
     title: 'Self-Drive Across Kenya: Permits & Preparation',
     date: 'Sep 2025',
     excerpt: 'Documentation and planning essentials for smooth road trips.',
+    image: '/images/nairobi-city.jpg',
   },
 ];
 
@@ -132,52 +136,85 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
 
         {/* Advantage */}
         <section className="py-16 px-4 sm:px-6 bg-gradient-to-b from-white via-blue-50/40 to-white">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
-            <div>
+          <div className="max-w-6xl mx-auto">
+            {/* Centered Text Section */}
+            <div className="text-center mb-12">
               <p className="text-sm tracking-[0.4em] uppercase text-blue-900 mb-5">
                 The Eawestern Advantage
               </p>
               <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
                 Transparent Pricing. Unbeatable Value.
               </h2>
-              <p className="text-gray-700 text-xl leading-relaxed">
+              <p className="text-gray-700 text-xl leading-relaxed max-w-3xl mx-auto">
                 Every rental includes clear insurance, compliant licensing, and proactive service. We operate under NTSA
                 regulations, provide fully documented vehicles, and ensure each trip is backed by our 24/7 operations team.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {advantageHighlights.map((item) => {
-                const Icon = item.icon ?? ShieldCheck;
-                return (
-                  <div
-                    key={item.title}
-                    className="bg-white rounded-3xl border border-blue-100 p-6 shadow-sm hover:shadow-xl transition-all"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center mb-4">
-                      <Icon size={20} />
-                    </div>
-                    <h3 className="text-base font-semibold text-gray-900 mb-2">{item.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
-                  </div>
-                );
-              })}
+            {/* Cards Below Text */}
+            <div className="space-y-6">
+              {/* First 3 cards */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {advantageHighlights.slice(0, 3).map((item, index) => {
+                  const Icon = item.icon ?? ShieldCheck;
+                  return (
+                    <AnimatedCard key={item.title} index={index} delay={200}>
+                      <div className="bg-white rounded-3xl border border-blue-100 p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                        <div className="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center mb-4 flex-shrink-0">
+                          <Icon size={20} />
+                        </div>
+                        <h3 className="text-base font-semibold text-gray-900 mb-2">{item.title}</h3>
+                        <p className="text-sm text-gray-600 leading-relaxed flex-grow">{item.description}</p>
+                      </div>
+                    </AnimatedCard>
+                  );
+                })}
+              </div>
+              {/* Last 2 cards - centered */}
+              <div className="flex flex-wrap justify-center gap-6">
+                {advantageHighlights.slice(3).map((item, index) => {
+                  const Icon = item.icon ?? ShieldCheck;
+                  return (
+                    <AnimatedCard key={item.title} index={index + 3} delay={200}>
+                      <div className="bg-white rounded-3xl border border-blue-100 p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-full sm:w-[calc(50%-12px)] lg:w-[320px] h-full flex flex-col">
+                        <div className="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center mb-4 flex-shrink-0">
+                          <Icon size={20} />
+                        </div>
+                        <h3 className="text-base font-semibold text-gray-900 mb-2">{item.title}</h3>
+                        <p className="text-sm text-gray-600 leading-relaxed flex-grow">{item.description}</p>
+                      </div>
+                    </AnimatedCard>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Service Intro */}
         <section className="py-16 px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-[48px] border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] relative overflow-hidden">
+          <div className="max-w-6xl mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-[48px] border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] relative overflow-hidden">
             <div className="absolute -top-10 -right-8 w-60 h-60 bg-blue-200/40 blur-3xl" aria-hidden />
             <div className="absolute -bottom-16 -left-6 w-56 h-56 bg-indigo-200/40 blur-3xl" aria-hidden />
-            <div className="relative px-8 sm:px-16 py-14 text-center space-y-6">
-              <p className="text-xs tracking-[0.3em] uppercase text-blue-900/70">Car Hire</p>
-              <h2 className="text-3xl font-light text-gray-900">Kenya’s Reliable Car Hire Service — Tailored to You</h2>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                Whether you’re travelling for work or leisure, our fleet is designed to meet every need. We offer SUVs,
-                saloons, vans, shuttles, luxury cars, and long-term corporate rentals. Every vehicle is inspected, serviced,
-                and sanitized for your safety and comfort.
-              </p>
+            <div className="relative grid md:grid-cols-2 gap-8 items-center px-8 sm:px-16 py-14">
+              <div className="space-y-6">
+                <p className="text-xs tracking-[0.3em] uppercase text-blue-900/70">Car Hire</p>
+                <h2 className="text-3xl font-light text-gray-900">Kenya's Reliable Car Hire Service — Tailored to You</h2>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  Whether you're travelling for work or leisure, our fleet is designed to meet every need. We offer SUVs,
+                  saloons, vans, shuttles, luxury cars, and long-term corporate rentals. Every vehicle is inspected, serviced,
+                  and sanitized for your safety and comfort.
+                </p>
+              </div>
+              <div className="relative">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                  <img
+                    src="/images/car3.png"
+                    alt="Premium car hire vehicle"
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -193,22 +230,41 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
                 flexible terms, honest pricing, and a service team that anticipates your needs.
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {fleetCategories.map((category) => {
-                const Icon = category.icon ?? Car;
-                return (
-                  <div
-                    key={category.title}
-                    className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-white border-2 border-blue-500 text-blue-600 flex items-center justify-center mb-6">
-                      <Icon size={24} />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.title}</h3>
-                    <p className="text-gray-700 text-sm leading-relaxed">{category.description}</p>
-                  </div>
-                );
-              })}
+            <div className="space-y-6">
+              {/* First 3 cards */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {fleetCategories.slice(0, 3).map((category, index) => {
+                  const Icon = category.icon ?? Car;
+                  return (
+                    <AnimatedCard key={category.title} index={index} delay={200}>
+                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                        <div className="w-12 h-12 rounded-xl bg-white border-2 border-blue-500 text-blue-600 flex items-center justify-center mb-6 flex-shrink-0">
+                          <Icon size={24} />
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.title}</h3>
+                        <p className="text-gray-700 text-sm leading-relaxed flex-grow">{category.description}</p>
+                      </div>
+                    </AnimatedCard>
+                  );
+                })}
+              </div>
+              {/* Last 2 cards - centered */}
+              <div className="flex flex-wrap justify-center gap-6">
+                {fleetCategories.slice(3).map((category, index) => {
+                  const Icon = category.icon ?? Car;
+                  return (
+                    <AnimatedCard key={category.title} index={index + 3} delay={200}>
+                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-full md:w-[calc(50%-12px)] lg:w-[320px] h-full flex flex-col">
+                        <div className="w-12 h-12 rounded-xl bg-white border-2 border-blue-500 text-blue-600 flex items-center justify-center mb-6 flex-shrink-0">
+                          <Icon size={24} />
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.title}</h3>
+                        <p className="text-gray-700 text-sm leading-relaxed flex-grow">{category.description}</p>
+                      </div>
+                    </AnimatedCard>
+                  );
+                })}
+              </div>
             </div>
             <div className="text-center mt-10">
               <Link
@@ -237,21 +293,19 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
 
         {/* CTA */}
         <section className="px-4 sm:px-6 py-16">
-          <div className="max-w-5xl mx-auto bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-[48px] border border-blue-900 relative overflow-hidden text-center px-8 sm:px-16 py-14 shadow-[0_30px_80px_rgba(15,23,42,0.35)]">
-            <div className="absolute inset-0">
-              <div className="absolute -top-10 -left-10 w-64 h-64 bg-blue-700/50 rounded-full blur-3xl" aria-hidden />
-              <div className="absolute -bottom-16 -right-4 w-72 h-72 bg-indigo-500/40 rounded-full blur-3xl" aria-hidden />
-            </div>
-            <div className="relative space-y-6 text-white">
-              <p className="text-xs tracking-[0.3em] uppercase text-white/70">Ready to Book Your Ride?</p>
-              <h2 className="text-3xl sm:text-4xl font-light">Choose reliability, affordability, and comfort with Eawestern Car Hire.</h2>
-              <p className="text-white/90 text-lg leading-relaxed max-w-3xl mx-auto">
-                From short-term rentals to corporate fleets, we tailor every booking to your route, schedule, and risk profile.
-              </p>
-              <div className="flex items-center justify-center">
+          <div className="max-w-6xl mx-auto">
+            <div className="rounded-2xl p-12 lg:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ backgroundColor: '#1e3a8a' }}>
+              <div className="relative z-10">
+                <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
+                  Ready to Book Your Ride?
+                </h2>
+                <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+                <p className="text-lg lg:text-xl text-white mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+                  Choose reliability, affordability, and comfort with Eawestern Car Hire. From short-term rentals to corporate fleets, we tailor every booking to your route, schedule, and risk profile.
+                </p>
                 <Link
-                  href="/#contact"
-                  className="inline-flex items-center justify-center bg-white text-blue-900 px-12 py-4 rounded-full tracking-[0.2em] text-sm uppercase border border-white/70 shadow-xl shadow-blue-900/40"
+                  href={`/${locale}/contact`}
+                  className="text-white px-12 py-4 text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform bg-[#d92323] hover:!bg-[#c11e1e] border-2 border-white"
                 >
                   Contact Us Today
                 </Link>
@@ -278,6 +332,15 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
                 className="bg-gradient-to-b from-blue-50 via-white to-white border border-blue-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all"
               >
                 <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-2">{article.date}</p>
+                {/* Article Image */}
+                <div className="relative h-48 mb-4 rounded-2xl overflow-hidden">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{article.title}</h3>
                 <p className="text-gray-600 mb-4 text-sm">{article.excerpt}</p>
                 <Link href="/#blog" className="text-blue-900 text-sm tracking-[0.2em] uppercase font-semibold">

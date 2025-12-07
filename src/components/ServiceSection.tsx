@@ -1,4 +1,10 @@
-export function ServicesSection() {
+import Link from 'next/link';
+
+type ServicesSectionProps = {
+  locale?: string;
+};
+
+export function ServicesSection({ locale = 'en' }: ServicesSectionProps) {
   const services = [
     {
       id: '01',
@@ -7,7 +13,8 @@ export function ServicesSection() {
       subtitle: 'Explore the World\'s Greatest Wilderness',
       description: 'From the Great Migration in the Maasai Mara to the spice beaches of Zanzibar, our expertly curated safaris are planned for maximum thrill and minimum stress. We handle the logistics; you collect the memories.',
       ctaText: 'See All Tours & Safaris',
-      backgroundImage: '/images/safari-background.png'
+      backgroundImage: '/images/tours.png',
+      href: `/${locale}/safaris`
     },
     {
       id: '02', 
@@ -16,7 +23,8 @@ export function ServicesSection() {
       subtitle: '',
       description: 'End the policy confusion. As licensed Kenyan insurance experts, we provide tailored, transparent coverage for your life, health, business, and assets. We negotiate for you and manage your claims in-house.',
       ctaText: 'View Details',
-      backgroundImage: '/images/happy-family-background.jpg'
+      backgroundImage: '/images/fam.png',
+      href: `/${locale}/insurance`
     },
     {
       id: '03',
@@ -25,7 +33,8 @@ export function ServicesSection() {
       subtitle: '',
       description: 'Whether you\'re landing in Kenya for business, need a weekend getaway ride, or want a long-term corporate lease, our cars are ready, safe, and fully maintained. Choose from SUVs, saloons, vans, and executive vehicles.',
       ctaText: 'View Available Fleet',
-      backgroundImage: '/images/luxury-car-background.jpg'
+      backgroundImage: '/images/caar.png',
+      href: `/${locale}/vehicles`
     }
   ];
 
@@ -35,7 +44,8 @@ export function ServicesSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-light mb-4 text-black leading-tight">
-            The Eawestern Guarantee: Three Services, One Unwavering Promise
+            <div>The Eawestern Guarantee</div>
+            <div className="text-3xl lg:text-4xl">Three Services, One Unwavering Promise</div>
           </h2>
           <div className="w-24 h-px bg-black mx-auto mt-6"></div>
         </div>
@@ -78,10 +88,13 @@ export function ServicesSection() {
                 </p>
                 
                 {/* CTA Button */}
-                <div className="flex justify-start mt-auto">
-                  <button className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-full shadow-md uppercase tracking-wide">
+                <div className="flex justify-center mt-auto">
+                  <Link 
+                    href={service.href}
+                    className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-full shadow-md uppercase tracking-wide inline-block text-center"
+                  >
                     {service.ctaText}
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

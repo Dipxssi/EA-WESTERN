@@ -1,6 +1,8 @@
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SafariTestimonials } from '@/components/SafariTestimonials';
+import { AnimatedCard } from '@/components/AnimatedCard';
+import { AnimatedSolutionsGrid } from '@/components/AnimatedSolutionsGrid';
 import Link from 'next/link';
 import {
   ShieldCheck,
@@ -14,6 +16,9 @@ import {
   Phone,
   ArrowRight,
   CheckCircle2,
+  GraduationCap,
+  Home,
+  Clock,
 } from 'lucide-react';
 import { InsuranceProcessSection } from '@/components/InsuranceProcessSection';
 
@@ -37,24 +42,44 @@ const whyChooseUs = [
 
 const products = [
   {
-    title: 'Life & Retirement',
-    description: 'Secure your loved ones\' future and your golden years with flexible education, retirement, and term life plans.',
-    icon: Heart,
+    title: 'Business',
+    description: 'Every business faces risks, from property damage to legal liabilities. Our business insurance solutions provide coverage for financial losses, ensuring business continuity by protecting assets, employees, and operations from unforeseen setbacks.',
+    iconName: 'Building2',
   },
   {
-    title: 'Health & Medical',
-    description: 'Access top-tier private and public healthcare facilities across Kenya with policies designed for individuals, families, and SMEs.',
-    icon: ShieldCheck,
+    title: 'Education',
+    description: 'Secure your child\'s future with an education plan that guarantees uninterrupted learning. Our education insurance provides financial support for tuition fees and other school expenses, ensuring that your child\'s dreams remain on track even in unforeseen circumstances.',
+    iconName: 'GraduationCap',
+  },
+  {
+    title: 'Retirement',
+    description: 'Enjoy peace of mind in your golden years with a well-structured retirement insurance plan. Our solutions help you build a financial cushion through savings and investments, ensuring you maintain your lifestyle and financial independence after retirement.',
+    iconName: 'Clock',
   },
   {
     title: 'Motor Insurance',
-    description: 'Comprehensive, Third Party, and Commercial vehicle coverage. (Crucial Point: Our Car Hire division ensures we know exactly what constitutes true comprehensive motor insurance).',
-    icon: Car,
+    description: 'Protect your vehicle from accidental damage, theft, and third-party liabilities with our comprehensive motor insurance solutions. Whether for personal or commercial use, we provide policies tailored to keep you covered on the road, minimizing financial setbacks.',
+    iconName: 'Car',
   },
   {
-    title: 'Business & Commercial',
-    description: 'Protect your assets, employees, and liabilities with solutions for NGOs, SMEs, and SACCOS.',
-    icon: Building2,
+    title: 'Health',
+    description: 'Quality healthcare should never be a burden. Our medical insurance ensures that you and your loved ones have access to the best treatment without financial strain. Covering hospital bills, doctor consultations, and emergency care. We make healthcare affordable and accessible.',
+    iconName: 'ShieldCheck',
+  },
+  {
+    title: 'Home',
+    description: 'Safeguard your home and possessions from unexpected disasters like fire, theft, and natural calamities. Our home insurance ensures financial protection against structural damage and loss of valuables, helping you rebuild and recover without unnecessary stress.',
+    iconName: 'Home',
+  },
+  {
+    title: 'Term Life Insurance',
+    description: 'Provides financial protection for a specific period, ensuring your beneficiaries receive a lump sum in case of an unfortunate event.',
+    iconName: 'Heart',
+  },
+  {
+    title: 'Whole Life Insurance',
+    description: 'Whole Life Insurance provides lifelong coverage, ensuring your loved ones receive financial support whenever needed. Unlike term insurance, it builds cash value over time, which you can borrow or withdraw for emergencies or major expenses. With fixed premiums, your costs remain stable, offering predictability and peace of mind. Ideal for long-term security and estate planning, this policy guarantees a lasting legacy.',
+    iconName: 'Heart',
   },
 ];
 
@@ -74,18 +99,21 @@ const blogPosts = [
     excerpt: 'Learn what comprehensive coverage really means and how to choose the right policy for your vehicle.',
     date: 'Nov 2025',
     href: '#',
+    image: '/images/insurance-bg.png',
   },
   {
     title: 'Health Insurance: Individual vs Family Plans',
     excerpt: 'Compare the benefits and costs of individual and family health insurance policies.',
     date: 'Oct 2025',
     href: '#',
+    image: '/images/fam.png',
   },
   {
     title: 'Life Insurance: Securing Your Family\'s Future',
     excerpt: 'A guide to choosing the right life insurance policy for your needs and budget.',
     date: 'Sep 2025',
     href: '#',
+    image: '/images/insurance-family.jpg',
   },
 ];
 
@@ -115,7 +143,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
         <section className="relative isolate">
           <div className="absolute inset-0">
             <img
-              src="/images/insurance-family.jpg"
+              src="/images/insurancebg.png"
               alt=""
               className="h-full w-full object-cover"
             />
@@ -153,41 +181,32 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
               <h2 className="text-3xl font-light text-gray-900 mb-4">Your Peace of Mind is Our Priority</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
-              {whyChooseUs.map((item) => {
+              {whyChooseUs.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.title} className="bg-white border border-gray-200 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center mb-6">
-                      <Icon className="w-7 h-7" />
+                  <AnimatedCard key={item.title} index={index} delay={200}>
+                    <div className="bg-white border border-gray-200 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center mb-6">
+                        <Icon className="w-7 h-7" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
+                      <p className="text-gray-600 leading-relaxed flex-grow">{item.description}</p>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                  </div>
+                  </AnimatedCard>
                 );
               })}
             </div>
           </div>
         </section>
 
-        {/* Our Products */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-          <div className="text-center mb-12">
-            <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">our products</p>
-            <h2 className="text-3xl font-light text-gray-900 mb-4">Comprehensive Coverage for Every Kenyan Need</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {products.map((product) => {
-              const Icon = product.icon;
-              return (
-                <div key={product.title} className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all">
-                  <div className="w-12 h-12 rounded-xl bg-white border-2 border-blue-500 text-blue-600 flex items-center justify-center mb-6">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{product.title}</h3>
-                  <p className="text-gray-700 leading-relaxed">{product.description}</p>
-                </div>
-              );
-            })}
+        {/* Our Solutions */}
+        <section className="bg-gray-50 py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">our solutions</p>
+              <h2 className="text-3xl font-light text-gray-900 mb-4">Comprehensive Coverage for Every Kenyan Need</h2>
+            </div>
+            <AnimatedSolutionsGrid products={products} locale={locale} />
           </div>
         </section>
 
@@ -271,22 +290,30 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
         </section>
 
         {/* Final CTA */}
-        <section className="py-16 px-4 sm:px-6 bg-white">
-          <div className="max-w-5xl mx-auto">
-            <div className="rounded-[2.5rem] bg-gradient-to-br from-blue-800 via-blue-700 to-blue-600 text-white shadow-[0_25px_80px_rgba(15,23,42,0.25)] px-8 sm:px-16 py-16 text-center">
-              <p className="text-xs font-semibold tracking-[0.4em] uppercase text-white/80 mb-4">Ready to Protect</p>
-              <h2 className="text-3xl font-light mb-3">At Eawestern Insurance</h2>
-              <div className="w-16 h-0.5 bg-white/60 mx-auto mb-6" />
-              <p className="text-lg mb-1">your security and satisfaction come first!</p>
-              <p className="text-white/90 text-lg mb-10">
-                Don&apos;t wait until it&apos;s too late—secure your future with the right insurance coverage today!
-              </p>
-              <div className="flex justify-center">
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="rounded-2xl p-12 lg:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ backgroundColor: '#1e3a8a' }}>
+              <div className="relative z-10">
+                {/* Headline */}
+                <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
+                  We&apos;re Here to Support Your Journey
+                </h2>
+                
+                {/* Decorative line */}
+                <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+                
+                {/* Description Text */}
+                <p className="text-lg lg:text-xl text-white mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+                  Whether you&apos;re planning your next safari, securing insurance, or booking a vehicle—our team is ready to help.
+                </p>
+                
+                {/* CTA Button */}
                 <Link
-                  href="/#contact"
-                  className="inline-flex items-center justify-center bg-white text-blue-800 px-10 py-4 rounded-full tracking-[0.3em] text-sm uppercase font-semibold hover:bg-white/90 transition-all shadow-lg"
+                  href={`/${locale}/contact`}
+                  className="inline-block text-white px-12 py-4 text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform"
+                  style={{ backgroundColor: '#d92323', border: '2px solid white' }}
                 >
-                  Contact Us Now
+                  Contact Us Today
                 </Link>
               </div>
             </div>
@@ -308,6 +335,15 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
             {blogPosts.map((post) => (
               <article key={post.title} className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all">
                 <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-2">{post.date}</p>
+                {/* Blog Image */}
+                <div className="relative h-48 mb-4 rounded-2xl overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{post.title}</h3>
                 <p className="text-gray-600 mb-4">{post.excerpt}</p>
                 <Link href={post.href} className="text-blue-900 text-sm tracking-[0.2em] uppercase font-semibold">

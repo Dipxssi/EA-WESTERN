@@ -29,13 +29,6 @@ export function HeroSection() {
     }
   ];
 
-  const subtexts = [
-    "Explore the heart of East Africa, secure your life and assets, and drive with total assurance. Eawestern is the single, trusted partner controlling every detail of your adventure and protection.",
-    "Your journey of adventure and security begins here. Guided tours, reliable car hire, and travel insurance — all under one roof."
-  ];
-
-  // Show first subtext for slides 0 and 1, second subtext for slide 2
-  const currentSubtext = currentSlide < 2 ? subtexts[0] : subtexts[1];
 
   // Auto-rotate slides every 6 seconds
   useEffect(() => {
@@ -82,12 +75,12 @@ export function HeroSection() {
 
           {/* Main Headline */}
           <div className="mb-16">
-            <h1 className="text-2xl font-light mb-8 leading-[0.9] text-white drop-shadow-lg">
-              Explore. Insure. Drive. — With Confidence.
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
+              <div className="whitespace-nowrap">Your journey of security and</div>
+              <div className="whitespace-nowrap">adventure begins here</div>
             </h1>
-            <div className="w-24 h-px bg-black mx-auto mb-12 "></div>
-            <p className="text-4xl  text-white font-bold max-w-3xl mx-auto leading-relaxed mb-8 drop-shadow transition-all duration-500">
-              {currentSubtext}
+            <p className="text-xl md:text-2xl text-white font-normal max-w-3xl mx-auto leading-relaxed drop-shadow mt-4">
+              Guided tours, reliable car hire, and travel insurance – all under one roof.
             </p>
           </div>
 
@@ -100,10 +93,10 @@ export function HeroSection() {
 
           {/* Main CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-12 py-4 font-medium tracking-widest text-lg transition-all duration-300 uppercase shadow-lg rounded-full border-2 border-pink-200 hover:border-pink-300">
+            <button className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-12 py-4 font-medium tracking-widest text-lg transition-all duration-300 uppercase shadow-lg rounded-full border-2 border-white hover:border-white">
               Get Started Today
             </button>
-            <button className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-12 py-4 font-medium tracking-widest text-lg transition-all duration-300 uppercase shadow-lg rounded-full border-2 border-pink-200 hover:border-pink-300">
+            <button className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-12 py-4 font-medium tracking-widest text-lg transition-all duration-300 uppercase shadow-lg rounded-full border-2 border-white hover:border-white">
               Explore Our Services
             </button>
           </div>

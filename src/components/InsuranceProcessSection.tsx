@@ -34,18 +34,35 @@ export function InsuranceProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [flipped, setFlipped] = useState(steps.map(() => false));
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !hasAnimated) {
             setVisible(true);
+            setHasAnimated(true);
+            
+            // Wait a bit for cards to fade in, then start flipping
+            setTimeout(() => {
+              // Automatically flip cards one by one with delay
+              steps.forEach((_, index) => {
+                setTimeout(() => {
+                  setFlipped((prev) => {
+                    const newFlipped = [...prev];
+                    newFlipped[index] = true;
+                    return newFlipped;
+                  });
+                }, index * 500); // 500ms delay between each card
+              });
+            }, 300); // Wait 300ms after section becomes visible
+            
             observer.disconnect();
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2, rootMargin: '0px 0px -100px 0px' }
     );
 
     if (containerRef.current) {
@@ -53,7 +70,7 @@ export function InsuranceProcessSection() {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [hasAnimated]);
 
   return (
     <section className="bg-white py-16">
@@ -68,16 +85,13 @@ export function InsuranceProcessSection() {
             return (
               <div
                 key={step.number}
-                className={`group relative cursor-pointer rounded-3xl shadow-sm hover:shadow-xl transition-all duration-700 ${
+                className={`group relative rounded-3xl shadow-sm hover:shadow-xl transition-all duration-700 ${
                   visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
                 style={{ transitionDelay: `${index * 120}ms`, perspective: '1200px' }}
-                onClick={() =>
-                  setFlipped((prev) => prev.map((val, idx) => (idx === index ? !val : val)))
-                }
               >
                 <div
-                  className="relative h-full min-h-[320px] rounded-3xl border border-gray-200 bg-white p-6 text-center transition-transform duration-700"
+                  className="relative h-full min-h-[320px] rounded-3xl border border-gray-200 bg-white p-6 text-center transition-transform duration-[1200ms] ease-in-out"
                   style={{
                     transformStyle: 'preserve-3d',
                     transform: flipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)',
@@ -95,7 +109,6 @@ export function InsuranceProcessSection() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">{step.title}</h3>
-                      <p className="text-xs text-gray-500 mt-1 tracking-wide uppercase">Tap to reveal</p>
                     </div>
                   </div>
                   <div
@@ -107,7 +120,6 @@ export function InsuranceProcessSection() {
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
                     <p className="text-sm text-gray-600">{step.description}</p>
-                    <p className="text-xs uppercase tracking-[0.3em] text-blue-500 mt-4">Tap to go back</p>
                   </div>
                 </div>
               </div>

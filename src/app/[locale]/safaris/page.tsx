@@ -2,6 +2,12 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SafariTestimonials } from '@/components/SafariTestimonials';
 import { BookingStepsSection } from '@/components/BookingStepsSection';
+import { AnimatedParagraph } from '@/components/AnimatedParagraph';
+import { AnimatedCard } from '@/components/AnimatedCard';
+import { ExpandableCard } from '@/components/ExpandableCard';
+import { DropdownCard } from '@/components/DropdownCard';
+import { FlipCard } from '@/components/FlipCard';
+import { ModalCard } from '@/components/ModalCard';
 import Link from 'next/link';
 import {
   Compass,
@@ -128,11 +134,12 @@ const testimonials = [
 const blogPosts = [
   {
     title: '5 Ways to Maximize Your Maasai Mara Safari',
-    excerpt: 'From sunrise drives to packing essentials, here’s how to get the most out of every sighting.',
+    excerpt: 'From sunrise drives to packing essentials, here\'s how to get the most out of every sighting.',
     date: 'Nov 2025',
     href: '#',
     accent: 'from-blue-100 via-blue-50 to-white',
     category: 'Safari Tips',
+    image: '/images/maasai.jpg',
   },
   {
     title: 'Amboseli vs. Serengeti — Which Park is Right for You?',
@@ -141,6 +148,7 @@ const blogPosts = [
     href: '#',
     accent: 'from-blue-100 via-blue-50 to-white',
     category: 'Planning Advice',
+    image: '/images/Amboseli.png',
   },
   {
     title: 'Planning a Multi-Country East Africa Adventure',
@@ -149,6 +157,7 @@ const blogPosts = [
     href: '#',
     accent: 'from-blue-100 via-blue-50 to-white',
     category: 'Itinerary Design',
+    image: '/images/tanzania.jpg',
   },
 ];
 
@@ -245,13 +254,16 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
               <div>
                 <p className="text-xs tracking-[0.3em] uppercase text-blue-800 mb-4">Your Journey</p>
                 <h2 className="text-3xl font-light text-gray-900 mb-6">Your Journey of Adventure Begins Here</h2>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  Whether you&apos;re seeking a thrilling safari, a serene beach getaway, a cultural city tour,
-                  or a once-in-a-lifetime expedition, EA Western crafts experiences that feel effortless,
-                  safe, and unforgettable.
-                </p>
+                <AnimatedParagraph>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    Whether you&apos;re seeking a thrilling safari, a serene beach getaway, a cultural city tour,
+                    or a once-in-a-lifetime expedition, EA Western crafts experiences that feel effortless,
+                    safe, and unforgettable.
+                  </p>
+                </AnimatedParagraph>
               </div>
-              <div className="relative overflow-hidden rounded-[32px] border border-white/70 bg-gradient-to-br from-white via-blue-50/70 to-blue-100/30 shadow-xl shadow-blue-100/70">
+              <AnimatedParagraph direction="right" delay={200}>
+                <div className="relative overflow-hidden rounded-[32px] border border-white/70 bg-gradient-to-br from-white via-blue-50/70 to-blue-100/30 shadow-xl shadow-blue-100/70">
                 <div className="absolute -top-10 -right-6 w-40 h-40 bg-blue-200/40 blur-3xl" aria-hidden />
                 <div className="absolute -bottom-12 -left-6 w-40 h-40 bg-blue-500/20 blur-3xl" aria-hidden />
                 <div className="relative p-8 space-y-6">
@@ -279,20 +291,20 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
                     ))}
                   </div>
                 </div>
-              </div>
+                </div>
+              </AnimatedParagraph>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {journeyHighlights.map(({ title, copy, icon: Icon }) => (
-                <div
-                  key={title}
-                  className="bg-white border border-blue-100 p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center mb-4">
-                    <Icon size={22} />
+              {journeyHighlights.map(({ title, copy, icon: Icon }, index) => (
+                <AnimatedCard key={title} index={index} delay={300}>
+                  <div className="bg-white border border-blue-100 p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center mb-4">
+                      <Icon size={22} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{copy}</p>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{copy}</p>
-                </div>
+                </AnimatedCard>
               ))}
             </div>
           </div>
@@ -305,90 +317,105 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
               <h2 className="text-3xl font-light text-gray-900">Curated Tours You Can Book Today</h2>
               <Link
-                href="/#contact"
+                href={`/${locale}/contact`}
                 className="inline-flex items-center justify-center rounded-full border border-blue-900 px-6 py-2 text-sm uppercase tracking-[0.2em] text-blue-900 hover:bg-blue-900 hover:text-white transition"
               >
                 Talk to an expert
               </Link>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
-              {popularDestinations.map((destination) => (
-                <article
-                  key={destination.title}
-                  className="group rounded-[36px] overflow-hidden bg-gradient-to-br from-white via-slate-50 to-blue-50 border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] hover:-translate-y-1 transition-all duration-300"
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={destination.image}
-                      alt={destination.title}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-sm">
-                      <span className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-3 py-1 rounded-full border border-white/30">
-                        <span className="w-2 h-2 rounded-full bg-emerald-300" />
-                        {destination.location}
-                      </span>
-                      <span className="text-xs uppercase tracking-[0.3em] text-white/80">EA WESTERN</span>
-                    </div>
-                  </div>
-                  <div className="p-8 space-y-6">
-                    <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 uppercase tracking-[0.3em]">
-                      <span className="inline-flex items-center gap-2 text-gray-600 tracking-normal uppercase font-semibold">
-                        {destination.theme}
-                      </span>
-                    </div>
-                    <div className="space-y-3">
-                      <h3 className="text-2xl font-semibold text-gray-900">{destination.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{destination.description}</p>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-4 text-sm">
-                      <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 border border-white/80 shadow-sm">
-                        <span className="w-10 h-10 rounded-2xl bg-white text-blue-900 flex items-center justify-center border border-blue-100 shadow-sm">
-                          <MapPin size={18} />
+              {popularDestinations.map((destination, index) => {
+                // Card 1: Modal
+                if (index === 0) {
+                  return <ModalCard key={destination.title} destination={destination} locale={locale} />;
+                }
+                // Card 2: Dropdown
+                if (index === 1) {
+                  return <DropdownCard key={destination.title} destination={destination} locale={locale} />;
+                }
+                // Card 3: Flip
+                if (index === 2) {
+                  return <FlipCard key={destination.title} destination={destination} locale={locale} />;
+                }
+                // Cards 4, 5, 6: Normal
+                return (
+                  <article
+                    key={destination.title}
+                    className="group rounded-[36px] overflow-hidden bg-gradient-to-br from-white via-slate-50 to-blue-50 border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <div className="relative h-64 overflow-hidden">
+                      <img
+                        src={destination.image}
+                        alt={destination.title}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-sm">
+                        <span className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-3 py-1 rounded-full border border-white/30">
+                          <span className="w-2 h-2 rounded-full bg-emerald-300" />
+                          {destination.location}
                         </span>
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-1">Location</p>
-                          <p className="font-medium text-gray-900 tracking-tight">{destination.location}</p>
+                        <span className="text-xs uppercase tracking-[0.3em] text-white/80">EAWESTERN</span>
+                      </div>
+                    </div>
+                    <div className="p-8 space-y-6">
+                      <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 uppercase tracking-[0.3em]">
+                        <span className="inline-flex items-center gap-2 text-gray-600 tracking-normal uppercase font-semibold">
+                          {destination.theme}
+                        </span>
+                      </div>
+                      <div className="space-y-3">
+                        <h3 className="text-2xl font-semibold text-gray-900">{destination.title}</h3>
+                        <p className="text-gray-600 leading-relaxed">{destination.description}</p>
+                      </div>
+                      <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                        <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 border border-white/80 shadow-sm">
+                          <span className="w-10 h-10 rounded-2xl bg-white text-blue-900 flex items-center justify-center border border-blue-100 shadow-sm">
+                            <MapPin size={18} />
+                          </span>
+                          <div>
+                            <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-1">Location</p>
+                            <p className="font-medium text-gray-900 tracking-tight">{destination.location}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 border border-white/80 shadow-sm">
+                          <span className="w-10 h-10 rounded-2xl bg-white text-blue-900 flex items-center justify-center border border-blue-100 shadow-sm">
+                            <CalendarDays size={18} />
+                          </span>
+                          <div>
+                            <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-1">Duration</p>
+                            <p className="font-medium text-gray-900 tracking-tight">{destination.duration}</p>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 border border-white/80 shadow-sm">
-                        <span className="w-10 h-10 rounded-2xl bg-white text-blue-900 flex items-center justify-center border border-blue-100 shadow-sm">
-                          <CalendarDays size={18} />
-                        </span>
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-1">Duration</p>
-                          <p className="font-medium text-gray-900 tracking-tight">{destination.duration}</p>
+                      <div className="bg-white rounded-[24px] p-5 border border-blue-50 shadow-inner shadow-blue-100/60">
+                        <div className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-blue-900 mb-3">
+                          <Camera size={16} />
+                          Highlights
                         </div>
+                        <ul className="space-y-2 text-gray-700 text-sm">
+                          {destination.highlights.map((highlight) => (
+                            <li key={highlight} className="flex items-start gap-3">
+                              <span className="mt-1 w-2 h-2 rounded-full bg-blue-900"></span>
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
+                      <footer className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/60">
+                        <div className="text-xs text-gray-500 uppercase tracking-[0.3em]">Secure your spot</div>
+                        <Link
+                          href={`/${locale}/contact`}
+                          className="inline-flex items-center gap-2 text-blue-900 font-semibold"
+                        >
+                          Plan this tour
+                          <span aria-hidden>→</span>
+                        </Link>
+                      </footer>
                     </div>
-                    <div className="bg-white rounded-[24px] p-5 border border-blue-50 shadow-inner shadow-blue-100/60">
-                      <div className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-blue-900 mb-3">
-                        <Camera size={16} />
-                        Highlights
-                      </div>
-                      <ul className="space-y-2 text-gray-700 text-sm">
-                        {destination.highlights.map((highlight) => (
-                          <li key={highlight} className="flex items-start gap-3">
-                            <span className="mt-1 w-2 h-2 rounded-full bg-blue-900"></span>
-                            <span>{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <footer className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/60">
-                      <div className="text-xs text-gray-500 uppercase tracking-[0.3em]">Secure your spot</div>
-                      <Link
-                        href="/#contact"
-                        className="inline-flex items-center gap-2 text-blue-900 font-semibold"
-                      >
-                        Plan this tour
-                        <span aria-hidden>→</span>
-                      </Link>
-                    </footer>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -419,7 +446,7 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
               </div>
               <div className="flex items-center justify-center pt-4">
                 <Link
-                  href="/#contact"
+                  href={`/${locale}/contact`}
                   className="inline-flex items-center justify-center bg-blue-900 hover:bg-red-900 text-white px-12 py-4 rounded-full tracking-[0.2em] text-sm uppercase border border-blue-900 shadow-lg shadow-blue-200/50"
                 >
                   Request a Custom Tour
@@ -435,23 +462,28 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
 
         {/* CTA */}
         <section className="px-4 sm:px-6 py-16">
-          <div className="max-w-5xl mx-auto bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 rounded-[48px] border border-blue-800 relative overflow-hidden text-center px-8 sm:px-16 py-14 shadow-[0_30px_80px_rgba(15,23,42,0.35)]">
-            <div className="absolute inset-0">
-              <div className="absolute -top-10 -left-10 w-64 h-64 bg-blue-700/50 rounded-full blur-3xl" aria-hidden />
-              <div className="absolute -bottom-16 -right-4 w-72 h-72 bg-indigo-500/50 rounded-full blur-3xl" aria-hidden />
-            </div>
-            <div className="relative space-y-6 text-white">
-              <p className="text-xs tracking-[0.3em] uppercase text-white/60">Ready to Explore</p>
-              <h2 className="text-3xl sm:text-4xl font-light">Ready to Explore East Africa?</h2>
-              <div className="w-16 h-0.5 bg-white/70 mx-auto" />
-              <p className="text-white/90 text-lg leading-relaxed max-w-3xl mx-auto">
-                Your custom-designed, fully assured East African adventure is one conversation away. Join thousands of
-                travelers who trust EA Western to plan seamless safaris, retreats, and cultural escapes.
-              </p>
-              <div className="flex items-center justify-center">
+          <div className="max-w-6xl mx-auto">
+            <div className="rounded-2xl p-12 lg:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ backgroundColor: '#1e3a8a' }}>
+              <div className="relative z-10">
+                {/* Headline */}
+                <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
+                  Ready to Explore East Africa?
+                </h2>
+                
+                {/* Decorative line */}
+                <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+                
+                {/* Description Text */}
+                <p className="text-lg lg:text-xl text-white mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+                  Your custom-designed, fully assured East African adventure is one conversation away. Join thousands of
+                  travelers who trust EA Western to plan seamless safaris, retreats, and cultural escapes.
+                </p>
+                
+                {/* CTA Button */}
                 <Link
-                  href="/#contact"
-                  className="inline-flex items-center justify-center bg-white text-blue-900 px-12 py-4 rounded-full tracking-[0.2em] text-sm uppercase border border-white/70 shadow-xl shadow-blue-900/40"
+                  href={`/${locale}/contact`}
+                  className="inline-block text-white px-12 py-4 text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform"
+                  style={{ backgroundColor: '#d92323', border: '2px solid white' }}
                 >
                   Contact Us Today
                 </Link>
@@ -484,6 +516,15 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
                   <div className="flex items-center justify-between mb-4 text-xs uppercase tracking-[0.3em] text-gray-500">
                     <span>{post.date}</span>
                     <span className="px-3 py-1 rounded-full bg-white/60 text-gray-700 tracking-[0.2em]">{post.category}</span>
+                  </div>
+                  {/* Blog Image */}
+                  <div className="relative h-48 mb-4 rounded-2xl overflow-hidden">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-tight">{post.title}</h3>
                   <p className="text-gray-700 mb-6 leading-relaxed">{post.excerpt}</p>
