@@ -100,7 +100,7 @@ export function WhatYouGetSection() {
               return (
                 <div 
                   key={index}
-                  ref={(el) => (cardRefs.current[index] = el)}
+                  ref={(el) => { cardRefs.current[index] = el; }}
                   className={`group bg-blue-50 p-8 rounded-lg hover:shadow-xl transition-all duration-500 hover:scale-105 shadow-md transform cursor-pointer ${
                     visibleCards[index] 
                       ? 'opacity-100 translate-y-0 rotate-0' 
