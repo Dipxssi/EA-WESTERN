@@ -166,9 +166,9 @@ export default function AboutPage({ params }: { params: Promise<{ locale: string
               <div className="relative overflow-hidden">
                 <div className="flex animate-logo-slide gap-12 items-center">
                   {[
-                    { src: "/images/insurance%20eawestern%20image.webp", alt: "Insurance credential" },
-                    { src: "/images/tour%20eawestern%20logo.png", alt: "Tours credential" },
-                    { src: "/images/car%20about%20logo.png", alt: "Car hire credential" },
+                    { src: "/images/Insurance eawestern image.webp", alt: "Insurance credential" },
+                    { src: "/images/tour eawestern logo.png", alt: "Tours credential" },
+                    { src: "/images/car about logo.png", alt: "Car hire credential" },
                   ].map((logo, idx) => (
                     <img
                       key={`${logo.alt}-${idx}`}
@@ -178,9 +178,9 @@ export default function AboutPage({ params }: { params: Promise<{ locale: string
                     />
                   ))}
                   {[
-                    { src: "/images/insurance%20eawestern%20image.webp", alt: "Insurance credential" },
-                    { src: "/images/tour%20eawestern%20logo.png", alt: "Tours credential" },
-                    { src: "/images/car%20about%20logo.png", alt: "Car hire credential" },
+                    { src: "/images/Insurance eawestern image.webp", alt: "Insurance credential" },
+                    { src: "/images/tour eawestern logo.png", alt: "Tours credential" },
+                    { src: "/images/car about logo.png", alt: "Car hire credential" },
                   ].map((logo, idx) => (
                     <img
                       key={`${logo.alt}-dup-${idx}`}
