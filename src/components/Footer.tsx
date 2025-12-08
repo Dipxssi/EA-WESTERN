@@ -42,7 +42,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             {/* Copyright */}
             <div className="text-xs tracking-[0.2em] text-gray-500 font-light uppercase">
-              © 2025 EA Western — All Rights Reserved
+              © 2025 EAWESTERN — All Rights Reserved
             </div>
             
             {/* DigiNow Solutions Credit */}

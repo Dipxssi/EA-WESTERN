@@ -1,3 +1,5 @@
+"use client";
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SafariTestimonials } from '@/components/SafariTestimonials';
@@ -9,6 +11,7 @@ import { DropdownCard } from '@/components/DropdownCard';
 import { FlipCard } from '@/components/FlipCard';
 import { ModalCard } from '@/components/ModalCard';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import {
   Compass,
   ShieldCheck,
@@ -207,8 +210,85 @@ const logisticsHighlights = [
   },
 ];
 
-export default async function SafarisPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export default function SafarisPage({ params }: { params: Promise<{ locale: string }> }) {
+  const [locale, setLocale] = useState<string>('en');
+  const [magicVisible, setMagicVisible] = useState(false);
+  const [destinationsVisible, setDestinationsVisible] = useState(false);
+  const magicRef = useRef<HTMLDivElement>(null);
+  const destinationsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    params.then(({ locale }) => setLocale(locale));
+  }, [params]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setMagicVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (magicRef.current) {
+      observer.observe(magicRef.current);
+    }
+
+    return () => {
+      if (magicRef.current) {
+        observer.unobserve(magicRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setDestinationsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (destinationsRef.current) {
+      observer.observe(destinationsRef.current);
+    }
+
+    return () => {
+      if (destinationsRef.current) {
+        observer.unobserve(destinationsRef.current);
+      }
+    };
+  }, []);
+
+  const featuredMagic = [
+    {
+      title: 'Maasai Mara',
+      description: 'Witness the Great Migration and incredible wildlife.',
+      image: '/images/masai mara.png',
+    },
+    {
+      title: 'Serengeti',
+      description: 'Endless plains teeming with wildlife and nature.',
+      image: '/images/serengeti.png',
+    },
+    {
+      title: 'Ngorongoro Crater',
+      description: 'A UNESCO World Heritage Site filled with wildlife diversity.',
+      image: '/images/Crater.png',
+    },
+    {
+      title: 'Amboseli',
+      description: 'Elephant herds with Mount Kilimanjaro as a backdrop.',
+      image: '/images/amboseli2.png',
+    },
+  ];
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">
@@ -243,6 +323,40 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
               >
                 Start Planning Your Safari
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Uncover the Magic of East Africa */}
+        <section className="py-12">
+          <div ref={magicRef} className="max-w-6xl mx-auto px-4 sm:px-6">
+            <h2 className={`text-3xl lg:text-4xl font-semibold text-gray-900 text-center mb-8 transition-all duration-1000 ease-out ${
+              magicVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              Uncover the Magic of East Africa
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {featuredMagic.map((spot, index) => (
+                <article
+                  key={spot.title}
+                  className={`bg-white rounded-3xl border border-gray-100 shadow-[0_15px_40px_rgba(0,0,0,0.08)] overflow-hidden transition-all duration-1000 ease-out ${
+                    magicVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${300 + index * 150}ms` }}
+                >
+                  <div className="h-56 overflow-hidden">
+                    <img
+                      src={spot.image}
+                      alt={spot.title}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6 space-y-3">
+                    <h3 className="text-xl font-semibold text-gray-900">{spot.title}</h3>
+                    <p className="text-gray-700 leading-relaxed">{spot.description}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -312,36 +426,30 @@ export default async function SafarisPage({ params }: { params: Promise<{ locale
 
         {/* Popular Destinations */}
         <section className="bg-slate-50 py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">Popular destinations</p>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
-              <h2 className="text-3xl font-light text-gray-900">Curated Tours You Can Book Today</h2>
-              <Link
-                href={`/${locale}/contact`}
-                className="inline-flex items-center justify-center rounded-full border border-blue-900 px-6 py-2 text-sm uppercase tracking-[0.2em] text-blue-900 hover:bg-blue-900 hover:text-white transition"
-              >
-                Talk to an expert
-              </Link>
+          <div ref={destinationsRef} className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className={`transition-all duration-1000 ease-out ${
+              destinationsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">Popular destinations</p>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
+                <h2 className="text-3xl font-light text-gray-900">Curated Tours You Can Book Today</h2>
+                <Link
+                  href={`/${locale}/contact`}
+                  className="inline-flex items-center justify-center rounded-full border border-blue-900 px-6 py-2 text-sm uppercase tracking-[0.2em] text-blue-900 hover:bg-blue-900 hover:text-white transition"
+                >
+                  Talk to an expert
+                </Link>
+              </div>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
               {popularDestinations.map((destination, index) => {
-                // Card 1: Modal
-                if (index === 0) {
-                  return <ModalCard key={destination.title} destination={destination} locale={locale} />;
-                }
-                // Card 2: Dropdown
-                if (index === 1) {
-                  return <DropdownCard key={destination.title} destination={destination} locale={locale} />;
-                }
-                // Card 3: Flip
-                if (index === 2) {
-                  return <FlipCard key={destination.title} destination={destination} locale={locale} />;
-                }
-                // Cards 4, 5, 6: Normal
                 return (
                   <article
                     key={destination.title}
-                    className="group rounded-[36px] overflow-hidden bg-gradient-to-br from-white via-slate-50 to-blue-50 border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] hover:-translate-y-1 transition-all duration-300"
+                    className={`group rounded-[36px] overflow-hidden bg-gradient-to-br from-white via-slate-50 to-blue-50 border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] hover:-translate-y-1 transition-all duration-300 ${
+                      destinationsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    }`}
+                    style={{ transitionDelay: `${200 + index * 150}ms` }}
                   >
                     <div className="relative h-64 overflow-hidden">
                       <img

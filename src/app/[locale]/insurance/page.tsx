@@ -1,9 +1,13 @@
+"use client";
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SafariTestimonials } from '@/components/SafariTestimonials';
 import { AnimatedCard } from '@/components/AnimatedCard';
 import { AnimatedSolutionsGrid } from '@/components/AnimatedSolutionsGrid';
+import { LifeInsuranceSections } from '@/components/LifeInsuranceSections';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import {
   ShieldCheck,
   TrendingDown,
@@ -54,7 +58,7 @@ const products = [
   {
     title: 'Retirement',
     description: 'Enjoy peace of mind in your golden years with a well-structured retirement insurance plan. Our solutions help you build a financial cushion through savings and investments, ensuring you maintain your lifestyle and financial independence after retirement.',
-    iconName: 'Clock',
+    iconName: 'PiggyBank',
   },
   {
     title: 'Motor Insurance',
@@ -64,22 +68,12 @@ const products = [
   {
     title: 'Health',
     description: 'Quality healthcare should never be a burden. Our medical insurance ensures that you and your loved ones have access to the best treatment without financial strain. Covering hospital bills, doctor consultations, and emergency care. We make healthcare affordable and accessible.',
-    iconName: 'ShieldCheck',
+    iconName: 'HeartPulse',
   },
   {
     title: 'Home',
     description: 'Safeguard your home and possessions from unexpected disasters like fire, theft, and natural calamities. Our home insurance ensures financial protection against structural damage and loss of valuables, helping you rebuild and recover without unnecessary stress.',
     iconName: 'Home',
-  },
-  {
-    title: 'Term Life Insurance',
-    description: 'Provides financial protection for a specific period, ensuring your beneficiaries receive a lump sum in case of an unfortunate event.',
-    iconName: 'Heart',
-  },
-  {
-    title: 'Whole Life Insurance',
-    description: 'Whole Life Insurance provides lifelong coverage, ensuring your loved ones receive financial support whenever needed. Unlike term insurance, it builds cash value over time, which you can borrow or withdraw for emergencies or major expenses. With fixed premiums, your costs remain stable, offering predictability and peace of mind. Ideal for long-term security and estate planning, this policy guarantees a lasting legacy.',
-    iconName: 'Heart',
   },
 ];
 
@@ -132,8 +126,62 @@ const personalizedCoverageHighlights = [
   },
 ];
 
-export default async function InsurancePage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export default function InsurancePage({ params }: { params: Promise<{ locale: string }> }) {
+  const [locale, setLocale] = useState<string>('en');
+  const [customCoverageVisible, setCustomCoverageVisible] = useState(false);
+  const [claimsVisible, setClaimsVisible] = useState(false);
+  const customCoverageRef = useRef<HTMLDivElement>(null);
+  const claimsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    params.then(({ locale }) => setLocale(locale));
+  }, [params]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setCustomCoverageVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (customCoverageRef.current) {
+      observer.observe(customCoverageRef.current);
+    }
+
+    return () => {
+      if (customCoverageRef.current) {
+        observer.unobserve(customCoverageRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setClaimsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (claimsRef.current) {
+      observer.observe(claimsRef.current);
+    }
+
+    return () => {
+      if (claimsRef.current) {
+        observer.unobserve(claimsRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">
@@ -158,13 +206,13 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               <Link
-                href="/#contact"
+                href={`/${locale}/contact`}
                 className="bg-blue-900 hover:bg-red-900 transition-all duration-300 border border-white/20 rounded-full px-8 py-3 text-sm tracking-[0.2em] uppercase"
               >
                 Request a Quote
               </Link>
               <Link
-                href="/#contact"
+                href={`/${locale}/contact`}
                 className="bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 border border-white/30 rounded-full px-8 py-3 text-sm tracking-[0.2em] uppercase text-white"
               >
                 Talk to an Advisor
@@ -201,7 +249,7 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
 
         {/* Our Solutions */}
         <section className="bg-gray-50 py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="w-full px-4 sm:px-6">
             <div className="text-center mb-12">
               <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">our solutions</p>
               <h2 className="text-3xl font-light text-gray-900 mb-4">Comprehensive Coverage for Every Kenyan Need</h2>
@@ -210,11 +258,15 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
           </div>
         </section>
 
+        <LifeInsuranceSections />
+
         {/* Personalized Coverage CTA */}
         <section className="py-16 px-4 sm:px-6 bg-white">
           <div className="max-w-6xl mx-auto">
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-blue-50 via-white to-blue-100 shadow-[0_25px_80px_rgba(15,23,42,0.15)] px-6 sm:px-10 lg:px-16 py-14">
-              <div className="text-center max-w-3xl mx-auto">
+            <div ref={customCoverageRef} className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-blue-50 via-white to-blue-100 shadow-[0_25px_80px_rgba(15,23,42,0.15)] px-6 sm:px-10 lg:px-16 py-14">
+              <div className={`text-center max-w-3xl mx-auto transition-all duration-1000 ease-out ${
+                customCoverageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
                 <p className="text-xs font-semibold tracking-[0.4em] text-blue-700 uppercase mb-4">Custom Coverage</p>
                 <h2 className="text-3xl font-light text-gray-900 mb-4">Want a Personalized Experience?</h2>
                 <p className="text-lg text-gray-600">
@@ -223,17 +275,27 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
               </div>
 
               <div className="mt-10 grid gap-6 md:grid-cols-3">
-                {personalizedCoverageHighlights.map((item) => (
-                  <div key={item.title} className="bg-white/90 shadow-sm rounded-3xl px-6 py-5 text-left">
+                {personalizedCoverageHighlights.map((item, index) => (
+                  <div 
+                    key={item.title} 
+                    className={`bg-white/90 shadow-sm rounded-3xl px-6 py-5 text-left transition-all duration-1000 ease-out ${
+                      customCoverageVisible 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-8'
+                    }`}
+                    style={{ transitionDelay: `${300 + index * 100}ms` }}
+                  >
                     <h3 className="text-base font-semibold text-blue-900 mb-2">{item.title}</h3>
                     <p className="text-sm text-gray-600">{item.description}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-12 flex justify-center">
+              <div className={`mt-12 flex justify-center transition-all duration-1000 ease-out ${
+                customCoverageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`} style={{ transitionDelay: '600ms' }}>
                 <Link
-                  href="/#contact"
+                  href={`/${locale}/contact`}
                   className="inline-flex items-center justify-center bg-blue-900 text-white px-10 py-4 rounded-full tracking-[0.3em] text-sm uppercase font-semibold hover:bg-blue-800 transition-all shadow-lg"
                 >
                   Request Custom Coverage
@@ -248,19 +310,29 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
         {/* Claims Assistance */}
         <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-200">
-              <div className="mb-8">
+            <div ref={claimsRef} className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-200">
+              <div className={`mb-8 transition-all duration-1000 ease-out ${
+                claimsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
                 <h2 className="text-3xl font-light text-gray-900 mb-4">Claims Assistance</h2>
                 <p className="text-lg text-gray-700 mb-6">
                   Insurance is only as good as the support you receive during a loss. Eawestern Insurance provides end-to-end claims assistance to ensure you are never alone when something goes wrong.
                 </p>
               </div>
 
-              <div className="mb-8">
+              <div className={`mb-8 transition-all duration-1000 ease-out ${
+                claimsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`} style={{ transitionDelay: '200ms' }}>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">What We Do for You:</h3>
                 <div className="grid md:grid-cols-2 gap-3">
                   {claimsFeatures.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
+                    <div 
+                      key={index} 
+                      className={`flex items-start gap-3 transition-all duration-1000 ease-out ${
+                        claimsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+                      }`}
+                      style={{ transitionDelay: `${400 + index * 100}ms` }}
+                    >
                       <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700">{feature}</span>
                     </div>
@@ -268,7 +340,9 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
                 </div>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-8">
+              <div className={`bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-8 transition-all duration-1000 ease-out ${
+                claimsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`} style={{ transitionDelay: '1200ms' }}>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Our Claims Promise:</h3>
                 <p className="text-lg font-semibold text-blue-700 mb-2">Fast. Transparent. Stress-free.</p>
                 <p className="text-gray-700">
@@ -276,9 +350,11 @@ export default async function InsurancePage({ params }: { params: Promise<{ loca
                 </p>
               </div>
 
-              <div className="text-center">
+              <div className={`text-center transition-all duration-1000 ease-out ${
+                claimsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`} style={{ transitionDelay: '1400ms' }}>
                 <Link
-                  href="/#contact"
+                  href={`/${locale}/contact`}
                   className="inline-flex items-center gap-2 bg-blue-900 hover:bg-red-900 text-white px-8 py-3 rounded-full tracking-[0.2em] text-sm uppercase transition-all"
                 >
                   Request Claims Assistance

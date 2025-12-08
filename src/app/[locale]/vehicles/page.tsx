@@ -1,8 +1,11 @@
+"use client";
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { CarHireBookingSteps } from '@/components/CarHireBookingSteps';
 import { AnimatedCard } from '@/components/AnimatedCard';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import {
   ShieldCheck,
   Gauge,
@@ -34,15 +37,19 @@ const advantageHighlights = [
     icon: Settings,
   },
   {
-    title: 'Integrated Insurance.',
-    description:
-      'Comprehensive insurance handled in-house by our Insurance team so you always know what is covered.',
-    icon: CheckCircle2,
-  },
-  {
     title: 'Flexible Logistics & 24/7 Support.',
     description: 'Custom pick-up/drop-off points and on-call emergency assistance anywhere in East Africa.',
     icon: Headphones,
+  },
+  {
+    title: 'Chauffeured Expertise',
+    description: 'Professional, vetted drivers who know the routes, security considerations, and traffic nuances across East Africa.',
+    icon: Users,
+  },
+  {
+    title: 'Long-Term Corporate Leasing',
+    description: 'Flexible monthly rentals for companies that need reliable fleets without capital expenditure.',
+    icon: Gauge,
   },
 ];
 
@@ -52,29 +59,21 @@ const fleetCategories = [
     description:
       'Rugged, fully kitted Land Cruisers, Prados, and Defenders for the toughest terrain and remote projects.',
     icon: Truck,
+    image: '/images/carCard1.png',
   },
   {
     title: 'Business & Executive Rentals',
     description:
       'Modern executive sedans and SUVs for airport transfers, corporate visits, and VIP movements.',
     icon: Car,
+    image: '/images/carCard2.png',
   },
   {
     title: 'Self-Drive Convenience',
     description:
       'Drive yourself with full documentation, roadside support, and quick approvals for Kenyan and foreign licenses.',
     icon: CircleGauge,
-  },
-  {
-    title: 'Chauffeured Expertise',
-    description:
-      'Professional, vetted drivers who know the routes, security considerations, and traffic nuances across East Africa.',
-    icon: Users,
-  },
-  {
-    title: 'Long-Term Corporate Leasing',
-    description: 'Flexible monthly rentals for companies that need reliable fleets without capital expenditure.',
-    icon: Gauge,
+    image: '/images/carCard3.png',
   },
 ];
 
@@ -99,8 +98,12 @@ const articles = [
   },
 ];
 
-export default async function VehiclesPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export default function VehiclesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const [locale, setLocale] = useState('en');
+
+  useEffect(() => {
+    params.then((p) => setLocale(p.locale));
+  }, [params]);
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">
@@ -126,11 +129,63 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
               requirement. We match you with the right car, driver, and insurance in one call.
             </p>
             <Link
-              href="/#contact"
+              href={`/${locale}/contact`}
               className="inline-flex items-center gap-3 bg-blue-900 hover:bg-red-900 border border-white/30 rounded-full px-8 py-3 text-sm tracking-[0.2em] uppercase transition-all"
             >
               Get a Custom Booking Today
             </Link>
+          </div>
+        </section>
+
+        {/* Car Hire Service Intro */}
+        <section className="py-16 px-4 sm:px-6 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-[48px] border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] relative overflow-hidden">
+              <div className="absolute -top-10 -right-8 w-60 h-60 bg-blue-200/40 blur-3xl" aria-hidden />
+              <div className="absolute -bottom-16 -left-6 w-56 h-56 bg-indigo-200/40 blur-3xl" aria-hidden />
+              <div className="relative grid md:grid-cols-2 gap-8 items-center px-8 sm:px-16 py-14">
+                {/* Left Column - Text Content */}
+                <div className="space-y-6">
+                  <p className="text-xs tracking-[0.3em] uppercase text-blue-900/70">Car Hire</p>
+                  <h2 className="text-3xl font-light text-gray-900">Kenya's Reliable Car Hire Service — Tailored to You</h2>
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    Whether you're travelling for work or leisure, our fleet is designed to meet every need. We offer SUVs,
+                    saloons, vans, shuttles, luxury cars, and long-term corporate rentals. Every vehicle is inspected, serviced,
+                    and sanitized for your safety and comfort.
+                  </p>
+                </div>
+                
+                {/* Right Column - Image Collage */}
+                <div className="relative">
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Top-left: SUV */}
+                    <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                      <img
+                        src="/images/car3.png"
+                        alt="SUV vehicle"
+                        className="w-full h-full object-cover aspect-square"
+                      />
+                    </div>
+                    {/* Top-right: Red hatchback */}
+                    <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                      <img
+                        src="/images/car3.png"
+                        alt="Hatchback vehicle"
+                        className="w-full h-full object-cover aspect-square"
+                      />
+                    </div>
+                    {/* Bottom: White van - spans 2 columns */}
+                    <div className="relative rounded-2xl overflow-hidden shadow-lg col-span-2">
+                      <img
+                        src="/images/car3.png"
+                        alt="Van vehicle"
+                        className="w-full h-full object-cover aspect-[2/1]"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -151,70 +206,23 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
               </p>
             </div>
             {/* Cards Below Text */}
-            <div className="space-y-6">
-              {/* First 3 cards */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {advantageHighlights.slice(0, 3).map((item, index) => {
-                  const Icon = item.icon ?? ShieldCheck;
-                  return (
-                    <AnimatedCard key={item.title} index={index} delay={200}>
-                      <div className="bg-white rounded-3xl border border-blue-100 p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                        <div className="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center mb-4 flex-shrink-0">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+              {advantageHighlights.map((item, index) => {
+                const Icon = item.icon ?? ShieldCheck;
+                return (
+                  <AnimatedCard key={item.title} index={index} delay={200}>
+                    <div className="bg-white rounded-3xl border border-blue-100 p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center flex-shrink-0">
                           <Icon size={20} />
                         </div>
-                        <h3 className="text-base font-semibold text-gray-900 mb-2">{item.title}</h3>
-                        <p className="text-sm text-gray-600 leading-relaxed flex-grow">{item.description}</p>
+                        <h3 className="text-base font-semibold text-gray-900">{item.title}</h3>
                       </div>
-                    </AnimatedCard>
-                  );
-                })}
-              </div>
-              {/* Last 2 cards - centered */}
-              <div className="flex flex-wrap justify-center gap-6">
-                {advantageHighlights.slice(3).map((item, index) => {
-                  const Icon = item.icon ?? ShieldCheck;
-                  return (
-                    <AnimatedCard key={item.title} index={index + 3} delay={200}>
-                      <div className="bg-white rounded-3xl border border-blue-100 p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-full sm:w-[calc(50%-12px)] lg:w-[320px] h-full flex flex-col">
-                        <div className="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center mb-4 flex-shrink-0">
-                          <Icon size={20} />
-                        </div>
-                        <h3 className="text-base font-semibold text-gray-900 mb-2">{item.title}</h3>
-                        <p className="text-sm text-gray-600 leading-relaxed flex-grow">{item.description}</p>
-                      </div>
-                    </AnimatedCard>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Service Intro */}
-        <section className="py-16 px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-[48px] border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] relative overflow-hidden">
-            <div className="absolute -top-10 -right-8 w-60 h-60 bg-blue-200/40 blur-3xl" aria-hidden />
-            <div className="absolute -bottom-16 -left-6 w-56 h-56 bg-indigo-200/40 blur-3xl" aria-hidden />
-            <div className="relative grid md:grid-cols-2 gap-8 items-center px-8 sm:px-16 py-14">
-              <div className="space-y-6">
-                <p className="text-xs tracking-[0.3em] uppercase text-blue-900/70">Car Hire</p>
-                <h2 className="text-3xl font-light text-gray-900">Kenya's Reliable Car Hire Service — Tailored to You</h2>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  Whether you're travelling for work or leisure, our fleet is designed to meet every need. We offer SUVs,
-                  saloons, vans, shuttles, luxury cars, and long-term corporate rentals. Every vehicle is inspected, serviced,
-                  and sanitized for your safety and comfort.
-                </p>
-              </div>
-              <div className="relative">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                  <img
-                    src="/images/car3.png"
-                    alt="Premium car hire vehicle"
-                    className="w-full h-auto object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
-                </div>
-              </div>
+                      <p className="text-sm text-gray-600 leading-relaxed flex-grow">{item.description}</p>
+                    </div>
+                  </AnimatedCard>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -223,7 +231,6 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
         <section className="py-16 px-4 sm:px-6 bg-gray-50">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-10">
-              <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">Our Fleet</p>
               <h2 className="text-3xl font-light mb-3">Find the Perfect Ride</h2>
               <p className="text-gray-600 max-w-3xl mx-auto">
                 Choose from a wide range of well-maintained vehicles for business, travel, and safari adventures. Enjoy
@@ -237,12 +244,22 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
                   const Icon = category.icon ?? Car;
                   return (
                     <AnimatedCard key={category.title} index={index} delay={200}>
-                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                        <div className="w-12 h-12 rounded-xl bg-white border-2 border-blue-500 text-blue-600 flex items-center justify-center mb-6 flex-shrink-0">
-                          <Icon size={24} />
+                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col overflow-hidden">
+                        {/* Image */}
+                        {category.image && (
+                          <div className="relative h-48 overflow-hidden">
+                            <img
+                              src={category.image}
+                              alt={category.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        )}
+                        {/* Content */}
+                        <div className="p-8 flex flex-col flex-grow">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.title}</h3>
+                          <p className="text-gray-700 text-sm leading-relaxed flex-grow">{category.description}</p>
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.title}</h3>
-                        <p className="text-gray-700 text-sm leading-relaxed flex-grow">{category.description}</p>
                       </div>
                     </AnimatedCard>
                   );
@@ -268,7 +285,7 @@ export default async function VehiclesPage({ params }: { params: Promise<{ local
             </div>
             <div className="text-center mt-10">
               <Link
-                href="/#contact"
+                href={`/${locale}/contact`}
                 className="inline-flex items-center justify-center bg-blue-900 text-white px-10 py-4 rounded-full tracking-[0.2em] text-sm uppercase font-semibold hover:bg-blue-800 transition-all"
               >
                 Inquire About Booking

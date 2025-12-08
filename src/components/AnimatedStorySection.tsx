@@ -93,36 +93,9 @@ export function AnimatedStorySection() {
 
   return (
     <section ref={sectionRef} className="py-16 lg:py-24 bg-white relative overflow-hidden">
-      {/* Animated Background Images */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="grid grid-cols-4 lg:grid-cols-6 gap-2 h-full">
-          {backgroundImages.map((image, index) => (
-            <div
-              key={index}
-              className={`relative overflow-hidden ${
-                isAnimating && currentAnimatingIndex !== null
-                  ? paragraphs[currentAnimatingIndex].direction === 'left'
-                    ? 'animate-slide-left'
-                    : 'animate-slide-right'
-                  : 'animate-float'
-              }`}
-              style={{
-                animationDelay: `${index * 0.1}s`,
-                animationDuration: isAnimating ? '1s' : '3s'
-              }}
-            >
-              <img
-                src={image}
-                alt={`Background ${index}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-2 sm:px-4">
+        {/* Centered Title and Subtitle */}
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-light mb-6 text-gray-900">
             The Eawestern Story
@@ -132,30 +105,40 @@ export function AnimatedStorySection() {
           </h3>
         </div>
 
-        <div className="space-y-10 text-lg text-gray-700 leading-relaxed">
-          {paragraphs.map((para, index) => (
-            <div
-              key={index}
-              className={`transform transition-all duration-1000 ease-out relative z-10 ${
-                visibleParagraphs[index]
-                  ? 'opacity-100 translate-x-0 scale-100'
-                  : para.direction === 'left'
-                  ? 'opacity-0 -translate-x-24 scale-95'
-                  : 'opacity-0 translate-x-24 scale-95'
-              }`}
-              style={{ transitionDelay: `${index * 250}ms` }}
-            >
-              <div className={`${
-                para.direction === 'left' 
-                  ? 'text-left pr-8 lg:pr-16 border-l-4 border-blue-600 pl-6 py-4 bg-blue-50/80 backdrop-blur-sm rounded-r-lg shadow-lg' 
-                  : 'text-right pl-8 lg:pl-16 border-r-4 border-blue-600 pr-6 py-4 bg-blue-50/80 backdrop-blur-sm rounded-l-lg shadow-lg'
-              }`}>
-                <p className="leading-relaxed">
-                  {para.text}
-                </p>
-              </div>
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Column - Text Content */}
+          <div>
+            <div className="space-y-10 text-lg text-gray-700 leading-relaxed">
+              {paragraphs.map((para, index) => (
+                <div
+                  key={index}
+                  className={`transform transition-all duration-1000 ease-out relative z-10 ${
+                    visibleParagraphs[index]
+                      ? 'opacity-100 translate-x-0 scale-100'
+                      : para.direction === 'left'
+                      ? 'opacity-0 -translate-x-24 scale-95'
+                      : 'opacity-0 translate-x-24 scale-95'
+                  }`}
+                  style={{ transitionDelay: `${index * 250}ms` }}
+                >
+                  <div className="text-left pr-8 lg:pr-16 border-l-4 border-blue-600 pl-6 py-4 bg-blue-50/80 backdrop-blur-sm rounded-r-lg shadow-lg">
+                    <p className="leading-relaxed">
+                      {para.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Right Column - Image */}
+          <div className="relative">
+            <img
+              src="/images/aboutus.png"
+              alt="About Eawestern"
+              className="w-full h-auto rounded-lg shadow-lg object-cover"
+            />
+          </div>
         </div>
       </div>
 

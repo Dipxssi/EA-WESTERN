@@ -9,21 +9,6 @@ export function AnimatedPhilosophySection() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentAnimatingIndex, setCurrentAnimatingIndex] = useState<number | null>(null);
 
-  const backgroundImages = [
-    '/images/tanzania.jpg',
-    '/images/fam.png',
-    '/images/caar.png',
-    '/images/tours.png',
-    '/images/Amboseli.png',
-    '/images/gorilla-trek.jpg',
-    '/images/maasai.jpg',
-    '/images/safari-pg.jpg',
-    '/images/nairobi-city.jpg',
-    '/images/Diana Beach.jpg',
-    '/images/car image.jpg',
-    '/images/insurance-family.jpg'
-  ];
-
   const cards = [
     {
       title: 'A-to-Z Logistics',
@@ -90,32 +75,14 @@ export function AnimatedPhilosophySection() {
 
   return (
     <section ref={sectionRef} className="py-16 lg:py-24 bg-gray-50 relative overflow-hidden">
-      {/* Animated Background Images */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="grid grid-cols-4 lg:grid-cols-6 gap-2 h-full">
-          {backgroundImages.map((image, index) => (
-            <div
-              key={index}
-              className={`relative overflow-hidden ${
-                isAnimating && currentAnimatingIndex !== null
-                  ? cards[currentAnimatingIndex].direction === 'left'
-                    ? 'animate-slide-left'
-                    : 'animate-slide-right'
-                  : 'animate-float'
-              }`}
-              style={{
-                animationDelay: `${index * 0.1}s`,
-                animationDuration: isAnimating ? '1s' : '3s'
-              }}
-            >
-              <img
-                src={image}
-                alt={`Background ${index}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </div>
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/philosophy.png"
+          alt="Philosophy background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-white/65 backdrop-blur-[2px]"></div>
       </div>
 
       {/* Content */}
@@ -127,7 +94,7 @@ export function AnimatedPhilosophySection() {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          {/* Intro Card */}
+          {/* Intro Text */}
           <div
             className={`transform transition-all duration-700 ease-out mb-8 relative z-10 ${
               introVisible
@@ -135,14 +102,12 @@ export function AnimatedPhilosophySection() {
                 : 'opacity-0 translate-y-8 scale-95'
             }`}
           >
-            <div className="bg-white/95 backdrop-blur-sm p-8 rounded-lg border-2 border-blue-600 shadow-xl">
-              <p className="text-lg text-gray-700 leading-relaxed">
-                We built Eawestern to be the single point of accountability for your most critical needs. Every service—Tours, Insurance, Car Hire—is a pillar of our commitment to your Confidence. This isn&apos;t just cross-selling; it&apos;s a strategic, integrated model that ensures:
-              </p>
-            </div>
+            <p className="text-lg text-gray-800 leading-relaxed">
+              We built Eawestern to be the single point of accountability for your most critical needs. Every service—Tours, Insurance, Car Hire—is a pillar of our commitment to your Confidence. This isn&apos;t just cross-selling; it&apos;s a strategic, integrated model that ensures:
+            </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {cards.map((card, index) => (
               <div
                 key={index}
@@ -155,7 +120,7 @@ export function AnimatedPhilosophySection() {
                 }`}
                 style={{ transitionDelay: `${index * 500}ms` }}
               >
-                <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg border-l-4 border-blue-600 shadow-lg">
+                <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg border-l-4 border-blue-600 shadow-lg h-full">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">{card.title}</h3>
                   <p className="text-gray-700">{card.description}</p>
                 </div>

@@ -1,5 +1,4 @@
-
-
+import { ScrollToTop } from '@/components/ScrollToTop';
 
 export default async function LocaleLayout({
   children,
@@ -13,6 +12,7 @@ export default async function LocaleLayout({
   return (
     <div>
       {children}
+      <ScrollToTop />
     </div>
   );
 }

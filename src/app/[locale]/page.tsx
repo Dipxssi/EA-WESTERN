@@ -16,9 +16,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <div className="min-h-screen bg-white text-black">
       <Navigation locale={locale} />
-      <HeroSection />
-      <ServiceCardsSection locale={locale} />
-      <AboutSection />
+      <HeroSection locale={locale} />
+      <div id="services-section">
+        <ServiceCardsSection locale={locale} />
+      </div>
+      <AboutSection locale={locale} />
       <ServicesSection locale={locale} />
       <WhatYouGetSection />
       <TestimonialsSection />

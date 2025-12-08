@@ -1,3 +1,5 @@
+"use client";
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
@@ -5,9 +7,14 @@ import { AnimatedStorySection } from '@/components/AnimatedStorySection';
 import { AnimatedPhilosophySection } from '@/components/AnimatedPhilosophySection';
 import { AnimatedPillarsSection } from '@/components/AnimatedPillarsSection';
 import { AnimatedValuesSection } from '@/components/AnimatedValuesSection';
+import { useEffect, useState } from 'react';
 
-export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export default function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const [locale, setLocale] = useState<string>('en');
+
+  useEffect(() => {
+    params.then(({ locale }) => setLocale(locale));
+  }, [params]);
 
 
   return (
@@ -15,8 +22,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <Navigation locale={locale} />
       <main className="pt-0 pb-16">
         {/* Hero Section */}
-        <section className="relative min-h-[500px] lg:min-h-[600px] overflow-hidden">
-          <div className="grid grid-cols-4 lg:grid-cols-6 h-full min-h-[500px] lg:min-h-[600px]">
+        <section className="relative min-h-[220px] lg:min-h-[300px] overflow-hidden">
+          <div className="grid grid-cols-4 lg:grid-cols-6 h-full min-h-[220px] lg:min-h-[300px]">
             {/* Image 1 */}
             <div className="relative">
               <img 
@@ -153,12 +160,54 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               <h2 className="text-3xl lg:text-4xl font-light mb-6 text-gray-900">
                 Our Credentials & Licensing
               </h2>
-              <p className="text-gray-600">(will have logos for this)</p>
+              <p className="text-gray-600">Partners and licenses we proudly hold</p>
             </div>
-            <div className="bg-white p-12 rounded-lg border border-gray-200 text-center">
-              <p className="text-gray-500">Logos placeholder - to be added</p>
+            <div className="bg-white p-10 rounded-lg border border-gray-200">
+              <div className="relative overflow-hidden">
+                <div className="flex animate-logo-slide gap-12 items-center">
+                  {[
+                    { src: "/images/insurance%20eawestern%20image.webp", alt: "Insurance credential" },
+                    { src: "/images/tour%20eawestern%20logo.png", alt: "Tours credential" },
+                    { src: "/images/car%20about%20logo.png", alt: "Car hire credential" },
+                  ].map((logo, idx) => (
+                    <img
+                      key={`${logo.alt}-${idx}`}
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="h-20 w-auto object-contain shrink-0"
+                    />
+                  ))}
+                  {[
+                    { src: "/images/insurance%20eawestern%20image.webp", alt: "Insurance credential" },
+                    { src: "/images/tour%20eawestern%20logo.png", alt: "Tours credential" },
+                    { src: "/images/car%20about%20logo.png", alt: "Car hire credential" },
+                  ].map((logo, idx) => (
+                    <img
+                      key={`${logo.alt}-dup-${idx}`}
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="h-20 w-auto object-contain shrink-0"
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
+          <style jsx>{`
+            @keyframes logo-slide {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-logo-slide {
+              width: max-content;
+              animation: logo-slide 20s linear infinite;
+            }
+            @media (max-width: 768px) {
+              .animate-logo-slide {
+                animation-duration: 25s;
+              }
+            }
+          `}</style>
         </section>
 
         {/* How We Deliver Value */}
