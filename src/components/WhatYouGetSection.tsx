@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Route, ShieldCheck, Award } from 'lucide-react';
+import { CredentialsSection } from './CredentialsSection';
 
 export function WhatYouGetSection() {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -122,6 +123,11 @@ export function WhatYouGetSection() {
                 </div>
               );
             })}
+          </div>
+
+          {/* Credentials between benefits and CTA */}
+          <div className="mt-12">
+            <CredentialsSection />
           </div>
 
           {/* Call to Action Section */}

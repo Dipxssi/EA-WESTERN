@@ -26,6 +26,19 @@ import {
   Camera,
 } from 'lucide-react';
 
+const heroCollageImages = [
+  '/images/tour1.jpg',
+  '/images/tour2.jpg',
+  '/images/tour3.jpg',
+  '/images/tour4.jpg',
+  '/images/tour5.jpg',
+  '/images/tour6.webp',
+  '/images/tour7.jpg',
+  '/images/tour8.jpg',
+  '/images/tanzania.jpg',
+  '/images/maasai.jpg',
+];
+
 const popularDestinations = [
   {
     title: 'Maasai Mara Classic Safari — 3 Days',
@@ -297,11 +310,19 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
         {/* Hero */}
         <section className="relative isolate">
           <div className="absolute inset-0">
-            <img
-              src="/images/safari-pg.jpg"
-              alt="Sunset silhouette of an acacia tree across the savannah"
-              className="h-full w-full object-cover"
-            />
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="grid grid-cols-5 grid-rows-2 h-full w-full">
+                {heroCollageImages.map((src, idx) => (
+                  <div key={src + idx} className="relative">
+                    <img
+                      src={src}
+                      alt="East Africa collage"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/20" />
           </div>
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-24 text-white">

@@ -22,8 +22,8 @@ export default function AboutPage({ params }: { params: Promise<{ locale: string
       <Navigation locale={locale} />
       <main className="pt-0 pb-16">
         {/* Hero Section */}
-        <section className="relative min-h-[220px] lg:min-h-[300px] overflow-hidden">
-          <div className="grid grid-cols-4 lg:grid-cols-6 h-full min-h-[220px] lg:min-h-[300px]">
+        <section className="relative min-h-[180px] lg:min-h-[240px] overflow-hidden">
+          <div className="grid grid-cols-4 lg:grid-cols-6 h-full min-h-[180px] lg:min-h-[240px] auto-rows-[120px] sm:auto-rows-[140px] lg:auto-rows-[160px]">
             {/* Image 1 */}
             <div className="relative">
               <img 

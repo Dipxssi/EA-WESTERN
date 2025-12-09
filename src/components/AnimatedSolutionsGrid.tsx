@@ -60,7 +60,8 @@ export function AnimatedSolutionsGrid({ products, locale }: AnimatedSolutionsGri
 
   return (
     <div ref={sectionRef} className="w-full">
-      <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 max-w-full">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
         {products.map((product, index) => {
           const Icon = iconMap[product.iconName] || Building2;
           const isVisible = visibleCards[index];
@@ -68,7 +69,7 @@ export function AnimatedSolutionsGrid({ products, locale }: AnimatedSolutionsGri
           return (
             <div
               key={product.title}
-              className={`group bg-white border border-gray-200 p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 ${
+              className={`group bg-white border border-gray-200 p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 min-h-[240px] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{
@@ -97,6 +98,7 @@ export function AnimatedSolutionsGrid({ products, locale }: AnimatedSolutionsGri
             </div>
           );
         })}
+        </div>
       </div>
     </div>
   );

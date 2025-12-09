@@ -100,10 +100,35 @@ const articles = [
 
 export default function VehiclesPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState('en');
+  const [collageVisible, setCollageVisible] = useState(false);
+  const collageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     params.then((p) => setLocale(p.locale));
   }, [params]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setCollageVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (collageRef.current) {
+      observer.observe(collageRef.current);
+    }
+
+    return () => {
+      if (collageRef.current) {
+        observer.unobserve(collageRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">
@@ -113,7 +138,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
         <section className="relative isolate">
           <div className="absolute inset-0">
             <img
-              src="/images/car%20image.jpg"
+              src="/images/caar.png"
               alt=""
               className="h-full w-full object-cover"
             />
@@ -156,7 +181,12 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 </div>
                 
                 {/* Right Column - Image Collage */}
-                <div className="relative">
+                <div
+                  ref={collageRef}
+                  className={`relative transition-all duration-1000 ease-out ${
+                    collageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
+                >
                   <div className="grid grid-cols-2 gap-4">
                     {/* Top-left: SUV */}
                     <div className="relative rounded-2xl overflow-hidden shadow-lg">

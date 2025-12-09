@@ -13,14 +13,14 @@ export function HeroSection({ locale = 'en' }: HeroSectionProps) {
   const slides = [
     {
       type: 'video',
-      src: '/videos/safari-adventure.mp4',
+      src: '/videos/elephant.mp4',
       poster: '/images/safari-background.png',
-      title: 'Safari Adventure',
-      focus: 'Guided Tours'
+      title: 'Elephant Encounter',
+      focus: 'Tours and Safaris'
     },
     {
       type: 'video',
-      src: '/videos/luxury-car.mp4', 
+      src: '/videos/car.mp4', 
       poster: '/images/luxury-car-background.jpg',
       title: 'Premium Transport',
       focus: 'Reliable Car Hire'
@@ -30,16 +30,16 @@ export function HeroSection({ locale = 'en' }: HeroSectionProps) {
       src: '/videos/happy-family.mp4',
       poster: '/images/happ-family-background.jpg', 
       title: 'Family Protection',
-      focus: 'Travel Insurance'
+      focus: 'Insurance Solutions'
     }
   ];
 
 
-  // Auto-rotate slides every 6 seconds
+  // Auto-rotate slides every 17 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 17000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -105,10 +105,11 @@ export function HeroSection({ locale = 'en' }: HeroSectionProps) {
               Get Started Today
             </Link>
             <button 
-              onClick={() => {
-                const servicesSection = document.getElementById('services-section');
-                if (servicesSection) {
-                  servicesSection.scrollIntoView({ behavior: 'smooth' });
+              onClick={(e) => {
+                e.preventDefault();
+                const target = document.getElementById('eawestern-guarantee');
+                if (target) {
+                  target.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
               className="bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 border border-white/30 rounded-full px-12 py-4 font-medium tracking-widest text-lg uppercase text-white"

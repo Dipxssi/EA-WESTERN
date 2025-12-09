@@ -88,8 +88,9 @@ export function AnimatedPhilosophySection() {
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-light mb-6 text-gray-900">
-            Our Philosophy: Your Confidence is Our Currency.
+          <h2 className="text-3xl lg:text-4xl font-light mb-6 text-gray-900 leading-tight">
+            <div>Our Philosophy</div>
+            <div>Your Confidence is Our Currency.</div>
           </h2>
         </div>
 
