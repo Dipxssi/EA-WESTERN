@@ -113,9 +113,9 @@ export function WhyChooseSection() {
                         <div className={`p-2 sm:p-2.5 md:p-3 rounded-lg transition-colors duration-300 ${
                           isHighlighted ? 'bg-blue-100' : 'bg-blue-50 group-hover:bg-blue-100'
                         }`}>
-                          <IconComponent className={`transition-colors duration-300 ${
+                          <IconComponent className={`transition-colors duration-300 sm:w-6 sm:h-6 ${
                             isHighlighted ? 'text-blue-700' : 'text-blue-600'
-                          }`} size={20} strokeWidth={2} className="sm:w-6 sm:h-6" />
+                          }`} size={20} strokeWidth={2} />
                         </div>
                       </div>
                       <div className="flex-1">
