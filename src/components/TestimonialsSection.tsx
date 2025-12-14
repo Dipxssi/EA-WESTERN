@@ -22,19 +22,19 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-10 sm:py-12 lg:py-16 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10">
-          <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">What Our Travelers Say</p>
-          <h2 className="text-3xl lg:text-4xl font-semibold text-gray-900">Stories from Recent Travelers</h2>
+        <div className="text-center mb-8 sm:mb-10">
+          <p className="text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-500 mb-2 sm:mb-3">What Our Travelers Say</p>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 px-2">Stories from Recent Travelers</h2>
         </div>
 
         <div className="relative overflow-hidden">
-          <div className="flex animate-testimonial-slide gap-6">
+          <div className="flex animate-testimonial-slide gap-4 sm:gap-6">
             {[...testimonials, ...testimonials].map((t, idx) => (
               <div
                 key={`${t.author}-${idx}`}
-                className="w-80 shrink-0 bg-white border border-gray-200 rounded-2xl shadow-sm p-6 text-center hover:shadow-lg transition-shadow duration-200"
+                className="w-[280px] sm:w-80 shrink-0 bg-white border border-gray-200 rounded-2xl shadow-sm p-4 sm:p-6 text-center hover:shadow-lg transition-shadow duration-200"
               >
                 <div className="flex justify-center mb-4">
                   <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-lg font-semibold">

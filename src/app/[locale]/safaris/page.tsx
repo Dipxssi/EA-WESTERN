@@ -383,9 +383,9 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
         </section>
 
         {/* Promise Section */}
-        <section className="px-4 sm:px-6 py-16 bg-gradient-to-b from-white via-blue-50/40 to-white">
+        <section className="px-4 sm:px-6 py-10 sm:py-12 lg:py-16 bg-gradient-to-b from-white via-blue-50/40 to-white">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-10 items-center mb-12">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 items-center mb-8 sm:mb-10 lg:mb-12">
               <div>
                 <p className="text-xs tracking-[0.3em] uppercase text-blue-800 mb-4">Your Journey</p>
                 <h2 className="text-3xl font-light text-gray-900 mb-6">Your Journey of Adventure Begins Here</h2>
@@ -401,14 +401,14 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                 <div className="relative overflow-hidden rounded-[32px] border border-white/70 bg-gradient-to-br from-white via-blue-50/70 to-blue-100/30 shadow-xl shadow-blue-100/70">
                 <div className="absolute -top-10 -right-6 w-40 h-40 bg-blue-200/40 blur-3xl" aria-hidden />
                 <div className="absolute -bottom-12 -left-6 w-40 h-40 bg-blue-500/20 blur-3xl" aria-hidden />
-                <div className="relative p-8 space-y-6">
+                <div className="relative p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5 md:space-y-6">
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/80 text-blue-900 shadow-lg shadow-blue-200/70 border border-white/70">
-                      <PlaneTakeoff size={24} />
+                    <span className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/80 text-blue-900 shadow-lg shadow-blue-200/70 border border-white/70">
+                      <PlaneTakeoff size={20} className="sm:w-6 sm:h-6" />
                     </span>
                     <div>
                       <p className="text-xs uppercase tracking-[0.3em] text-blue-900/70">Logistics & Care</p>
-                      <p className="text-lg font-semibold text-gray-900">We handle everything</p>
+                      <p className="text-base sm:text-lg font-semibold text-gray-900">We handle everything</p>
                     </div>
                   </div>
                   <p className="text-gray-700 leading-relaxed">
@@ -446,14 +446,14 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
         </section>
 
         {/* Popular Destinations */}
-        <section className="bg-slate-50 py-16">
+        <section className="bg-slate-50 py-8 sm:py-10 lg:py-16">
           <div ref={destinationsRef} className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className={`transition-all duration-1000 ease-out ${
               destinationsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">Popular destinations</p>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
-                <h2 className="text-3xl font-light text-gray-900">Curated Tours You Can Book Today</h2>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 sm:mb-8 lg:mb-10">
+                <h2 className="text-2xl sm:text-3xl font-light text-gray-900">Curated Tours You Can Book Today</h2>
                 <Link
                   href={`/${locale}/contact`}
                   className="inline-flex items-center justify-center rounded-full border border-blue-900 px-6 py-2 text-sm uppercase tracking-[0.2em] text-blue-900 hover:bg-blue-900 hover:text-white transition"
@@ -487,7 +487,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                         <span className="text-xs uppercase tracking-[0.3em] text-white/80">EAWESTERN</span>
                       </div>
                     </div>
-                    <div className="p-8 space-y-6">
+                    <div className="p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5 md:space-y-6">
                       <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 uppercase tracking-[0.3em]">
                         <span className="inline-flex items-center gap-2 text-gray-600 tracking-normal uppercase font-semibold">
                           {destination.theme}
@@ -550,7 +550,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
         </section>
 
         {/* Custom Tour */}
-        <section id="custom-tour" className="px-4 sm:px-6 py-16">
+        <section id="custom-tour" className="px-4 sm:px-6 py-8 sm:py-10 lg:py-16">
           <div className="max-w-5xl mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-[48px] border border-white shadow-[0_30px_80px_rgba(15,23,42,0.12)] relative overflow-hidden">
             <div className="absolute -top-10 -right-6 w-60 h-60 bg-blue-200/40 blur-3xl" aria-hidden />
             <div className="absolute -bottom-16 -left-4 w-56 h-56 bg-indigo-200/40 blur-3xl" aria-hidden />

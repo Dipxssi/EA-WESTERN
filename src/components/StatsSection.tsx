@@ -73,17 +73,17 @@ export function StatsSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+    <section ref={sectionRef} className="py-12 sm:py-16 lg:py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 text-center">
           {counters.map((counter: number, index: number) => (
             <div key={index} className="group">
-              <div className={`text-5xl font-extralight mb-3 transition-colors duration-300 ${
+              <div className={`text-3xl sm:text-4xl md:text-5xl font-extralight mb-2 sm:mb-3 transition-colors duration-300 ${
                 index === 2 ? 'text-blue-600' : 'text-black group-hover:text-blue-600'
               }`}>
                 {formatNumber(counter, index)}
               </div>
-              <div className="text-sm tracking-[0.2em] text-gray-600 font-light uppercase">
+              <div className="text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] text-gray-600 font-light uppercase">
                 {labels[index]}
               </div>
             </div>

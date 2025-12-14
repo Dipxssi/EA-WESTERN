@@ -38,7 +38,7 @@ export function AboutSection({ locale = 'en' }: AboutSectionProps) {
     <section ref={sectionRef} className="relative min-h-screen bg-white">
       <div className="grid lg:grid-cols-2 min-h-screen">
         {/* Image on the left */}
-        <div className="relative h-full min-h-[500px] lg:min-h-screen">
+        <div className="relative h-full min-h-[400px] sm:min-h-[500px] lg:min-h-screen order-2 lg:order-1">
           <img 
             src="/images/promise.png"
             alt="About EA Western"
@@ -47,11 +47,11 @@ export function AboutSection({ locale = 'en' }: AboutSectionProps) {
         </div>
         
         {/* Text content on the right */}
-        <div className="flex items-center px-8 lg:px-12 py-20" style={{ backgroundColor: '#1e3a8a' }}>
-          <div className="max-w-2xl">
+        <div className="flex items-center px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 order-1 lg:order-2" style={{ backgroundColor: '#1e3a8a' }}>
+          <div className="max-w-2xl w-full">
             {/* Main heading */}
             <h2 
-              className={`text-4xl lg:text-5xl font-light mb-8 text-white leading-tight transition-all duration-1000 ease-out ${
+              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-6 sm:mb-8 text-white leading-tight transition-all duration-1000 ease-out ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ transitionDelay: isVisible ? '0ms' : '0ms' }}
@@ -60,7 +60,7 @@ export function AboutSection({ locale = 'en' }: AboutSectionProps) {
             </h2>
             
             {/* Content paragraphs */}
-            <div className="space-y-6 text-base lg:text-lg font-normal text-white leading-relaxed mb-8">
+            <div className="space-y-4 sm:space-y-6 text-sm sm:text-base lg:text-lg font-normal text-white leading-relaxed mb-6 sm:mb-8">
               <p 
                 className={`transition-all duration-1000 ease-out ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -92,7 +92,7 @@ export function AboutSection({ locale = 'en' }: AboutSectionProps) {
             {/* Red button */}
             <Link 
               href={`/${locale}/about`}
-              className={`inline-block text-white px-8 py-3 font-medium tracking-wider text-sm transition-all duration-1000 ease-out uppercase rounded-full ${
+              className={`inline-block text-white px-6 sm:px-8 py-2.5 sm:py-3 font-medium tracking-wider text-xs sm:text-sm transition-all duration-1000 ease-out uppercase rounded-full ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ 

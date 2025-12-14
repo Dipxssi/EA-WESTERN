@@ -39,23 +39,23 @@ export function ServicesSection({ locale = 'en' }: ServicesSectionProps) {
   ];
 
   return (
-    <section id="eawestern-guarantee" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="eawestern-guarantee" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-light mb-4 text-black leading-tight">
+        <div className="text-center mb-10 sm:mb-12 lg:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-3 sm:mb-4 text-black leading-tight px-2">
             <div>The Eawestern Guarantee</div>
-            <div className="text-3xl lg:text-4xl">Three Services, One Unwavering Promise</div>
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-2">Three Services, One Unwavering Promise</div>
           </h2>
-          <div className="w-24 h-px bg-black mx-auto mt-6"></div>
+          <div className="w-16 sm:w-24 h-px bg-black mx-auto mt-4 sm:mt-6"></div>
         </div>
         
         {/* Service Cards with Image on Top */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service) => (
             <div key={service.id} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group flex flex-col">
               {/* Image on Top */}
-              <div className="relative h-64 lg:h-80 overflow-hidden">
+              <div className="relative h-48 sm:h-56 md:h-64 lg:h-80 overflow-hidden">
                 <img 
                   src={service.backgroundImage}
                   alt={service.title}
@@ -64,26 +64,26 @@ export function ServicesSection({ locale = 'en' }: ServicesSectionProps) {
               </div>
               
               {/* White Background Text Section */}
-              <div className="p-6 lg:p-8 flex flex-col flex-grow">
+              <div className="p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col flex-grow">
                 {/* Service Title */}
-                <h3 className="text-2xl lg:text-3xl font-bold mb-3 text-gray-900">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 text-gray-900">
                   {service.title}
                 </h3>
                 
                 {/* Headline */}
-                <h4 className="text-xl lg:text-2xl font-semibold mb-2 text-gray-800 leading-tight">
+                <h4 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 text-gray-800 leading-tight">
                   {service.headline}
                 </h4>
                 
                 {/* Subtitle if exists */}
                 {service.subtitle && (
-                  <p className="text-sm lg:text-base text-gray-500 mb-4 italic">
+                  <p className="text-xs sm:text-sm lg:text-base text-gray-500 mb-3 sm:mb-4 italic">
                     {service.subtitle}
                   </p>
                 )}
                 
                 {/* Description */}
-                <p className="text-base text-gray-600 mb-6 leading-relaxed flex-grow">
+                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed flex-grow">
                   {service.description}
                 </p>
                 
@@ -91,7 +91,7 @@ export function ServicesSection({ locale = 'en' }: ServicesSectionProps) {
                 <div className="flex justify-center mt-auto">
                   <Link 
                     href={service.href}
-                    className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-6 py-3 text-base font-medium transition-all duration-300 rounded-full shadow-md uppercase tracking-wide inline-block text-center"
+                    className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-medium transition-all duration-300 rounded-full shadow-md uppercase tracking-wide inline-block text-center w-full sm:w-auto"
                   >
                     {service.ctaText}
                   </Link>

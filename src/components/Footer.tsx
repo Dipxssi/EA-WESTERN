@@ -1,24 +1,24 @@
 export function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 py-16">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12">
+    <footer className="bg-gray-50 border-t border-gray-200 py-10 sm:py-12 lg:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           <div>
             {/* Logo instead of text */}
-            <div className="mb-6">
+            <div className="mb-4 sm:mb-6">
               <img 
                 src="/logo/ea-western-logo.png" 
                 alt="EA Western" 
-                className="h-10 w-auto"
+                className="h-8 sm:h-10 w-auto"
               />
             </div>
-            <p className="text-gray-600 font-light leading-relaxed max-w-md">
+            <p className="text-sm sm:text-base text-gray-600 font-light leading-relaxed max-w-md">
               Curating exceptional Kenya experiences through premium safaris, 
               comprehensive protection, and luxury transport solutions.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-6 sm:gap-8">
             <div>
               <h4 className="text-sm tracking-[0.2em] text-gray-500 font-light mb-6 uppercase">Contact</h4>
               <div className="space-y-3 text-sm text-gray-600 font-light">
@@ -38,10 +38,10 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-gray-200 mt-16 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+        <div className="border-t border-gray-200 mt-10 sm:mt-12 lg:mt-16 pt-6 sm:pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-3 sm:space-y-4 md:space-y-0 text-center md:text-left">
             {/* Copyright */}
-            <div className="text-xs tracking-[0.2em] text-gray-500 font-light uppercase">
+            <div className="text-xs tracking-[0.15em] sm:tracking-[0.2em] text-gray-500 font-light uppercase">
               © 2025 EAWESTERN — All Rights Reserved
             </div>
             

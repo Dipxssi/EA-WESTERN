@@ -135,11 +135,11 @@ export default function AboutPage({ params }: { params: Promise<{ locale: string
           </div>
           {/* Overlay Text */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-            <div className="text-center text-white z-10">
-              <h1 className="text-4xl lg:text-6xl font-light mb-6 leading-tight drop-shadow-lg">
+            <div className="text-center text-white z-10 px-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mb-4 sm:mb-6 leading-tight drop-shadow-lg">
                 About Us
               </h1>
-              <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+              <div className="w-16 sm:w-20 lg:w-24 h-1 bg-white mx-auto mb-6 sm:mb-8"></div>
             </div>
           </div>
         </section>
@@ -154,13 +154,13 @@ export default function AboutPage({ params }: { params: Promise<{ locale: string
         <AnimatedPillarsSection />
 
         {/* Our Credentials & Licensing */}
-        <section className="py-16 lg:py-24 bg-gray-50">
+        <section className="py-12 sm:py-16 lg:py-24 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-light mb-6 text-gray-900">
+            <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light mb-4 sm:mb-6 text-gray-900 px-2">
                 Our Credentials & Licensing
               </h2>
-              <p className="text-gray-600">Partners and licenses we proudly hold</p>
+              <p className="text-sm sm:text-base text-gray-600 px-2">Partners and licenses we proudly hold</p>
             </div>
             <div className="bg-white p-10 rounded-lg border border-gray-200">
               <div className="relative overflow-hidden">

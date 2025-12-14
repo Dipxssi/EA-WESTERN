@@ -339,20 +339,20 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
         <CarHireBookingSteps />
 
         {/* CTA */}
-        <section className="px-4 sm:px-6 py-16">
+        <section className="px-4 sm:px-6 py-12 sm:py-16">
           <div className="max-w-6xl mx-auto">
-            <div className="rounded-2xl p-12 lg:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ backgroundColor: '#1e3a8a' }}>
+            <div className="rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ backgroundColor: '#1e3a8a' }}>
               <div className="relative z-10">
-                <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 leading-tight px-2">
                   Ready to Book Your Ride?
                 </h2>
-                <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
-                <p className="text-lg lg:text-xl text-white mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+                <div className="w-16 sm:w-20 lg:w-24 h-1 bg-white mx-auto mb-6 sm:mb-8"></div>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white mb-6 sm:mb-8 lg:mb-10 max-w-3xl mx-auto leading-relaxed font-light px-2">
                   Choose reliability, affordability, and comfort with Eawestern Car Hire. From short-term rentals to corporate fleets, we tailor every booking to your route, schedule, and risk profile.
                 </p>
                 <Link
                   href={`/${locale}/contact`}
-                  className="text-white px-12 py-4 text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform bg-[#d92323] hover:!bg-[#c11e1e] border-2 border-white"
+                  className="inline-block text-white px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-3.5 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform bg-[#d92323] hover:!bg-[#c11e1e] border-2 border-white whitespace-nowrap"
                 >
                   Contact Us Today
                 </Link>

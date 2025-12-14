@@ -75,32 +75,32 @@ export function HeroSection({ locale = 'en' }: HeroSectionProps) {
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-black/20"></div>
       
-      <div className="relative z-10 flex items-center justify-center min-h-[70vh] py-12">
-        <div className="max-w-5xl mx-auto text-center px-6">
+      <div className="relative z-10 flex items-center justify-center min-h-[60vh] sm:min-h-[65vh] lg:min-h-[70vh] py-8 sm:py-10 lg:py-12">
+        <div className="max-w-5xl mx-auto text-center px-4 sm:px-6">
 
           {/* Main Headline */}
-          <div className="mb-8">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
-              <div className="whitespace-nowrap">Your journey of security and</div>
-              <div className="whitespace-nowrap">adventure begins here</div>
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight text-white drop-shadow-lg px-2">
+              <div>Your journey of security and</div>
+              <div>adventure begins here</div>
             </h1>
-            <p className="text-xl md:text-2xl text-white font-normal max-w-3xl mx-auto leading-relaxed drop-shadow mt-4 whitespace-nowrap">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white font-normal max-w-3xl mx-auto leading-relaxed drop-shadow mt-3 sm:mt-4 px-4">
               Guided tours, reliable car hire, and travel insurance – all under one roof.
             </p>
           </div>
 
           {/* Dynamic subtitle based on current video - UPDATED */}
-          <div className="mb-4">
-            <div className="text-2xl tracking-[0.3em] text-white font-light uppercase transition-all duration-500">
+          <div className="mb-4 sm:mb-6">
+            <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl tracking-[0.2em] sm:tracking-[0.3em] text-white font-light uppercase transition-all duration-500 px-4">
               {slides[currentSlide].focus}
             </div>
           </div>
 
           {/* Main CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
             <Link 
               href={`/${locale}/about`}
-              className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-12 py-4 font-medium tracking-widest text-lg transition-all duration-300 uppercase shadow-lg rounded-full border-2 border-white hover:border-white"
+              className="w-full sm:w-auto bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-6 sm:px-10 lg:px-12 py-3 sm:py-3.5 lg:py-4 font-medium tracking-widest text-sm sm:text-base lg:text-lg transition-all duration-300 uppercase shadow-lg rounded-full border-2 border-white hover:border-white text-center"
             >
               Get Started Today
             </Link>
@@ -112,7 +112,7 @@ export function HeroSection({ locale = 'en' }: HeroSectionProps) {
                   target.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 border border-white/30 rounded-full px-12 py-4 font-medium tracking-widest text-lg uppercase text-white"
+              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 border border-white/30 rounded-full px-6 sm:px-10 lg:px-12 py-3 sm:py-3.5 lg:py-4 font-medium tracking-widest text-sm sm:text-base lg:text-lg uppercase text-white"
             >
               Explore Our Services
             </button>
