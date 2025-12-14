@@ -9,6 +9,14 @@ export function WhyChooseSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Mobile fallback: show content immediately
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    if (isMobile && contentRef.current) {
+      contentRef.current.classList.add('opacity-100', 'translate-y-0');
+      setIsVisible(true);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -21,7 +29,7 @@ export function WhyChooseSection() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.01, rootMargin: '50px' }
     );
 
     if (contentRef.current) {

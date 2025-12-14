@@ -6,6 +6,13 @@ export function ContactBlockSection() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Mobile fallback: show content immediately
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    if (isMobile && contentRef.current) {
+      contentRef.current.classList.add('opacity-100', 'translate-y-0');
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -14,7 +21,7 @@ export function ContactBlockSection() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.01, rootMargin: '50px' }
     );
 
     if (contentRef.current) {

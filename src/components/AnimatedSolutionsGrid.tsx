@@ -26,10 +26,21 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export function AnimatedSolutionsGrid({ products, locale }: AnimatedSolutionsGridProps) {
-  const [visibleCards, setVisibleCards] = useState<boolean[]>(products.map(() => false));
+  // Initialize with all cards visible on mobile
+  const isMobileInitial = typeof window !== 'undefined' && window.innerWidth < 768;
+  const [visibleCards, setVisibleCards] = useState<boolean[]>(
+    products.map(() => isMobileInitial)
+  );
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Mobile fallback: show all cards immediately
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    if (isMobile) {
+      setVisibleCards(products.map(() => true));
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -48,7 +59,7 @@ export function AnimatedSolutionsGrid({ products, locale }: AnimatedSolutionsGri
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.01, rootMargin: '50px' }
     );
 
     if (sectionRef.current) {

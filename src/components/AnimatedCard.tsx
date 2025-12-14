@@ -16,9 +16,18 @@ export function AnimatedCard({
   index = 0
 }: AnimatedCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  // Mobile fallback: show immediately on mobile
+  const isMobileInitial = typeof window !== 'undefined' && window.innerWidth < 768;
+  const [isVisible, setIsVisible] = useState(isMobileInitial);
 
   useEffect(() => {
+    // Mobile fallback: show immediately
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    if (isMobile) {
+      setIsVisible(true);
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -29,7 +38,7 @@ export function AnimatedCard({
           }, staggerDelay);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.01, rootMargin: '50px' }
     );
 
     if (cardRef.current) {

@@ -12,6 +12,13 @@ export function AboutSection({ locale = 'en' }: AboutSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Mobile fallback: show content immediately
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    if (isMobile) {
+      setIsVisible(true);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -20,7 +27,7 @@ export function AboutSection({ locale = 'en' }: AboutSectionProps) {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.01, rootMargin: '50px' }
     );
 
     if (sectionRef.current) {

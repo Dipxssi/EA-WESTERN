@@ -258,6 +258,13 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
   }, []);
 
   useEffect(() => {
+    // Fallback: Show content immediately on mobile or if observer doesn't trigger
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    if (isMobile) {
+      setDestinationsVisible(true);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -266,7 +273,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.01, rootMargin: '50px' } // Lower threshold and add margin for better mobile detection
     );
 
     if (destinationsRef.current) {

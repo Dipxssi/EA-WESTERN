@@ -7,9 +7,22 @@ import { CredentialsSection } from './CredentialsSection';
 export function WhatYouGetSection() {
   const contentRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
+  // Initialize with all cards visible for mobile
+  const [visibleCards, setVisibleCards] = useState<boolean[]>([true, true, true]);
 
   useEffect(() => {
+    // Fallback: Show content immediately on mobile or if observer doesn't trigger
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    if (isMobile) {
+      // On mobile, show content immediately
+      if (contentRef.current) {
+        contentRef.current.classList.add('opacity-100', 'translate-y-0');
+      }
+      // Ensure all cards are visible on mobile
+      setVisibleCards([true, true, true]);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -18,46 +31,54 @@ export function WhatYouGetSection() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.01, rootMargin: '50px' } // Lower threshold and add margin for better mobile detection
     );
 
     if (contentRef.current) {
       observer.observe(contentRef.current);
     }
 
-    // Observe each card individually for staggered animation
-    const cardObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              setVisibleCards((prev) => {
-                const newVisible = [...prev];
-                newVisible[index] = true;
-                return newVisible;
-              });
-            }, index * 150); // Stagger by 150ms per card
+    // Observe each card individually for staggered animation (only on desktop)
+    if (!isMobile) {
+      const cardObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                setVisibleCards((prev) => {
+                  const newVisible = [...prev];
+                  newVisible[index] = true;
+                  return newVisible;
+                });
+              }, index * 150); // Stagger by 150ms per card
+            }
+          });
+        },
+        { threshold: 0.01, rootMargin: '50px' } // Lower threshold for mobile
+      );
+
+      cardRefs.current.forEach((card) => {
+        if (card) {
+          cardObserver.observe(card);
+        }
+      });
+
+      return () => {
+        if (contentRef.current) {
+          observer.unobserve(contentRef.current);
+        }
+        cardRefs.current.forEach((card) => {
+          if (card) {
+            cardObserver.unobserve(card);
           }
         });
-      },
-      { threshold: 0.2 }
-    );
-
-    cardRefs.current.forEach((card) => {
-      if (card) {
-        cardObserver.observe(card);
-      }
-    });
+      };
+    }
 
     return () => {
       if (contentRef.current) {
         observer.unobserve(contentRef.current);
       }
-      cardRefs.current.forEach((card) => {
-        if (card) {
-          cardObserver.unobserve(card);
-        }
-      });
     };
   }, []);
 
@@ -95,7 +116,7 @@ export function WhatYouGetSection() {
           </h2>
 
           {/* Benefits Grid */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12 lg:mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12 lg:mb-16">
             {benefits.map((benefit, index) => {
               const IconComponent = benefit.icon;
               return (
