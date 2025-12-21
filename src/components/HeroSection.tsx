@@ -85,11 +85,11 @@ export function HeroSection({ locale = 'en' }: HeroSectionProps) {
           {/* Main Headline */}
           <div className="mb-4 sm:mb-6 md:mb-8">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight text-white drop-shadow-lg px-2 sm:px-4">
-              <span className='block sm:inline'>Your journey of security and </span>
-              <span className='block sm:inline'>adventure begins here</span>
+              <span className='block sm:inline'>Your journey of security </span>
+              <span className='block sm:inline'>and adventure begins here</span>
             </h1>
-            <p className="text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-white font-normal max-w-3xl mx-auto leading-relaxed drop-shadow mt-2 sm:mt-3 md:mt-4 px-2 sm:px-4 text-center">
-              <span className='block sm:inline'>Guided tours, reliable car hire, and travel insurance – all under one roof.</span>
+            <p className="text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-white font-normal max-w-5xl mx-auto leading-relaxed drop-shadow mt-2 sm:mt-3 md:mt-4 px-2 sm:px-4 text-center whitespace-nowrap">
+              Guided tours, reliable car hire, and insurance solutions – all under one roof.
             </p>
           </div>
 

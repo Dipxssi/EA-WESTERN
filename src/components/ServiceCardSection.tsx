@@ -50,7 +50,7 @@ export function ServiceCardsSection({ locale = 'en' }: ServiceCardsSectionProps)
                 <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/>
               </svg>
             </div>
-            <h3 className="text-sm sm:text-base font-semibold text-center mb-3 sm:mb-4 text-black group-hover:text-blue-600 transition-colors duration-300" style={{ pointerEvents: 'none' }}>Explore Tours</h3>
+            <h3 className="text-sm sm:text-base font-semibold text-center mb-3 sm:mb-4 text-black group-hover:text-blue-600 transition-colors duration-300" style={{ pointerEvents: 'none' }}>Explore Tours and Safaris</h3>
             
             {/* Centered Arrow with "Learn More" text */}
             <div className="flex items-center justify-center mt-4 group-hover:translate-x-1 transition-transform duration-300" style={{ pointerEvents: 'none' }}>
