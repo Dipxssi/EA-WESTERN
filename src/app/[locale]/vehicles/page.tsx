@@ -155,7 +155,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
             </p>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-3 bg-blue-900 hover:bg-red-900 border border-white/30 rounded-full px-8 py-3 text-sm tracking-[0.2em] uppercase transition-all"
+              className="inline-flex items-center justify-center gap-3 bg-blue-900 hover:bg-red-900 border border-white/30 rounded-full px-6 sm:px-8 py-3 text-sm tracking-[0.2em] uppercase transition-all w-full sm:w-auto text-center"
             >
               Get a Custom Booking Today
             </Link>
@@ -316,7 +316,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
             <div className="text-center mt-10">
               <Link
                 href={`/${locale}/contact`}
-                className="inline-flex items-center justify-center bg-blue-900 text-white px-10 py-4 rounded-full tracking-[0.2em] text-sm uppercase font-semibold hover:bg-blue-800 transition-all"
+                className="inline-flex items-center justify-center bg-blue-900 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full tracking-[0.2em] text-xs sm:text-sm uppercase font-semibold hover:bg-blue-800 transition-all w-full sm:w-auto text-center"
               >
                 Inquire About Booking
               </Link>
@@ -352,7 +352,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 </p>
                 <Link
                   href={`/${locale}/contact`}
-                  className="inline-block text-white px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-3.5 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform bg-[#d92323] hover:!bg-[#c11e1e] border-2 border-white whitespace-nowrap"
+                  className="inline-flex items-center justify-center text-white px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-3.5 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform bg-[#d92323] hover:!bg-[#c11e1e] border-2 border-white w-full sm:w-auto text-center"
                 >
                   Contact Us Today
                 </Link>

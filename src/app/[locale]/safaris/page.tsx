@@ -344,10 +344,10 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
               escapes — explore East Africa with certified guides, curated itineraries, and
               worry-free planning.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
               <Link
                 href="#custom-tour"
-                className="bg-blue-900 hover:bg-red-900 transition-all duration-300 border border-white/20 rounded-full px-8 py-3 text-sm tracking-[0.2em] uppercase"
+                className="bg-blue-900 hover:bg-red-900 transition-all duration-300 border border-white/20 rounded-full px-6 sm:px-8 py-3 text-sm tracking-[0.2em] uppercase text-center w-full sm:w-auto flex items-center justify-center"
               >
                 Start Planning Your Safari
               </Link>
@@ -583,7 +583,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
               <div className="flex items-center justify-center pt-4">
                 <Link
                   href={`/${locale}/contact`}
-                  className="inline-flex items-center justify-center bg-blue-900 hover:bg-red-900 text-white px-12 py-4 rounded-full tracking-[0.2em] text-sm uppercase border border-blue-900 shadow-lg shadow-blue-200/50"
+                  className="inline-flex items-center justify-center bg-blue-900 hover:bg-red-900 text-white px-6 sm:px-12 py-3 sm:py-4 rounded-full tracking-[0.2em] text-xs sm:text-sm uppercase border border-blue-900 shadow-lg shadow-blue-200/50 w-full sm:w-auto text-center"
                 >
                   Request a Custom Tour
                 </Link>
@@ -618,7 +618,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                 {/* CTA Button */}
                 <Link
                   href={`/${locale}/contact`}
-                  className="inline-block text-white px-12 py-4 text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform"
+                  className="inline-flex items-center justify-center text-white px-6 sm:px-12 py-3 sm:py-4 text-sm sm:text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform w-full sm:w-auto text-center"
                   style={{ backgroundColor: '#d92323', border: '2px solid white' }}
                 >
                   Contact Us Today
