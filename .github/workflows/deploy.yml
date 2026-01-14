@@ -26,6 +26,12 @@ jobs:
       - name: 🏗️ Build Project
         run: npm run build
 
+      - name: 📂 Create _next folder structure (workaround for underscore restriction)
+        run: |
+          mkdir -p ./out/_next/static
+          touch ./out/_next/.gitkeep
+          touch ./out/_next/static/.gitkeep
+      
       - name: 📂 Sync files to Host Africa
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -38,3 +44,5 @@ jobs:
           local-dir: ./out/
           server-dir: ./
           dangerous-clean-slate: true
+          log-level: verbose
+          dry-run: false
