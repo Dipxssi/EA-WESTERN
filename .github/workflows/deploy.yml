@@ -26,6 +26,15 @@ jobs:
       - name: 🏗️ Build Project
         run: npm run build
       
+      - name: 🔍 Verify Build Output
+        run: |
+          echo "Checking build output..."
+          ls -la out/ | head -20
+          echo "Checking for index.html..."
+          ls -la out/index.html 2>/dev/null || echo "⚠️ index.html not found in out/"
+          echo "Checking for en directory..."
+          ls -la out/en/ 2>/dev/null || echo "⚠️ en directory not found"
+      
       - name: 📂 Sync files to Host Africa (incremental - only changed files)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
