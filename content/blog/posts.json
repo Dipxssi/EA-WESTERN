@@ -1,0 +1,16 @@
+[
+  {
+    "id": "sample-1",
+    "title": "Welcome to EA Western - Your Complete Kenya Experience",
+    "excerpt": "Discover everything EA Western has to offer - from thrilling safari tours to comprehensive insurance solutions and reliable car hire services.",
+    "content": "# Welcome to EA Western\n\nWe're thrilled to welcome you to **EA Western**, your trusted partner for an unforgettable Kenya experience. Whether you're planning a safari adventure, need comprehensive insurance coverage, or require reliable transportation, we've got you covered.\n\n## Our Mission\n\nAt EA Western, we're committed to providing exceptional service across three core areas:\n\n### 🦁 Safari Tours & Adventures\nExperience the magic of Kenya's wildlife with our expertly curated safari tours.\n\n### 🛡️ Insurance Solutions\nProtect what matters most with our comprehensive insurance coverage.\n\n### 🚗 Car Hire Services\nExplore Kenya at your own pace with our reliable car hire service.",
+    "author": "EA Western Team",
+    "date": "2024-01-15",
+    "image": "/images/hero-kenya-bg.png",
+    "category": "Company News",
+    "tags": ["Welcome", "Kenya", "Safari"],
+    "published": true,
+    "createdAt": "2024-01-15T00:00:00.000Z",
+    "updatedAt": "2024-01-15T00:00:00.000Z"
+  }
+]

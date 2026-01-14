@@ -36,9 +36,8 @@ jobs:
           port: 21
           security: loose
           local-dir: ./out/
-          # IMPORTANT: Set FTP_SERVER_DIR secret to your domain's document root
-          # For addon domain eawestern.com, it's usually: /public_html/eawestern.com/
-          # Check in cPanel → Domains → Addon Domains to see the exact path
+          # IMPORTANT: deploy into a writable directory (usually public_html or a subfolder inside it)
+          # Example secret value: /public_html/  or  /public_html/ea-western/
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           # Incremental sync - only uploads changed files (much faster!)
           # Remove files on server that don't exist locally (keeps things clean)

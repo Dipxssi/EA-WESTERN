@@ -101,10 +101,32 @@ export function Navigation({ locale = 'en' }: NavigationProps) {
                 isActive(`/${locale}/vehicles`) ? 'w-full' : 'w-0 group-hover:w-full'
               }`}></span>
             </Link>
+            <Link
+              href={`/${locale}/blog`}
+              className={`font-light tracking-wide transition-all duration-300 relative group text-sm uppercase ${
+                isActive(`/${locale}/blog`)
+                  ? 'text-blue-900 font-medium'
+                  : 'text-gray-800 hover:text-black'
+              }`}
+            >
+              BLOG
+              <span className={`absolute bottom-0 left-0 h-px bg-blue-900 transition-all duration-300 ${
+                isActive(`/${locale}/blog`) ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></span>
+            </Link>
           </div>
 
           {/* Desktop CTA + Mobile Menu Button */}
           <div className="flex items-center space-x-4">
+            {/* Admin Link - Only show if on admin pages */}
+            {pathname?.includes('/admin') && (
+              <Link
+                href={`/${locale}/admin/blog`}
+                className="hidden md:block text-gray-600 hover:text-gray-900 text-sm font-medium"
+              >
+                Admin
+              </Link>
+            )}
             {/* Desktop CTA Button - Hidden on mobile */}
             <Link
               href={`/${locale}/contact`}
@@ -194,6 +216,18 @@ export function Navigation({ locale = 'en' }: NavigationProps) {
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" /><circle cx="7" cy="17" r="2" /><path d="M9 17h6" /><circle cx="17" cy="17" r="2" /></svg>
               <span>CAR HIRE</span>
+            </Link>
+            <Link
+              href={`/${locale}/blog`}
+              className={`flex items-center gap-3 py-3 px-2 font-light tracking-wide transition-colors duration-300 text-sm sm:text-base uppercase ${
+                isActive(`/${locale}/blog`)
+                  ? 'text-blue-900 font-medium bg-blue-50 pl-4 border-l-4 border-blue-900'
+                  : 'text-gray-800 hover:text-black'
+              }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>
+              <span>BLOG</span>
             </Link>
 
             {/* Mobile CTA Button */}
