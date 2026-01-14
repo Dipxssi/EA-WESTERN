@@ -26,7 +26,7 @@ jobs:
       - name: 🏗️ Build Project
         run: npm run build
       
-      - name: 📂 Sync files to Host Africa
+      - name: 📂 Sync files to Host Africa (incremental - only changed files)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -36,8 +36,14 @@ jobs:
           port: 21
           security: loose
           local-dir: ./out/
-          # IMPORTANT: deploy into a writable directory (usually public_html or a subfolder inside it)
-          # Example secret value: /public_html/  or  /public_html/ea-western/
+          # IMPORTANT: Set FTP_SERVER_DIR secret to your domain's document root
+          # For addon domain eawestern.com, it's usually: /public_html/eawestern.com/
+          # Check in cPanel → Domains → Addon Domains to see the exact path
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          dangerous-clean-slate: true
-          log-level: verbose
+          # Incremental sync - only uploads changed files (much faster!)
+          # Remove files on server that don't exist locally (keeps things clean)
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
