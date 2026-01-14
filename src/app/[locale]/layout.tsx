@@ -1,5 +1,13 @@
 import { ScrollToTop } from '@/components/ScrollToTop';
 
+
+export function generateStaticParams() {
+  return [
+    { locale: 'en' },
+    { locale: 'sw' },
+  ];
+}
+
 export default async function LocaleLayout({
   children,
   params,

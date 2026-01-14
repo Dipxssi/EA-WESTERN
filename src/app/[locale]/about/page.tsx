@@ -9,6 +9,9 @@ import { AnimatedPillarsSection } from '@/components/AnimatedPillarsSection';
 import { AnimatedValuesSection } from '@/components/AnimatedValuesSection';
 import { useEffect, useState } from 'react';
 
+
+
+
 export default function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
 

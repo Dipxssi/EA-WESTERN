@@ -10,6 +10,13 @@ import { ContactBlockSection } from '@/components/ContactBlockSection';
 import { StatsSection } from '@/components/StatsSection';
 import { Footer } from '@/components/Footer';
 
+export function generateStaticParams() {
+  return [
+    { locale: 'en' },
+    { locale: 'sw' },
+  ];
+}
+
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 

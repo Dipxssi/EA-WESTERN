@@ -6,6 +6,8 @@ import { useState, use } from 'react';
 import { Phone, Mail, MapPin, Car } from 'lucide-react';
 import Link from 'next/link';
 
+
+
 export default function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params);
   const [formData, setFormData] = useState({

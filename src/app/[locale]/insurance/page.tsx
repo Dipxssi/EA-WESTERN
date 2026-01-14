@@ -126,6 +126,9 @@ const personalizedCoverageHighlights = [
   },
 ];
 
+
+
+
 export default function InsurancePage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
   const [customCoverageVisible, setCustomCoverageVisible] = useState(false);

@@ -98,6 +98,8 @@ const articles = [
   },
 ];
 
+
+
 export default function VehiclesPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState('en');
   const [collageVisible, setCollageVisible] = useState(false);

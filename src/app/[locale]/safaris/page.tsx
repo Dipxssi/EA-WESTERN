@@ -223,6 +223,9 @@ const logisticsHighlights = [
   },
 ];
 
+
+
+
 export default function SafarisPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
   const [magicVisible, setMagicVisible] = useState(false);
