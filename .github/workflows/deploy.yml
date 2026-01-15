@@ -24,6 +24,9 @@ jobs:
         run: npm ci
 
       - name: 🏗️ Build Project
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
         run: npm run build
       
       - name: 🔍 Verify Build Output
@@ -51,7 +54,10 @@ jobs:
           # Incremental sync - only uploads changed files (much faster!)
           # Remove files on server that don't exist locally (keeps things clean)
           dangerous-clean-slate: false
+          
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
+          # Don't fail on missing directories during cleanup
+          log-level: verbose
