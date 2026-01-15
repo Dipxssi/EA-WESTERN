@@ -22,13 +22,20 @@ export default function BlogListClient({ locale }: { locale: string }) {
     };
   }, []);
 
-  const loadPosts = () => {
+  const loadPosts = async () => {
     setLoading(true);
-    const allPosts = getAllBlogPosts().filter(post => post.published);
-    // Sort by date, newest first
-    allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    setPosts(allPosts);
-    setLoading(false);
+    try {
+      const allPosts = await getAllBlogPosts();
+      const publishedPosts = allPosts.filter(post => post.published);
+      // Sort by date, newest first
+      publishedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setPosts(publishedPosts);
+    } catch (error) {
+      console.error('Error loading posts:', error);
+      setPosts([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

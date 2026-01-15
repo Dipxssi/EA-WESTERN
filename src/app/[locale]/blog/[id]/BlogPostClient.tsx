@@ -12,13 +12,13 @@ export default function BlogPostClient({ locale, id }: { locale: string; id: str
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  const loadPost = (postId: string | null) => {
+  const loadPost = async (postId: string | null) => {
     if (!postId || postId === 'placeholder') {
       setLoading(false);
       return;
     }
     try {
-      const foundPost = getBlogPostById(postId);
+      const foundPost = await getBlogPostById(postId);
       if (foundPost) {
         if (foundPost.published) {
           setPost(foundPost);

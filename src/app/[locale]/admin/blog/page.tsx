@@ -43,11 +43,17 @@ export default function AdminBlogPage({ params }: { params: Promise<{ locale: st
     }
   }, [notification]);
 
-  const loadPosts = () => {
+  const loadPosts = async () => {
     setLoading(true);
-    const allPosts = getAllBlogPosts();
-    setPosts(allPosts);
-    setLoading(false);
+    try {
+      const allPosts = await getAllBlogPosts();
+      setPosts(allPosts);
+    } catch (error) {
+      console.error('Error loading posts:', error);
+      setPosts([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDeleteClick = (id: string) => {
@@ -55,18 +61,22 @@ export default function AdminBlogPage({ params }: { params: Promise<{ locale: st
     setDeleteDialogOpen(true);
   };
 
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirm = async () => {
     if (postToDelete) {
-      const success = deleteBlogPost(postToDelete);
-      if (success) {
-        setNotification({ message: 'Blog post deleted successfully!', type: 'success' });
-        loadPosts();
-        // Trigger update event for other components
-        window.dispatchEvent(new Event('blogPostsUpdated'));
-      } else {
+      try {
+        const success = await deleteBlogPost(postToDelete);
+        if (success) {
+          setNotification({ message: 'Blog post deleted successfully!', type: 'success' });
+          await loadPosts();
+        } else {
+          setNotification({ message: 'Failed to delete blog post.', type: 'error' });
+        }
+      } catch (error) {
+        console.error('Error deleting post:', error);
         setNotification({ message: 'Failed to delete blog post.', type: 'error' });
+      } finally {
+        setPostToDelete(null);
       }
-      setPostToDelete(null);
     }
   };
 

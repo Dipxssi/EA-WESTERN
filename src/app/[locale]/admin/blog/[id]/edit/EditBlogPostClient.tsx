@@ -25,42 +25,50 @@ export default function EditBlogPostClient({ locale, id }: { locale: string; id:
 
   useEffect(() => {
     // Load existing post data
-    const post = getBlogPostById(id);
-    if (post) {
-      // Handle date - it might be in ISO format or YYYY-MM-DD format
-      let dateValue = '';
-      if (post.date) {
-        try {
-          // If it's already in YYYY-MM-DD format, use it directly
-          if (post.date.match(/^\d{4}-\d{2}-\d{2}$/)) {
-            dateValue = post.date;
+    const loadPost = async () => {
+      try {
+        const post = await getBlogPostById(id);
+        if (post) {
+          // Handle date - it might be in ISO format or YYYY-MM-DD format
+          let dateValue = '';
+          if (post.date) {
+            try {
+              // If it's already in YYYY-MM-DD format, use it directly
+              if (post.date.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                dateValue = post.date;
+              } else {
+                // Otherwise, parse it and convert to YYYY-MM-DD
+                dateValue = new Date(post.date).toISOString().split('T')[0];
+              }
+            } catch (error) {
+              console.error('Error parsing date:', error);
+              dateValue = new Date().toISOString().split('T')[0];
+            }
           } else {
-            // Otherwise, parse it and convert to YYYY-MM-DD
-            dateValue = new Date(post.date).toISOString().split('T')[0];
+            dateValue = new Date().toISOString().split('T')[0];
           }
-        } catch (error) {
-          console.error('Error parsing date:', error);
-          dateValue = new Date().toISOString().split('T')[0];
-        }
-      } else {
-        dateValue = new Date().toISOString().split('T')[0];
-      }
 
-      setFormData({
-        title: post.title || '',
-        excerpt: post.excerpt || '',
-        content: post.content || '',
-        author: post.author || '',
-        date: dateValue,
-        image: post.image || '',
-        category: post.category || '',
-        tags: post.tags ? post.tags.join(', ') : '',
-        published: post.published !== undefined ? post.published : true,
-      });
-      if (post.image) {
-        setImagePreview(post.image);
+          setFormData({
+            title: post.title || '',
+            excerpt: post.excerpt || '',
+            content: post.content || '',
+            author: post.author || '',
+            date: dateValue,
+            image: post.image || '',
+            category: post.category || '',
+            tags: post.tags ? post.tags.join(', ') : '',
+            published: post.published !== undefined ? post.published : true,
+          });
+          if (post.image) {
+            setImagePreview(post.image);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading post:', error);
       }
-    }
+    };
+    
+    loadPost();
   }, [id]);
 
   const handleInputChange = (
@@ -114,14 +122,15 @@ export default function EditBlogPostClient({ locale, id }: { locale: string; id:
       // Keep date in YYYY-MM-DD format (as expected by blog storage)
       const updatedPost = {
         ...formData,
-        tags: tagsArray,
+        tags: tagsArray.length > 0 ? tagsArray : undefined,
         date: formData.date, // Already in YYYY-MM-DD format from the form
       };
 
-      updateBlogPost(id, updatedPost);
-
-      // Trigger update event
-      window.dispatchEvent(new Event('blogPostsUpdated'));
+      const result = await updateBlogPost(id, updatedPost);
+      
+      if (!result) {
+        throw new Error('Failed to update post');
+      }
 
       router.push(`/${locale}/admin/blog`);
     } catch (error) {

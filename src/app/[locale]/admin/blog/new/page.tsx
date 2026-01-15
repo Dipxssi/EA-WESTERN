@@ -86,7 +86,7 @@ export default function NewBlogPostPage({ params }: { params: Promise<{ locale: 
         .map((tag) => tag.trim())
         .filter((tag) => tag.length > 0);
 
-      createBlogPost({
+      await createBlogPost({
         title: formData.title,
         excerpt: formData.excerpt,
         content: formData.content,
