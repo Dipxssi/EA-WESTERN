@@ -57,6 +57,11 @@ function toSupabase(post: Partial<BlogPost>): Partial<SupabaseBlogPost> {
 }
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
+  // During build time or if env vars are missing, return empty array
+  if (typeof window === 'undefined' && (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)) {
+    return [];
+  }
+
   try {
     const { data, error } = await supabase
       .from('blog_posts')
@@ -76,6 +81,11 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 }
 
 export async function getBlogPostById(id: string): Promise<BlogPost | null> {
+  // During build time or if env vars are missing, return null
+  if (typeof window === 'undefined' && (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)) {
+    return null;
+  }
+
   try {
     const { data, error } = await supabase
       .from('blog_posts')
