@@ -2,6 +2,9 @@
 import { supabase } from './supabase';
 import type { BlogPost } from '@/types/blog';
 
+// Re-export BlogPost type for convenience
+export type { BlogPost } from '@/types/blog';
+
 // Database schema uses snake_case, but we convert to camelCase for TypeScript
 interface SupabaseBlogPost {
   id: string;
