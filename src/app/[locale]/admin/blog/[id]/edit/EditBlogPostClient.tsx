@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 
 export default function EditBlogPostClient({ locale, id }: { locale: string; id: string }) {
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [imagePreview, setImagePreview] = useState<string>('');
   const router = useRouter();
 
@@ -26,8 +27,21 @@ export default function EditBlogPostClient({ locale, id }: { locale: string; id:
   useEffect(() => {
     // Load existing post data
     const loadPost = async () => {
+      setInitialLoading(true);
+      // Get actual post ID from query parameter if id is placeholder
+      let actualId = id;
+      if (id === 'placeholder' && typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        actualId = params.get('id') || id;
+      }
+      
+      if (!actualId || actualId === 'placeholder') {
+        setInitialLoading(false);
+        return;
+      }
+      
       try {
-        const post = await getBlogPostById(id);
+        const post = await getBlogPostById(actualId);
         if (post) {
           // Handle date - it might be in ISO format or YYYY-MM-DD format
           let dateValue = '';
@@ -65,11 +79,22 @@ export default function EditBlogPostClient({ locale, id }: { locale: string; id:
         }
       } catch (error) {
         console.error('Error loading post:', error);
+      } finally {
+        setInitialLoading(false);
       }
     };
     
     loadPost();
   }, [id]);
+  
+  // Get actual post ID for display/error messages
+  const getActualId = () => {
+    if (id === 'placeholder' && typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id') || id;
+    }
+    return id;
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -119,6 +144,18 @@ export default function EditBlogPostClient({ locale, id }: { locale: string; id:
         .map((tag) => tag.trim())
         .filter((tag) => tag.length > 0);
 
+      // Get actual post ID from query parameter if id is placeholder
+      let actualId = id;
+      if (id === 'placeholder' && typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        actualId = params.get('id') || id;
+      }
+      
+      if (!actualId || actualId === 'placeholder') {
+        alert('Invalid post ID');
+        return;
+      }
+
       // Keep date in YYYY-MM-DD format (as expected by blog storage)
       const updatedPost = {
         ...formData,
@@ -126,7 +163,7 @@ export default function EditBlogPostClient({ locale, id }: { locale: string; id:
         date: formData.date, // Already in YYYY-MM-DD format from the form
       };
 
-      const result = await updateBlogPost(id, updatedPost);
+      const result = await updateBlogPost(actualId, updatedPost);
       
       if (!result) {
         throw new Error('Failed to update post');
@@ -140,6 +177,20 @@ export default function EditBlogPostClient({ locale, id }: { locale: string; id:
       setLoading(false);
     }
   };
+
+  if (initialLoading) {
+    return (
+      <div className="bg-white text-gray-900 min-h-screen">
+        <Navigation locale={locale} />
+        <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+          <div className="text-center py-12">
+            <p className="text-gray-600">Loading post...</p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">

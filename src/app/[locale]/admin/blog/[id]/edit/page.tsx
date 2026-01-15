@@ -4,6 +4,7 @@ import EditBlogPostClient from './EditBlogPostClient';
 export function generateStaticParams() {
   // Return combinations for both locale and id
   // Since admin routes are client-side, we return placeholder values
+  // The actual post ID will come from query parameters
   return [
     { locale: 'en', id: 'placeholder' },
     { locale: 'sw', id: 'placeholder' },
@@ -16,8 +17,10 @@ export default async function EditBlogPostPage({
   params: Promise<{ locale: string; id: string }>;
 }) {
   try {
-    const { locale, id } = await params;
-    return <EditBlogPostClient locale={locale} id={id} />;
+    const { locale } = await params;
+    // The actual post ID will be read from query params in the client component
+    // We pass 'placeholder' as the id, and the client will get the real ID from URL
+    return <EditBlogPostClient locale={locale} id="placeholder" />;
   } catch (error) {
     console.error('Error in EditBlogPostPage:', error);
     return (

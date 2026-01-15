@@ -222,7 +222,7 @@ export default function AdminBlogPage({ params }: { params: Promise<{ locale: st
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <div className="flex justify-end gap-2">
                         <Link
-                          href={`/${locale}/admin/blog/${post.id}/edit`}
+                          href={`/${locale}/admin/blog/placeholder/edit?id=${encodeURIComponent(post.id)}`}
                           className="text-blue-600 hover:text-blue-900"
                         >
                           Edit
