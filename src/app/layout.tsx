@@ -16,6 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Load Supabase config at runtime for static exports - must load before app */}
+        <script src="/supabase-config.js" async></script>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
