@@ -35,15 +35,26 @@ export default function BlogListClient({ locale }: { locale: string }) {
     <div className="bg-white text-gray-900 min-h-screen">
       <Navigation locale={locale} />
       <main className="pt-0 pb-16">
-        {/* Hero Section */}
-        <section className="relative min-h-[300px] lg:min-h-[400px] overflow-hidden bg-gradient-to-br from-blue-900 to-blue-700">
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-center">
+        {/* Hero Section with Background Image */}
+        <section className="relative min-h-[400px] lg:min-h-[500px] overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/images/resources.png)',
+            }}
+          >
+            {/* Overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+          </div>
+          
+          {/* Content */}
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-center min-h-[400px] lg:min-h-[500px]">
             <div className="text-center text-white">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 leading-tight">
-                Our Blog
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light mb-4 sm:mb-6 leading-tight drop-shadow-lg">
+                Our Resources
               </h1>
-              <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl lg:text-2xl text-white/95 max-w-2xl mx-auto drop-shadow-md font-light">
                 Stories, tips, and insights from Kenya
               </p>
             </div>

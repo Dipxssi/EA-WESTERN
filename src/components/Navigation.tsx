@@ -109,7 +109,7 @@ export function Navigation({ locale = 'en' }: NavigationProps) {
                   : 'text-gray-800 hover:text-black'
               }`}
             >
-              BLOG
+              RESOURCES
               <span className={`absolute bottom-0 left-0 h-px bg-blue-900 transition-all duration-300 ${
                 isActive(`/${locale}/blog`) ? 'w-full' : 'w-0 group-hover:w-full'
               }`}></span>
@@ -227,7 +227,7 @@ export function Navigation({ locale = 'en' }: NavigationProps) {
               onClick={() => setIsMenuOpen(false)}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>
-              <span>BLOG</span>
+              <span>RESOURCES</span>
             </Link>
 
             {/* Mobile CTA Button */}
