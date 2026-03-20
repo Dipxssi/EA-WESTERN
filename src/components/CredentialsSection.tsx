@@ -8,45 +8,34 @@ export function CredentialsSection() {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-light mb-6 text-gray-900">
-            Our Credentials & Licensing
+    <section className="py-16 md:py-24 bg-transparent border-t border-b border-white/5">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+        <div className="text-center mb-16">
+          <div className="uppercase-label mb-4 opacity-50">
+            Compliance & Authority
+          </div>
+          <h2 className="serif text-[28px] md:text-[42px] text-white">
+            Our <span className="italic">Credentials</span>
           </h2>
-          <p className="text-gray-600">Partners and licenses we proudly hold</p>
         </div>
-        <div className="bg-white p-10 rounded-lg border border-gray-200">
-          <div className="relative overflow-hidden">
-            <div className="flex animate-logo-slide gap-12 items-center">
-              {[...logos, ...logos].map((logo, idx) => (
-                <img
-                  key={`${logo.alt}-${idx}`}
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="h-20 w-auto object-contain shrink-0"
-                />
-              ))}
-            </div>
+
+        <div className="relative overflow-hidden w-full max-w-[800px] mx-auto">
+          {/* Fading edges for the slider */}
+          <div className="absolute top-0 left-0 w-[50px] md:w-[150px] h-full bg-gradient-to-r from-[#0d1b2e] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[50px] md:w-[150px] h-full bg-gradient-to-l from-[#0d1b2e] to-transparent z-10 pointer-events-none" />
+
+          <div className="flex animate-[logo-slide_20s_linear_infinite] gap-16 md:gap-24 items-center w-max">
+            {[...logos, ...logos, ...logos].map((logo, idx) => (
+              <img
+                key={idx}
+                src={logo.src}
+                alt={logo.alt}
+                className="h-[50px] md:h-[70px] w-auto object-contain shrink-0 filter invert-[0.8] brightness-[1.5] transition-all duration-500 hover:filter-none hover:opacity-100 opacity-40"
+              />
+            ))}
           </div>
         </div>
       </div>
-      <style jsx>{`
-        @keyframes logo-slide {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-logo-slide {
-          width: max-content;
-          animation: logo-slide 20s linear infinite;
-        }
-        @media (max-width: 768px) {
-          .animate-logo-slide {
-            animation-duration: 25s;
-          }
-        }
-      `}</style>
     </section>
   );
 }
-

@@ -1,77 +1,38 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 export function ContactBlockSection() {
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Mobile fallback: show content immediately
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    
-    if (isMobile && contentRef.current) {
-      contentRef.current.classList.add('opacity-100', 'translate-y-0');
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-          }
-        });
-      },
-      { threshold: 0.01, rootMargin: '50px' }
-    );
-
-    if (contentRef.current) {
-      observer.observe(contentRef.current);
-    }
-
-    return () => {
-      if (contentRef.current) {
-        observer.unobserve(contentRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div 
-          ref={contentRef}
-          className="opacity-0 translate-y-8 transition-all duration-1000 ease-out"
-        >
-          {/* Contact Block */}
-          <div className="rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ backgroundColor: '#1e3a8a' }}>
-            <div className="relative z-10">
-              {/* Headline */}
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 leading-tight px-2">
-                We&apos;re Here to Support Your Journey
-              </h2>
-              
-              {/* Decorative line */}
-              <div className="w-16 sm:w-20 lg:w-24 h-1 bg-white mx-auto mb-6 sm:mb-8"></div>
-              
-              {/* Description Text */}
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white mb-6 sm:mb-8 lg:mb-10 max-w-3xl mx-auto leading-relaxed font-light px-2">
-                Whether you&apos;re planning your next safari, securing insurance, or booking a vehicle—our team is ready to help.
-              </p>
-              
-              {/* CTA Button */}
-              <button 
-                className="text-white px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-3.5 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform"
-                style={{ backgroundColor: '#d92323', border: '2px solid white' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#c11e1e'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#d92323'}
-              >
-                Contact Us Today
-              </button>
-            </div>
-          </div>
+    <section className="relative py-[200px] md:py-[280px] font-jost flex items-center justify-center overflow-hidden bg-[#0B1F2E]">
+      {/* Cinematic Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <img 
+          src="/images/hero-kenya-bg.png" 
+          alt="EA Western Contact" 
+          className="w-full h-full object-cover scale-105 opacity-40 grayscale-[30%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1F2E]/60 via-[#0B1F2E]/90 to-[#0B1F2E]" />
+        <div className="noise-overlay opacity-30" />
+      </div>
+
+      <div className="relative z-10 max-w-[850px] mx-auto px-6 text-center">
+        <div className="uppercase-label mb-8 text-[var(--color-gold)]">
+          Global Operations
         </div>
+        <h2 className="serif text-[36px] md:text-[62px] text-white leading-[1.1] mb-10">
+          We Are Ready To Support <span className="italic block mt-2 font-light">Your Journey</span>
+        </h2>
+        <p className="text-lg md:text-xl text-white/50 mb-14 max-w-[650px] mx-auto font-light leading-relaxed">
+          Whether you are planning your next expedition, securing corporate insurance, or leasing an executive vehicle—our specialists are standing by.
+        </p>
+        <Link 
+          href="/en/contact"
+          className="inline-block border border-[var(--color-gold)] text-[var(--color-gold)] px-12 py-5 text-[11px] font-semibold uppercase tracking-[0.3em] transition-all duration-700 hover:bg-[var(--color-gold)] hover:text-[#0d1b2e] hover:-translate-y-1"
+        >
+          Initialize Consult
+        </Link>
       </div>
     </section>
   );
 }
-

@@ -1,105 +1,65 @@
-import Link from 'next/link';
+"use client";
 
-type ServicesSectionProps = {
-  locale?: string;
-};
+import { motion } from 'framer-motion';
+import { ShieldCheck, Zap, Globe, Users } from 'lucide-react';
 
-export function ServicesSection({ locale = 'en' }: ServicesSectionProps) {
-  const services = [
-    {
-      id: '01',
-      title: 'Tours & Safaris',
-      headline: 'Your East African Adventure Starts Here.',
-      subtitle: 'Explore the World\'s Greatest Wilderness',
-      description: 'From the Great Migration in the Maasai Mara to the spice beaches of Zanzibar, our expertly curated safaris are planned for maximum thrill and minimum stress. We handle the logistics; you collect the memories.',
-      ctaText: 'See All Tours & Safaris',
-      backgroundImage: '/images/tours.png',
-      href: `/${locale}/safaris`
-    },
-    {
-      id: '02', 
-      title: 'Insurance',
-      headline: 'Protection for What Matters Most—Simplified',
-      subtitle: '',
-      description: 'End the policy confusion. As licensed Kenyan insurance experts, we provide tailored, transparent coverage for your life, health, business, and assets. We negotiate for you and manage your claims in-house.',
-      ctaText: 'View Details',
-      backgroundImage: '/images/fam.png',
-      href: `/${locale}/insurance`
-    },
-    {
-      id: '03',
-      title: 'Car Rentals',
-      headline: 'Drive East Africa with Uncompromised Reliability',
-      subtitle: '',
-      description: 'Whether you\'re landing in Kenya for business, need a weekend getaway ride, or want a long-term corporate lease, our cars are ready, safe, and fully maintained. Choose from SUVs, saloons, vans, and executive vehicles.',
-      ctaText: 'View Available Fleet',
-      backgroundImage: '/images/caar.png',
-      href: `/${locale}/vehicles`
-    }
+export function ServicesSection({ locale = 'en' }: { locale?: string }) {
+  const guarantees = [
+    { title: 'The Platinum Standard', desc: 'Zero compromise on safety, hardware, and logistical punctuality.', icon: ShieldCheck },
+    { title: 'Responsive Support', desc: '24/7 dedicated lead architects for your every operational need.', icon: Zap },
+    { title: 'Regional Mastery', desc: 'Decades of intelligence across the East African terrain.', icon: Globe },
+    { title: 'Elite Collective', desc: 'A team of senior specialists handling travel, auto, and insurance.', icon: Users },
   ];
 
   return (
-    <section id="eawestern-guarantee" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="text-center mb-10 sm:mb-12 lg:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-3 sm:mb-4 text-black leading-tight px-2">
-            <div>The Eawestern Guarantee</div>
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-2">Three Services, One Unwavering Promise</div>
-          </h2>
-          <div className="w-16 sm:w-24 h-px bg-black mx-auto mt-4 sm:mt-6"></div>
-        </div>
+    <section className="py-[120px] md:py-[180px] bg-[#0D1F3C] text-white font-jost border-t border-[var(--color-gold)]/10 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-[#3A8CC4]/5 blur-[120px] pointer-events-none"></div>
+      
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
         
-        {/* Service Cards with Image on Top */}
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {services.map((service) => (
-            <div key={service.id} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group flex flex-col">
-              {/* Image on Top */}
-              <div className="relative h-48 sm:h-56 md:h-64 lg:h-80 overflow-hidden">
-                <img 
-                  src={service.backgroundImage}
-                  alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+        <div className="text-center mb-24">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="uppercase-label mb-6"
+          >
+            The Integrity Promise
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
+            className="serif text-[36px] md:text-[52px] text-white leading-tight"
+          >
+            One Standard. <span className="italic text-[var(--color-gold)]">Three Portfolios.</span>
+          </motion.h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {guarantees.map((item, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1, delay: idx * 0.1, ease: [0.19, 1, 0.22, 1] }}
+              className="bg-[#08172E] border border-white/5 p-10 transition-all duration-700 hover:border-[var(--color-gold)]/30 group"
+            >
+              <div className="w-14 h-14 border border-[var(--color-gold)]/20 text-[var(--color-gold)] flex items-center justify-center mb-8 group-hover:bg-[var(--color-gold)] group-hover:text-[#08172E] transition-all duration-700">
+                <item.icon size={26} />
               </div>
-              
-              {/* White Background Text Section */}
-              <div className="p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col flex-grow">
-                {/* Service Title */}
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 text-gray-900">
-                  {service.title}
-                </h3>
-                
-                {/* Headline */}
-                <h4 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 text-gray-800 leading-tight">
-                  {service.headline}
-                </h4>
-                
-                {/* Subtitle if exists */}
-                {service.subtitle && (
-                  <p className="text-xs sm:text-sm lg:text-base text-gray-500 mb-3 sm:mb-4 italic">
-                    {service.subtitle}
-                  </p>
-                )}
-                
-                {/* Description */}
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed flex-grow">
-                  {service.description}
-                </p>
-                
-                {/* CTA Button */}
-                <div className="flex justify-center mt-auto">
-                  <Link 
-                    href={service.href}
-                    className="bg-blue-900 hover:bg-red-900 active:bg-red-900 text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-medium transition-all duration-300 rounded-full shadow-md uppercase tracking-wide inline-block text-center w-full sm:w-auto"
-                  >
-                    {service.ctaText}
-                  </Link>
-                </div>
-              </div>
-            </div>
+              <h3 className="serif text-2xl text-white mb-4 transition-colors group-hover:text-[var(--color-gold)]">
+                {item.title}
+              </h3>
+              <p className="text-sm text-white/50 leading-relaxed font-light">
+                {item.desc}
+              </p>
+            </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

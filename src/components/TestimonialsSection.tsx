@@ -4,69 +4,67 @@ import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "Professional, friendly, and reliable. Eawestern made our Maasai Mara trip unforgettable!",
-    author: "Sarah",
-    location: "UK"
+    quote: "Precision, discretion, and absolute reliability. EA Western engineered our corporate retreat flawlessly.",
+    author: "Sarah M.",
+    location: "London, UK"
   },
   {
-    quote: "The best car hire service I've used in Nairobi. Clean cars, fair pricing, and great support.",
-    author: "James",
-    location: "Kenya"
+    quote: "The only automotive leasing partner we trust in Nairobi. The fleet is immaculate.",
+    author: "James T.",
+    location: "Corporate Director, Kenya"
   },
   {
-    quote: "Fast motor insurance and zero stress. Highly recommended.",
-    author: "Michelle",
+    quote: "Expedited claims and total transparency. They treat insurance like an exact science.",
+    author: "Michelle K.",
     location: "Nairobi"
   }
 ];
 
 export function TestimonialsSection() {
   return (
-    <section className="py-10 sm:py-12 lg:py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-8 sm:mb-10">
-          <p className="text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-500 mb-2 sm:mb-3">What Our Travelers Say</p>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 px-2">Stories from Recent Travelers</h2>
+    <section className="py-[120px] md:py-[180px] bg-[#0B1F2E] text-white font-jost overflow-hidden border-t border-[var(--color-gold)]/10">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+        
+        <div className="text-center mb-16 md:mb-24">
+          <div className="uppercase-label mb-6">
+            Client Perspectives
+          </div>
+          <h2 className="serif text-[36px] md:text-[52px] text-white leading-tight">
+            The Standard of <span className="italic text-[var(--color-gold)]">Excellence</span>
+          </h2>
         </div>
 
-        <div className="relative overflow-hidden">
-          <div className="flex animate-testimonial-slide gap-4 sm:gap-6">
-            {[...testimonials, ...testimonials].map((t, idx) => (
+        <div className="relative w-full">
+          {/* Fading edges for the slider */}
+          <div className="absolute top-0 left-0 w-[50px] md:w-[150px] h-full bg-gradient-to-r from-[#0B1F2E] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[50px] md:w-[150px] h-full bg-gradient-to-l from-[#0B1F2E] to-transparent z-10 pointer-events-none" />
+
+          <div className="flex animate-[testimonial-slide_40s_linear_infinite] gap-8 md:gap-12 w-max hover:[animation-play-state:paused]">
+            {[...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
               <div
-                key={`${t.author}-${idx}`}
-                className="w-[280px] sm:w-80 shrink-0 bg-white border border-gray-200 rounded-2xl shadow-sm p-4 sm:p-6 text-center hover:shadow-lg transition-shadow duration-200"
+                key={idx}
+                className="w-[300px] md:w-[450px] shrink-0 bg-[#0F2A3D] p-10 md:p-14 text-left border border-white/5 transition-all duration-700 hover:border-[var(--color-gold)]/30"
               >
-                <div className="flex justify-center mb-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-lg font-semibold">
-                    {t.author.slice(0, 2).toUpperCase()}
+                <div className="w-12 h-12 border border-[var(--color-gold)]/20 flex items-center justify-center text-[var(--color-gold)] mb-10">
+                  <Quote size={24} />
+                </div>
+                <p className="serif text-[18px] md:text-[22px] text-white/90 leading-[1.6] mb-12">
+                  "{t.quote}"
+                </p>
+                <div>
+                  <div className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--color-gold)] mb-2">
+                    {t.author}
+                  </div>
+                  <div className="text-[10px] font-light uppercase tracking-[0.2em] text-white/40">
+                    {t.location}
                   </div>
                 </div>
-                <Quote className="mx-auto mb-3 text-blue-600" size={20} strokeWidth={1.5} />
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">“{t.quote}”</p>
-                <div className="text-sm font-semibold text-gray-900">{t.author}</div>
-                <div className="text-xs text-gray-500">{t.location}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <style jsx>{`
-          @keyframes testimonial-slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-testimonial-slide {
-            width: max-content;
-            animation: testimonial-slide 18s linear infinite;
-          }
-          @media (max-width: 768px) {
-            .animate-testimonial-slide {
-              animation-duration: 24s;
-            }
-          }
-        `}</style>
       </div>
     </section>
   );
 }
-

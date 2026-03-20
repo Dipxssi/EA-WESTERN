@@ -1,0 +1,15 @@
+<svg width="900" height="600" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="600" fill="#10283A"/>
+  <path d="M240 112L278 98L324 120L372 112L420 138L460 176L498 170L542 206L558 258L602 284L628 338L610 390L560 408L526 450L470 478L410 492L362 476L322 444L274 420L236 372L206 330L198 278L176 232L188 186L218 156L240 112Z" fill="#17344A" stroke="#C2A36B" stroke-width="4"/>
+  <path d="M602 284L658 278L692 304L708 342L692 382L654 398L620 380L610 350L622 326L602 284Z" fill="#1E3F57" stroke="#C2A36B" stroke-width="3"/>
+  <path d="M510 206L536 200L552 214L548 236L526 246L506 232L510 206Z" fill="#244C69" opacity="0.7"/>
+  <path d="M330 250L376 238L402 274L388 320L334 332L304 292L330 250Z" fill="#244C69" opacity="0.6"/>
+  <path d="M450 130L490 154L480 184L434 194L418 160L450 130Z" fill="#244C69" opacity="0.55"/>
+  <circle cx="470" cy="280" r="10" fill="#C2A36B"/>
+  <circle cx="516" cy="340" r="10" fill="#C2A36B"/>
+  <circle cx="430" cy="320" r="10" fill="#C2A36B"/>
+  <text x="486" y="272" fill="#C2A36B" font-size="14" font-family="Jost, Arial, sans-serif">Nairobi</text>
+  <text x="532" y="332" fill="#C2A36B" font-size="14" font-family="Jost, Arial, sans-serif">Mombasa</text>
+  <text x="346" y="314" fill="#C2A36B" font-size="14" font-family="Jost, Arial, sans-serif">Arusha</text>
+  <text x="298" y="82" fill="#A7B1BC" font-size="18" font-family="Jost, Arial, sans-serif" letter-spacing="2">EAST AFRICA REGION</text>
+</svg>

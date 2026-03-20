@@ -1,8 +1,7 @@
 import { Navigation } from '@/components/Navigation';
-import { HeroSection } from '@/components/HeroSection';
-import { ServiceCardsSection } from '@/components/ServiceCardSection';
+import { PortalClient } from '@/components/PortalClient';
+import { HomeTomatoTheme } from '@/components/HomeTomatoTheme';
 import { AboutSection } from '@/components/AboutSection';
-import { ServicesSection } from '@/components/ServiceSection';
 import { WhatYouGetSection } from '@/components/WhatYouGetSection';
 import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { WhyChooseSection } from '@/components/WhyChooseSection';
@@ -21,14 +20,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div
+      className="min-h-screen text-[var(--text-primary)]"
+      style={{ background: 'var(--background-gradient)' }}
+    >
+      <HomeTomatoTheme />
       <Navigation locale={locale} />
-      <HeroSection locale={locale} />
-      <div id="services-section">
-        <ServiceCardsSection locale={locale} />
-      </div>
+      <PortalClient locale={locale} />
       <AboutSection locale={locale} />
-      <ServicesSection locale={locale} />
       <WhatYouGetSection />
       <TestimonialsSection />
       <WhyChooseSection />

@@ -1,440 +1,278 @@
 "use client";
 
-import { Navigation } from '@/components/Navigation';
-import { Footer } from '@/components/Footer';
-import { SafariTestimonials } from '@/components/SafariTestimonials';
-import { AnimatedCard } from '@/components/AnimatedCard';
-import { AnimatedSolutionsGrid } from '@/components/AnimatedSolutionsGrid';
-import { LifeInsuranceSections } from '@/components/LifeInsuranceSections';
+import { InsuranceNavigation } from '@/components/InsuranceNavigation';
+import { InsuranceFooter } from '@/components/InsuranceFooter';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import {
-  ShieldCheck,
-  TrendingDown,
-  MessageSquare,
-  Users,
-  Heart,
-  Car,
-  Building2,
-  FileCheck,
-  Phone,
-  ArrowRight,
-  CheckCircle2,
-  GraduationCap,
-  Home,
-  Clock,
-} from 'lucide-react';
-import { InsuranceProcessSection } from '@/components/InsuranceProcessSection';
-
-const whyChooseUs = [
-  {
-    title: 'Expert Rate Negotiation',
-    description: 'As a high-volume agency, we secure better policy terms and rates than you can find on your own.',
-    icon: TrendingDown,
-  },
-  {
-    title: 'Zero-Jargon Consultation',
-    description: 'We translate complex policies into plain English, ensuring you fully understand what you are covered for.',
-    icon: MessageSquare,
-  },
-  {
-    title: 'Personalized, Local Support',
-    description: 'When you call, you speak to a local, dedicated Eawestern expert who knows your policy and your needs.',
-    icon: Users,
-  },
-];
-
-const products = [
-  {
-    title: 'Business',
-    description: 'Every business faces risks, from property damage to legal liabilities. Our business insurance solutions provide coverage for financial losses, ensuring business continuity by protecting assets, employees, and operations from unforeseen setbacks.',
-    iconName: 'Building2',
-  },
-  {
-    title: 'Education',
-    description: 'Secure your child\'s future with an education plan that guarantees uninterrupted learning. Our education insurance provides financial support for tuition fees and other school expenses, ensuring that your child\'s dreams remain on track even in unforeseen circumstances.',
-    iconName: 'GraduationCap',
-  },
-  {
-    title: 'Retirement',
-    description: 'Enjoy peace of mind in your golden years with a well-structured retirement insurance plan. Our solutions help you build a financial cushion through savings and investments, ensuring you maintain your lifestyle and financial independence after retirement.',
-    iconName: 'PiggyBank',
-  },
-  {
-    title: 'Motor Insurance',
-    description: 'Protect your vehicle from accidental damage, theft, and third-party liabilities with our comprehensive motor insurance solutions. Whether for personal or commercial use, we provide policies tailored to keep you covered on the road, minimizing financial setbacks.',
-    iconName: 'Car',
-  },
-  {
-    title: 'Health',
-    description: 'Quality healthcare should never be a burden. Our medical insurance ensures that you and your loved ones have access to the best treatment without financial strain. Covering hospital bills, doctor consultations, and emergency care. We make healthcare affordable and accessible.',
-    iconName: 'HeartPulse',
-  },
-  {
-    title: 'Home',
-    description: 'Safeguard your home and possessions from unexpected disasters like fire, theft, and natural calamities. Our home insurance ensures financial protection against structural damage and loss of valuables, helping you rebuild and recover without unnecessary stress.',
-    iconName: 'Home',
-  },
-];
-
-const claimsFeatures = [
-  'Guide you step-by-step on required documents',
-  'Liaise directly with insurance companies to speed up your claim',
-  'Assist in filling and submitting claim forms',
-  'Follow up until settlement — avoiding unnecessary delays',
-  'Provide updates at every stage',
-  'Help negotiate or escalate claims when needed',
-  'Support for motor, medical, life, corporate & travel claims',
-];
-
-const blogPosts = [
-  {
-    title: 'Understanding Comprehensive Motor Insurance in Kenya',
-    excerpt: 'Learn what comprehensive coverage really means and how to choose the right policy for your vehicle.',
-    date: 'Nov 2025',
-    href: '#',
-    image: '/images/insurance-bg.png',
-  },
-  {
-    title: 'Health Insurance: Individual vs Family Plans',
-    excerpt: 'Compare the benefits and costs of individual and family health insurance policies.',
-    date: 'Oct 2025',
-    href: '#',
-    image: '/images/fam.png',
-  },
-  {
-    title: 'Life Insurance: Securing Your Family\'s Future',
-    excerpt: 'A guide to choosing the right life insurance policy for your needs and budget.',
-    date: 'Sep 2025',
-    href: '#',
-    image: '/images/insurance-family.jpg',
-  },
-];
-
-const personalizedCoverageHighlights = [
-  {
-    title: 'Dedicated Advocate',
-    description: 'One expert handles every detail of your policy and claims.',
-  },
-  {
-    title: 'Flexible Coverage',
-    description: 'Adjust benefits, upgrades, and riders as your life evolves.',
-  },
-  {
-    title: 'VIP Access',
-    description: 'Priority underwriting, exclusive products, and direct insurer access.',
-  },
-];
-
-
-
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ShieldCheck, HeartPulse, Car, Home, ChevronRight, CheckCircle2, Award } from 'lucide-react';
 
 export default function InsurancePage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
-  const [customCoverageVisible, setCustomCoverageVisible] = useState(false);
-  const [claimsVisible, setClaimsVisible] = useState(false);
-  const customCoverageRef = useRef<HTMLDivElement>(null);
-  const claimsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     params.then(({ locale }) => setLocale(locale));
   }, [params]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setCustomCoverageVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (customCoverageRef.current) {
-      observer.observe(customCoverageRef.current);
-    }
-
-    return () => {
-      if (customCoverageRef.current) {
-        observer.unobserve(customCoverageRef.current);
+  // Structured, professional animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.7
       }
-    };
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setClaimsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (claimsRef.current) {
-      observer.observe(claimsRef.current);
-    }
-
-    return () => {
-      if (claimsRef.current) {
-        observer.unobserve(claimsRef.current);
-      }
-    };
-  }, []);
+    })
+  };
 
   return (
-    <div className="bg-white text-gray-900 min-h-screen">
-      <Navigation locale={locale} />
-      <main className="pt-0 pb-16">
-        {/* Hero Section */}
-        <section className="relative isolate">
-          <div className="absolute inset-0">
-            <img
-              src="/images/insurancebg.png"
-              alt=""
-              className="h-full w-full object-cover"
+    <div className="theme-insurance bg-[var(--color-slate)] text-[var(--color-charcoal)] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-blue)] selection:text-white">
+      <InsuranceNavigation locale={locale} />
+      
+      <main className="w-full">
+        {/* HERO SECTION */}
+        <section className="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-[var(--color-navy)] flex items-center">
+          {/* Background Image & Gradient */}
+          <div className="absolute inset-0 w-full h-full">
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-navy)] via-[var(--color-navy)]/95 to-[var(--color-navy)]/30 z-10" />
+            <img 
+              src="/images/insurancebg.png" 
+              alt="Professional Insurance Background" 
+              className="w-full h-full object-cover object-center opacity-40" 
+              onError={(e) => { e.currentTarget.src = "/images/insurance-family.jpg" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/20" />
           </div>
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-32 sm:py-40 lg:py-48 text-white flex flex-col gap-6">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light leading-tight">
-              Insurance That Protects What Matters Most
-            </h1>
-            <p className="text-base sm:text-lg text-white/90 leading-relaxed max-w-4xl drop-shadow-lg">
-              We are not just brokers; we are your dedicated, licensed advocates. Find the most competitive rates for Life, Health, Motor, and Business insurance with an expert team committed to one thing: making claims effortless.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-8">
-              <Link
-                href={`/${locale}/contact`}
-                className="bg-blue-900 hover:bg-red-900 transition-all duration-300 border border-white/20 rounded-full px-8 py-3 text-sm tracking-[0.2em] uppercase"
+          
+          <div className="relative z-20 max-w-[1200px] mx-auto px-6 md:px-10 w-full pt-20">
+            <div className="max-w-[600px]">
+              <motion.div
+                custom={0}
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm"
               >
-                Request a Quote
-              </Link>
-              <Link
-                href={`/${locale}/contact`}
-                className="bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 border border-white/30 rounded-full px-8 py-3 text-sm tracking-[0.2em] uppercase text-white"
+                <ShieldCheck size={14} className="text-[var(--color-blue)]" />
+                <span className="text-[11px] uppercase tracking-[0.15em] text-white font-medium">
+                  Trusted by 50,000+ Clients
+                </span>
+              </motion.div>
+              
+              <motion.h1 
+                custom={1}
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="text-[44px] md:text-[56px] lg:text-[68px] text-white leading-[1.1] mb-6 font-bold tracking-tight"
               >
-                Talk to an Advisor
-              </Link>
+                Certainty in an <br />
+                <span className="text-[#60A5FA]">Uncertain World.</span>
+              </motion.h1>
+              
+              <motion.p 
+                custom={2}
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="text-[16px] md:text-[18px] text-white/80 leading-[1.6] mb-10 max-w-[500px]"
+              >
+                Comprehensive, crystal-clear insurance solutions designed to protect your family, your business, and your legacy.
+              </motion.p>
+              
+              <motion.div 
+                custom={3}
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Link
+                  href={`/${locale}/insurance/solutions`}
+                  className="bg-[var(--color-blue)] text-white px-[32px] py-[16px] text-[13px] uppercase tracking-[0.1em] font-semibold hover:bg-white hover:text-[var(--color-blue)] transition-colors rounded-[4px] shadow-lg shadow-[var(--color-blue)]/20 text-center flex justify-center items-center gap-2 group"
+                >
+                  Explore Coverage <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  href={`/${locale}/insurance/contact`}
+                  className="bg-transparent border border-white/30 text-white px-[32px] py-[16px] text-[13px] uppercase tracking-[0.1em] font-medium hover:bg-white/10 transition-colors rounded-[4px] text-center backdrop-blur-sm"
+                >
+                  Speak to an Advisor
+                </Link>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Why Choose Us */}
-        <section className="bg-gray-50 py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="text-center mb-12">
-              <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">WHY CHOOSE US</p>
-              <h2 className="text-3xl font-light text-gray-900 mb-4">Your Peace of Mind is Our Priority</h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {whyChooseUs.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <AnimatedCard key={item.title} index={index} delay={200}>
-                    <div className="bg-white border border-gray-200 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center mb-6">
-                        <Icon className="w-7 h-7" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed flex-grow">{item.description}</p>
-                    </div>
-                  </AnimatedCard>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Our Solutions */}
-        <section className="bg-gray-50 py-16">
-          <div className="w-full px-4 sm:px-6">
-            <div className="text-center mb-12">
-              <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-3">our solutions</p>
-              <h2 className="text-3xl font-light text-gray-900 mb-4">Comprehensive Coverage for Every Kenyan Need</h2>
-            </div>
-            <AnimatedSolutionsGrid products={products} locale={locale} />
-          </div>
-        </section>
-
-        <LifeInsuranceSections />
-
-        {/* Personalized Coverage CTA */}
-        <section className="py-16 px-4 sm:px-6 bg-white">
-          <div className="max-w-6xl mx-auto">
-            <div ref={customCoverageRef} className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-blue-50 via-white to-blue-100 shadow-[0_25px_80px_rgba(15,23,42,0.15)] px-6 sm:px-10 lg:px-16 py-14">
-              <div className={`text-center max-w-3xl mx-auto transition-all duration-1000 ease-out ${
-                customCoverageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}>
-                <p className="text-xs font-semibold tracking-[0.4em] text-blue-700 uppercase mb-4">Custom Coverage</p>
-                <h2 className="text-3xl font-light text-gray-900 mb-4">Want a Personalized Experience?</h2>
-                <p className="text-lg text-gray-600">
-                  Tell us the protection you need—family security, business continuity, or global health—and we&apos;ll craft every policy detail, benefit, and claim moment to match.
-                </p>
-              </div>
-
-              <div className="mt-10 grid gap-6 md:grid-cols-3">
-                {personalizedCoverageHighlights.map((item, index) => (
-                  <div 
-                    key={item.title} 
-                    className={`bg-white/90 shadow-sm rounded-3xl px-6 py-5 text-left transition-all duration-1000 ease-out ${
-                      customCoverageVisible 
-                        ? 'opacity-100 translate-y-0' 
-                        : 'opacity-0 translate-y-8'
-                    }`}
-                    style={{ transitionDelay: `${300 + index * 100}ms` }}
-                  >
-                    <h3 className="text-base font-semibold text-blue-900 mb-2">{item.title}</h3>
-                    <p className="text-sm text-gray-600">{item.description}</p>
+        {/* TRUST STATS BAR */}
+        <section className="relative z-30 w-full px-6 md:px-10 -mt-[40px]">
+          <div className="max-w-[1200px] mx-auto">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="w-full bg-white rounded-[8px] shadow-[0_20px_40px_rgba(11,27,61,0.08)] border border-[rgba(11,27,61,0.05)] overflow-hidden"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[rgba(11,27,61,0.08)]">
+                {[
+                  { value: '24/7', label: 'Dedicated Claims Support' },
+                  { value: 'AAA', label: 'Financial Strength Rating' },
+                  { value: '98%', label: 'Claim Approval Rate' },
+                ].map((stat, idx) => (
+                  <div key={idx} className="flex flex-col items-center justify-center py-8 text-center px-6">
+                    <div className="text-[32px] md:text-[40px] font-bold text-[var(--color-navy)] mb-1 leading-none">{stat.value}</div>
+                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold">{stat.label}</div>
                   </div>
                 ))}
               </div>
-
-              <div className={`mt-12 flex justify-center transition-all duration-1000 ease-out ${
-                customCoverageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`} style={{ transitionDelay: '600ms' }}>
-                <Link
-                  href={`/${locale}/contact`}
-                  className="inline-flex items-center justify-center bg-blue-900 text-white px-10 py-4 rounded-full tracking-[0.3em] text-sm uppercase font-semibold hover:bg-blue-800 transition-all shadow-lg"
-                >
-                  Request Custom Coverage
-                </Link>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        <InsuranceProcessSection />
-
-        {/* Claims Assistance */}
-        <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div ref={claimsRef} className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-200">
-              <div className={`mb-8 transition-all duration-1000 ease-out ${
-                claimsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}>
-                <h2 className="text-3xl font-light text-gray-900 mb-4">Claims Assistance</h2>
-                <p className="text-lg text-gray-700 mb-6">
-                  Insurance is only as good as the support you receive during a loss. Eawestern Insurance provides end-to-end claims assistance to ensure you are never alone when something goes wrong.
-                </p>
-              </div>
-
-              <div className={`mb-8 transition-all duration-1000 ease-out ${
-                claimsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`} style={{ transitionDelay: '200ms' }}>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">What We Do for You:</h3>
-                <div className="grid md:grid-cols-2 gap-3">
-                  {claimsFeatures.map((feature, index) => (
-                    <div 
-                      key={index} 
-                      className={`flex items-start gap-3 transition-all duration-1000 ease-out ${
-                        claimsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-                      }`}
-                      style={{ transitionDelay: `${400 + index * 100}ms` }}
-                    >
-                      <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className={`bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-8 transition-all duration-1000 ease-out ${
-                claimsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`} style={{ transitionDelay: '1200ms' }}>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Our Claims Promise:</h3>
-                <p className="text-lg font-semibold text-blue-700 mb-2">Fast. Transparent. Stress-free.</p>
-                <p className="text-gray-700">
-                  We ensure your claim is handled professionally and with urgency so you can get back to normal life quickly.
-                </p>
-              </div>
-
-              <div className={`text-center transition-all duration-1000 ease-out ${
-                claimsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`} style={{ transitionDelay: '1400ms' }}>
-                <Link
-                  href={`/${locale}/contact`}
-                  className="inline-flex items-center gap-2 bg-blue-900 hover:bg-red-900 text-white px-8 py-3 rounded-full tracking-[0.2em] text-sm uppercase transition-all"
-                >
-                  Request Claims Assistance
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="rounded-2xl p-12 lg:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ backgroundColor: '#1e3a8a' }}>
-              <div className="relative z-10">
-                {/* Headline */}
-                <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
-                  We&apos;re Here to Support Your Journey
+        {/* CORE SOLUTIONS PREVIEW */}
+        <section className="py-[120px] bg-[var(--color-slate)]">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+            <div className="text-center mb-16">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-3">Coverage Plans</div>
+                <h2 className="text-[36px] md:text-[44px] text-[var(--color-navy)] font-bold mb-6 leading-tight">
+                  Tailored Protection for <br/> Every Stage of Life
                 </h2>
-                
-                {/* Decorative line */}
-                <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
-                
-                {/* Description Text */}
-                <p className="text-lg lg:text-xl text-white mb-10 max-w-3xl mx-auto leading-relaxed font-light">
-                  Whether you&apos;re planning your next safari, securing insurance, or booking a vehicle—our team is ready to help.
-                </p>
-                
-                {/* CTA Button */}
-                <Link
-                  href={`/${locale}/contact`}
-                  className="inline-block text-white px-12 py-4 text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform"
-                  style={{ backgroundColor: '#d92323', border: '2px solid white' }}
-                >
-                  Contact Us Today
-                </Link>
-              </div>
+                <div className="w-[60px] h-[4px] bg-[var(--color-blue)] mx-auto rounded-full"></div>
+              </motion.div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { icon: HeartPulse, title: 'Health & Medical', desc: 'Comprehensive medical coverage ensuring you have access to top-tier healthcare facilities.' },
+                { icon: ShieldCheck, title: 'Life Insurance', desc: 'Secure your family’s financial future with reliable term and whole life coverage plans.' },
+                { icon: Car, title: 'Auto & Transit', desc: 'From daily commutes to cross-country travel, stay protected against the unexpected.' },
+                { icon: Home, title: 'Home & Property', desc: 'Safeguard your most valuable assets with extensive property and asset protection.' },
+              ].map((solution, idx) => (
+                 <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.1 }}
+                    className="bg-white p-8 rounded-[8px] border border-[rgba(11,27,61,0.05)] shadow-[0_10px_30px_rgba(11,27,61,0.03)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.08)] transition-all duration-300 group cursor-pointer"
+                 >
+                   <div className="w-[56px] h-[56px] rounded-[12px] bg-[var(--color-lightblue)] flex items-center justify-center text-[var(--color-blue)] mb-6 group-hover:bg-[var(--color-blue)] group-hover:text-white transition-colors duration-300">
+                     <solution.icon size={26} strokeWidth={2} />
+                   </div>
+                   <h3 className="text-[20px] font-bold text-[var(--color-navy)] mb-3">{solution.title}</h3>
+                   <p className="text-[14px] text-[var(--color-charcoal)]/70 leading-[1.6] mb-6 min-h-[66px]">
+                     {solution.desc}
+                   </p>
+                   <div className="flex items-center text-[13px] font-semibold text-[var(--color-blue)] group-hover:text-[var(--color-navy)] transition-colors">
+                     Learn More <ChevronRight size={16} className="ml-1" />
+                   </div>
+                 </motion.div>
+              ))}
+            </div>
+            
+            <div className="mt-12 text-center">
+              <Link 
+                href={`/${locale}/insurance/solutions`}
+                className="inline-flex items-center text-[14px] font-bold text-[var(--color-navy)] border-b-2 border-[var(--color-blue)] pb-1 hover:text-[var(--color-blue)] transition-colors"
+              >
+                View All Coverage Plans
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Blog */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-2">Our Blog</p>
-              <h2 className="text-3xl font-light text-gray-900">Latest Blog & Articles</h2>
-            </div>
-            <Link href="/#blog" className="text-sm tracking-[0.2em] uppercase text-blue-900">
-              View All
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
-              <article key={post.title} className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all">
-                <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-2">{post.date}</p>
-                {/* Blog Image */}
-                <div className="relative h-48 mb-4 rounded-2xl overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        {/* WHY CHOOSE US (Split Section) */}
+        <section className="py-[120px] bg-white border-y border-[rgba(11,27,61,0.05)]">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="relative"
+              >
+                <div className="aspect-square relative rounded-[16px] overflow-hidden bg-[var(--color-navy)] shadow-2xl">
+                  <img src="/images/insurance-family.jpg" alt="Family Security" className="w-full h-full object-cover mix-blend-luminosity opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-navy)]/80 to-[var(--color-blue)]/20 mix-blend-multiply" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{post.title}</h3>
-                <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                <Link href={post.href} className="text-blue-900 text-sm tracking-[0.2em] uppercase font-semibold">
-                  Read Article →
-                </Link>
-              </article>
-            ))}
+                {/* Floating Badge */}
+                <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-[12px] shadow-[0_30px_60px_rgba(11,27,61,0.12)] max-w-[240px] hidden md:block border border-[rgba(11,27,61,0.05)]">
+                  <Award className="text-[var(--color-blue)] mb-3" size={32} />
+                  <p className="text-[16px] font-bold text-[var(--color-navy)] leading-tight">
+                    Award-Winning Customer Priority
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <div className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-3">The EA Western Difference</div>
+                <h2 className="text-[36px] md:text-[44px] text-[var(--color-navy)] font-bold mb-6 leading-tight">
+                  Transparent Policies, <br/> No Hidden Clauses.
+                </h2>
+                <p className="text-[16px] text-[var(--color-charcoal)]/70 leading-[1.7] mb-8">
+                  We believe that insurance shouldn't be complicated. By eliminating complex jargon and rigid structures, we provide straightforward, reliable policies that instantly kick in when you need them most.
+                </p>
+
+                <ul className="space-y-5">
+                   {[
+                     'Zero Deductible Options Available',
+                     'Immediate Claim Processing under 48 Hours',
+                     'Dedicated Personal Account Manager',
+                     'Global Coverage Extensions standard on Premium Plans'
+                   ].map((item, idx) => (
+                     <li key={idx} className="flex items-start">
+                       <CheckCircle2 color="var(--color-green)" className="mr-3 flex-shrink-0 mt-[2px]" size={20} />
+                       <span className="text-[15px] text-[var(--color-navy)] font-medium">{item}</span>
+                     </li>
+                   ))}
+                </ul>
+              </motion.div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* CTA SECTION */}
+        <section className="py-[100px] bg-[var(--color-navy)] relative overflow-hidden">
+          {/* Background pattern */}
+          <div className="absolute inset-0 opacity-5 pointer-events-none">
+             <div className="absolute w-[500px] h-[500px] bg-[var(--color-blue)] rounded-full blur-[100px] -top-40 -left-40 mix-blend-screen"></div>
+             <div className="absolute w-[500px] h-[500px] bg-[var(--color-blue)] rounded-full blur-[100px] -bottom-40 -right-40 mix-blend-screen"></div>
+          </div>
+
+          <div className="relative z-10 max-w-[800px] mx-auto px-6 text-center">
+            <h2 className="text-[36px] md:text-[48px] text-white font-bold mb-6">Ready to secure your future?</h2>
+            <p className="text-[16px] text-white/70 mb-10 max-w-[600px] mx-auto">
+              Answer a few simple questions and receive a personalized quote in minutes. No commitments, just clarity.
+            </p>
+            <div className="flex justify-center">
+              <Link
+                href={`/${locale}/insurance/contact`}
+                className="bg-[var(--color-blue)] text-white px-[40px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-[var(--color-navy)] transition-colors rounded-[4px] shadow-xl"
+              >
+                Get a Fast Online Quote
+              </Link>
+            </div>
           </div>
         </section>
       </main>
-      <Footer />
+
+      <InsuranceFooter />
     </div>
   );
 }
-

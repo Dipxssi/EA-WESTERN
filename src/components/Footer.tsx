@@ -1,62 +1,72 @@
+"use client";
+
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+
 export function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 py-10 sm:py-12 lg:py-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
-          <div>
-            {/* Logo instead of text */}
-            <div className="mb-4 sm:mb-6">
-              <img 
-                src="/logo/ea-western-logo.png" 
-                alt="EA Western" 
-                className="h-8 sm:h-10 w-auto"
-              />
-            </div>
-            <p className="text-sm sm:text-base text-gray-600 font-light leading-relaxed max-w-md">
-              Curating exceptional Kenya experiences through premium safaris, 
-              comprehensive protection, and luxury transport solutions.
+    <footer className="bg-[#0B1F2E] text-white pt-[100px] pb-12 font-jost border-t border-[var(--color-gold)]/10">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20">
+          
+          <div className="lg:col-span-1">
+            <Link href="/" className="flex items-center gap-4 no-underline group mb-8">
+              <div className="w-[35px] h-[35px] border border-[var(--color-gold)] flex items-center justify-center text-[14px] text-[var(--color-gold)] font-medium transition-all group-hover:bg-[var(--color-gold)] group-hover:text-[#0B1F2E]">
+                EW
+              </div>
+              <span className="text-[12px] uppercase tracking-[0.4em] text-white font-medium">
+                EA Western
+              </span>
+            </Link>
+            <p className="text-[15px] text-white/50 font-light leading-[1.8] max-w-[280px]">
+              The uncompromising standard in luxury safe-travel, specialized corporate transport, and comprehensive risk mitigation across East Africa.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 gap-6 sm:gap-8">
-            <div>
-              <h4 className="text-sm tracking-[0.2em] text-gray-500 font-light mb-6 uppercase">Contact</h4>
-              <div className="space-y-3 text-sm text-gray-600 font-light">
-                <div>+254 700 123 456</div>
-                <div>info@eawestern.com</div>
-                <div>Nairobi, Kenya</div>
-              </div>
+          <div>
+            <h4 className="uppercase-label text-[var(--color-gold)] mb-8 pb-4 border-b border-[var(--color-gold)]/10 inline-block">Portfolios</h4>
+            <ul className="space-y-4 text-[13px] font-medium tracking-[0.1em] uppercase">
+              <li><Link href="/en/safaris" className="text-white/60 hover:text-[var(--color-gold)] transition-colors flex items-center group">Safaris & Expeditions <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"/></Link></li>
+              <li><Link href="/en/vehicles" className="text-white/60 hover:text-[var(--color-gold)] transition-colors flex items-center group">Automotive & Leasing <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"/></Link></li>
+              <li><Link href="/en/insurance" className="text-white/60 hover:text-[var(--color-gold)] transition-colors flex items-center group">Insurance Solutions <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"/></Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="uppercase-label text-[var(--color-gold)] mb-8 pb-4 border-b border-[var(--color-gold)]/10 inline-block">Corporate</h4>
+            <ul className="space-y-4 text-[13px] font-medium tracking-[0.1em] uppercase">
+              <li><Link href="/en/about" className="text-white/60 hover:text-[var(--color-gold)] transition-colors">About Us</Link></li>
+              <li><Link href="/en/blog" className="text-white/60 hover:text-[var(--color-gold)] transition-colors">Resources & Insights</Link></li>
+              <li><Link href="/en/contact" className="text-white/60 hover:text-[var(--color-gold)] transition-colors">Global Contact</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="uppercase-label text-[var(--color-gold)] mb-8 pb-4 border-b border-[var(--color-gold)]/10 inline-block">Global Office</h4>
+            <div className="space-y-4 text-[15px] text-white/60 font-light">
+              <div>+254 700 123 456</div>
+              <div>corporate@eawestern.com</div>
+              <div className="leading-relaxed">Westlands Innovation Hub<br/>Nairobi, Kenya</div>
             </div>
-            <div>
-              <h4 className="text-sm tracking-[0.2em] text-gray-500 font-light mb-6 uppercase">Follow</h4>
-              <div className="space-y-3 text-sm text-gray-600 font-light">
-                <div>Instagram</div>
-                <div>LinkedIn</div>
-                <div>Facebook</div>
-              </div>
+            <div className="mt-8 flex gap-4">
+               {['IN', 'TW', 'IG'].map(social => (
+                 <a key={social} href="#" className="w-[36px] h-[36px] border border-white/10 flex items-center justify-center text-[11px] font-medium text-white/40 hover:bg-[var(--color-gold)] hover:text-[#0B1F2E] hover:border-[var(--color-gold)] transition-all">{social}</a>
+               ))}
             </div>
           </div>
+
         </div>
         
-        <div className="border-t border-gray-200 mt-10 sm:mt-12 lg:mt-16 pt-6 sm:pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-3 sm:space-y-4 md:space-y-0 text-center md:text-left">
-            {/* Copyright */}
-            <div className="text-xs tracking-[0.15em] sm:tracking-[0.2em] text-gray-500 font-light uppercase">
-              © 2025 EAWESTERN — All Rights Reserved
-            </div>
-            
-            {/* DigiNow Solutions Credit */}
-            <div className="text-xs tracking-[0.1em] text-gray-400 font-light">
-              Developed and maintained by{' '}
-              <a 
-                href="https://diginowsolutions.com/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 transition-colors duration-300 underline hover:no-underline"
-              >
-                @DigiNow Solutions
-              </a>
-            </div>
+        <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-[10px] tracking-[0.2em] text-white/30 font-medium uppercase">
+            © {new Date().getFullYear()} EA WESTERN GROUP — ALL RIGHTS RESERVED
+          </div>
+          
+          <div className="text-[10px] tracking-[0.1em] text-white/30 font-medium uppercase">
+            ENGINEERED BY{' '}
+            <a href="https://diginowsolutions.com/" target="_blank" rel="noopener noreferrer" className="text-[var(--color-gold)] hover:underline transition-colors font-semibold">
+              DIGINOW SOLUTIONS
+            </a>
           </div>
         </div>
       </div>

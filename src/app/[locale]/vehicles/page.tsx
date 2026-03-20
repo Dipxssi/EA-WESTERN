@@ -1,408 +1,259 @@
 "use client";
 
-import { Navigation } from '@/components/Navigation';
-import { Footer } from '@/components/Footer';
-import { CarHireBookingSteps } from '@/components/CarHireBookingSteps';
-import { AnimatedCard } from '@/components/AnimatedCard';
+import { VehiclesNavigation } from '@/components/VehiclesNavigation';
+import { VehiclesFooter } from '@/components/VehiclesFooter';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import {
-  ShieldCheck,
-  Gauge,
-  Car,
-  Settings,
-  Headphones,
-  CheckCircle2,
-  CircleGauge,
-  MapPin,
-  Users,
-  Truck,
-} from 'lucide-react';
-
-const advantageHighlights = [
-  {
-    title: 'Transparent Pricing. Unbeatable Value.',
-    description: 'All-inclusive quotes with no hidden fees, fuel rules, or surprise penalties.',
-    icon: Gauge,
-  },
-  {
-    title: 'Regulated & Compliant.',
-    description:
-      'Fully licensed by NTSA and compliant with Kenya’s top transport standards for safety and reliability.',
-    icon: ShieldCheck,
-  },
-  {
-    title: 'Maintenance Guarantee.',
-    description: 'Late-model vehicles only, each inspected using a 50-point mechanical and safety checklist.',
-    icon: Settings,
-  },
-  {
-    title: 'Flexible Logistics & 24/7 Support.',
-    description: 'Custom pick-up/drop-off points and on-call emergency assistance anywhere in East Africa.',
-    icon: Headphones,
-  },
-  {
-    title: 'Chauffeured Expertise',
-    description: 'Professional, vetted drivers who know the routes, security considerations, and traffic nuances across East Africa.',
-    icon: Users,
-  },
-  {
-    title: 'Long-Term Corporate Leasing',
-    description: 'Flexible monthly rentals for companies that need reliable fleets without capital expenditure.',
-    icon: Gauge,
-  },
-];
-
-const fleetCategories = [
-  {
-    title: 'Safari & 4x4 Adventures',
-    description:
-      'Rugged, fully kitted Land Cruisers, Prados, and Defenders for the toughest terrain and remote projects.',
-    icon: Truck,
-    image: '/images/carCard1.png',
-  },
-  {
-    title: 'Business & Executive Rentals',
-    description:
-      'Modern executive sedans and SUVs for airport transfers, corporate visits, and VIP movements.',
-    icon: Car,
-    image: '/images/carCard2.png',
-  },
-  {
-    title: 'Self-Drive Convenience',
-    description:
-      'Drive yourself with full documentation, roadside support, and quick approvals for Kenyan and foreign licenses.',
-    icon: CircleGauge,
-    image: '/images/carCard3.png',
-  },
-];
-
-const articles = [
-  {
-    title: 'Why Integrated Insurance Matters for Car Hire',
-    date: 'Nov 2025',
-    excerpt: 'Avoid hidden liabilities by choosing a provider that manages insurance in-house.',
-    image: '/images/car image.jpg',
-  },
-  {
-    title: '5 Tips for Corporate Fleet Leasing in Nairobi',
-    date: 'Oct 2025',
-    excerpt: 'How to balance cost, compliance, and reliability for teams on the move.',
-    image: '/images/luxury-car-background.jpg',
-  },
-  {
-    title: 'Self-Drive Across Kenya: Permits & Preparation',
-    date: 'Sep 2025',
-    excerpt: 'Documentation and planning essentials for smooth road trips.',
-    image: '/images/nairobi-city.jpg',
-  },
-];
-
-
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ShieldCheck, Target, Headphones, CheckCircle2, ChevronRight, Gauge } from 'lucide-react';
 
 export default function VehiclesPage({ params }: { params: Promise<{ locale: string }> }) {
-  const [locale, setLocale] = useState('en');
-  const [collageVisible, setCollageVisible] = useState(false);
-  const collageRef = useRef<HTMLDivElement>(null);
+  const [locale, setLocale] = useState<string>('en');
 
   useEffect(() => {
-    params.then((p) => setLocale(p.locale));
+    params.then(({ locale }) => setLocale(locale));
   }, [params]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setCollageVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (collageRef.current) {
-      observer.observe(collageRef.current);
-    }
-
-    return () => {
-      if (collageRef.current) {
-        observer.unobserve(collageRef.current);
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.7
       }
-    };
-  }, []);
+    })
+  };
 
   return (
-    <div className="bg-white text-gray-900 min-h-screen">
-      <Navigation locale={locale} />
-      <main className="pt-0 pb-16">
-        {/* Hero */}
-        <section className="relative isolate">
-          <div className="absolute inset-0">
-            <img
-              src="/images/caar.png"
-              alt=""
-              className="h-full w-full object-cover"
+    <div className="theme-rentals bg-[var(--color-slate)] text-[var(--color-gray)] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-red)] selection:text-white">
+      <VehiclesNavigation locale={locale} />
+      
+      <main className="w-full">
+        {/* HERO SECTION */}
+        <section className="relative w-full h-[90vh] min-h-[650px] overflow-hidden bg-[var(--color-black)] flex items-center">
+          <div className="absolute inset-0 w-full h-full">
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-black)] via-[var(--color-black)]/80 to-[var(--color-black)]/30 z-10" />
+            <img 
+              src="/images/caar.png" 
+              alt="Premium Car Hire" 
+              className="w-full h-full object-cover object-center opacity-60" 
+              onError={(e) => { e.currentTarget.src = "/images/luxury-car-background.jpg" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
           </div>
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-24 text-white">
-            <p className="text-xs tracking-[0.3em] uppercase text-white/70 mb-4">CAR HIRE</p>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light leading-tight mb-6">
-              Drive Confidently — Wherever Your Journey Takes You
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8">
-              Clean, well-maintained vehicles for business travel, self-drive, airport transfers, and every transport
-              requirement. We match you with the right car, driver, and insurance in one call.
-            </p>
-            <Link
-              href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center gap-3 bg-blue-900 hover:bg-red-900 border border-white/30 rounded-full px-6 sm:px-8 py-3 text-sm tracking-[0.2em] uppercase transition-all w-full sm:w-auto text-center"
-            >
-              Get a Custom Booking Today
-            </Link>
-          </div>
-        </section>
-
-        {/* Car Hire Service Intro */}
-        <section className="py-16 px-4 sm:px-6 bg-white">
-          <div className="max-w-6xl mx-auto">
-            <div className="bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-[48px] border border-white shadow-[0_25px_70px_rgba(15,23,42,0.12)] relative overflow-hidden">
-              <div className="absolute -top-10 -right-8 w-60 h-60 bg-blue-200/40 blur-3xl" aria-hidden />
-              <div className="absolute -bottom-16 -left-6 w-56 h-56 bg-indigo-200/40 blur-3xl" aria-hidden />
-              <div className="relative grid md:grid-cols-2 gap-8 items-center px-8 sm:px-16 py-14">
-                {/* Left Column - Text Content */}
-                <div className="space-y-6">
-                  <p className="text-xs tracking-[0.3em] uppercase text-blue-900/70">Car Hire</p>
-                  <h2 className="text-3xl font-light text-gray-900">Kenya's Reliable Car Hire Service — Tailored to You</h2>
-                  <p className="text-gray-700 text-lg leading-relaxed">
-                    Whether you're travelling for work or leisure, our fleet is designed to meet every need. We offer SUVs,
-                    saloons, vans, shuttles, luxury cars, and long-term corporate rentals. Every vehicle is inspected, serviced,
-                    and sanitized for your safety and comfort.
-                  </p>
-                </div>
-                
-                {/* Right Column - Image Collage */}
-                <div
-                  ref={collageRef}
-                  className={`relative transition-all duration-1000 ease-out ${
-                    collageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                  }`}
-                >
-                  <div className="grid grid-cols-2 gap-4">
-                    {/* Top-left: SUV */}
-                    <div className="relative rounded-2xl overflow-hidden shadow-lg">
-                      <img
-                        src="/images/car3.png"
-                        alt="SUV vehicle"
-                        className="w-full h-full object-cover aspect-square"
-                      />
-                    </div>
-                    {/* Top-right: Red hatchback */}
-                    <div className="relative rounded-2xl overflow-hidden shadow-lg">
-                      <img
-                        src="/images/car3.png"
-                        alt="Hatchback vehicle"
-                        className="w-full h-full object-cover aspect-square"
-                      />
-                    </div>
-                    {/* Bottom: White van - spans 2 columns */}
-                    <div className="relative rounded-2xl overflow-hidden shadow-lg col-span-2">
-                      <img
-                        src="/images/car3.png"
-                        alt="Van vehicle"
-                        className="w-full h-full object-cover aspect-[2/1]"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Advantage */}
-        <section className="py-16 px-4 sm:px-6 bg-gradient-to-b from-white via-blue-50/40 to-white">
-          <div className="max-w-6xl mx-auto">
-            {/* Centered Text Section */}
-            <div className="text-center mb-12">
-              <p className="text-sm tracking-[0.4em] uppercase text-blue-900 mb-5">
-                The Eawestern Advantage
-              </p>
-              <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
-                Transparent Pricing. Unbeatable Value.
-              </h2>
-              <p className="text-gray-700 text-xl leading-relaxed max-w-3xl mx-auto">
-                Every rental includes clear insurance, compliant licensing, and proactive service. We operate under NTSA
-                regulations, provide fully documented vehicles, and ensure each trip is backed by our 24/7 operations team.
-              </p>
-            </div>
-            {/* Cards Below Text */}
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-              {advantageHighlights.map((item, index) => {
-                const Icon = item.icon ?? ShieldCheck;
-                return (
-                  <AnimatedCard key={item.title} index={index} delay={200}>
-                    <div className="bg-white rounded-3xl border border-blue-100 p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center flex-shrink-0">
-                          <Icon size={20} />
-                        </div>
-                        <h3 className="text-base font-semibold text-gray-900">{item.title}</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 leading-relaxed flex-grow">{item.description}</p>
-                    </div>
-                  </AnimatedCard>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Fleet */}
-        <section className="py-16 px-4 sm:px-6 bg-gray-50">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-light mb-3">Find the Perfect Ride</h2>
-              <p className="text-gray-600 max-w-3xl mx-auto">
-                Choose from a wide range of well-maintained vehicles for business, travel, and safari adventures. Enjoy
-                flexible terms, honest pricing, and a service team that anticipates your needs.
-              </p>
-            </div>
-            <div className="space-y-6">
-              {/* First 3 cards */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {fleetCategories.slice(0, 3).map((category, index) => {
-                  const Icon = category.icon ?? Car;
-                  return (
-                    <AnimatedCard key={category.title} index={index} delay={200}>
-                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col overflow-hidden">
-                        {/* Image */}
-                        {category.image && (
-                          <div className="relative h-48 overflow-hidden">
-                            <img
-                              src={category.image}
-                              alt={category.title}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        )}
-                        {/* Content */}
-                        <div className="p-8 flex flex-col flex-grow">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.title}</h3>
-                          <p className="text-gray-700 text-sm leading-relaxed flex-grow">{category.description}</p>
-                        </div>
-                      </div>
-                    </AnimatedCard>
-                  );
-                })}
-              </div>
-              {/* Last 2 cards - centered */}
-              <div className="flex flex-wrap justify-center gap-6">
-                {fleetCategories.slice(3).map((category, index) => {
-                  const Icon = category.icon ?? Car;
-                  return (
-                    <AnimatedCard key={category.title} index={index + 3} delay={200}>
-                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-full md:w-[calc(50%-12px)] lg:w-[320px] h-full flex flex-col">
-                        <div className="w-12 h-12 rounded-xl bg-white border-2 border-blue-500 text-blue-600 flex items-center justify-center mb-6 flex-shrink-0">
-                          <Icon size={24} />
-                        </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3">{category.title}</h3>
-                        <p className="text-gray-700 text-sm leading-relaxed flex-grow">{category.description}</p>
-                      </div>
-                    </AnimatedCard>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="text-center mt-10">
-              <Link
-                href={`/${locale}/contact`}
-                className="inline-flex items-center justify-center bg-blue-900 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full tracking-[0.2em] text-xs sm:text-sm uppercase font-semibold hover:bg-blue-800 transition-all w-full sm:w-auto text-center"
+          
+          <div className="relative z-20 max-w-[1200px] mx-auto px-6 md:px-10 w-full pt-20">
+            <div className="max-w-[650px]">
+              <motion.div
+                custom={0}
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="inline-flex items-center gap-2 bg-[var(--color-red)]/10 border border-[var(--color-red)]/30 rounded-full px-4 py-1.5 mb-6"
               >
-                Inquire About Booking
+                <Gauge size={14} className="text-[var(--color-red)]" />
+                <span className="text-[11px] uppercase tracking-[0.2em] text-white font-bold">
+                  Premium Fleet
+                </span>
+              </motion.div>
+              
+              <motion.h1 
+                custom={1}
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="text-[48px] md:text-[64px] lg:text-[76px] text-white leading-[1.05] mb-6 font-extrabold tracking-tight uppercase"
+              >
+                Drive <br />
+                <span className="text-[var(--color-red)]">Without Limits.</span>
+              </motion.h1>
+              
+              <motion.p 
+                custom={2}
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="text-[16px] md:text-[18px] text-white/70 leading-[1.7] mb-10 max-w-[500px]"
+              >
+                Impeccably maintained vehicles for business, high-end travel, and self-drive adventures. Fully insured, fully compliant, zero compromises.
+              </motion.p>
+              
+              <motion.div 
+                custom={3}
+                initial="hidden"
+                animate="visible"
+                variants={fadeInUp}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Link
+                  href={`/${locale}/vehicles/fleet`}
+                  className="bg-[var(--color-red)] text-white px-[32px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-[var(--color-black)] transition-colors rounded-[2px] shadow-lg shadow-[var(--color-red)]/20 text-center flex justify-center items-center gap-2 group"
+                >
+                  View The Fleet <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  href={`/${locale}/vehicles/services`}
+                  className="bg-transparent border border-white/20 text-white px-[32px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white/10 transition-colors rounded-[2px] text-center"
+                >
+                  Our Services
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ADVANTAGE STRIP */}
+        <section className="bg-white border-b border-black/5 relative z-30">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/5">
+              {[
+                { icon: ShieldCheck, title: 'NTSA Inspected', desc: '100% compliant and rigorously maintained.' },
+                { icon: Target, title: 'Transparent Pricing', desc: 'No hidden fees or surprise fuel charges.' },
+                { icon: Headphones, title: '24/7 Road Rescue', desc: 'Immediate dispatch for any on-road issue.' },
+              ].map((adv, idx) => (
+                <div key={idx} className="flex flex-col items-center justify-center p-10 text-center">
+                  <div className="w-[48px] h-[48px] rounded-full bg-[var(--color-black)] flex items-center justify-center text-[var(--color-red)] mb-4">
+                    <adv.icon size={20} />
+                  </div>
+                  <h4 className="text-[14px] uppercase tracking-[0.1em] font-bold text-[var(--color-black)] mb-2">{adv.title}</h4>
+                  <p className="text-[13px] text-[var(--color-gray)] leading-[1.6] max-w-[200px]">{adv.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FLEET PREVIEW */}
+        <section className="py-[120px] bg-[var(--color-slate)]">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+              <div>
+                <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-[var(--color-red)] mb-3">The Garage</div>
+                <h2 className="text-[36px] md:text-[48px] text-[var(--color-black)] font-extrabold leading-tight uppercase">
+                  Engineered for <br/> Your Agenda
+                </h2>
+              </div>
+              <Link 
+                href={`/${locale}/vehicles/fleet`}
+                className="inline-flex items-center text-[13px] uppercase tracking-[0.1em] font-bold text-[var(--color-black)] hover:text-[var(--color-red)] transition-colors group"
+              >
+                Explore Full Directory <ChevronRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: 'Executive Sedans', desc: 'Premium comfort for airport transfers and corporate movements.', img: '/images/carCard2.png' },
+                { title: 'Safari 4x4s', desc: 'Rugged, kitted Land Cruisers for remote, off-road expeditions.', img: '/images/carCard1.png' },
+                { title: 'Corporate Vans', desc: 'Spacious high-roof shuttles for group and executive transport.', img: '/images/carCard3.png' },
+              ].map((fleet, idx) => (
+                 <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.1 }}
+                    className="group bg-white rounded-[4px] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+                 >
+                   <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
+                     <img src={fleet.img} alt={fleet.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                     <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                       <Link href={`/${locale}/vehicles/fleet`} className="text-white text-[12px] uppercase tracking-[0.1em] font-bold flex items-center hover:text-[var(--color-red)]">
+                         View Details <ChevronRight size={16} className="ml-1" />
+                       </Link>
+                     </div>
+                   </div>
+                   <div className="p-8">
+                     <h3 className="text-[20px] font-bold text-[var(--color-black)] mb-3 uppercase tracking-wide">{fleet.title}</h3>
+                     <p className="text-[14px] text-[var(--color-gray)] leading-[1.6]">
+                       {fleet.desc}
+                     </p>
+                   </div>
+                 </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* WHY CHOOSE US (Split Section) */}
+        <section className="py-[120px] bg-white">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="relative"
+              >
+                <div className="aspect-square relative rounded-[4px] overflow-hidden bg-[var(--color-black)] shadow-2xl">
+                  <img src="/images/car3.png" alt="Premium Service" className="w-full h-full object-cover opacity-80 mix-blend-luminosity" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-black)]/80 to-[var(--color-red)]/20 mix-blend-multiply" />
+                </div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-[var(--color-red)] mb-3">Uncompromising Standard</div>
+                <h2 className="text-[36px] md:text-[44px] text-[var(--color-black)] font-extrabold mb-6 leading-tight uppercase">
+                  Not Just A Rental. <br/> A Partnership.
+                </h2>
+                <p className="text-[16px] text-[var(--color-gray)] leading-[1.7] mb-8">
+                  We don't just hand you keys. We provide a complete mobility solution backed by strict mechanical protocols, integrated insurance, and vetted professional drivers.
+                </p>
+
+                <ul className="space-y-4">
+                   {[
+                     'Fully Insured Vehicles Included',
+                     '50-Point Mechanical Inspection Pre-Dispatch',
+                     'Professional, Vetted Chauffeurs Available',
+                     'Custom Corporate Long-Term Leasing'
+                   ].map((item, idx) => (
+                     <li key={idx} className="flex items-start">
+                       <CheckCircle2 color="var(--color-red)" className="mr-3 flex-shrink-0 mt-[2px]" size={20} />
+                       <span className="text-[15px] font-bold text-[var(--color-black)]">{item}</span>
+                     </li>
+                   ))}
+                </ul>
+              </motion.div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-[100px] bg-[var(--color-black)] relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
+             <div className="absolute w-full h-[1px] bg-[var(--color-red)] top-1/4 -skew-y-12"></div>
+             <div className="absolute w-full h-[1px] bg-[var(--color-red)] top-2/4 -skew-y-12"></div>
+             <div className="absolute w-full h-[1px] bg-[var(--color-red)] top-3/4 -skew-y-12"></div>
+          </div>
+
+          <div className="relative z-10 max-w-[800px] mx-auto px-6 text-center">
+            <h2 className="text-[36px] md:text-[48px] text-white font-extrabold mb-6 uppercase tracking-wide">Ready to Hit the Road?</h2>
+            <p className="text-[16px] text-white/50 mb-10 max-w-[600px] mx-auto">
+              Contact our bookings desk directly to secure your vehicle. Flexible terms, immediate dispatch.
+            </p>
+            <div className="flex justify-center flex-col sm:flex-row gap-4">
+              <Link
+                href={`/${locale}/vehicles/contact`}
+                className="bg-[var(--color-red)] text-white px-[40px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-[var(--color-black)] transition-colors rounded-[2px] shadow-xl"
+              >
+                Inquire Now
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Testimonial */}
-        <section className="py-16 px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-[32px] p-10 shadow-[0_20px_50px_rgba(15,23,42,0.1)] text-center">
-            <p className="text-xs tracking-[0.3em] uppercase text-blue-900 mb-3">Trusted by Corporate & Individual Clients</p>
-            <p className="text-xl text-gray-800 leading-relaxed mb-6">
-              “I needed a reliable 4x4 for a remote project. The vehicle was immaculate, the price was transparent, and
-              knowing the comprehensive insurance was handled by their own team gave me complete peace of mind.”
-            </p>
-            <p className="text-sm font-semibold text-gray-900">S. Patel, Project Manager</p>
-          </div>
-        </section>
-
-        <CarHireBookingSteps />
-
-        {/* CTA */}
-        <section className="px-4 sm:px-6 py-12 sm:py-16">
-          <div className="max-w-6xl mx-auto">
-            <div className="rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ backgroundColor: '#1e3a8a' }}>
-              <div className="relative z-10">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 leading-tight px-2">
-                  Ready to Book Your Ride?
-                </h2>
-                <div className="w-16 sm:w-20 lg:w-24 h-1 bg-white mx-auto mb-6 sm:mb-8"></div>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white mb-6 sm:mb-8 lg:mb-10 max-w-3xl mx-auto leading-relaxed font-light px-2">
-                  Choose reliability, affordability, and comfort with Eawestern Car Hire. From short-term rentals to corporate fleets, we tailor every booking to your route, schedule, and risk profile.
-                </p>
-                <Link
-                  href={`/${locale}/contact`}
-                  className="inline-flex items-center justify-center text-white px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-3.5 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold transition-all duration-300 rounded-full shadow-lg hover:shadow-xl uppercase tracking-wide hover:scale-105 transform bg-[#d92323] hover:!bg-[#c11e1e] border-2 border-white w-full sm:w-auto text-center"
-                >
-                  Contact Us Today
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Articles */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-2">Insights & Updates</p>
-              <h2 className="text-3xl font-light text-gray-900">Articles</h2>
-            </div>
-            <Link href="/#blog" className="text-sm tracking-[0.2em] uppercase text-blue-900">
-              View All
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {articles.map((article) => (
-              <article
-                key={article.title}
-                className="bg-gradient-to-b from-blue-50 via-white to-white border border-blue-100 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all"
-              >
-                <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-2">{article.date}</p>
-                {/* Article Image */}
-                <div className="relative h-48 mb-4 rounded-2xl overflow-hidden">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{article.title}</h3>
-                <p className="text-gray-600 mb-4 text-sm">{article.excerpt}</p>
-                <Link href="/#blog" className="text-blue-900 text-sm tracking-[0.2em] uppercase font-semibold">
-                  Read Article →
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
       </main>
-      <Footer />
+
+      <VehiclesFooter />
     </div>
   );
 }
-
-
