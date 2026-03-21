@@ -43,21 +43,21 @@ export function InsuranceFooter() {
                <li className="flex items-start gap-3">
                  <Phone size={18} className="text-white/40 mt-[2px]" />
                  <div>
-                   <div className="text-[11px] uppercase tracking-[0.1em] text-white/40 mb-1">Emergency Hotline</div>
-                   <a href="tel:1-800-123-4567" className="text-[15px] font-medium hover:text-[var(--color-blue)] transition-colors">1-800-123-4567</a>
+                   <div className="text-[11px] uppercase tracking-[0.1em] text-white/40 mb-1">Phone</div>
+                   <a href="tel:+254798217201" className="text-[15px] font-medium hover:text-[var(--color-blue)] transition-colors">+254 798 217 201</a>
                  </div>
                </li>
                <li className="flex items-start gap-3">
                  <Mail size={18} className="text-white/40 mt-[2px]" />
                  <div>
-                   <div className="text-[11px] uppercase tracking-[0.1em] text-white/40 mb-1">Email Support</div>
-                   <a href="mailto:claims@eawestern.com" className="text-[14px] hover:text-[var(--color-blue)] transition-colors">claims@eawestern.com</a>
+                   <div className="text-[11px] uppercase tracking-[0.1em] text-white/40 mb-1">Email</div>
+                   <a href="mailto:info@eawestern.com" className="text-[14px] hover:text-[var(--color-blue)] transition-colors break-all">info@eawestern.com</a>
                  </div>
                </li>
                <li className="flex items-start gap-3">
                  <MapPin size={18} className="text-white/40 mt-[2px]" />
-                 <div className="text-[14px] text-white/70">
-                   123 Corporate Blvd, Suite 400<br/>Nairobi, Kenya
+                 <div className="text-[14px] text-white/70 leading-relaxed">
+                   Utalii House, Utalii Street<br />Nairobi, Kenya
                  </div>
                </li>
              </ul>

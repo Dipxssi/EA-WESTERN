@@ -11,6 +11,8 @@
   --hairline-gold: rgba(194, 163, 107, 0.15);
 
   --color-primary-accent: #C62828;
+  /* Tailwind exposes red-50…red-900 but not `--color-red`; components use arbitrary var(--color-red) */
+  --color-red: #C62828;
   --color-accent-hover: #E53935;
   --color-accent-active: #8E1B1B;
   --color-premium-gold: #C2A36B;
@@ -29,6 +31,13 @@
   --color-sand: #F5EDD8;
   --color-bark: #4A2C12;
   --color-sky: #6BA3BE;
+
+  /* Insurance & shared sections: referenced via var(--color-*) in insurance/* and components */
+  --color-charcoal: #3d4d63;
+  --color-blue: #2563eb;
+  --color-slate: #f1f5f9;
+  --color-lightblue: rgba(37, 99, 235, 0.12);
+  --color-green: #16a34a;
 }
 
 body {
@@ -96,6 +105,16 @@ h1, h2, h3, .font-playfair, .serif {
 
 .animate-scroll-line {
   animation: scrollLine 2s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+}
+
+/* Automotive: monochrome layout; red reserved for CTAs in components */
+.theme-automotive {
+  color-scheme: light;
+  background-color: #ffffff;
+}
+/* Body defaults to --text-primary (~white); scope readable copy to main so cards/sections aren’t white-on-white */
+.theme-automotive main {
+  color: #525252;
 }
 
 /* Animations from components */

@@ -1,10 +1,12 @@
 "use client";
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Menu, X, Car } from 'lucide-react';
 
 export function VehiclesNavigation({ locale }: { locale: string }) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -18,6 +20,7 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
 
   const navLinks = [
     { name: 'Main Home', href: `/${locale}` },
+    { name: 'Automotive Home', href: `/${locale}/vehicles` },
     { name: 'Fleet', href: `/${locale}/vehicles/fleet` },
     { name: 'Services', href: `/${locale}/vehicles/services` },
   ];
@@ -32,33 +35,40 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
         
         {/* LOGO */}
         <Link href={`/${locale}/vehicles`} className="flex items-center gap-3 group z-50">
-          <div className="w-[40px] h-[40px] rounded-full bg-[var(--color-red)] flex items-center justify-center text-white shadow-lg overflow-hidden group-hover:scale-105 transition-transform">
+          <div className="w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center text-black shadow-lg overflow-hidden group-hover:scale-105 transition-transform">
             <Car size={20} className="relative z-10" />
           </div>
           <div className="flex flex-col">
             <span className="text-[18px] md:text-[20px] font-bold text-white tracking-widest uppercase leading-none">
               EA Western
             </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-red)] font-bold mt-1">Car Hire & Leasing</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-white/60 font-bold mt-1">Car Hire & Leasing</span>
           </div>
         </Link>
 
         {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center gap-10">
-          {navLinks.map((link) => (
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
             <Link 
               key={link.name} 
               href={link.href}
               className={`text-[13px] uppercase tracking-[0.1em] font-bold transition-colors ${
-                scrolled ? 'text-white/80 hover:text-white' : 'text-white hover:text-[var(--color-red)]'
+                isActive
+                  ? 'text-[var(--color-red)]'
+                  : scrolled
+                    ? 'text-white/80 hover:text-white'
+                    : 'text-white hover:text-white/90'
               }`}
             >
               {link.name}
             </Link>
-          ))}
+            );
+          })}
           <Link
             href={`/${locale}/vehicles/contact`}
-            className="bg-[var(--color-red)] text-white px-[26px] py-[12px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-[var(--color-black)] transition-colors rounded-[2px]"
+            className="bg-[var(--color-red)] text-white px-[26px] py-[12px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-black transition-colors rounded-[2px]"
           >
             Book Now
           </Link>
@@ -78,16 +88,21 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
             isOpen ? 'translate-y-0' : '-translate-y-full'
           }`}
         >
-          {navLinks.map((link) => (
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
             <Link 
               key={link.name} 
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-[24px] uppercase tracking-[0.1em] font-bold text-white hover:text-[var(--color-red)] transition-colors"
+              className={`text-[24px] uppercase tracking-[0.1em] font-bold transition-colors ${
+                isActive ? 'text-[var(--color-red)]' : 'text-white hover:text-white/80'
+              }`}
             >
               {link.name}
             </Link>
-          ))}
+            );
+          })}
           <Link
             href={`/${locale}/vehicles/contact`}
             onClick={() => setIsOpen(false)}

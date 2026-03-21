@@ -5,7 +5,7 @@ import { InsuranceFooter } from '@/components/InsuranceFooter';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Clock, MapPin, Mail, Phone, CalendarCheck2 } from 'lucide-react';
+import { ArrowLeft, MapPin, Mail, Phone, CalendarCheck2 } from 'lucide-react';
 
 export default function InsuranceContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
@@ -68,8 +68,8 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                     <Phone size={20} />
                   </div>
                   <div>
-                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Direct Line</div>
-                    <a href="tel:+254123456789" className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors">+254 123 456 789</a>
+                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Phone</div>
+                    <a href="tel:+254798217201" className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors">+254 798 217 201</a>
                   </div>
                 </div>
 
@@ -78,18 +78,8 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                     <Mail size={20} />
                   </div>
                   <div>
-                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Email inquiries</div>
-                    <a href="mailto:solutions@eawestern.com" className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors">solutions@eawestern.com</a>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-[48px] h-[48px] rounded-full bg-white shadow-sm flex items-center justify-center text-[var(--color-blue)] flex-shrink-0">
-                    <Clock size={20} />
-                  </div>
-                  <div>
-                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Operating Hours</div>
-                    <div className="text-[15px] font-medium text-[var(--color-navy)]">Mon-Fri: 8:00 AM - 6:00 PM<br/><span className="text-[var(--color-charcoal)]/60 text-[13px] font-normal">24/7 Support line available for active claims</span></div>
+                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Email</div>
+                    <a href="mailto:info@eawestern.com" className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors break-all">info@eawestern.com</a>
                   </div>
                 </div>
 
@@ -98,8 +88,12 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                     <MapPin size={20} />
                   </div>
                   <div>
-                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Corporate HQ</div>
-                    <div className="text-[15px] font-medium text-[var(--color-navy)]">123 Corporate Blvd, Suite 400<br/>Nairobi, Kenya</div>
+                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Location</div>
+                    <p className="text-[15px] font-medium text-[var(--color-navy)] leading-relaxed">
+                      Utalii House, Utalii Street
+                      <br />
+                      Nairobi, Kenya
+                    </p>
                   </div>
                 </div>
               </div>

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Menu, X, ShieldCheck, ChevronDown, PhoneCall } from 'lucide-react';
+import { Menu, X, ShieldCheck, PhoneCall } from 'lucide-react';
 
 export function InsuranceNavigation({ locale }: { locale: string }) {
   const pathname = usePathname();
@@ -20,6 +20,7 @@ export function InsuranceNavigation({ locale }: { locale: string }) {
 
   const navLinks = [
     { name: 'Main Home', href: `/${locale}` },
+    { name: 'Insurance Home', href: `/${locale}/insurance` },
     { name: 'Solutions', href: `/${locale}/insurance/solutions` },
     { name: 'Claims', href: `/${locale}/insurance/claims` },
   ];

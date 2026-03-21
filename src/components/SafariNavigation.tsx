@@ -15,10 +15,14 @@ export function SafariNavigation({ locale = 'en' }: SafariNavigationProps) {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const isActive = (path: string) => {
+    if (!pathname) return false;
     if (path === `/${locale}` || path === `/${locale}/`) {
       return pathname === `/${locale}` || pathname === `/${locale}/`;
     }
-    return pathname?.startsWith(path);
+    if (path === `/${locale}/safaris`) {
+      return pathname === `/${locale}/safaris` || pathname === `/${locale}/safaris/`;
+    }
+    return pathname === path || pathname.startsWith(`${path}/`);
   };
 
   const navLinkClass = (path: string) => `
@@ -67,6 +71,7 @@ export function SafariNavigation({ locale = 'en' }: SafariNavigationProps) {
             <NavLink path={`/${locale}/safaris`} label="HOME" />
             <NavLink path={`/${locale}/safaris/destinations`} label="DESTINATIONS" />
             <NavLink path={`/${locale}/safaris/experiences`} label="EXPERIENCES" />
+            <NavLink path={`/${locale}/safaris/packages`} label="PACKAGES" />
             <NavLink path={`/${locale}/safaris/contact`} label="CONTACT" />
           </div>
 
@@ -93,6 +98,7 @@ export function SafariNavigation({ locale = 'en' }: SafariNavigationProps) {
             <MobileNavLink path={`/${locale}/safaris`} label="HOME" />
             <MobileNavLink path={`/${locale}/safaris/destinations`} label="DESTINATIONS" />
             <MobileNavLink path={`/${locale}/safaris/experiences`} label="EXPERIENCES" />
+            <MobileNavLink path={`/${locale}/safaris/packages`} label="PACKAGES" />
             <MobileNavLink path={`/${locale}/safaris/contact`} label="CONTACT" />
             <div className="mt-auto px-6 pt-10">
               <Link

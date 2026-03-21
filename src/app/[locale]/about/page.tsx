@@ -1,16 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
+import React, { useCallback, useLayoutEffect, useRef } from "react";
 import { NavBar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Route, ShieldCheck, Award } from "lucide-react";
 
+/** Refs run before useEffect; observer must exist when nodes register — useLayoutEffect + Set. */
 function useScrollReveal() {
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const pendingRef = useRef(new Set<HTMLDivElement>());
 
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
+  useLayoutEffect(() => {
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -18,25 +21,30 @@ function useScrollReveal() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0, rootMargin: "0px 0px 12% 0px" }
     );
+    observerRef.current = observer;
+    pendingRef.current.forEach((el) => observer.observe(el));
 
-    return () => observerRef.current?.disconnect();
+    return () => {
+      observer.disconnect();
+      observerRef.current = null;
+      pendingRef.current.clear();
+    };
   }, []);
 
-  return (node: HTMLDivElement | null) => {
-    if (node && observerRef.current) observerRef.current.observe(node);
-  };
+  return useCallback((node: HTMLDivElement | null) => {
+    if (node) {
+      pendingRef.current.add(node);
+      observerRef.current?.observe(node);
+    }
+  }, []);
 }
 
 export default function About() {
-  const [locale, setLocale] = useState("en");
+  const params = useParams();
+  const locale = typeof params?.locale === "string" ? params.locale : "en";
   const revealRef = useScrollReveal();
-
-  useEffect(() => {
-    const parts = window.location.pathname.split("/").filter(Boolean);
-    if (parts.length > 0) setLocale(parts[0]);
-  }, []);
 
   const leadership = [
     {
@@ -531,6 +539,13 @@ export default function About() {
         .reveal.reveal-visible {
           opacity: 1;
           transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .reveal {
+            opacity: 1;
+            transform: none;
+            transition: none;
+          }
         }
         .ew-value-card:hover {
           border-color: color-mix(in srgb, var(--color-gold) 30%, transparent) !important;

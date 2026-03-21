@@ -27,14 +27,14 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
   };
 
   return (
-    <div className="theme-rentals bg-[var(--color-slate)] text-[var(--color-gray)] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-red)] selection:text-white">
+    <div className="theme-automotive bg-white text-neutral-600 min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-red)] selection:text-white">
       <VehiclesNavigation locale={locale} />
       
       <main className="w-full">
         {/* HERO SECTION */}
-        <section className="relative w-full h-[90vh] min-h-[650px] overflow-hidden bg-[var(--color-black)] flex items-center">
+        <section className="relative w-full h-[90vh] min-h-[650px] overflow-hidden bg-black flex items-center">
           <div className="absolute inset-0 w-full h-full">
-            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-black)] via-[var(--color-black)]/80 to-[var(--color-black)]/30 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30 z-10" />
             <img 
               src="/images/caar.png" 
               alt="Premium Car Hire" 
@@ -50,9 +50,9 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-[var(--color-red)]/10 border border-[var(--color-red)]/30 rounded-full px-4 py-1.5 mb-6"
+                className="inline-flex items-center gap-2 bg-white/10 border border-white/25 rounded-full px-4 py-1.5 mb-6"
               >
-                <Gauge size={14} className="text-[var(--color-red)]" />
+                <Gauge size={14} className="text-white" />
                 <span className="text-[11px] uppercase tracking-[0.2em] text-white font-bold">
                   Premium Fleet
                 </span>
@@ -66,7 +66,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 className="text-[48px] md:text-[64px] lg:text-[76px] text-white leading-[1.05] mb-6 font-extrabold tracking-tight uppercase"
               >
                 Drive <br />
-                <span className="text-[var(--color-red)]">Without Limits.</span>
+                <span className="text-white">Without Limits.</span>
               </motion.h1>
               
               <motion.p 
@@ -88,7 +88,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
               >
                 <Link
                   href={`/${locale}/vehicles/fleet`}
-                  className="bg-[var(--color-red)] text-white px-[32px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-[var(--color-black)] transition-colors rounded-[2px] shadow-lg shadow-[var(--color-red)]/20 text-center flex justify-center items-center gap-2 group"
+                  className="bg-[var(--color-red)] text-white px-[32px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-black transition-colors rounded-[2px] shadow-lg shadow-[var(--color-red)]/20 text-center flex justify-center items-center gap-2 group"
                 >
                   View The Fleet <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -104,20 +104,20 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
         </section>
 
         {/* ADVANTAGE STRIP */}
-        <section className="bg-white border-b border-black/5 relative z-30">
+        <section className="bg-neutral-50 border-y border-neutral-200 relative z-30">
           <div className="max-w-[1200px] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/5">
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
               {[
                 { icon: ShieldCheck, title: 'NTSA Inspected', desc: '100% compliant and rigorously maintained.' },
                 { icon: Target, title: 'Transparent Pricing', desc: 'No hidden fees or surprise fuel charges.' },
                 { icon: Headphones, title: '24/7 Road Rescue', desc: 'Immediate dispatch for any on-road issue.' },
               ].map((adv, idx) => (
                 <div key={idx} className="flex flex-col items-center justify-center p-10 text-center">
-                  <div className="w-[48px] h-[48px] rounded-full bg-[var(--color-black)] flex items-center justify-center text-[var(--color-red)] mb-4">
+                  <div className="w-[48px] h-[48px] rounded-full bg-black flex items-center justify-center text-white mb-4">
                     <adv.icon size={20} />
                   </div>
-                  <h4 className="text-[14px] uppercase tracking-[0.1em] font-bold text-[var(--color-black)] mb-2">{adv.title}</h4>
-                  <p className="text-[13px] text-[var(--color-gray)] leading-[1.6] max-w-[200px]">{adv.desc}</p>
+                  <h4 className="text-[14px] uppercase tracking-[0.1em] font-bold text-black mb-2">{adv.title}</h4>
+                  <p className="text-[13px] text-neutral-600 leading-[1.6] max-w-[200px]">{adv.desc}</p>
                 </div>
               ))}
             </div>
@@ -125,18 +125,18 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
         </section>
 
         {/* FLEET PREVIEW */}
-        <section className="py-[120px] bg-[var(--color-slate)]">
+        <section className="py-[120px] bg-neutral-100">
           <div className="max-w-[1200px] mx-auto px-6 md:px-10">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
               <div>
-                <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-[var(--color-red)] mb-3">The Garage</div>
-                <h2 className="text-[36px] md:text-[48px] text-[var(--color-black)] font-extrabold leading-tight uppercase">
+                <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-black mb-3">The Garage</div>
+                <h2 className="text-[36px] md:text-[48px] text-black font-extrabold leading-tight uppercase">
                   Engineered for <br/> Your Agenda
                 </h2>
               </div>
               <Link 
                 href={`/${locale}/vehicles/fleet`}
-                className="inline-flex items-center text-[13px] uppercase tracking-[0.1em] font-bold text-[var(--color-black)] hover:text-[var(--color-red)] transition-colors group"
+                className="inline-flex items-center text-[13px] uppercase tracking-[0.1em] font-bold text-black hover:text-neutral-600 transition-colors group"
               >
                 Explore Full Directory <ChevronRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -154,19 +154,19 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="group bg-white rounded-[4px] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+                    className="group bg-white rounded-[4px] border border-neutral-200 shadow-sm hover:shadow-xl hover:border-neutral-300 transition-all duration-300 overflow-hidden"
                  >
-                   <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
+                   <div className="aspect-[4/3] bg-neutral-200 overflow-hidden relative">
                      <img src={fleet.img} alt={fleet.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                     <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                       <Link href={`/${locale}/vehicles/fleet`} className="text-white text-[12px] uppercase tracking-[0.1em] font-bold flex items-center hover:text-[var(--color-red)]">
+                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                       <Link href={`/${locale}/vehicles/fleet`} className="text-white text-[12px] uppercase tracking-[0.1em] font-bold flex items-center hover:text-white/80">
                          View Details <ChevronRight size={16} className="ml-1" />
                        </Link>
                      </div>
                    </div>
                    <div className="p-8">
-                     <h3 className="text-[20px] font-bold text-[var(--color-black)] mb-3 uppercase tracking-wide">{fleet.title}</h3>
-                     <p className="text-[14px] text-[var(--color-gray)] leading-[1.6]">
+                     <h3 className="text-[20px] font-bold text-black mb-3 uppercase tracking-wide">{fleet.title}</h3>
+                     <p className="text-[14px] text-neutral-600 leading-[1.6]">
                        {fleet.desc}
                      </p>
                    </div>
@@ -177,7 +177,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
         </section>
 
         {/* WHY CHOOSE US (Split Section) */}
-        <section className="py-[120px] bg-white">
+        <section className="py-[120px] bg-neutral-50 border-y border-neutral-200">
           <div className="max-w-[1200px] mx-auto px-6 md:px-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               
@@ -188,9 +188,9 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 transition={{ duration: 0.7 }}
                 className="relative"
               >
-                <div className="aspect-square relative rounded-[4px] overflow-hidden bg-[var(--color-black)] shadow-2xl">
+                <div className="aspect-square relative rounded-[4px] overflow-hidden bg-black shadow-2xl">
                   <img src="/images/car3.png" alt="Premium Service" className="w-full h-full object-cover opacity-80 mix-blend-luminosity" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-black)]/80 to-[var(--color-red)]/20 mix-blend-multiply" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/80 to-transparent mix-blend-multiply" />
                 </div>
               </motion.div>
 
@@ -200,11 +200,11 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-[var(--color-red)] mb-3">Uncompromising Standard</div>
-                <h2 className="text-[36px] md:text-[44px] text-[var(--color-black)] font-extrabold mb-6 leading-tight uppercase">
+                <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-black mb-3">Uncompromising Standard</div>
+                <h2 className="text-[36px] md:text-[44px] text-black font-extrabold mb-6 leading-tight uppercase">
                   Not Just A Rental. <br/> A Partnership.
                 </h2>
-                <p className="text-[16px] text-[var(--color-gray)] leading-[1.7] mb-8">
+                <p className="text-[16px] text-neutral-600 leading-[1.7] mb-8">
                   We don't just hand you keys. We provide a complete mobility solution backed by strict mechanical protocols, integrated insurance, and vetted professional drivers.
                 </p>
 
@@ -216,8 +216,8 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                      'Custom Corporate Long-Term Leasing'
                    ].map((item, idx) => (
                      <li key={idx} className="flex items-start">
-                       <CheckCircle2 color="var(--color-red)" className="mr-3 flex-shrink-0 mt-[2px]" size={20} />
-                       <span className="text-[15px] font-bold text-[var(--color-black)]">{item}</span>
+                       <CheckCircle2 className="mr-3 flex-shrink-0 mt-[2px] text-black" size={20} strokeWidth={2} />
+                       <span className="text-[15px] font-bold text-black">{item}</span>
                      </li>
                    ))}
                 </ul>
@@ -228,11 +228,11 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
         </section>
 
         {/* CTA */}
-        <section className="py-[100px] bg-[var(--color-black)] relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-             <div className="absolute w-full h-[1px] bg-[var(--color-red)] top-1/4 -skew-y-12"></div>
-             <div className="absolute w-full h-[1px] bg-[var(--color-red)] top-2/4 -skew-y-12"></div>
-             <div className="absolute w-full h-[1px] bg-[var(--color-red)] top-3/4 -skew-y-12"></div>
+        <section className="py-[100px] bg-black relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
+             <div className="absolute w-full h-px bg-white top-1/4 -skew-y-12"></div>
+             <div className="absolute w-full h-px bg-white top-2/4 -skew-y-12"></div>
+             <div className="absolute w-full h-px bg-white top-3/4 -skew-y-12"></div>
           </div>
 
           <div className="relative z-10 max-w-[800px] mx-auto px-6 text-center">
@@ -243,7 +243,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
             <div className="flex justify-center flex-col sm:flex-row gap-4">
               <Link
                 href={`/${locale}/vehicles/contact`}
-                className="bg-[var(--color-red)] text-white px-[40px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-[var(--color-black)] transition-colors rounded-[2px] shadow-xl"
+                className="bg-[var(--color-red)] text-white px-[40px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-black transition-colors rounded-[2px] shadow-xl"
               >
                 Inquire Now
               </Link>

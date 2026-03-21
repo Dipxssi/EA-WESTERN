@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, HeartPulse, Car, Home, ChevronRight, CheckCircle2, Award } from 'lucide-react';
+import { FaCheckCircle, FaHeadset, FaShieldAlt } from 'react-icons/fa';
 
 export default function InsurancePage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
@@ -117,15 +118,25 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
             >
               <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[rgba(11,27,61,0.08)]">
                 {[
-                  { value: '24/7', label: 'Dedicated Claims Support' },
-                  { value: 'AAA', label: 'Financial Strength Rating' },
-                  { value: '98%', label: 'Claim Approval Rate' },
-                ].map((stat, idx) => (
-                  <div key={idx} className="flex flex-col items-center justify-center py-8 text-center px-6">
-                    <div className="text-[32px] md:text-[40px] font-bold text-[var(--color-navy)] mb-1 leading-none">{stat.value}</div>
-                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold">{stat.label}</div>
+                  { value: '24/7', label: 'Dedicated Claims Support', Icon: FaHeadset },
+                  { value: 'AAA', label: 'Financial Strength Rating', Icon: FaShieldAlt },
+                  { value: '98%', label: 'Claim Approval Rate', Icon: FaCheckCircle },
+                ].map((stat, idx) => {
+                  const Icon = stat.Icon;
+                  return (
+                  <div key={idx} className="flex flex-col items-center justify-center py-10 md:py-12 text-center px-6">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-lightblue)] text-[var(--color-blue)]">
+                      <Icon className="h-5 w-5" aria-hidden />
+                    </div>
+                    <div className="serif text-[40px] md:text-[48px] font-light text-[var(--color-navy)] tabular-nums tracking-tighter leading-none mb-3">
+                      {stat.value}
+                    </div>
+                    <div className="max-w-[200px] text-[10px] md:text-[11px] font-medium uppercase leading-relaxed tracking-[0.3em] text-[var(--color-charcoal)]/55">
+                      {stat.label}
+                    </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </motion.div>
           </div>

@@ -161,6 +161,12 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
               >
                 View Destinations
               </Link>
+              <Link
+                href={`/${locale}/safaris/packages`}
+                className="group relative overflow-hidden bg-transparent border border-[var(--color-gold)]/40 text-[var(--color-gold)] px-[36px] py-[16px] text-[10px] uppercase tracking-[0.2em] hover:bg-[var(--color-gold)]/10 transition-colors duration-700 whitespace-nowrap text-center backdrop-blur-sm"
+              >
+                Packages &amp; things to do
+              </Link>
             </motion.div>
           </div>
           
