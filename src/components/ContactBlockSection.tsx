@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export function ContactBlockSection() {
   return (
-    <section className="relative py-[200px] md:py-[280px] font-jost flex items-center justify-center overflow-hidden bg-[#0B1F2E]">
+    <section className="relative pt-[120px] pb-[180px] md:pt-[160px] md:pb-[240px] font-jost flex items-center justify-center overflow-hidden bg-[#0B1F2E]">
       {/* Cinematic Background */}
       <div className="absolute inset-0 w-full h-full">
         <img 
@@ -21,16 +21,16 @@ export function ContactBlockSection() {
           Global Operations
         </div>
         <h2 className="serif text-[36px] md:text-[62px] text-white leading-[1.1] mb-10">
-          We Are Ready To Support <span className="italic block mt-2 font-light">Your Journey</span>
+          We Are Ready to Support <span className="italic block mt-2 font-light">Your Journey</span>
         </h2>
         <p className="text-lg md:text-xl text-white/50 mb-14 max-w-[650px] mx-auto font-light leading-relaxed">
-          Whether you are planning your next expedition, securing corporate insurance, or leasing an executive vehicle—our specialists are standing by.
+          Whether you're planning a safari, arranging transport, or securing insurance-our team is ready to assist you.
         </p>
         <Link 
           href="/en/contact"
           className="inline-block border border-[var(--color-gold)] text-[var(--color-gold)] px-12 py-5 text-[11px] font-semibold uppercase tracking-[0.3em] transition-all duration-700 hover:bg-[var(--color-gold)] hover:text-[#0d1b2e] hover:-translate-y-1"
         >
-          Initialize Consult
+          Speak to Our Team
         </Link>
       </div>
     </section>

@@ -21,7 +21,7 @@ export function InsuranceFooter() {
               </div>
             </Link>
             <p className="text-[14px] text-white/60 leading-[1.7] max-w-[280px]">
-              Providing uncompromising protection and peace of mind since 2005. Trust in coverage that never sleeps.
+              Providing structured, reliable insurance solutions across Kenya and East Africa. Our focus is simple: clarity, compliance, and consistent support.
             </p>
           </div>
           
@@ -65,14 +65,14 @@ export function InsuranceFooter() {
 
           {/* Legal/Disclaimer */}
           <div>
-            <h4 className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-6">Reassurance</h4>
+            <h4 className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-6">Compliance</h4>
             <div className="p-5 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.05)] rounded-[4px]">
               <p className="text-[12px] text-white/60 leading-[1.6]">
-                EA Western is fully licensed and regulated by the Insurance Regulatory Authority (IRA). All standard coverage policies apply as per 2026 regulations.
+                EA Western is fully licensed and regulated by the Insurance Regulatory Authority (IRA). All policies are issued in accordance with current regulatory standards.
               </p>
               <div className="flex items-center gap-2 mt-4 text-[11px] uppercase tracking-[0.1em] text-white font-semibold">
                 <ShieldAlert size={14} className="text-[var(--color-green)]" />
-                <span>Fully Secure</span>
+                <span>Licensed & Regulated</span>
               </div>
             </div>
           </div>

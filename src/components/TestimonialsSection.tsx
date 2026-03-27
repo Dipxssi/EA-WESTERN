@@ -4,19 +4,24 @@ import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "Precision, discretion, and absolute reliability. EA Western engineered our corporate retreat flawlessly.",
-    author: "Sarah M.",
-    location: "London, UK"
+    quote: "Everything was handled seamlessly-from airport pickup to our safari logistics. We did not have to worry about a single detail.",
+    author: "David L.",
+    location: "UK"
   },
   {
-    quote: "The only automotive leasing partner we trust in Nairobi. The fleet is immaculate.",
-    author: "James T.",
-    location: "Corporate Director, Kenya"
-  },
-  {
-    quote: "Expedited claims and total transparency. They treat insurance like an exact science.",
+    quote: "Fast claims, clear communication, and zero stress. They made the entire insurance process simple and efficient.",
     author: "Michelle K.",
     location: "Nairobi"
+  },
+  {
+    quote: "We needed a reliable partner on the ground in East Africa, and EA Western delivered beyond expectations. The coordination, communication, and execution were top-tier.",
+    author: "Daniel K.",
+    location: "New York, USA"
+  },
+  {
+    quote: "EA Western is the only partner I trust. They managed our corporate fleet, insured our offices, and planned our end-of-year safari. Having one team handle everything is a game-changer for my business.",
+    author: "Allan M",
+    location: "Director, Regional Logistics Firm"
   }
 ];
 

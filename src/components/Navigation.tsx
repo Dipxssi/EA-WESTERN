@@ -81,7 +81,7 @@ export function Navigation({ locale = 'en' }: NavigationProps) {
             <NavLink path={`/${locale}/about`} label="ABOUT" />
             <NavLink path={`/${locale}/safaris`} label="SAFARIS" />
             <NavLink path={`/${locale}/insurance`} label="INSURANCE" />
-            <NavLink path={`/${locale}/vehicles`} label="AUTOMOTIVE" />
+            <NavLink path={`/${locale}/vehicles`} label="CAR HIRE" />
             
             {/* Desktop CTA */}
             <Link
@@ -111,7 +111,7 @@ export function Navigation({ locale = 'en' }: NavigationProps) {
             <MobileNavLink path={`/${locale}/about`} label="ABOUT" />
             <MobileNavLink path={`/${locale}/safaris`} label="SAFARIS" />
             <MobileNavLink path={`/${locale}/insurance`} label="INSURANCE" />
-            <MobileNavLink path={`/${locale}/vehicles`} label="AUTOMOTIVE" />
+            <MobileNavLink path={`/${locale}/vehicles`} label="CAR HIRE" />
             
             <div className="mt-auto px-6 pt-10">
               <Link

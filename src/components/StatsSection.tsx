@@ -67,7 +67,7 @@ export function StatsSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-[120px] md:py-[180px] bg-[#0B1F2E] text-white overflow-hidden border-t border-[var(--color-gold)]/10">
+    <section ref={sectionRef} className="pt-[56px] pb-[120px] md:pt-[80px] md:pb-[160px] bg-[#0B1F2E] text-white overflow-hidden border-t border-[var(--color-gold)]/10">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10">
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 text-center divide-x-0 md:divide-x divide-[var(--color-gold)]/10">

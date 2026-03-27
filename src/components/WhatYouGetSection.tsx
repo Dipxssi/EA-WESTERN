@@ -24,10 +24,10 @@ export function WhatYouGetSection() {
   ];
 
   return (
-    <section className="py-[120px] md:py-[180px] bg-[#0B1F2E] text-white font-jost overflow-hidden border-t border-[var(--color-gold)]/10">
+    <section className="pt-[56px] pb-[80px] md:pt-[80px] md:pb-[120px] bg-[#0B1F2E] text-white font-jost overflow-hidden border-t border-[var(--color-gold)]/10">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10">
         
-        <div className="text-center mb-24">
+        <div className="text-center mb-12 md:mb-14">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ export function WhatYouGetSection() {
             transition={{ delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
             className="serif text-[36px] md:text-[52px] text-white leading-tight"
           >
-            What You <span className="italic text-[var(--color-gold)]">Receive</span>
+            What You <span className="italic text-[var(--color-gold)]">Get</span>
           </motion.h2>
         </div>
 
@@ -82,17 +82,17 @@ export function WhatYouGetSection() {
           
           <div className="relative z-10 max-w-[800px] mx-auto">
             <h3 className="serif text-[32px] md:text-[48px] leading-tight mb-8">
-              Begin Your <span className="italic">Extraordinary</span> Narrative
+              Ready to Experience the <span className="italic">Eawestern Difference?</span>
             </h3>
             <div className="w-[100px] h-[1px] bg-[var(--color-gold)] mx-auto mb-10" />
             <p className="text-lg text-[rgba(240,235,227,0.55)] mb-14 font-light leading-relaxed">
-              Join the distinguished collective of clients who choose guaranteed excellence. Let our senior architects craft your next wilderness expedition, secure your corporate legacy, or orchestrate your global mobility.
+              Join the thousands of clients who choose guaranteed excellence over settling for less. Our experts craft your next adventure, secure your legacy, and manage every detail of your travel or corporate logistics.
             </p>
             <Link 
               href="/en/contact"
               className="inline-block bg-[var(--color-gold)] text-[#0B1F2E] px-12 py-5 text-[11px] font-semibold uppercase tracking-[0.3em] transition-all duration-700 hover:bg-[var(--color-gold-light)] hover:-translate-y-1"
         >
-              Request a Consultation
+              Contact Us Today →
             </Link>
           </div>
         </motion.div>

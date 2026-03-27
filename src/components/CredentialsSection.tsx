@@ -12,10 +12,10 @@ export function CredentialsSection() {
       <div className="max-w-[1200px] mx-auto px-6 md:px-10">
         <div className="text-center mb-16">
           <div className="uppercase-label mb-4 opacity-50">
-            Compliance & Authority
+            Licensed, Certified & Trusted
           </div>
-          <h2 className="serif text-[28px] md:text-[42px] text-white">
-            Our <span className="italic">Credentials</span>
+          <h2 className="serif text-[22px] md:text-[34px] text-white">
+            We operate under full regulatory compliance across insurance, transport, and tourism-ensuring every service meets the highest standards of safety, compliance, and accountability.
           </h2>
         </div>
 
@@ -30,7 +30,7 @@ export function CredentialsSection() {
                 key={idx}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-[50px] md:h-[70px] w-auto object-contain shrink-0 filter invert-[0.8] brightness-[1.5] transition-all duration-500 hover:filter-none hover:opacity-100 opacity-40"
+                className="h-[70px] md:h-[100px] w-auto object-contain shrink-0 opacity-100"
               />
             ))}
           </div>

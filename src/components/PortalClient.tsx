@@ -2,41 +2,43 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Compass, Car, ShieldCheck } from 'lucide-react';
 import { CredentialsSection } from './CredentialsSection';
 
 const portfolios = [
   {
     id: 'safaris',
-    title: 'Safaris & Expeditions',
-    description: 'Immersive wilderness experiences crafted with deep-rooted expertise and quiet luxury.',
+    title: 'Tours & Safaris',
+    description: 'Curated safari experiences across East Africa-Designed for comfort, safety, and authentically unforgettable experiences.',
     icon: Compass,
     accent: '#C8A96E',
-    bgImage: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2068&auto=format&fit=crop',
+    bgImage: '/images/tours.png',
     content: "Our expeditions are architectural journeys through the wild. We don't just show you Africa; we curate a narrative of discovery, safety, and uncompromising comfort."
   },
   {
-    id: 'automotive',
-    title: 'Automotive & Leasing',
-    description: 'Tier-1 mobility solutions for diplomats, corporate leaders, and discerning individuals.',
-    icon: Car,
-    accent: '#1D4E89',
-    bgImage: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop',
-    content: "Mobilizing global teams with a fleet that speaks of authority and reliability. From armored executive transport to luxury self-drive, we redefine regional travel."
-  },
-  {
     id: 'insurance',
-    title: 'Insurance Solutions',
-    description: 'Total risk mitigation and comprehensive legacy assurance for your most valued assets.',
+    title: 'Insurance',
+    description: 'Structured, reliable insurance solutions tailored to protect your life, business, and assets.',
     icon: ShieldCheck,
     accent: '#C8A96E',
-    bgImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop',
+    bgImage: '/images/fam.png',
     content: "Protection that anticipates. Our bespoke insurance structures provide absolute clarity and advocacy in an unpredictable regional landscape."
+  },
+  {
+    id: 'automotive',
+    title: 'Car Hire',
+    description: 'Reliable, fully maintained vehicles for business trips, safaris, and everyday travel.',
+    icon: Car,
+    accent: '#1D4E89',
+    bgImage: '/images/caar.png',
+    content: "Mobilizing global teams with a fleet that speaks of authority and reliability. From armored executive transport to luxury self-drive, we redefine regional travel."
   }
 ];
 
 export function PortalClient({ locale = 'en' }: { locale?: string }) {
   const [activeMicroSite, setActiveMicroSite] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (activeMicroSite) {
@@ -69,7 +71,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
           transition={{ duration: 1, ease: "easeOut" }}
           className="uppercase-label mb-8"
         >
-          East Africa Tours, Safaris, Insurance and Car Hire — Managed by One Trusted Company
+          East Africa tours, safaris, insurance and car hire — managed by one trusted company
         </motion.div>
 
         <motion.h1
@@ -79,12 +81,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
           className="serif text-[48px] md:text-[84px] leading-[1.05] mb-10 tracking-[0.02em]"
         >
           Experience the{' '}
-          <span
-            style={{
-              color: 'var(--color-gold)',
-              textShadow: 'none',
-            }}
-          >
+          <span style={{ color: 'var(--color-gold)', textShadow: 'none' }}>
             Extraordinary
           </span>
         </motion.h1>
@@ -95,7 +92,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
           transition={{ duration: 1.5, delay: 0.5 }}
           className="text-[#A7B1BC]/75 text-xl md:text-2xl font-light max-w-[760px] mb-16 leading-[1.7]"
         >
-          East Africa’s only integrated ecosystem for Premium Safaris, Licensed Insurance, and Reliable Mobility. One trusted partner, zero gaps
+          East Africa&apos;s only integrated ecosystem for Premium Safaris, Licensed Insurance, and Reliable Mobility. One trusted partner, zero gaps
         </motion.p>
 
         <motion.div
@@ -113,21 +110,32 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
           <button
             className="border border-[var(--color-gold)] text-[var(--color-gold)] bg-transparent px-10 py-3 text-[11px] font-semibold uppercase tracking-[0.3em] transition-all duration-500 rounded-[4px] hover:bg-[var(--color-gold)] hover:text-[#0B1F2E]"
           >
-            The Legacy
+            Request a Private Consultation
           </button>
         </motion.div>
 
         {/* Scroll Hint */}
-        <div className="mt-20 flex flex-col items-center gap-4">
+        <div className="mt-4 flex flex-col items-center gap-2">
           <span className="text-[10px] tracking-[0.4em] text-white/30 uppercase">Scroll</span>
-          <div className="w-[1px] h-14 bg-white/10 relative overflow-hidden">
+          <div className="w-[1px] h-8 bg-white/10 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full bg-[var(--color-gold)] animate-scroll-line h-full"></div>
           </div>
         </div>
       </div>
 
       {/* Portfolio Grid Selection */}
-      <section className="relative z-10 w-full px-4 md:px-10 pb-16">
+      <section className="relative z-10 w-full px-4 md:px-10 pt-3 pb-4 md:pt-4 md:pb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="text-center mb-4 md:mb-6"
+        >
+          <h2 className="serif text-[30px] md:text-[42px] text-white leading-tight">
+            Choose a <span style={{ color: 'var(--color-gold)' }}>Service</span> to Get Started
+          </h2>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[var(--color-gold)]/10 border-t border-b border-[var(--color-gold)]/20">
           {portfolios.map((portfolio, idx) => (
             <motion.div
@@ -136,11 +144,19 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              onClick={() => setActiveMicroSite(portfolio.id)}
+              onClick={() => {
+                const destination =
+                  portfolio.id === 'safaris'
+                    ? `/${locale}/safaris`
+                    : portfolio.id === 'insurance'
+                      ? `/${locale}/insurance`
+                      : `/${locale}/vehicles`;
+                router.push(destination);
+              }}
               className="group relative h-[350px] md:h-[500px] cursor-pointer bg-[#0B1F2E] transition-all duration-700 overflow-hidden"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-1000">
-                <img src={portfolio.bgImage} alt="" className="w-full h-full object-cover grayscale scale-110 group-hover:scale-100 transition-transform duration-1000" />
+                <img src={portfolio.bgImage} alt="" className="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-110 group-hover:scale-100 transition-all duration-1000" />
               </div>
 
               <div className="relative z-10 p-12 h-full flex flex-col justify-between">
@@ -150,27 +166,18 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
                     <portfolio.icon size={32} />
                   </div>
                   <h3 className="serif text-3xl md:text-4xl text-white mb-6 leading-tight group-hover:text-[var(--color-gold)] transition-colors duration-500">
-                    {portfolio.id === 'insurance' ? (
-                      <>
-                        {portfolio.title.split(' ')[0]}{' '}
-                        <span className="italic block ml-12">
-                          {portfolio.title.split(' ').slice(1).join(' ')}
-                        </span>
-                      </>
-                    ) : (
-                      portfolio.title.split('&').map((part, i) => (
-                        <span key={i}>
-                          {i > 0 && <span className="italic block ml-12">& {part}</span>}
-                          {i === 0 && part}
-                        </span>
-                      ))
-                    )}
+                    {portfolio.title}
                   </h3>
                 </div>
-                <div className="text-sm text-white/50 leading-relaxed font-light transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 max-w-[300px]">
+                <div className="text-base md:text-lg text-white/60 leading-relaxed font-light transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 max-w-[320px]">
                   {portfolio.description}
                   <div className="mt-6 flex items-center gap-2 text-[var(--color-gold)] text-[10px] uppercase tracking-[0.3em] font-medium">
-                    Explore <span className="w-8 h-[1px] bg-[var(--color-gold)]/30 transition-all group-hover:w-16"></span>
+                    {portfolio.id === 'safaris'
+                      ? 'Explore Itineraries →'
+                      : portfolio.id === 'insurance'
+                        ? 'View Coverage & Get a Quote →'
+                        : 'Browse Fleet & Availability →'}
+                    <span className="w-8 h-[1px] bg-[var(--color-gold)]/30 transition-all group-hover:w-16"></span>
                   </div>
                 </div>
               </div>
@@ -179,7 +186,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
         </div>
       </section>
 
-      <div className="relative z-10 opacity-80 grayscale hover:grayscale-0 transition-all duration-1000">
+      <div className="relative z-10 pt-2 pb-10 md:pt-4 md:pb-12">
         <CredentialsSection />
       </div>
 

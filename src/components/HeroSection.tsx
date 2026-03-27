@@ -84,20 +84,16 @@ export function HeroSection({ locale = 'en' }: HeroSectionProps) {
 
           {/* Main Headline */}
           <div className="mb-4 sm:mb-6 md:mb-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight text-white drop-shadow-lg px-2 sm:px-4">
-              <span className='block sm:inline'>Your journey of security </span>
-              <span className='block sm:inline'>and adventure begins here</span>
-            </h1>
-            <p className="text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-white font-normal max-w-5xl mx-auto leading-relaxed drop-shadow mt-2 sm:mt-3 md:mt-4 px-2 sm:px-4 text-center whitespace-nowrap">
-              Guided tours, reliable car hire, and insurance solutions – all under one roof.
-            </p>
-          </div>
-
-          {/* Dynamic subtitle based on current video */}
-          <div className="mb-3 sm:mb-4 md:mb-6">
-            <div className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl tracking-[0.1em] sm:tracking-[0.2em] md:tracking-[0.3em] text-white font-light uppercase transition-all duration-500 px-2 sm:px-4">
-              {slides[currentSlide].focus}
+            <div className="text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.35em] text-white/90 font-light uppercase drop-shadow mb-3 sm:mb-4 md:mb-5 px-2 sm:px-4">
+              East Africa tours, safaris, insurance and car hire — managed by one trusted company
             </div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight text-white drop-shadow-lg px-2 sm:px-4">
+              <span className="block sm:inline">Experience the </span>
+              <span className="block sm:inline text-[#C9A35B]">Extraordinary</span>
+            </h1>
+            <p className="text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-white font-normal max-w-4xl mx-auto leading-relaxed drop-shadow mt-2 sm:mt-3 md:mt-4 px-2 sm:px-4 text-center">
+              East Africa&apos;s only integrated ecosystem for Premium Safaris, Licensed Insurance, and Reliable Mobility. One trusted partner, zero gaps
+            </p>
           </div>
 
           {/* Main CTA Buttons */}

@@ -20,7 +20,7 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
 
   const navLinks = [
     { name: 'Main Home', href: `/${locale}` },
-    { name: 'Automotive Home', href: `/${locale}/vehicles` },
+    { name: 'Car Hire Home', href: `/${locale}/vehicles` },
     { name: 'Fleet', href: `/${locale}/vehicles/fleet` },
     { name: 'Services', href: `/${locale}/vehicles/services` },
   ];

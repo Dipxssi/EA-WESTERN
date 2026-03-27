@@ -70,7 +70,7 @@ export function SafariNavigation({ locale = 'en' }: SafariNavigationProps) {
             <NavLink path={`/${locale}`} label="MAIN HOME" />
             <NavLink path={`/${locale}/safaris`} label="HOME" />
             <NavLink path={`/${locale}/safaris/destinations`} label="DESTINATIONS" />
-            <NavLink path={`/${locale}/safaris/experiences`} label="EXPERIENCES" />
+            <NavLink path={`/${locale}/safaris/experiences`} label="PHILOSOPHY" />
             <NavLink path={`/${locale}/safaris/packages`} label="PACKAGES" />
             <NavLink path={`/${locale}/safaris/contact`} label="CONTACT" />
           </div>
@@ -97,7 +97,7 @@ export function SafariNavigation({ locale = 'en' }: SafariNavigationProps) {
             <MobileNavLink path={`/${locale}`} label="MAIN HOME" />
             <MobileNavLink path={`/${locale}/safaris`} label="HOME" />
             <MobileNavLink path={`/${locale}/safaris/destinations`} label="DESTINATIONS" />
-            <MobileNavLink path={`/${locale}/safaris/experiences`} label="EXPERIENCES" />
+            <MobileNavLink path={`/${locale}/safaris/experiences`} label="PHILOSOPHY" />
             <MobileNavLink path={`/${locale}/safaris/packages`} label="PACKAGES" />
             <MobileNavLink path={`/${locale}/safaris/contact`} label="CONTACT" />
             <div className="mt-auto px-6 pt-10">

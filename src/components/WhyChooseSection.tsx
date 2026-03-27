@@ -5,11 +5,11 @@ import { Shield, Headphones, MapPin, FileCheck, UserCheck, CheckCircle2 } from '
 
 export function WhyChooseSection() {
   const points = [
-    { title: 'Licensed & Accredited', desc: 'Fully compliant operations under NTSA and stringent corporate travel standards.', icon: Shield },
-    { title: 'End-to-End Support', desc: 'From initial travel logistics mapping to in-house claims processing, we stand with you.', icon: Headphones },
-    { title: 'Deep Regional Expertise', desc: 'Decades of on-the-ground intelligence across East African terrains.', icon: MapPin },
-    { title: 'Transparent Processes', desc: 'Zero hidden fees. Zero guesswork. Absolute clarity on every quote.', icon: FileCheck },
-    { title: 'Personalized Service', desc: 'Tailor-made itineraries and custom corporate leasing structures.', icon: UserCheck }
+    { title: 'Licensed & Accredited', desc: 'Fully compliant across insurance, transport, and tourism-meeting all regulatory and professional standards.', icon: Shield },
+    { title: 'End-to-End Support', desc: 'From planning and bookings to on-ground logistics and claims assistance, we manage every step.', icon: Headphones },
+    { title: 'Deep Regional Expertise', desc: 'Over 15 years of hands-on experience across East Africa.', icon: MapPin },
+    { title: 'Transparent Processes', desc: 'Clear pricing, clear policies, and no hidden terms.', icon: FileCheck },
+    { title: 'Personalized Service', desc: 'Every itinerary, policy, and mobility solution is tailored to your needs.', icon: UserCheck }
   ];
 
   return (
@@ -27,13 +27,16 @@ export function WhyChooseSection() {
             className="lg:col-span-5 flex flex-col justify-center"
           >
             <div className="uppercase-label mb-6">
-              Our Differentiator
+              OUR DIFFERENTIATOR
             </div>
             <h2 className="serif text-[36px] md:text-[52px] text-white leading-tight mb-8">
-              Why Leaders <span className="italic text-[var(--color-gold)]">Choose Us</span>
+              Why Individuals, Families, and Businesses <span className="italic text-[var(--color-gold)]">Rely on Us</span>
             </h2>
             <p className="text-lg text-white/70 font-light leading-relaxed max-w-[450px] mb-10">
-              We are not just a vendor; we are a strategic partner. We secure your assets, facilitate your extraordinary experiences, and mobilize your teams with zero friction.
+              We are more than a service provider-we are a single, trusted partner across safaris, mobility, and insurance.
+            </p>
+            <p className="text-lg text-white/70 font-light leading-relaxed max-w-[450px] mb-10">
+              Our role is simple: to remove complexity, reduce risk, and ensure everything runs exactly as it should.
             </p>
             <div className="flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] font-medium text-[var(--color-gold)]">
               <CheckCircle2 size={18} className="text-[var(--color-gold)]" /> The EA Western Standard

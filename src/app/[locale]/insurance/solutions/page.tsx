@@ -12,32 +12,32 @@ const insurancePlans = [
     id: 'life',
     icon: ShieldAlert,
     title: 'Life Insurance',
-    desc: 'Protect what matters most. Comprehensive life insurance designed to secure your family’s financial future, including term and whole life variants.',
-    features: ['Up to $5M Coverage', 'Fixed Premium Rate', 'Terminal Illness Benefit', 'Instant Online Approval'],
+    desc: 'Protect what matters most with structured life insurance solutions designed to secure your family\'s long-term financial future.',
+    features: ['Flexible coverage options (term & whole life)', 'Fixed and predictable premium structures', 'Critical and terminal illness considerations', 'Long-term financial security planning'],
     image: '/images/term life.png'
   },
   {
     id: 'medical',
     icon: HeartPulse,
     title: 'Health & Medical',
-    desc: 'Uncompromised access to the world’s leading healthcare facilities. Extensive inpatient and outpatient coverage tailored to your needs.',
-    features: ['Global Coverage', 'Zero Deductible Options', 'Maternity included', '24/7 Telehealth Access'],
+    desc: 'Access reliable, high-quality healthcare coverage with plans tailored for individuals, families, and corporate teams.',
+    features: ['Local and international coverage options', 'Flexible inpatient and outpatient plans', 'Maternity and specialized care options', '24/7 medical support access'],
     image: '/images/whole life.png' // using this as a proxy for medical if we don't have a specific medical one
   },
   {
     id: 'property',
     icon: Home,
     title: 'Property & Home',
-    desc: 'Safeguard your most valuable assets against natural disasters, theft, and accidental damage with our premium property coverage.',
-    features: ['Full Replacement Cost', 'Temporary Housing', 'Liability Protection', 'Valuables & Jewelry'],
+    desc: 'Protect your property, assets, and investments against unexpected damage, loss, or risk.',
+    features: ['Comprehensive asset protection', 'Fire, theft, and natural disaster coverage', 'Liability protection options', 'Coverage for high-value items'],
     image: '/images/insurance-family.jpg'
   },
   {
     id: 'auto',
     icon: Car,
-    title: 'Auto Transit',
-    desc: 'From daily commutes to luxury vehicle collections, our comprehensive auto insurance keeps you moving safely.',
-    features: ['Collision & Comprehensive', 'Roadside Assistance', 'Rental Reimbursement', 'New Car Replacement'],
+    title: 'Motor & Transit',
+    desc: 'Stay protected on the road with reliable motor insurance for personal, commercial, and fleet use.',
+    features: ['Comprehensive and third-party options', 'Roadside assistance support', 'Fleet and business coverage solutions', 'Efficient claims support'],
     image: '/images/car image.jpg'
   }
 ];
@@ -62,12 +62,12 @@ export default function InsuranceSolutionsPage({ params }: { params: Promise<{ l
            
            <div className="relative z-20 max-w-[1200px] mx-auto px-6 md:px-10 flex flex-col items-center text-center">
              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-               <div className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-4">Our Portfolio</div>
+               <div className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-4">Solutions</div>
                <h1 className="text-[40px] md:text-[56px] text-white font-bold mb-6 leading-tight max-w-[800px]">
-                 Comprehensive Coverage <br/> for True Peace of Mind
+                 Comprehensive Coverage, Built Around You
                </h1>
                <p className="text-[16px] text-white/70 max-w-[600px] mx-auto leading-[1.7]">
-                 Explore our suite of professionally designed insurance solutions. Transparent, reliable, and perfectly adapted to your unique lifestyle.
+                 Structured insurance solutions designed to protect your life, assets, and business-delivered with clarity, compliance, and consistent support. Explore our suite of professionally designed coverage options, tailored for individuals, families, and organizations across East Africa.
                </p>
              </motion.div>
            </div>
@@ -115,7 +115,7 @@ export default function InsuranceSolutionsPage({ params }: { params: Promise<{ l
                       </p>
                       
                       <div className="bg-white rounded-[8px] p-6 border border-[rgba(11,27,61,0.05)] shadow-sm mb-8">
-                         <h4 className="text-[12px] uppercase tracking-[0.1em] font-bold text-[var(--color-navy)] mb-4">Key Benefits included</h4>
+                         <h4 className="text-[12px] uppercase tracking-[0.1em] font-bold text-[var(--color-navy)] mb-4">Key Benefits</h4>
                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                            {plan.features.map((feature, fIdx) => (
                              <li key={fIdx} className="flex items-center text-[14px] text-[var(--color-charcoal)] font-medium">
@@ -137,7 +137,7 @@ export default function InsuranceSolutionsPage({ params }: { params: Promise<{ l
                           href={`/${locale}/insurance/contact`}
                           className="text-[var(--color-navy)] px-[28px] py-[14px] text-[13px] uppercase tracking-[0.1em] font-bold hover:text-[var(--color-blue)] transition-colors flex items-center gap-2"
                         >
-                          <PhoneCall size={16} /> Contact Advisor
+                          <PhoneCall size={16} /> Speak to an Advisor
                         </Link>
                       </div>
                     </div>
@@ -146,6 +146,24 @@ export default function InsuranceSolutionsPage({ params }: { params: Promise<{ l
                 );
               })}
             </div>
+          </div>
+        </section>
+
+        <section className="py-[90px] bg-white border-t border-[rgba(11,27,61,0.06)]">
+          <div className="max-w-[900px] mx-auto px-6 md:px-10 text-center">
+            <h2 className="text-[32px] md:text-[40px] font-bold text-[var(--color-navy)] mb-4">Speak to an Advisor</h2>
+            <p className="text-[16px] text-[var(--color-charcoal)]/70 leading-[1.8] mb-3">
+              Whether you need a quick quote or a detailed review of your coverage needs, our certified advisors are ready to assist.
+            </p>
+            <p className="text-[14px] text-[var(--color-charcoal)]/60 leading-[1.8] mb-8">
+              All information is handled securely and treated with strict confidentiality.
+            </p>
+            <Link
+              href={`/${locale}/insurance/contact`}
+              className="inline-flex items-center gap-2 bg-[var(--color-blue)] text-white px-[30px] py-[14px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-[var(--color-navy)] transition-colors rounded-[4px]"
+            >
+              Speak to an Advisor
+            </Link>
           </div>
         </section>
       </main>

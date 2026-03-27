@@ -38,6 +38,10 @@
   --color-slate: #f1f5f9;
   --color-lightblue: rgba(37, 99, 235, 0.12);
   --color-green: #16a34a;
+
+  /* Global vertical rhythm (section spacing) */
+  --section-gap-y: 3rem; /* 48px */
+  --section-gap-y-md: 4rem; /* 64px */
 }
 
 body {
@@ -105,6 +109,18 @@ h1, h2, h3, .font-playfair, .serif {
 
 .animate-scroll-line {
   animation: scrollLine 2s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+}
+
+/* Consistent spacing between top-level sections */
+.section-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap-y);
+}
+@media (min-width: 768px) {
+  .section-stack {
+    gap: var(--section-gap-y-md);
+  }
 }
 
 /* Automotive: monochrome layout; red reserved for CTAs in components */

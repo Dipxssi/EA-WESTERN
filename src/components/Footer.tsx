@@ -19,16 +19,16 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-[15px] text-white/50 font-light leading-[1.8] max-w-[280px]">
-              The uncompromising standard in luxury safe-travel, specialized corporate transport, and comprehensive risk mitigation across East Africa.
+              A trusted partner in safaris, mobility, and insurance solutions across East Africa.
             </p>
           </div>
           
           <div>
             <h4 className="uppercase-label text-[var(--color-gold)] mb-8 pb-4 border-b border-[var(--color-gold)]/10 inline-block">Portfolios</h4>
             <ul className="space-y-4 text-[13px] font-medium tracking-[0.1em] uppercase">
-              <li><Link href="/en/safaris" className="text-white/60 hover:text-[var(--color-gold)] transition-colors flex items-center group">Safaris & Expeditions <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"/></Link></li>
-              <li><Link href="/en/vehicles" className="text-white/60 hover:text-[var(--color-gold)] transition-colors flex items-center group">Automotive & Leasing <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"/></Link></li>
-              <li><Link href="/en/insurance" className="text-white/60 hover:text-[var(--color-gold)] transition-colors flex items-center group">Insurance Solutions <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"/></Link></li>
+              <li><Link href="/en/safaris" className="text-white/60 hover:text-[var(--color-gold)] transition-colors flex items-center group">Safaris <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"/></Link></li>
+              <li><Link href="/en/vehicles" className="text-white/60 hover:text-[var(--color-gold)] transition-colors flex items-center group">Car Hire <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"/></Link></li>
+              <li><Link href="/en/insurance" className="text-white/60 hover:text-[var(--color-gold)] transition-colors flex items-center group">Insurance <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"/></Link></li>
             </ul>
           </div>
 

@@ -348,83 +348,53 @@ export default function About() {
             <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
               The Eawestern <span style={{ color: "var(--color-gold)" }}>Pillars of Trust</span>
             </h2>
-            <div className="ew-pillars" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", background: "color-mix(in srgb, var(--color-gold) 15%, transparent)" }}>
+            <div className="ew-pillars" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
               {[
                 {
                   title: "Integrated Local Expertise",
-                  img: "/images/maasai.jpg",
+                  img: "/images/card1.png",
                   body: "Our team combines F&B (Travel), Finance (Insurance), and Logistics (Car Hire) experts — all locally fluent — to give you an advantage no single-service company can match.",
                 },
                 {
                   title: "Proactive Claims & Support",
-                  img: "/images/carCard2.png",
+                  img: "/images/card2.png",
                   body: "When others stall, we advocate. We see our role as actively securing your peace of mind, not passively providing a service.",
                 },
                 {
                   title: "Commitment to East Africa",
-                  img: "/images/fam.png",
+                  img: "/images/card3.png",
                   body: "We are a licensed Kenyan company, deeply invested in sustainable tourism, community support, and providing local employment.",
                 },
               ].map((item, idx) => (
-                <div key={item.title} className="ew-pillar-card" style={{ background: "#0F2A3D", color: "#FFFFFF", padding: "34px 30px", position: "relative", overflow: "hidden" }}>
+                <div
+                  key={item.title}
+                  className="ew-pillar-card"
+                  style={{
+                    background: "#0F2A3D",
+                    color: "#FFFFFF",
+                    padding: "26px",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    borderRadius: "10px",
+                    boxShadow: "none",
+                  }}
+                >
                   <img
                     src={item.img}
                     alt={item.title}
-                    className="ew-pillar-bg"
-                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0, filter: "grayscale(100%)", transform: "scale(1.06)", transition: "all 0.9s ease" }}
+                    style={{
+                      width: "100%",
+                      height: "160px",
+                      objectFit: "cover",
+                      borderRadius: "8px",
+                      marginBottom: "18px",
+                    }}
                   />
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(11,31,46,0.92), rgba(11,31,46,0.95))" }} />
                   <div style={{ position: "relative", zIndex: 1 }}>
-                    <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.3)", marginBottom: "22px", fontWeight: 300, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                      0{idx + 1}
-                    </div>
-                    <div style={{ width: "64px", height: "64px", border: "1px solid color-mix(in srgb, var(--color-gold) 25%, transparent)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-gold)", marginBottom: "24px" }}>
-                      <span style={{ fontSize: "22px" }}>{idx === 0 ? "◌" : idx === 1 ? "◍" : "◎"}</span>
-                    </div>
-                    <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "44px", marginBottom: "14px", fontWeight: 400, lineHeight: 1.12 }}>
-                      {idx === 0 ? (
-                        <>
-                          Integrated <span style={{ color: "var(--color-gold)" }}>Local Expertise</span>
-                        </>
-                      ) : idx === 1 ? (
-                        <>
-                          Proactive <span style={{ color: "var(--color-gold)" }}>Claims &amp; Support</span>
-                        </>
-                      ) : idx === 2 ? (
-                        <>
-                          Commitment to <span style={{ color: "var(--color-gold)" }}>East Africa</span>
-                        </>
-                      ) : (
-                        item.title
-                      )}
+                    <h3 style={{ fontFamily: "var(--font-dm-sans)", fontSize: "38px", marginBottom: "14px", fontWeight: 700, lineHeight: 1.2, color: "#FFFFFF" }}>
+                      {item.title}
                     </h3>
-                    <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "15px", lineHeight: 1.85 }}>{item.body}</p>
+                    <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "15px", lineHeight: 1.8 }}>{item.body}</p>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section style={{ background: "#142535", padding: "100px 0" }}>
-          <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
-            <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "12px" }}>The People Behind Eawestern</p>
-            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", marginBottom: "16px", fontWeight: 400 }}>
-              Meet Our <span style={{ color: "var(--color-gold)" }}>Leadership</span>
-            </h2>
-            <p style={{ maxWidth: "560px", color: "rgba(255,255,255,0.65)", fontSize: "17px", lineHeight: 1.8, marginBottom: "34px" }}>
-              Our team brings together decades of expertise in travel, insurance, and automotive services across East Africa.
-            </p>
-            <div className="ew-team-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "22px" }}>
-              {leadership.map((member) => (
-                <div key={member.name} style={{ padding: "28px 18px", border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.02)", textAlign: "center" }}>
-                  <div style={{ width: "120px", height: "120px", margin: "0 auto 16px", borderRadius: "999px", border: "2px solid var(--color-gold)", background: "#1C3347", color: "var(--color-gold)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-playfair)", fontSize: "30px" }}>
-                    {member.initials}
-                  </div>
-                  <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "20px", marginBottom: "6px", fontWeight: 400 }}>{member.name}</h3>
-                  <p style={{ color: "var(--color-gold)", fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.08em" }}>{member.title}</p>
-                  <div style={{ width: "30px", height: "1px", background: "var(--color-gold)", margin: "14px auto" }} />
-                  <p style={{ maxWidth: "200px", margin: "0 auto", color: "rgba(255,255,255,0.6)", fontSize: "14px", lineHeight: 1.6 }}>{member.bio}</p>
                 </div>
               ))}
             </div>
@@ -485,7 +455,7 @@ export default function About() {
               </div>
               <div style={{ height: "400px", background: "#1C3347", border: "1px solid rgba(255,255,255,0.12)", position: "relative", overflow: "hidden" }}>
                 <img
-                  src="/images/east-africa-map.svg"
+                  src="/images/map.png"
                   alt="East Africa region map"
                   style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.95 }}
                 />
@@ -501,11 +471,11 @@ export default function About() {
           <div style={{ maxWidth: "980px", margin: "0 auto", padding: "0 24px" }}>
             <div style={{ border: "1px solid rgba(255,255,255,0.12)", background: "linear-gradient(180deg, #12283B 0%, #102437 100%)", padding: "72px 40px", textAlign: "center" }}>
               <h2 style={{ fontFamily: "var(--font-playfair)", color: "#FFFFFF", fontSize: "clamp(34px, 4.2vw, 56px)", lineHeight: 1.15, marginBottom: "18px", fontWeight: 400 }}>
-                Begin Your <span style={{ color: "var(--color-gold)", fontStyle: "italic" }}>Extraordinary</span> Narrative
+                Ready to Experience the <span style={{ color: "var(--color-gold)", fontStyle: "italic" }}>Eawestern Difference?</span>
               </h2>
               <div style={{ width: "86px", height: "2px", background: "var(--color-gold)", margin: "0 auto 26px" }} />
               <p style={{ color: "rgba(255,255,255,0.58)", fontSize: "17px", lineHeight: 1.85, maxWidth: "760px", margin: "0 auto 40px" }}>
-                Join the distinguished collective of clients who choose guaranteed excellence. Let our senior architects craft your next wilderness expedition, secure your corporate legacy, or orchestrate your global mobility.
+                Join the thousands of clients who choose guaranteed excellence over settling for less. Our experts craft your next adventure, secure your legacy, and manage every detail of your travel or corporate logistics.
               </p>
               <Link
                 href={`/${locale}/contact`}
@@ -521,7 +491,7 @@ export default function About() {
                   display: "inline-block",
                 }}
               >
-                Request a Consultation
+                Contact Us Today →
               </Link>
             </div>
           </div>

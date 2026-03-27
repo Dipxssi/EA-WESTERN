@@ -68,8 +68,8 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 variants={fadeInUp}
                 className="text-[44px] md:text-[56px] lg:text-[68px] text-white leading-[1.1] mb-6 font-bold tracking-tight"
               >
-                Certainty in an <br />
-                <span className="text-[#60A5FA]">Uncertain World.</span>
+                Insurance That <br />
+                <span className="text-[#60A5FA]">Protects What Matters Most</span>
               </motion.h1>
               
               <motion.p 
@@ -79,7 +79,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 variants={fadeInUp}
                 className="text-[16px] md:text-[18px] text-white/80 leading-[1.6] mb-10 max-w-[500px]"
               >
-                Comprehensive, crystal-clear insurance solutions designed to protect your family, your business, and your legacy.
+                We are not just brokers; we are your dedicated, licensed advocates. Find the most competitive rates for Life, Health, Motor, and Business insurance with an expert team committed to one thing: making claims effortless.
               </motion.p>
               
               <motion.div 
@@ -90,10 +90,10 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <Link
-                  href={`/${locale}/insurance/solutions`}
+                  href={`/${locale}/insurance/contact`}
                   className="bg-[var(--color-blue)] text-white px-[32px] py-[16px] text-[13px] uppercase tracking-[0.1em] font-semibold hover:bg-white hover:text-[var(--color-blue)] transition-colors rounded-[4px] shadow-lg shadow-[var(--color-blue)]/20 text-center flex justify-center items-center gap-2 group"
                 >
-                  Explore Coverage <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  Request a Quote <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href={`/${locale}/insurance/contact`}
@@ -107,7 +107,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
         </section>
 
         {/* TRUST STATS BAR */}
-        <section className="relative z-30 w-full px-6 md:px-10 -mt-[40px]">
+        <section className="relative z-30 w-full px-6 md:px-10 mt-8 md:mt-2">
           <div className="max-w-[1200px] mx-auto">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -118,9 +118,9 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
             >
               <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[rgba(11,27,61,0.08)]">
                 {[
-                  { value: '24/7', label: 'Dedicated Claims Support', Icon: FaHeadset },
-                  { value: 'AAA', label: 'Financial Strength Rating', Icon: FaShieldAlt },
-                  { value: '98%', label: 'Claim Approval Rate', Icon: FaCheckCircle },
+                  { value: '24/7', label: 'Claims Support', Icon: FaHeadset },
+                  { value: 'Licensed', label: 'Regulated Advisors', Icon: FaShieldAlt },
+                  { value: 'High', label: 'Claim Resolution Rate', Icon: FaCheckCircle },
                 ].map((stat, idx) => {
                   const Icon = stat.Icon;
                   return (
@@ -154,7 +154,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
               >
                 <div className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-3">Coverage Plans</div>
                 <h2 className="text-[36px] md:text-[44px] text-[var(--color-navy)] font-bold mb-6 leading-tight">
-                  Tailored Protection for <br/> Every Stage of Life
+                  Protection for Every Stage of Life
                 </h2>
                 <div className="w-[60px] h-[4px] bg-[var(--color-blue)] mx-auto rounded-full"></div>
               </motion.div>
@@ -162,10 +162,10 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: HeartPulse, title: 'Health & Medical', desc: 'Comprehensive medical coverage ensuring you have access to top-tier healthcare facilities.' },
-                { icon: ShieldCheck, title: 'Life Insurance', desc: 'Secure your family’s financial future with reliable term and whole life coverage plans.' },
-                { icon: Car, title: 'Auto & Transit', desc: 'From daily commutes to cross-country travel, stay protected against the unexpected.' },
-                { icon: Home, title: 'Home & Property', desc: 'Safeguard your most valuable assets with extensive property and asset protection.' },
+                { icon: HeartPulse, title: 'Health & Medical', desc: 'Access reliable healthcare coverage with plans tailored for individuals, families, and corporate teams.' },
+                { icon: ShieldCheck, title: 'Life Insurance', desc: 'Long-term financial protection designed to secure your family’s future and provide peace of mind.' },
+                { icon: Car, title: 'Auto & Transit', desc: 'Stay protected on the road with comprehensive motor insurance for personal and commercial use.' },
+                { icon: Home, title: 'Home & Property', desc: 'Protect your home, assets, and investments against damage, loss, and unforeseen events.' },
               ].map((solution, idx) => (
                  <motion.div 
                     key={idx}
@@ -233,18 +233,19 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
               >
                 <div className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-3">The EA Western Difference</div>
                 <h2 className="text-[36px] md:text-[44px] text-[var(--color-navy)] font-bold mb-6 leading-tight">
-                  Transparent Policies, <br/> No Hidden Clauses.
+                  Clear Policies. Real Support.
                 </h2>
                 <p className="text-[16px] text-[var(--color-charcoal)]/70 leading-[1.7] mb-8">
-                  We believe that insurance shouldn't be complicated. By eliminating complex jargon and rigid structures, we provide straightforward, reliable policies that instantly kick in when you need them most.
+                  Insurance should be straightforward. We simplify policy selection, explain every detail clearly, and actively support you when it matters most-during a claim.
                 </p>
+                <div className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-4">What You Can Expect</div>
 
                 <ul className="space-y-5">
                    {[
-                     'Zero Deductible Options Available',
-                     'Immediate Claim Processing under 48 Hours',
-                     'Dedicated Personal Account Manager',
-                     'Global Coverage Extensions standard on Premium Plans'
+                     'Clear Policy Guidance',
+                     'Fast Claims Support',
+                     'Personal Account Management',
+                     'Flexible Coverage Options'
                    ].map((item, idx) => (
                      <li key={idx} className="flex items-start">
                        <CheckCircle2 color="var(--color-green)" className="mr-3 flex-shrink-0 mt-[2px]" size={20} />
@@ -269,14 +270,14 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
           <div className="relative z-10 max-w-[800px] mx-auto px-6 text-center">
             <h2 className="text-[36px] md:text-[48px] text-white font-bold mb-6">Ready to secure your future?</h2>
             <p className="text-[16px] text-white/70 mb-10 max-w-[600px] mx-auto">
-              Answer a few simple questions and receive a personalized quote in minutes. No commitments, just clarity.
+              Tell us what you need, and we will provide a clear, tailored insurance solution-without unnecessary complexity.
             </p>
             <div className="flex justify-center">
               <Link
                 href={`/${locale}/insurance/contact`}
                 className="bg-[var(--color-blue)] text-white px-[40px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-[var(--color-navy)] transition-colors rounded-[4px] shadow-xl"
               >
-                Get a Fast Online Quote
+                Get a Quote
               </Link>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { SafariNavigation } from '@/components/SafariNavigation';
 import { SafariFooter } from '@/components/SafariFooter';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
-import { MapPin, Calendar, Users, Globe, ArrowRight, Compass, Shield, Heart } from 'lucide-react';
+import { Calendar, Users, Globe, ArrowRight, Compass, Shield, Heart, Leaf } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const popularDestinations = [
@@ -44,6 +44,15 @@ const popularDestinations = [
     image: '/images/gorilla-trek.jpg',
     tag: '3 Days'
   },
+];
+
+const destinationSlugs = [
+  'maasai-mara',
+  'amboseli',
+  'diani',
+  'nairobi',
+  'serengeti',
+  'gorilla-trekking',
 ];
 
 export default function SafarisPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -88,7 +97,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
       
       <main className="w-full">
         {/* PARALLAX HERO SECTION */}
-        <section className="relative w-full h-[90vh] min-h-[600px] overflow-hidden bg-[var(--color-deep-green)] flex flex-col justify-end">
+        <section className="relative w-full min-h-[820px] md:min-h-[900px] overflow-hidden bg-[var(--color-deep-green)] flex flex-col justify-start pt-[140px] md:pt-[170px]">
           <motion.div 
             style={{ y: yHero, opacity: opacityHero }} 
             className="absolute inset-0 w-full h-full"
@@ -105,7 +114,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
             <div className="absolute inset-0 bg-black/30" />
           </motion.div>
           
-          <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 w-full pb-[140px]">
+          <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 w-full pb-[110px] md:pb-[130px]">
             <motion.div
               custom={0}
               initial="hidden"
@@ -115,7 +124,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
             >
               <div className="h-[1px] w-[40px] bg-[var(--color-gold)]"></div>
               <div className="text-[11px] uppercase tracking-[0.3em] text-[var(--color-gold)] font-sans font-medium">
-                The East Africa Safaris Collection
+                Safari and Tours
               </div>
             </motion.div>
             
@@ -126,8 +135,8 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
               variants={fadeUp}
               className="font-playfair text-[48px] md:text-[64px] lg:text-[76px] text-[var(--color-cream)] leading-[1.05] max-w-[900px] mb-8 font-light tracking-tight"
             >
-              Journey into the heart of <br className="hidden md:block"/>
-              <em className="text-[var(--color-gold)] font-serif italic pr-4">untamed</em> Africa
+              Designed safari journeys across <br className="hidden md:block"/>
+              <em className="text-[var(--color-gold)] font-serif italic pr-4">East Africa</em>
             </motion.h1>
             
             <motion.p 
@@ -135,13 +144,22 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="font-sans text-[16px] md:text-[18px] text-[rgba(250,246,238,0.85)] max-w-[480px] leading-[1.6] mb-10 font-light"
+              className="font-sans text-[16px] md:text-[18px] text-[rgba(250,246,238,0.85)] max-w-[480px] leading-[1.6] mb-3 font-light"
             >
-              Experience the absolute majesty of the savannah, where luxury meets wilderness. Let every sunrise bring a new adventure.
+              Expertly designed safari experiences across Kenya, Tanzania, and Uganda-balancing wilderness, comfort, and seamless execution.
+            </motion.p>
+            <motion.p
+              custom={4}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className="font-sans text-[16px] md:text-[18px] text-[rgba(250,246,238,0.8)] max-w-none leading-[1.6] mb-10 font-light whitespace-nowrap"
+            >
+              Ideal for first-time visitors, returning travelers, and corporate retreats.
             </motion.p>
             
             <motion.div 
-              custom={3}
+              custom={5}
               initial="hidden"
               animate="visible"
               variants={fadeUp}
@@ -203,7 +221,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                   { label: 'Wildlife', value: 'Big 5 & Beyond', icon: Compass },
                   { label: 'Best Season', value: 'Jun–Oct', icon: Calendar },
                   { label: 'Languages', value: 'Swahili · English', icon: Users },
-                  { label: 'Region', value: 'Tanzania · Uganda', icon: Globe },
+                  { label: 'Region', value: 'Kenya · Tanzania · Uganda', icon: Globe },
                 ].map((badge, idx) => (
                   <motion.div 
                     key={idx} 
@@ -216,7 +234,13 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                     </div>
                     <div>
                       <div className="text-[var(--color-gold)] text-[10px] uppercase tracking-[0.1em] font-sans mb-1 opacity-80">{badge.label}</div>
-                      <div className="text-[var(--color-sand)] text-[14px] font-sans font-light tracking-wide">{badge.value}</div>
+                      <div
+                        className={`text-[var(--color-sand)] text-[14px] font-sans font-light tracking-wide ${
+                          badge.label === 'Region' ? 'whitespace-nowrap' : ''
+                        }`}
+                      >
+                        {badge.value}
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -240,10 +264,10 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                 Curated Journeys
               </div>
               <h2 className="font-playfair text-[40px] md:text-[52px] text-[var(--color-deep-green)] mb-6 leading-tight max-w-[600px]">
-                Iconic Destinations Intelligently Designed
+                Iconic Destinations, Thoughtfully Designed
               </h2>
               <p className="font-sans text-[15px] text-[#6a5040] max-w-[500px] leading-[1.7] font-light">
-                Explore handpicked safari routes combining the absolute best of luxury, raw wilderness, and cultural immersion.
+                Explore a curated collection of safari routes that combine wildlife, landscapes, and cultural experiences-carefully structured for comfort, timing, and flow.
               </p>
             </motion.div>
             
@@ -257,7 +281,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                   transition={{ duration: 0.8, delay: (idx % 3) * 0.15 }}
                   className="group relative flex flex-col cursor-pointer"
                 >
-                  <div className="relative w-full aspect-[4/5] rounded-[2px] overflow-hidden bg-[var(--color-deep-green)] border border-black/5">
+                  <Link href={`/${locale}/safaris/destinations/${destinationSlugs[idx]}`} className="relative w-full aspect-[4/5] rounded-[2px] overflow-hidden bg-[var(--color-deep-green)] border border-black/5 block">
                     <img 
                       src={dest.image} 
                       alt={dest.title} 
@@ -286,7 +310,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -357,15 +381,16 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                 >
                   <div className="text-[11px] uppercase tracking-[0.2em] text-[var(--color-gold)] mb-4 font-sans font-medium">Why Choose Us</div>
                   <h2 className="font-playfair text-[40px] md:text-[48px] text-[var(--color-cream)] leading-tight mb-12">
-                    Crafting The Art of <br/> Unrivaled Exploration
+                    Designed for Comfort. Delivered with Responsibility.
                   </h2>
                 </motion.div>
 
                 <div className="space-y-12">
                   {[
-                    { icon: Shield, label: 'Expert Local Guides', desc: 'Our team comprises elite rangers and naturalists with decades of experience decoding the wilderness.' },
-                    { icon: Heart, label: 'Handpicked Luxury Lodges', desc: 'Rest beneath the stars in premium, deeply secluded tented camps and boutique eco-lodges.' },
-                    { icon: Compass, label: 'Custom-Built Safari Fleets', desc: 'Navigate the terrain effortlessly with specially modified rugged 4x4s, offering absolute comfort and panoramic views.' },
+                    { icon: Shield, label: 'Expert Local Guides', desc: 'Experienced, certified guides who understand wildlife behavior, terrain, and timing-ensuring every game drive is meaningful and respectful to the environment.' },
+                    { icon: Heart, label: 'Handpicked Lodges & Camps', desc: 'We partner with lodges that follow responsible tourism practices-supporting conservation efforts and local communities.' },
+                    { icon: Compass, label: 'Custom Safari Vehicles', desc: 'Fully equipped 4x4 vehicles designed for safety, comfort, and minimal environmental impact across sensitive ecosystems.' },
+                    { icon: Leaf, label: 'Responsible Travel Commitment', desc: 'We operate with a strong respect for wildlife, ecosystems, and local communities-ensuring every journey contributes positively to the regions we explore.' },
                   ].map((exp, idx) => (
                     <motion.div 
                       key={idx} 
@@ -398,7 +423,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                     href={`/${locale}/safaris/experiences`}
                     className="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.1em] font-medium text-[var(--color-gold)] hover:text-white transition-colors duration-300 group"
                   >
-                    <span>Read The Full Philosophy</span>
+                    <span>Read Our Safari Philosophy</span>
                     <span className="w-[30px] h-[1px] bg-[var(--color-gold)] group-hover:bg-white group-hover:w-[40px] transition-all duration-300"></span>
                   </Link>
                 </motion.div>
@@ -422,7 +447,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
               <div className="text-center mb-16">
                 <div className="text-[11px] uppercase tracking-[0.2em] text-[var(--color-terracotta)] mb-4 font-sans font-medium">Your Journey Setup</div>
                 <h2 className="font-playfair text-[36px] md:text-[48px] text-[var(--color-deep-green)] max-w-[600px] mx-auto leading-tight">
-                  Seamless Booking in Three Simple Steps
+                  Seamless Planning in Three Steps
                 </h2>
               </div>
               
@@ -431,9 +456,9 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                 <div className="hidden md:block absolute top-[40px] left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent opacity-30"></div>
                 
                 {[
-                  { num: '01', title: 'Consult & Discover', desc: 'Connect with a dedicated travel designer to share your vision, pace, and dream sightings.' },
-                  { num: '02', title: 'Design & Refine', desc: 'Receive a beautifully tailored itinerary. We meticulously iterate until it is absolutely perfect.' },
-                  { num: '03', title: 'Confirm & Depart', desc: 'Pack your bags. From visa assistance to VIP airport pickup, we choreograph every detail.' }
+                  { num: '01', title: 'Consult & Discover', desc: 'Speak with a travel specialist to define your preferences, schedule, and expectations.' },
+                  { num: '02', title: 'Design & Refine', desc: 'We create a tailored itinerary and adjust it until it fits your travel style perfectly.' },
+                  { num: '03', title: 'Confirm & Travel', desc: 'Once confirmed, we handle all logistics-from arrival to departure-so you can focus on the experience.' }
                 ].map((step, idx) => (
                   <motion.div 
                     key={idx} 
@@ -465,7 +490,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                   href={`/${locale}/safaris/contact`}
                   className="inline-block bg-[var(--color-deep-green)] border border-[var(--color-gold)] text-[var(--color-gold)] hover:bg-[var(--color-gold)] hover:text-[var(--color-deep-green)] px-[42px] py-[18px] text-[10px] uppercase tracking-[0.2em] transition-colors duration-700"
                 >
-                  Schedule Consultation
+                  Request a Free Consultation
                 </Link>
               </motion.div>
             </motion.div>

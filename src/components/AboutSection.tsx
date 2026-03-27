@@ -21,15 +21,18 @@ export function AboutSection({ locale = 'en' }: { locale?: string }) {
             </div>
             
             <h2 className="serif text-[36px] md:text-[56px] leading-[1.1] mb-10 text-white">
-              Architecting <span className="italic block font-light text-[var(--color-gold)]">Absolute Precision</span>
+              Built on Precision. <span className="italic block font-light text-[var(--color-gold)]">Driven by Experience.</span>
             </h2>
             
             <div className="space-y-8 text-lg text-white/50 font-light leading-relaxed max-w-[500px]">
               <p>
-                EA Western was born from a singular vision: to unify the fragmented landscape of regional luxury travel, vehicle logistics, and corporate assurance into one high-performance collective.
+                Eawestern was founded to simplify how individuals and businesses experience travel, transport, and insurance across East Africa.
               </p>
               <p>
-                We do not settle for standard. Our operations are governed by a commitment to architectural precision—whether we are mapping a remote wilderness expedition or structuring complex corporate leasing and insurance protocols.
+                Instead of dealing with multiple providers, our clients rely on one trusted team to plan, manage, and support every detail-from safari logistics to vehicle coordination and insurance coverage.
+              </p>
+              <p>
+                With over a decade of regional experience, we focus on delivering seamless, reliable solutions that remove complexity and give you complete peace of mind.
               </p>
             </div>
 
@@ -39,7 +42,7 @@ export function AboutSection({ locale = 'en' }: { locale?: string }) {
                 className="group flex items-center gap-4 no-underline"
               >
                 <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-[var(--color-gold)] group-hover:text-white transition-colors duration-500">
-                  Read Our Legacy
+                  Read Our Story →
                 </span>
                 <div className="w-12 h-[1px] bg-[var(--color-gold)]/30 group-hover:w-20 group-hover:bg-[var(--color-gold)] transition-all duration-700"></div>
               </Link>
@@ -57,13 +60,12 @@ export function AboutSection({ locale = 'en' }: { locale?: string }) {
               <img 
                 src="/images/promise.png" 
                 alt="EA Western Narrative" 
-                className="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-1000"
+                className="w-full h-full object-cover opacity-100 transition-all duration-1000 hover:brightness-[1.05] hover:scale-[1.01]"
               />
             </div>
             {/* Editorial Label Overlay */}
             <div className="absolute -bottom-8 -left-8 bg-[#0F2A3D] border border-[var(--color-gold)]/20 p-8 hidden md:block max-w-[200px]">
-              <div className="text-[10px] tracking-[0.3em] uppercase text-[var(--color-gold)] mb-2 font-medium">Vol. 15</div>
-              <div className="serif italic text-white text-xl leading-tight">East African Mastery since 2010.</div>
+              <div className="text-[14px] tracking-[0.2em] uppercase text-[var(--color-gold)] mb-2 font-medium">15+ Years of East African Experience</div>
             </div>
           </motion.div>
 
