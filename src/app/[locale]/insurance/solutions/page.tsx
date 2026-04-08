@@ -22,7 +22,7 @@ const insurancePlans = [
     title: 'Health & Medical',
     desc: 'Access reliable, high-quality healthcare coverage with plans tailored for individuals, families, and corporate teams.',
     features: ['Local and international coverage options', 'Flexible inpatient and outpatient plans', 'Maternity and specialized care options', '24/7 medical support access'],
-    image: '/images/whole life.png' // using this as a proxy for medical if we don't have a specific medical one
+    image: '/images/whole%20life.png' // placeholder until a dedicated medical visual is available
   },
   {
     id: 'property',
@@ -30,7 +30,7 @@ const insurancePlans = [
     title: 'Property & Home',
     desc: 'Protect your property, assets, and investments against unexpected damage, loss, or risk.',
     features: ['Comprehensive asset protection', 'Fire, theft, and natural disaster coverage', 'Liability protection options', 'Coverage for high-value items'],
-    image: '/images/insurance-family.jpg'
+    image: '/images/home.png'
   },
   {
     id: 'auto',
@@ -57,7 +57,7 @@ export default function InsuranceSolutionsPage({ params }: { params: Promise<{ l
         {/* Header */}
         <section className="bg-[var(--color-navy)] pt-[160px] pb-[80px] md:pt-[200px] md:pb-[120px] relative overflow-hidden">
            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-navy)] via-[var(--color-navy)]/80 to-transparent z-10" />
-           <img src="/images/insurance-family.jpg" alt="Solutions Background" className="absolute inset-0 w-full h-full object-cover object-center opacity-50 mix-blend-luminosity" />
+           <img src="/images/whole%20life.png" alt="Family-focused insurance solutions" className="absolute inset-0 w-full h-full object-cover object-center opacity-50 mix-blend-luminosity" />
            <div className="absolute inset-0 bg-[var(--color-blue)]/10 mix-blend-overlay z-10" />
            
            <div className="relative z-20 max-w-[1200px] mx-auto px-6 md:px-10 flex flex-col items-center text-center">

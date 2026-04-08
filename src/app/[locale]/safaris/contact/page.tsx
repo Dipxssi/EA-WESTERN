@@ -60,11 +60,19 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
               <div className="space-y-6 pt-8 border-t border-white/10">
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)] mb-1">Email</div>
-                  <a href="mailto:safaris@eawestern.com" className="font-sans text-[16px] hover:text-[var(--color-terracotta)] transition-colors">safaris@eawestern.com</a>
+                  <a href="mailto:info@eawestern.com" className="font-sans text-[16px] hover:text-[var(--color-terracotta)] transition-colors">info@eawestern.com</a>
                 </div>
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)] mb-1">Call Us</div>
                   <a href="tel:+254123456789" className="font-sans text-[16px] hover:text-[var(--color-terracotta)] transition-colors">+254 123 456 789</a>
+                </div>
+                <div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)] mb-1">Office</div>
+                  <p className="font-sans text-[16px] text-white/85 leading-relaxed">
+                    Utalii House, Utalii Street
+                    <br />
+                    Nairobi, Kenya
+                  </p>
                 </div>
               </div>
             </motion.div>

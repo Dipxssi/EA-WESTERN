@@ -7,7 +7,7 @@ export function StatsSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   const finalValues: number[] = [15, 5000, 50, 0]; // 0 for support (24/7 is static)
-  const labels: string[] = ['Years Experience', 'Corporate Clients', 'Global Destinations', 'Dedicated Support'];
+  const labels: string[] = ['Years Experience', 'Clients Served', 'Global Destinations', 'Dedicated Support'];
 
   useEffect(() => {
     const observer = new IntersectionObserver(

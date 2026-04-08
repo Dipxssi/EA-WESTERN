@@ -31,18 +31,18 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
         scrolled ? 'bg-[var(--color-black)] py-4 shadow-xl' : 'bg-transparent py-6'
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex justify-between items-center">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10 flex justify-between items-center gap-3 min-w-0">
         
         {/* LOGO */}
-        <Link href={`/${locale}/vehicles`} className="flex items-center gap-3 group z-50">
-          <div className="w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center text-black shadow-lg overflow-hidden group-hover:scale-105 transition-transform">
+        <Link href={`/${locale}/vehicles`} className="flex items-center gap-2 sm:gap-3 group z-50 min-w-0">
+          <div className="w-9 h-9 sm:w-[40px] sm:h-[40px] rounded-full bg-white flex items-center justify-center text-black shadow-lg overflow-hidden group-hover:scale-105 transition-transform shrink-0">
             <Car size={20} className="relative z-10" />
           </div>
-          <div className="flex flex-col">
-            <span className="text-[18px] md:text-[20px] font-bold text-white tracking-widest uppercase leading-none">
-              EA Western
+          <div className="flex flex-col min-w-0">
+            <span className="text-[14px] sm:text-[18px] md:text-[20px] font-bold text-white tracking-wide sm:tracking-wider leading-none truncate sm:overflow-visible sm:whitespace-normal">
+              eawestern
             </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-white/60 font-bold mt-1">Car Hire & Leasing</span>
+            <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.2em] text-white/60 font-bold mt-0.5 sm:mt-1 truncate">Car Hire & Leasing</span>
           </div>
         </Link>
 

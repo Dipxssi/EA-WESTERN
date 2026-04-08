@@ -104,7 +104,7 @@ export function AnimatedPhilosophySection() {
             }`}
           >
             <p className="text-lg text-gray-800 leading-relaxed">
-              We built Eawestern to be the single point of accountability for your most critical needs. Every service—Tours, Insurance, Car Hire—is a pillar of our commitment to your Confidence. This isn&apos;t just cross-selling; it&apos;s a strategic, integrated model that ensures:
+              We built eawestern to be the single point of accountability for your most critical needs. Every service—Tours, Insurance, Car Hire—is a pillar of our commitment to your Confidence. This isn&apos;t just cross-selling; it&apos;s a strategic, integrated model that ensures:
             </p>
           </div>
 

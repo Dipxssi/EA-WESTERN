@@ -51,7 +51,7 @@ export default function About() {
       initials: "JM",
       name: "James Mwangi",
       title: "Chief Executive Officer",
-      bio: "Leading Eawestern's vision across all service divisions.",
+      bio: "Leading eawestern's vision across all service divisions.",
     },
     {
       initials: "AK",
@@ -201,7 +201,7 @@ export default function About() {
                 marginBottom: "48px",
               }}
             >
-              At Eawestern, we believe every journey deserves confidence — whether you're exploring East Africa's wild beauty, protecting what matters most, or simply getting where you need to go.
+              At eawestern, we believe every journey deserves confidence — whether you're exploring East Africa's wild beauty, protecting what matters most, or simply getting where you need to go.
             </p>
             <div className="ew-stats-row" style={{ display: "flex", gap: "0", paddingTop: "32px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
               {[{ number: "10+", label: "Years of Service" }, { number: "5K+", label: "Happy Clients" }, { number: "3", label: "Service Divisions" }].map((stat, i) => (
@@ -217,10 +217,10 @@ export default function About() {
 
           <div className="ew-hero-photos" style={{ position: "relative", overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "3px" }}>
             {[
-              { bg: "#1C3347", label: "Safari Experience", src: "/images/safari-pg.jpg" },
+              { bg: "#1C3347", label: "Safari Experience", src: "/images/tours.png" },
               { bg: "#142535", label: "Car Hire", src: "/images/car image.jpg" },
-              { bg: "#0D1F2D", label: "Insurance", src: "/images/insurance-family.jpg" },
-              { bg: "#1A2F42", label: "East Africa", src: "/images/nairobi-city.jpg" },
+              { bg: "#0D1F2D", label: "Insurance", src: "/images/term life.png" },
+              { bg: "#1A2F42", label: "East Africa", src: "/images/tour3.jpg" },
             ].map((cell, i) => (
               <div
                 key={i}
@@ -247,8 +247,24 @@ export default function About() {
                     objectFit: "cover",
                   }}
                 />
-                <div className="ew-hero-tile-overlay" />
-                <span className="ew-hero-tile-label" style={{ fontFamily: "var(--font-dm-sans)", fontSize: "10px", color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.1em", position: "relative", zIndex: 1 }}>
+                <span
+                  className="ew-hero-tile-label"
+                  style={{
+                    fontFamily: "var(--font-dm-sans)",
+                    fontSize: "11px",
+                    color: "#FFFFFF",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.14em",
+                    position: "relative",
+                    zIndex: 1,
+                    textShadow: "0 2px 10px rgba(0,0,0,0.8)",
+                    background: "rgba(11,31,46,0.55)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    padding: "6px 12px",
+                    borderRadius: "999px",
+                    backdropFilter: "blur(2px)",
+                  }}
+                >
                   {cell.label}
                 </span>
               </div>
@@ -262,12 +278,12 @@ export default function About() {
             <div className="ew-story-grid" style={{ display: "grid", gridTemplateColumns: "55% 45%", gap: "36px", alignItems: "start" }}>
               <div>
                 <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "16px" }}>Our Story</p>
-                <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", color: "#FFFFFF", marginBottom: "16px", fontWeight: 400 }}>The Eawestern Story</h2>
+                <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", color: "#FFFFFF", marginBottom: "16px", fontWeight: 400 }}>The eawestern story</h2>
                 <p style={{ fontFamily: "var(--font-playfair)", fontStyle: "italic", fontSize: "22px", color: "var(--color-gold)", marginBottom: "26px" }}>
                   Your Trusted Partner in Travel, Car Hire & Insurance
                 </p>
                 {[
-                  "At Eawestern, we believe every journey deserves confidence — whether you're exploring East Africa's wild beauty, protecting what matters most, or simply getting where you need to go.",
+                  "At eawestern, we believe every journey deserves confidence — whether you're exploring East Africa's wild beauty, protecting what matters most, or simply getting where you need to go.",
                   "We began with one mission: to make travel, insurance, and mobility effortless for everyone. Today, we connect adventurers, families, and businesses to trusted experiences and reliable solutions across the region.",
                   "Rooted in local expertise and guided by global standards, we've earned a reputation for transparency, reliability, and personal care. From tailor-made safaris to car rentals and insurance support.",
                 ].map((text) => (
@@ -285,7 +301,6 @@ export default function About() {
                       className="ew-story-img"
                       style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
                     />
-                    <div className="ew-story-overlay" />
                   </div>
                   <div className="ew-story-tile" style={{ height: "200px", overflow: "hidden", position: "relative" }}>
                     <img
@@ -294,7 +309,6 @@ export default function About() {
                       className="ew-story-img"
                       style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
                     />
-                    <div className="ew-story-overlay" />
                   </div>
                 </div>
                 <div className="ew-story-tile" style={{ height: "200px", overflow: "hidden", position: "relative" }}>
@@ -304,7 +318,6 @@ export default function About() {
                     className="ew-story-img"
                     style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
                   />
-                  <div className="ew-story-overlay" />
                 </div>
               </div>
             </div>
@@ -320,9 +333,9 @@ export default function About() {
               Your <span style={{ color: "var(--color-gold)" }}>Confidence</span> is Our <span style={{ color: "var(--color-gold)" }}>Currency</span>.
             </h2>
             <p style={{ maxWidth: "680px", margin: "0 auto 42px", textAlign: "center", fontSize: "18px", lineHeight: 1.8, color: "rgba(255,255,255,0.7)" }}>
-              We built Eawestern to be the single point of accountability for your most critical needs. Every service — Tours, Insurance, Car Hire — is a pillar of our commitment to your Confidence. This isn't just cross-selling; it's a strategic, integrated model.
+              We built eawestern to be the single point of accountability for your most critical needs. Every service — Tours, Insurance, Car Hire — is a pillar of our commitment to your Confidence. This isn't just cross-selling; it's a strategic, integrated model.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "18px" }}>
+            <div className="ew-philosophy-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "18px" }}>
               {[
                 { t: "A-to-Z Logistics", d: "Total control over the traveler's experience.", icon: Route },
                 { t: "Risk Mitigation", d: "Every service benefits from the deep risk knowledge of our insurance division.", icon: ShieldCheck },
@@ -330,7 +343,7 @@ export default function About() {
               ].map((card) => {
                 const Icon = card.icon;
                 return (
-                <div key={card.t} style={{ background: "#0F2A3D", border: "1px solid rgba(255,255,255,0.06)", padding: "42px 30px", textAlign: "center" }}>
+                <div key={card.t} className="ew-philosophy-pillar" style={{ background: "#0F2A3D", border: "1px solid rgba(255,255,255,0.06)", padding: "42px 30px", textAlign: "center" }}>
                   <div style={{ width: "64px", height: "64px", margin: "0 auto 26px", border: "1px solid color-mix(in srgb, var(--color-gold) 20%, transparent)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-gold)" }}>
                     <Icon size={26} />
                   </div>
@@ -346,7 +359,7 @@ export default function About() {
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
             <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "16px", textAlign: "center" }}>What Sets Us Apart</p>
             <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
-              The Eawestern <span style={{ color: "var(--color-gold)" }}>Pillars of Trust</span>
+              The eawestern <span style={{ color: "var(--color-gold)" }}>Pillars of Trust</span>
             </h2>
             <div className="ew-pillars" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
               {[
@@ -471,7 +484,7 @@ export default function About() {
           <div style={{ maxWidth: "980px", margin: "0 auto", padding: "0 24px" }}>
             <div style={{ border: "1px solid rgba(255,255,255,0.12)", background: "linear-gradient(180deg, #12283B 0%, #102437 100%)", padding: "72px 40px", textAlign: "center" }}>
               <h2 style={{ fontFamily: "var(--font-playfair)", color: "#FFFFFF", fontSize: "clamp(34px, 4.2vw, 56px)", lineHeight: 1.15, marginBottom: "18px", fontWeight: 400 }}>
-                Ready to Experience the <span style={{ color: "var(--color-gold)", fontStyle: "italic" }}>Eawestern Difference?</span>
+                Ready to Experience the <span style={{ color: "var(--color-gold)", fontStyle: "italic" }}>eawestern difference?</span>
               </h2>
               <div style={{ width: "86px", height: "2px", background: "var(--color-gold)", margin: "0 auto 26px" }} />
               <p style={{ color: "rgba(255,255,255,0.58)", fontSize: "17px", lineHeight: 1.85, maxWidth: "760px", margin: "0 auto 40px" }}>
@@ -522,46 +535,24 @@ export default function About() {
           background: color-mix(in srgb, #0F2A3D 85%, var(--color-gold) 15%) !important;
         }
         .ew-hero-tile-image {
-          opacity: 0.33;
-          filter: grayscale(35%);
-          transform: scale(1.04);
-          transition: transform 900ms ease, opacity 700ms ease, filter 700ms ease;
-        }
-        .ew-hero-tile-overlay {
-          position: absolute;
-          inset: 0;
-          background:
-            linear-gradient(to bottom, rgba(11,31,46,0.22), rgba(11,31,46,0.55)),
-            linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 10%, transparent) 0%, transparent 60%);
-          transition: background 600ms ease;
+          opacity: 1;
+          filter: none;
+          transform: scale(1);
+          transition: transform 900ms ease;
         }
         .ew-hero-tile:hover .ew-hero-tile-image {
-          opacity: 0.52;
-          filter: grayscale(0%);
-          transform: scale(1.09);
+          transform: scale(1.04);
         }
         .ew-hero-tile:hover .ew-hero-tile-label {
           color: rgba(255,255,255,0.72) !important;
         }
         .ew-story-img {
-          filter: grayscale(100%);
-          transform: scale(1.03);
-          transition: transform 900ms ease, filter 900ms ease;
-        }
-        .ew-story-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 12%, transparent) 0%, transparent 65%);
-          opacity: 0.15;
-          transition: opacity 700ms ease;
-          pointer-events: none;
+          filter: none;
+          transform: scale(1);
+          transition: transform 900ms ease;
         }
         .ew-story-tile:hover .ew-story-img {
-          filter: grayscale(0%);
-          transform: scale(1.08);
-        }
-        .ew-story-tile:hover .ew-story-overlay {
-          opacity: 0.45;
+          transform: scale(1.04);
         }
         .ew-pillar-card:hover .ew-pillar-bg {
           opacity: 0.32 !important;
@@ -572,6 +563,7 @@ export default function About() {
           .ew-hero { grid-template-columns: 1fr !important; }
           .ew-hero-photos { display: none !important; }
           .ew-story-grid { grid-template-columns: 1fr !important; }
+          .ew-philosophy-grid { grid-template-columns: 1fr !important; }
           .ew-pillars { grid-template-columns: 1fr !important; }
           .ew-team-grid { grid-template-columns: 1fr 1fr !important; }
           .ew-values-top { grid-template-columns: 1fr !important; }
@@ -584,6 +576,15 @@ export default function About() {
           .ew-hero-left { padding: 100px 24px 60px !important; }
           .ew-stats-row { flex-wrap: wrap; gap: 24px !important; }
           .ew-team-grid { grid-template-columns: 1fr !important; }
+          .ew-philosophy-pillar { padding: 32px 22px !important; }
+        }
+        @media (max-width: 640px) {
+          .ew-philosophy-grid { gap: 14px !important; }
+          .ew-philosophy-pillar h3 { font-size: 24px !important; line-height: 1.2 !important; }
+          .ew-pillar-card h3 { font-size: 22px !important; line-height: 1.25 !important; }
+          .ew-value-card h3 { font-size: 22px !important; line-height: 1.25 !important; }
+          .ew-story-grid h2 { font-size: 28px !important; }
+          .ew-why-grid h2 { font-size: 28px !important; }
         }
       `}</style>
     </div>

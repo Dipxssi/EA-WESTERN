@@ -24,7 +24,7 @@ export function AnimatedPillarsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-light mb-6 text-gray-900">
-            The Eawestern Pillars of Trust
+            The eawestern Pillars of Trust
           </h2>
         </div>
 

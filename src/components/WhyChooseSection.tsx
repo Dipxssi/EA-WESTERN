@@ -39,7 +39,7 @@ export function WhyChooseSection() {
               Our role is simple: to remove complexity, reduce risk, and ensure everything runs exactly as it should.
             </p>
             <div className="flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] font-medium text-[var(--color-gold)]">
-              <CheckCircle2 size={18} className="text-[var(--color-gold)]" /> The EA Western Standard
+              <CheckCircle2 size={18} className="text-[var(--color-gold)]" /> The eawestern standard
             </div>
           </motion.div>
 

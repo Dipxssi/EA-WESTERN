@@ -82,7 +82,7 @@ export function WhatYouGetSection() {
           
           <div className="relative z-10 max-w-[800px] mx-auto">
             <h3 className="serif text-[32px] md:text-[48px] leading-tight mb-8">
-              Ready to Experience the <span className="italic">Eawestern Difference?</span>
+              Ready to Experience the <span className="italic">eawestern difference?</span>
             </h3>
             <div className="w-[100px] h-[1px] bg-[var(--color-gold)] mx-auto mb-10" />
             <p className="text-lg text-[rgba(240,235,227,0.55)] mb-14 font-light leading-relaxed">

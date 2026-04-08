@@ -44,11 +44,18 @@
   --section-gap-y-md: 4rem; /* 64px */
 }
 
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   font-family: 'Jost', sans-serif;
   color: var(--text-primary);
   background-color: var(--color-navy);
   line-height: 1.7;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 h1, h2, h3, .font-playfair, .serif {

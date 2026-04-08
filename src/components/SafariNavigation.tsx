@@ -53,15 +53,15 @@ export function SafariNavigation({ locale = 'en' }: SafariNavigationProps) {
 
   return (
     <nav className="fixed w-full top-0 z-50 transition-colors duration-500 border-b border-[#C8A96E]/15 bg-[#08172E]/40 backdrop-blur-xl">
-      <div className="mx-auto px-6 max-w-7xl md:px-10">
-        <div className="flex justify-between items-center py-5">
+      <div className="mx-auto px-4 sm:px-6 max-w-7xl md:px-10 min-w-0">
+        <div className="flex justify-between items-center py-4 sm:py-5 gap-3 min-w-0">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link href={`/${locale}`} className="flex items-center gap-4 no-underline group">
+          <div className="flex items-center min-w-0">
+            <Link href={`/${locale}`} className="flex items-center gap-2 sm:gap-4 no-underline group min-w-0">
               <div className="w-[35px] h-[35px] border border-[#C8A96E] flex items-center justify-center text-[14px] text-[#C8A96E] font-medium transition-all group-hover:bg-[#C8A96E] group-hover:text-[#08172E]">
                 EW
               </div>
-              <span className="text-[12px] uppercase tracking-[0.4em] text-white font-medium">EA Western</span>
+              <span className="text-[10px] sm:text-[12px] tracking-[0.12em] sm:tracking-[0.2em] text-white font-medium truncate max-w-[120px] sm:max-w-none">eawestern</span>
             </Link>
           </div>
 
@@ -70,7 +70,7 @@ export function SafariNavigation({ locale = 'en' }: SafariNavigationProps) {
             <NavLink path={`/${locale}`} label="MAIN HOME" />
             <NavLink path={`/${locale}/safaris`} label="HOME" />
             <NavLink path={`/${locale}/safaris/destinations`} label="DESTINATIONS" />
-            <NavLink path={`/${locale}/safaris/experiences`} label="PHILOSOPHY" />
+            <NavLink path={`/${locale}/safaris/philosophy`} label="PHILOSOPHY" />
             <NavLink path={`/${locale}/safaris/packages`} label="PACKAGES" />
             <NavLink path={`/${locale}/safaris/contact`} label="CONTACT" />
           </div>
@@ -97,7 +97,7 @@ export function SafariNavigation({ locale = 'en' }: SafariNavigationProps) {
             <MobileNavLink path={`/${locale}`} label="MAIN HOME" />
             <MobileNavLink path={`/${locale}/safaris`} label="HOME" />
             <MobileNavLink path={`/${locale}/safaris/destinations`} label="DESTINATIONS" />
-            <MobileNavLink path={`/${locale}/safaris/experiences`} label="PHILOSOPHY" />
+            <MobileNavLink path={`/${locale}/safaris/philosophy`} label="PHILOSOPHY" />
             <MobileNavLink path={`/${locale}/safaris/packages`} label="PACKAGES" />
             <MobileNavLink path={`/${locale}/safaris/contact`} label="CONTACT" />
             <div className="mt-auto px-6 pt-10">

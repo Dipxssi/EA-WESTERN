@@ -50,7 +50,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
 
   return (
     <main
-      className="relative flex flex-col pt-24 text-[var(--text-primary)]"
+      className="relative flex w-full max-w-full flex-col overflow-x-hidden pt-24 text-[var(--text-primary)]"
       style={{ background: 'var(--background-gradient)' }}
     >
       {/* Background Ambience */}
@@ -64,7 +64,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
       <div className="gold-line-v line-right opacity-10"></div>
 
       {/* Hero Content Section */}
-      <div className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 relative z-10 py-20">
+      <div className="min-h-[85vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 relative z-10 py-14 sm:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
-          className="serif text-[48px] md:text-[84px] leading-[1.05] mb-10 tracking-[0.02em]"
+          className="serif text-[32px] sm:text-[40px] md:text-[64px] lg:text-[84px] leading-[1.05] mb-8 sm:mb-10 tracking-[0.02em] px-1"
         >
           Experience the{' '}
           <span style={{ color: 'var(--color-gold)', textShadow: 'none' }}>
@@ -90,7 +90,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.5 }}
-          className="text-[#A7B1BC]/75 text-xl md:text-2xl font-light max-w-[760px] mb-16 leading-[1.7]"
+          className="text-[#A7B1BC]/75 text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-[760px] mb-12 sm:mb-16 leading-[1.7] px-1"
         >
           East Africa&apos;s only integrated ecosystem for Premium Safaris, Licensed Insurance, and Reliable Mobility. One trusted partner, zero gaps
         </motion.p>
@@ -99,16 +99,16 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="flex flex-wrap items-center justify-center gap-6"
+          className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-4 sm:gap-6 px-2 w-full max-w-lg sm:max-w-none"
         >
           <button
             onClick={() => setActiveMicroSite('safaris')}
-            className="bg-[var(--color-gold)] text-[#0B1F2E] px-10 py-3 text-[11px] font-semibold uppercase tracking-[0.3em] transition-all duration-500 rounded-[4px] hover:brightness-110"
+            className="bg-[var(--color-gold)] text-[#0B1F2E] px-6 sm:px-10 py-3 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] transition-all duration-500 rounded-[4px] hover:brightness-110 text-center"
           >
             Explore Collective
           </button>
           <button
-            className="border border-[var(--color-gold)] text-[var(--color-gold)] bg-transparent px-10 py-3 text-[11px] font-semibold uppercase tracking-[0.3em] transition-all duration-500 rounded-[4px] hover:bg-[var(--color-gold)] hover:text-[#0B1F2E]"
+            className="border border-[var(--color-gold)] text-[var(--color-gold)] bg-transparent px-6 sm:px-10 py-3 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] transition-all duration-500 rounded-[4px] hover:bg-[var(--color-gold)] hover:text-[#0B1F2E] text-center"
           >
             Request a Private Consultation
           </button>
@@ -130,9 +130,9 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center mb-4 md:mb-6"
+          className="text-center mb-4 md:mb-6 px-2"
         >
-          <h2 className="serif text-[30px] md:text-[42px] text-white leading-tight">
+          <h2 className="serif text-[26px] sm:text-[30px] md:text-[42px] text-white leading-tight">
             Choose a <span style={{ color: 'var(--color-gold)' }}>Service</span> to Get Started
           </h2>
         </motion.div>
@@ -153,19 +153,19 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
                       : `/${locale}/vehicles`;
                 router.push(destination);
               }}
-              className="group relative h-[350px] md:h-[500px] cursor-pointer bg-[#0B1F2E] transition-all duration-700 overflow-hidden"
+              className="group relative min-h-[280px] h-[320px] sm:h-[350px] md:h-[500px] cursor-pointer bg-[#0B1F2E] transition-all duration-700 overflow-hidden"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-1000">
                 <img src={portfolio.bgImage} alt="" className="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-110 group-hover:scale-100 transition-all duration-1000" />
               </div>
 
-              <div className="relative z-10 p-12 h-full flex flex-col justify-between">
+              <div className="relative z-10 p-6 sm:p-8 md:p-12 h-full flex flex-col justify-between">
                 <div>
                   <div className="text-[14px] text-white/30 mb-6 font-light uppercase tracking-widest">0{idx + 1}</div>
                   <div className="w-16 h-16 border border-[var(--color-gold)]/20 flex items-center justify-center text-[var(--color-gold)] mb-10 group-hover:bg-[var(--color-gold)] group-hover:text-[#0d1b2e] transition-all duration-700">
                     <portfolio.icon size={32} />
                   </div>
-                  <h3 className="serif text-3xl md:text-4xl text-white mb-6 leading-tight group-hover:text-[var(--color-gold)] transition-colors duration-500">
+                  <h3 className="serif text-2xl sm:text-3xl md:text-4xl text-white mb-4 sm:mb-6 leading-tight group-hover:text-[var(--color-gold)] transition-colors duration-500">
                     {portfolio.title}
                   </h3>
                 </div>
@@ -177,7 +177,6 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
                       : portfolio.id === 'insurance'
                         ? 'View Coverage & Get a Quote →'
                         : 'Browse Fleet & Availability →'}
-                    <span className="w-8 h-[1px] bg-[var(--color-gold)]/30 transition-all group-hover:w-16"></span>
                   </div>
                 </div>
               </div>
@@ -217,7 +216,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
                 <div className="hidden md:block fixed left-[50%] h-full w-[1px] bg-white/5 z-0"></div>
 
                 {/* Hero Feature */}
-                <header className="relative h-[80vh] w-full pt-40 px-[10%] flex flex-col justify-end pb-20 overflow-hidden">
+                <header className="relative min-h-[55vh] sm:min-h-[70vh] md:h-[80vh] w-full pt-28 sm:pt-36 md:pt-40 px-4 sm:px-[8%] md:px-[10%] flex flex-col justify-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
                    <div className="absolute inset-0 grayscale opacity-40">
                       <img src={site.bgImage} alt="" className="w-full h-full object-cover" />
                    </div>
@@ -225,7 +224,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
                    
                    <div className="relative z-10">
                       <div className="uppercase-label text-[var(--color-gold)] mb-6">Discovery Portfolio</div>
-                      <h2 className="serif text-[48px] md:text-[84px] leading-none mb-10 text-white">
+                      <h2 className="serif text-[32px] sm:text-[44px] md:text-[64px] lg:text-[84px] leading-none mb-6 sm:mb-10 text-white">
                         {site.title.split(' ')[0]} <span className="italic block mt-4 font-light text-white/80">{site.title.split(' ').slice(1).join(' ')}</span>
                       </h2>
                       <div className="max-w-[500px] text-lg text-white/60 font-light leading-relaxed mb-12">
@@ -238,8 +237,8 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
                 </header>
 
                 {/* Gallery Section */}
-                <section className="py-24 md:py-40 px-[10%] relative z-10">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
+                <section className="py-16 sm:py-24 md:py-40 px-4 sm:px-[8%] md:px-[10%] relative z-10">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
                     <div className="space-y-24">
                        <div className="relative group">
                           <img src={site.bgImage} alt="" className="w-full aspect-[4/5] object-cover grayscale transition-all duration-1000 group-hover:grayscale-0" />
@@ -262,10 +261,10 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
                 </section>
 
                 {/* CTA Strip */}
-                <section className="py-24 md:py-36 px-[10%] bg-[#0F2A3D] border-t border-[var(--color-gold)]/10 flex flex-col md:flex-row items-center justify-between gap-12">
+                <section className="py-16 sm:py-24 md:py-36 px-4 sm:px-[8%] md:px-[10%] bg-[#0F2A3D] border-t border-[var(--color-gold)]/10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 text-center md:text-left">
                    <div>
                       <h3 className="serif text-3xl md:text-5xl mb-6">Collaborate on your next <span className="italic font-light">Legacy</span>.</h3>
-                      <p className="text-white/40 text-sm tracking-widest uppercase">EA WESTERN GLOBAL hub</p>
+                      <p className="text-white/40 text-sm tracking-widest">eawestern global hub</p>
                    </div>
                    <button className="border border-[var(--color-gold)] text-[var(--color-gold)] px-12 py-5 text-[11px] font-semibold uppercase tracking-[0.3em] transition-all duration-700 hover:bg-[var(--color-gold)] hover:text-[#0B1F2E]">
                      Start Planning

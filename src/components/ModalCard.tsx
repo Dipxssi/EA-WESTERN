@@ -72,7 +72,7 @@ export function ModalCard({ destination, locale }: ModalCardProps) {
               <span className="w-2 h-2 rounded-full bg-emerald-300" />
               {destination.location}
             </span>
-            <span className="text-xs uppercase tracking-[0.3em] text-white/80">EAWESTERN</span>
+            <span className="text-xs tracking-[0.2em] text-white/80">eawestern</span>
           </div>
         </div>
         <div className="p-8 space-y-6">
@@ -133,7 +133,7 @@ export function ModalCard({ destination, locale }: ModalCardProps) {
                     <span className="w-2 h-2 rounded-full bg-emerald-300" />
                     {destination.location}
                   </span>
-                  <span className="text-xs uppercase tracking-[0.3em] text-white/80">EAWESTERN</span>
+                  <span className="text-xs tracking-[0.2em] text-white/80">eawestern</span>
                 </div>
                 <div className="text-xs uppercase tracking-[0.3em] text-white/80 mb-2">
                   {destination.theme}

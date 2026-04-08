@@ -97,7 +97,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
       
       <main className="w-full">
         {/* PARALLAX HERO SECTION */}
-        <section className="relative w-full min-h-[820px] md:min-h-[900px] overflow-hidden bg-[var(--color-deep-green)] flex flex-col justify-start pt-[140px] md:pt-[170px]">
+        <section className="relative w-full min-h-[72svh] sm:min-h-[78svh] md:min-h-[820px] lg:min-h-[900px] overflow-hidden bg-[var(--color-deep-green)] flex flex-col justify-start pt-[120px] sm:pt-[140px] md:pt-[170px]">
           <motion.div 
             style={{ y: yHero, opacity: opacityHero }} 
             className="absolute inset-0 w-full h-full"
@@ -133,10 +133,13 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="font-playfair text-[48px] md:text-[64px] lg:text-[76px] text-[var(--color-cream)] leading-[1.05] max-w-[900px] mb-8 font-light tracking-tight"
+              className="font-playfair text-[32px] sm:text-[40px] md:text-[64px] lg:text-[76px] text-[var(--color-cream)] leading-[1.05] max-w-[900px] mb-8 font-light tracking-tight"
             >
-              Designed safari journeys across <br className="hidden md:block"/>
-              <em className="text-[var(--color-gold)] font-serif italic pr-4">East Africa</em>
+              Designed safari journeys{' '}
+              <span className="sm:whitespace-nowrap">
+                across{' '}
+                <em className="text-[var(--color-gold)] font-serif italic pr-0 sm:pr-4">East Africa</em>
+              </span>
             </motion.h1>
             
             <motion.p 
@@ -144,16 +147,17 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="font-sans text-[16px] md:text-[18px] text-[rgba(250,246,238,0.85)] max-w-[480px] leading-[1.6] mb-3 font-light"
+              className="font-sans text-[15px] sm:text-[16px] md:text-[18px] text-[rgba(250,246,238,0.85)] max-w-2xl leading-[1.65] mb-3 font-light"
             >
-              Expertly designed safari experiences across Kenya, Tanzania, and Uganda-balancing wilderness, comfort, and seamless execution.
+              Expertly designed safari experiences across Kenya, Tanzania, and Uganda—balancing wilderness,
+              comfort, and seamless execution.
             </motion.p>
             <motion.p
               custom={4}
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="font-sans text-[16px] md:text-[18px] text-[rgba(250,246,238,0.8)] max-w-none leading-[1.6] mb-10 font-light whitespace-nowrap"
+              className="font-sans text-[15px] sm:text-[16px] md:text-[18px] text-[rgba(250,246,238,0.8)] max-w-2xl leading-[1.65] mb-10 font-light"
             >
               Ideal for first-time visitors, returning travelers, and corporate retreats.
             </motion.p>
@@ -167,7 +171,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
             >
               <Link
                 href={`/${locale}/safaris/contact`}
-                className="group relative overflow-hidden bg-[var(--color-deep-green)] border border-[var(--color-gold)] text-[var(--color-gold)] hover:bg-[var(--color-gold)] hover:text-[var(--color-deep-green)] px-[36px] py-[16px] text-[10px] uppercase tracking-[0.2em] transition-all duration-700 whitespace-nowrap text-center"
+                className="group relative overflow-hidden bg-[var(--color-deep-green)] border border-[var(--color-gold)] text-[var(--color-gold)] hover:bg-[var(--color-gold)] hover:text-[var(--color-deep-green)] px-6 sm:px-9 py-3.5 sm:py-4 text-[10px] uppercase tracking-[0.2em] transition-all duration-700 text-center sm:whitespace-nowrap"
               >
                 <span className="relative z-10 flex items-center justify-center gap-3">
                   Start Planning <ArrowRight size={14} />
@@ -175,15 +179,9 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
               </Link>
               <Link
                 href={`/${locale}/safaris/destinations`}
-                className="group relative overflow-hidden bg-transparent border border-[var(--color-cream)]/20 text-[var(--color-cream)] px-[36px] py-[16px] text-[10px] uppercase tracking-[0.2em] hover:bg-white/5 transition-colors duration-700 whitespace-nowrap text-center backdrop-blur-sm"
+                className="group relative overflow-hidden bg-transparent border border-[var(--color-cream)]/20 text-[var(--color-cream)] px-6 sm:px-9 py-3.5 sm:py-4 text-[10px] uppercase tracking-[0.2em] hover:bg-white/5 transition-colors duration-700 text-center sm:whitespace-nowrap backdrop-blur-sm"
               >
                 View Destinations
-              </Link>
-              <Link
-                href={`/${locale}/safaris/packages`}
-                className="group relative overflow-hidden bg-transparent border border-[var(--color-gold)]/40 text-[var(--color-gold)] px-[36px] py-[16px] text-[10px] uppercase tracking-[0.2em] hover:bg-[var(--color-gold)]/10 transition-colors duration-700 whitespace-nowrap text-center backdrop-blur-sm"
-              >
-                Packages &amp; things to do
               </Link>
             </motion.div>
           </div>
@@ -235,8 +233,8 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                     <div>
                       <div className="text-[var(--color-gold)] text-[10px] uppercase tracking-[0.1em] font-sans mb-1 opacity-80">{badge.label}</div>
                       <div
-                        className={`text-[var(--color-sand)] text-[14px] font-sans font-light tracking-wide ${
-                          badge.label === 'Region' ? 'whitespace-nowrap' : ''
+                        className={`text-[var(--color-sand)] text-[13px] sm:text-[14px] font-sans font-light tracking-wide ${
+                          badge.label === 'Region' ? 'sm:whitespace-nowrap' : ''
                         }`}
                       >
                         {badge.value}
@@ -366,7 +364,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                     "An unforgettable journey into the heart of Africa, where natural beauty <span className="text-[var(--color-terracotta)] not-italic">speaks loudest</span>."
                   </p>
                   <p className="font-sans text-[11px] uppercase tracking-[0.2em] font-semibold text-[var(--color-gold)]">
-                    The EA Western Promise
+                    The eawestern promise
                   </p>
                 </motion.div>
               </motion.div>
@@ -420,7 +418,7 @@ export default function SafarisPage({ params }: { params: Promise<{ locale: stri
                   className="mt-12"
                 >
                   <Link
-                    href={`/${locale}/safaris/experiences`}
+                    href={`/${locale}/safaris/philosophy`}
                     className="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.1em] font-medium text-[var(--color-gold)] hover:text-white transition-colors duration-300 group"
                   >
                     <span>Read Our Safari Philosophy</span>

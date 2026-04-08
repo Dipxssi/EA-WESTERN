@@ -6,7 +6,7 @@ export function SafariFooter() {
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center w-full">
         {/* Logo */}
         <div className="font-playfair text-[15px] text-[var(--color-sand)] font-bold mb-4 md:mb-0 w-full text-center md:text-left md:w-auto">
-          EA <span className="text-[var(--color-gold)] italic font-light">Western</span>
+          eawestern
         </div>
 
         {/* Links */}

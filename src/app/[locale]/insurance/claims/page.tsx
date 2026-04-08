@@ -5,7 +5,7 @@ import { InsuranceFooter } from '@/components/InsuranceFooter';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Clock, ThumbsUp, HelpCircle, PhoneCall } from 'lucide-react';
+import { FileText, Clock, ThumbsUp, HelpCircle } from 'lucide-react';
 
 export default function InsuranceClaimsPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
@@ -86,25 +86,12 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
         {/* Support Blocks */}
         <section className="py-[100px] bg-[var(--color-slate)]">
           <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-10 rounded-[12px] border border-[rgba(11,27,61,0.05)] shadow-sm text-center flex flex-col items-center">
-                <div className="w-[60px] h-[60px] bg-[var(--color-lightblue)] rounded-full flex items-center justify-center text-[var(--color-blue)] mb-6">
-                  <PhoneCall size={28} />
-                </div>
-                <h3 className="text-[24px] font-bold text-[var(--color-navy)] mb-4">Emergency Support</h3>
-                <p className="text-[15px] text-[var(--color-charcoal)]/70 mb-6 max-w-[300px]">
-                  Need immediate assistance? Our emergency hotline is available 24 hours a day, 7 days a week.
-                </p>
-                <a href="tel:1-800-123-4567" className="text-[28px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors">
-                  1-800-123-4567
-                </a>
-              </div>
-
+            <div className="grid grid-cols-1 gap-8">
               <div className="bg-[var(--color-navy)] p-10 rounded-[12px] border border-[rgba(255,255,255,0.05)] shadow-xl text-center flex flex-col items-center">
                 <div className="w-[60px] h-[60px] bg-white/10 rounded-full flex items-center justify-center text-[var(--color-blue)] mb-6">
                   <HelpCircle size={28} />
                 </div>
-                <h3 className="text-[24px] font-bold text-white mb-4">Claim FAQ</h3>
+                <h3 className="text-[24px] font-bold text-white mb-4">Ask a Question</h3>
                 <p className="text-[15px] text-white/70 mb-8 max-w-[300px]">
                   Find quick answers about required documents, processing times, and policy specifics.
                 </p>

@@ -42,9 +42,9 @@ export default function VehiclesServicesPage({ params }: { params: Promise<{ loc
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
               {[
-                { icon: Star, title: 'Chauffeured Expertise', desc: 'Our drivers are trained professionals who understand protocol, security, and East African traffic dynamics.' },
+                { icon: Star, title: 'Chauffeured Expertise', desc: 'Professional drivers trained in safety, protocol, and regional navigation.' },
                 { icon: Clock, title: 'Long-Term Corporate Leasing', desc: 'Reliable fleet leasing without the capital expenditure. Fixed monthly rates including full maintenance and insurance.' },
-                { icon: Map, title: 'Self-Drive Exploration', desc: 'Explore at your own pace. We provide comprehensive documentation, roadside assistance, and cross-border permits.' }
+                { icon: Map, title: 'Self-Drive', desc: 'Self-drive options supported with full documentation and roadside support.' }
               ].map((service, idx) => (
                 <motion.div 
                   key={idx}
@@ -74,9 +74,9 @@ export default function VehiclesServicesPage({ params }: { params: Promise<{ loc
            <div className="max-w-[1200px] mx-auto px-6 md:px-10 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <ShieldCheck size={48} className="text-white mb-6" />
-                <h2 className="text-[32px] md:text-[40px] font-extrabold mb-6 uppercase leading-tight">Integrated In-House <br/> Insurance</h2>
+                <h2 className="text-[32px] md:text-[40px] font-extrabold mb-6 uppercase leading-tight">Integrated Insurance</h2>
                 <p className="text-[16px] text-white/60 leading-[1.8] mb-8">
-                  Unlike third-party rental companies, EA Western manages its own insurance compliance securely in-house. This means no hidden liabilities, rapid claim processing, and straightforward agreements.
+                  Insurance is managed in-house, ensuring clear coverage, faster claims handling, and no hidden liabilities.
                 </p>
                 <Link
                   href={`/${locale}/insurance`}

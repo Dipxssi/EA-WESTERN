@@ -31,15 +31,15 @@ export function InsuranceNavigation({ locale }: { locale: string }) {
         scrolled ? 'bg-[var(--color-navy)] py-4 shadow-lg' : 'bg-transparent py-6'
       }`}
     >
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 flex justify-between items-center">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-10 flex justify-between items-center gap-3 min-w-0">
         {/* Logo */}
-        <Link href={`/${locale}/insurance`} className="flex items-center gap-2 group z-50">
-          <ShieldCheck className="text-[var(--color-blue)] group-hover:text-white transition-colors" size={28} />
-          <div className="flex flex-col">
-            <span className="font-playfair text-[18px] text-white font-bold leading-none tracking-wide">
-              EA Western
+        <Link href={`/${locale}/insurance`} className="flex items-center gap-2 group z-50 min-w-0">
+          <ShieldCheck className="text-[var(--color-blue)] group-hover:text-white transition-colors shrink-0" size={28} />
+          <div className="flex flex-col min-w-0">
+            <span className="font-playfair text-[16px] sm:text-[18px] text-white font-bold leading-none tracking-wide truncate">
+              eawestern
             </span>
-            <span className="text-[10px] uppercase text-[var(--color-slate)] tracking-[0.2em] font-medium opacity-80 mt-1">
+            <span className="text-[9px] sm:text-[10px] uppercase text-[var(--color-slate)] tracking-[0.15em] sm:tracking-[0.2em] font-medium opacity-80 mt-1 truncate max-w-[200px] sm:max-w-none">
               Insurance Solutions
             </span>
           </div>

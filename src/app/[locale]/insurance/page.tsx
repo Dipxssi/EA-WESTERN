@@ -213,7 +213,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 className="relative"
               >
                 <div className="aspect-square relative rounded-[16px] overflow-hidden bg-[var(--color-navy)] shadow-2xl">
-                  <img src="/images/insurance-family.jpg" alt="Family Security" className="w-full h-full object-cover mix-blend-luminosity opacity-80" />
+                  <img src="/images/whole%20life.png" alt="Multi-generational family and whole life protection" className="w-full h-full object-cover mix-blend-luminosity opacity-80" />
                   <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-navy)]/80 to-[var(--color-blue)]/20 mix-blend-multiply" />
                 </div>
                 {/* Floating Badge */}
@@ -231,7 +231,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <div className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-3">The EA Western Difference</div>
+                <div className="text-[12px] tracking-[0.12em] font-semibold text-[var(--color-blue)] mb-3">The eawestern difference</div>
                 <h2 className="text-[36px] md:text-[44px] text-[var(--color-navy)] font-bold mb-6 leading-tight">
                   Clear Policies. Real Support.
                 </h2>

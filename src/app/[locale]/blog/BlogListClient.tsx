@@ -39,7 +39,7 @@ export default function BlogListClient({ locale }: { locale: string }) {
   };
 
   return (
-    <div className="bg-white text-gray-900 min-h-screen">
+    <div className="bg-white text-gray-900 min-h-screen w-full overflow-x-hidden">
       <Navigation locale={locale} />
       <main className="pt-0 pb-16">
         {/* Hero Section with Background Image */}

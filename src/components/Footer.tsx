@@ -14,8 +14,8 @@ export function Footer() {
               <div className="w-[35px] h-[35px] border border-[var(--color-gold)] flex items-center justify-center text-[14px] text-[var(--color-gold)] font-medium transition-all group-hover:bg-[var(--color-gold)] group-hover:text-[#0B1F2E]">
                 EW
               </div>
-              <span className="text-[12px] uppercase tracking-[0.4em] text-white font-medium">
-                EA Western
+              <span className="text-[12px] tracking-[0.15em] text-white font-medium">
+                eawestern
               </span>
             </Link>
             <p className="text-[15px] text-white/50 font-light leading-[1.8] max-w-[280px]">
@@ -45,13 +45,8 @@ export function Footer() {
             <h4 className="uppercase-label text-[var(--color-gold)] mb-8 pb-4 border-b border-[var(--color-gold)]/10 inline-block">Global Office</h4>
             <div className="space-y-4 text-[15px] text-white/60 font-light">
               <div>+254 700 123 456</div>
-              <div>corporate@eawestern.com</div>
-              <div className="leading-relaxed">Westlands Innovation Hub<br/>Nairobi, Kenya</div>
-            </div>
-            <div className="mt-8 flex gap-4">
-               {['IN', 'TW', 'IG'].map(social => (
-                 <a key={social} href="#" className="w-[36px] h-[36px] border border-white/10 flex items-center justify-center text-[11px] font-medium text-white/40 hover:bg-[var(--color-gold)] hover:text-[#0B1F2E] hover:border-[var(--color-gold)] transition-all">{social}</a>
-               ))}
+              <a href="mailto:info@eawestern.com" className="block text-white/60 hover:text-[var(--color-gold)] transition-colors">info@eawestern.com</a>
+              <div className="leading-relaxed">Utalii House, Utalii Street<br/>Nairobi, Kenya</div>
             </div>
           </div>
 
@@ -59,7 +54,7 @@ export function Footer() {
         
         <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-[10px] tracking-[0.2em] text-white/30 font-medium uppercase">
-            © {new Date().getFullYear()} EA WESTERN GROUP — ALL RIGHTS RESERVED
+            © {new Date().getFullYear()} eawestern group — all rights reserved
           </div>
           
           <div className="text-[10px] tracking-[0.1em] text-white/30 font-medium uppercase">

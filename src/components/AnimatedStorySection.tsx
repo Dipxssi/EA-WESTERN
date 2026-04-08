@@ -66,7 +66,7 @@ export function AnimatedStorySection() {
 
   const paragraphs = [
     {
-      text: "At Eawestern, we believe every journey deserves confidence — whether you're exploring East Africa's wild beauty, protecting what matters most, or simply getting where you need to go.",
+      text: "At eawestern, we believe every journey deserves confidence — whether you're exploring East Africa's wild beauty, protecting what matters most, or simply getting where you need to go.",
       direction: 'left'
     },
     {
@@ -98,7 +98,7 @@ export function AnimatedStorySection() {
         {/* Centered Title and Subtitle */}
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-light mb-6 text-gray-900">
-            The Eawestern Story
+            The eawestern story
           </h2>
           <h3 className="text-2xl lg:text-3xl font-light mb-8 text-gray-700">
             Your Trusted Partner in Travel, Car Hire & Insurance
@@ -135,7 +135,7 @@ export function AnimatedStorySection() {
           <div className="relative">
             <img
               src="/images/aboutus.png"
-              alt="About Eawestern"
+              alt="About eawestern"
               className="w-full h-auto rounded-lg shadow-lg object-cover"
             />
           </div>

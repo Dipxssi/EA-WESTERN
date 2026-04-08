@@ -9,7 +9,7 @@ export function ContactBlockSection() {
       <div className="absolute inset-0 w-full h-full">
         <img 
           src="/images/hero-kenya-bg.png" 
-          alt="EA Western Contact" 
+          alt="eawestern contact" 
           className="w-full h-full object-cover scale-105 opacity-40 grayscale-[30%]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1F2E]/60 via-[#0B1F2E]/90 to-[#0B1F2E]" />

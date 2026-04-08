@@ -14,12 +14,12 @@ const testimonials = [
     location: "Nairobi"
   },
   {
-    quote: "We needed a reliable partner on the ground in East Africa, and EA Western delivered beyond expectations. The coordination, communication, and execution were top-tier.",
+    quote: "We needed a reliable partner on the ground in East Africa, and eawestern delivered beyond expectations. The coordination, communication, and execution were top-tier.",
     author: "Daniel K.",
     location: "New York, USA"
   },
   {
-    quote: "EA Western is the only partner I trust. They managed our corporate fleet, insured our offices, and planned our end-of-year safari. Having one team handle everything is a game-changer for my business.",
+    quote: "eawestern is the only partner I trust. They managed our corporate fleet, insured our offices, and planned our end-of-year safari. Having one team handle everything is a game-changer for my business.",
     author: "Allan M",
     location: "Director, Regional Logistics Firm"
   }

@@ -33,7 +33,7 @@ export default function ContactPage({ params }: { params: Promise<{ locale: stri
 
   return (
     <div
-      className="min-h-screen text-[var(--text-primary)] font-jost"
+      className="min-h-screen w-full overflow-x-hidden text-[var(--text-primary)] font-jost"
       style={{ background: 'var(--background-gradient)' }}
     >
       <HomeTomatoTheme />

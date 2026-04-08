@@ -1,0 +1,79 @@
+.section {
+  --accent: #a0714f;
+  --muted: #7a7268;
+  --muted-light: #9a9288;
+  --tag-bg: #f3efe8;
+}
+
+.fontSerif {
+  font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+}
+
+.fontSans {
+  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Pulse ring: CSS cannot animate SVG r reliably; scale disc from r=14 toward ~20. */
+@keyframes pinPulseScale {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.43);
+  }
+}
+
+.pulseRing {
+  transform-origin: center;
+  animation: pinPulseScale 2s ease-out infinite;
+}
+
+.pinHit {
+  cursor: pointer;
+}
+
+.pinInnerCircle {
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.pinHit:hover .pinInnerCircle {
+  transform: scale(1.25);
+}
+
+.mapScaleWrap {
+  transition: transform 0.45s ease;
+  transform-origin: center center;
+}
+
+@media (min-width: 768px) {
+  .mapCol:hover .mapScaleWrap {
+    transform: scale(1.04);
+  }
+}
+
+.detailScroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 113, 79, 0.35) transparent;
+}
+
+.detailScroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.detailScroll::-webkit-scrollbar-thumb {
+  background: rgba(160, 113, 79, 0.35);
+  border-radius: 6px;
+}
+
+.bookBtn {
+  background: #a0714f;
+  color: #fff;
+  transition: background 0.2s ease;
+}
+
+.bookBtn:hover {
+  background: #7d5539;
+}

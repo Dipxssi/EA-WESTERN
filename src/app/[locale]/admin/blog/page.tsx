@@ -81,7 +81,7 @@ export default function AdminBlogPage({ params }: { params: Promise<{ locale: st
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen w-full overflow-x-hidden">
       <Navigation locale={locale} />
       {/* Notification Toast */}
       {notification && (
@@ -128,7 +128,7 @@ export default function AdminBlogPage({ params }: { params: Promise<{ locale: st
       )}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Header */}
-        <div className="mb-8 flex justify-between items-center">
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
           <div>
             <h1 className="text-3xl sm:text-4xl font-light text-gray-900 mb-2">
               Blog Management
@@ -137,7 +137,7 @@ export default function AdminBlogPage({ params }: { params: Promise<{ locale: st
           </div>
           <Link
             href={`/${locale}/admin/blog/new`}
-            className="bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            className="bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-colors text-center shrink-0"
           >
             + New Post
           </Link>
@@ -160,6 +160,7 @@ export default function AdminBlogPage({ params }: { params: Promise<{ locale: st
           </div>
         ) : (
           <div className="bg-white rounded-lg shadow overflow-hidden">
+            <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -239,6 +240,7 @@ export default function AdminBlogPage({ params }: { params: Promise<{ locale: st
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         )}
       </main>

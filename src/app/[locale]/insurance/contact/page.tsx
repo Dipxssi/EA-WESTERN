@@ -117,7 +117,7 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                     </div>
                     <h3 className="text-[28px] font-bold text-[var(--color-navy)] mb-4">Request Received</h3>
                     <p className="text-[15px] text-[var(--color-charcoal)]/70 max-w-[340px] leading-[1.7]">
-                      Thank you for trusting EA Western. A licensed advisor will review your details and contact you within one business day with a customized quote overview.
+                      Thank you for trusting eawestern. A licensed advisor will review your details and contact you within one business day with a customized quote overview.
                     </p>
                   </motion.div>
                 ) : (

@@ -17,7 +17,7 @@ export function AboutSection({ locale = 'en' }: { locale?: string }) {
             transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
           >
             <div className="uppercase-label mb-8">
-              The EA Western Narrative
+              The eawestern narrative
             </div>
             
             <h2 className="serif text-[36px] md:text-[56px] leading-[1.1] mb-10 text-white">
@@ -26,7 +26,7 @@ export function AboutSection({ locale = 'en' }: { locale?: string }) {
             
             <div className="space-y-8 text-lg text-white/50 font-light leading-relaxed max-w-[500px]">
               <p>
-                Eawestern was founded to simplify how individuals and businesses experience travel, transport, and insurance across East Africa.
+                eawestern was founded to simplify how individuals and businesses experience travel, transport, and insurance across East Africa.
               </p>
               <p>
                 Instead of dealing with multiple providers, our clients rely on one trusted team to plan, manage, and support every detail-from safari logistics to vehicle coordination and insurance coverage.
@@ -59,7 +59,7 @@ export function AboutSection({ locale = 'en' }: { locale?: string }) {
             <div className="aspect-[4/5] overflow-hidden border border-[var(--color-gold)]/20">
               <img 
                 src="/images/promise.png" 
-                alt="EA Western Narrative" 
+                alt="eawestern narrative" 
                 className="w-full h-full object-cover opacity-100 transition-all duration-1000 hover:brightness-[1.05] hover:scale-[1.01]"
               />
             </div>

@@ -5,7 +5,7 @@ import { Quote } from 'lucide-react';
 const safariTestimonials = [
   {
     quote:
-      'EA Western curated our Maasai Mara trip end-to-end. From seamless transport to incredible guides, we felt cared for every moment.',
+      'eawestern curated our Maasai Mara trip end-to-end. From seamless transport to incredible guides, we felt cared for every moment.',
     author: 'Grace & Daniel',
     location: 'Kenya',
     initials: 'GD',

@@ -61,16 +61,16 @@ export function Navigation({ locale = 'en' }: NavigationProps) {
 
   return (
     <nav className="fixed w-full top-0 z-50 transition-colors duration-500 border-b border-white/5 bg-[#0B1F2E]/30 backdrop-blur-xl">
-      <div className="mx-auto px-6 max-w-7xl md:px-10">
-        <div className="flex justify-between items-center py-5">
+      <div className="mx-auto px-4 sm:px-6 max-w-7xl md:px-10 min-w-0">
+        <div className="flex justify-between items-center py-4 sm:py-5 gap-3 min-w-0">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link href={`/${locale}`} className="flex items-center gap-4 no-underline group">
+          <div className="flex items-center min-w-0">
+            <Link href={`/${locale}`} className="flex items-center gap-2 sm:gap-4 no-underline group min-w-0">
               <div className="w-[35px] h-[35px] border border-[var(--color-gold)] flex items-center justify-center text-[14px] text-[var(--color-gold)] font-medium transition-all group-hover:bg-[var(--color-gold)] group-hover:text-[#0d1b2e]">
                 EW
               </div>
-              <span className="text-[12px] uppercase tracking-[0.4em] text-white font-medium">
-                EA Western
+              <span className="text-[10px] sm:text-[12px] tracking-[0.12em] sm:tracking-[0.2em] text-white font-medium truncate max-w-[120px] sm:max-w-none">
+                eawestern
               </span>
             </Link>
           </div>

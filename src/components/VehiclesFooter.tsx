@@ -16,8 +16,8 @@ export function VehiclesFooter() {
                 <Car size={20} className="relative z-10" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[18px] md:text-[20px] font-bold text-white tracking-widest uppercase leading-none">
-                  EA Western
+                <span className="text-[18px] md:text-[20px] font-bold text-white tracking-wide leading-none">
+                  eawestern
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.2em] text-white/60 font-bold mt-1">Car Hire & Leasing</span>
               </div>
@@ -38,14 +38,14 @@ export function VehiclesFooter() {
                 </a>
               </li>
               <li>
-                <a href="mailto:booking@eawestern.com" className="flex items-center gap-3 text-[14px] text-white/60 hover:text-white transition-colors group">
-                  <Mail size={16} className="text-white/40 group-hover:text-white" /> booking@eawestern.com
+                <a href="mailto:info@eawestern.com" className="flex items-center gap-3 text-[14px] text-white/60 hover:text-white transition-colors group">
+                  <Mail size={16} className="text-white/40 group-hover:text-white" /> info@eawestern.com
                 </a>
               </li>
               <li>
                 <div className="flex items-start gap-3 text-[14px] text-white/60 group">
                   <MapPin size={16} className="text-white/40 mt-1" />
-                  <span className="leading-[1.6]">Automotive Hub, Westlands<br/>Nairobi, Kenya</span>
+                  <span className="leading-[1.6]">Utalii House, Utalii Street<br/>Nairobi, Kenya</span>
                 </div>
               </li>
             </ul>
@@ -91,7 +91,7 @@ export function VehiclesFooter() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[12px] text-white/40 text-center md:text-left">
-            © {new Date().getFullYear()} EA Western Automotive. All rights reserved.
+            © {new Date().getFullYear()} eawestern automotive. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link href="#" className="text-[12px] text-white/40 hover:text-white transition-colors">Rental Agreements</Link>

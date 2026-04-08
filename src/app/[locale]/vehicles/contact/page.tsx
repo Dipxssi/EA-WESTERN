@@ -79,7 +79,7 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
                   </div>
                   <div>
                     <div className="text-[12px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Booking Desk</div>
-                    <a href="mailto:booking@eawestern.com" className="text-[18px] font-bold text-black hover:text-neutral-700 transition-colors">booking@eawestern.com</a>
+                    <a href="mailto:info@eawestern.com" className="text-[18px] font-bold text-black hover:text-neutral-700 transition-colors">info@eawestern.com</a>
                   </div>
                 </div>
 
@@ -89,7 +89,7 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
                   </div>
                   <div>
                     <div className="text-[12px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Fleet Hub</div>
-                    <div className="text-[15px] font-medium text-black">Automotive Hub, Westlands<br/>Nairobi, Kenya</div>
+                    <div className="text-[15px] font-medium text-black">Utalii House, Utalii Street<br/>Nairobi, Kenya</div>
                   </div>
                 </div>
               </div>
@@ -113,7 +113,7 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
                     </div>
                     <h3 className="text-[28px] font-extrabold text-black mb-4 uppercase">Request Received</h3>
                     <p className="text-[15px] text-neutral-600 max-w-[340px] leading-[1.7]">
-                      Thank you for choosing EA Western. A booking specialist will contact you within the hour to confirm your vehicle and itinerary details.
+                      Thank you for choosing eawestern. A booking specialist will contact you within the hour to confirm your vehicle and itinerary details.
                     </p>
                   </motion.div>
                 ) : (

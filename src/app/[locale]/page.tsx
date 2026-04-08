@@ -21,7 +21,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div
-      className="min-h-screen text-[var(--text-primary)]"
+      className="min-h-screen w-full overflow-x-hidden text-[var(--text-primary)]"
       style={{ background: 'var(--background-gradient)' }}
     >
       <HomeTomatoTheme />

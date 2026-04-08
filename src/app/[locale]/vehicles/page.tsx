@@ -65,8 +65,8 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 variants={fadeInUp}
                 className="text-[48px] md:text-[64px] lg:text-[76px] text-white leading-[1.05] mb-6 font-extrabold tracking-tight uppercase"
               >
-                Drive <br />
-                <span className="text-white">Without Limits.</span>
+                Reliable Mobility, <br />
+                <span className="text-white">Without Compromise</span>
               </motion.h1>
               
               <motion.p 
@@ -76,7 +76,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 variants={fadeInUp}
                 className="text-[16px] md:text-[18px] text-white/70 leading-[1.7] mb-10 max-w-[500px]"
               >
-                Impeccably maintained vehicles for business, high-end travel, and self-drive adventures. Fully insured, fully compliant, zero compromises.
+                Fully maintained, insured, and compliant vehicles for business travel, executive movement, safaris, and self-drive.
               </motion.p>
               
               <motion.div 
@@ -108,9 +108,9 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
           <div className="max-w-[1200px] mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
               {[
-                { icon: ShieldCheck, title: 'NTSA Inspected', desc: '100% compliant and rigorously maintained.' },
-                { icon: Target, title: 'Transparent Pricing', desc: 'No hidden fees or surprise fuel charges.' },
-                { icon: Headphones, title: '24/7 Road Rescue', desc: 'Immediate dispatch for any on-road issue.' },
+                { icon: ShieldCheck, title: 'NTSA Inspected & Fully Compliant', desc: 'Rigorously inspected vehicles maintained to national transport standards.' },
+                { icon: Target, title: 'Clear, Transparent Pricing', desc: 'Straightforward quotes with no hidden fees or surprise charges.' },
+                { icon: Headphones, title: '24/7 Roadside Support', desc: 'Immediate assistance and dispatch whenever you need help on the road.' },
               ].map((adv, idx) => (
                 <div key={idx} className="flex flex-col items-center justify-center p-10 text-center">
                   <div className="w-[48px] h-[48px] rounded-full bg-black flex items-center justify-center text-white mb-4">
@@ -131,7 +131,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
               <div>
                 <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-black mb-3">The Garage</div>
                 <h2 className="text-[36px] md:text-[48px] text-black font-extrabold leading-tight uppercase">
-                  Engineered for <br/> Your Agenda
+                  Vehicles Designed for <br/> Your Needs
                 </h2>
               </div>
               <Link 
@@ -145,7 +145,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 { title: 'Executive Sedans', desc: 'Premium comfort for airport transfers and corporate movements.', img: '/images/carCard2.png' },
-                { title: 'Safari 4x4s', desc: 'Rugged, kitted Land Cruisers for remote, off-road expeditions.', img: '/images/carCard1.png' },
+                { title: 'Safari 4x4', desc: 'Fully equipped Land Cruisers designed for off-road terrain and safari travel.', img: '/images/carCard1.png' },
                 { title: 'Corporate Vans', desc: 'Spacious high-roof shuttles for group and executive transport.', img: '/images/carCard3.png' },
               ].map((fleet, idx) => (
                  <motion.div 
@@ -200,12 +200,11 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-black mb-3">Uncompromising Standard</div>
                 <h2 className="text-[36px] md:text-[44px] text-black font-extrabold mb-6 leading-tight uppercase">
-                  Not Just A Rental. <br/> A Partnership.
+                  More Than Vehicle Hire
                 </h2>
                 <p className="text-[16px] text-neutral-600 leading-[1.7] mb-8">
-                  We don't just hand you keys. We provide a complete mobility solution backed by strict mechanical protocols, integrated insurance, and vetted professional drivers.
+                  We provide structured mobility solutions supported by strict maintenance protocols, integrated insurance, and experienced drivers—ensuring reliability at every stage.
                 </p>
 
                 <ul className="space-y-4">

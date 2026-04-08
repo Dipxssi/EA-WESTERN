@@ -56,7 +56,7 @@ export default function BlogPostClient({ locale, id }: { locale: string; id: str
 
   if (loading) {
     return (
-      <div className="bg-white min-h-screen">
+      <div className="bg-white min-h-screen w-full overflow-x-hidden">
         <Navigation locale={locale} />
         <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
           <p className="text-center text-gray-600">Loading...</p>
@@ -68,7 +68,7 @@ export default function BlogPostClient({ locale, id }: { locale: string; id: str
 
   if (!post) {
     return (
-      <div className="bg-white min-h-screen">
+      <div className="bg-white min-h-screen w-full overflow-x-hidden">
         <Navigation locale={locale} />
         <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
           <div className="text-center">
@@ -116,7 +116,7 @@ export default function BlogPostClient({ locale, id }: { locale: string; id: str
   }
 
   return (
-    <div className="bg-white text-gray-900 min-h-screen">
+    <div className="bg-white text-gray-900 min-h-screen w-full overflow-x-hidden">
       <Navigation locale={locale} />
       <main className="pt-0 pb-16">
         {/* Hero Image */}
@@ -176,7 +176,7 @@ export default function BlogPostClient({ locale, id }: { locale: string; id: str
           </header>
 
           {/* Article Body */}
-          <div className="prose prose-lg max-w-none prose-headings:font-light prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-900 prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700">
+          <div className="prose prose-lg max-w-none break-words prose-headings:font-light prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-900 prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-pre:overflow-x-auto">
             {post.content ? (
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {post.content}

@@ -13,7 +13,7 @@ export function InsuranceFooter() {
               <ShieldAlert className="text-[var(--color-blue)]" size={28} />
               <div className="flex flex-col">
                 <span className="font-playfair text-[20px] font-bold leading-none tracking-wide text-white">
-                  EA Western
+                  eawestern
                 </span>
                 <span className="text-[10px] uppercase text-[var(--color-slate)] tracking-[0.2em] font-medium opacity-80 mt-1">
                   Insurance Solutions
@@ -68,7 +68,7 @@ export function InsuranceFooter() {
             <h4 className="text-[12px] uppercase tracking-[0.15em] font-semibold text-[var(--color-blue)] mb-6">Compliance</h4>
             <div className="p-5 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.05)] rounded-[4px]">
               <p className="text-[12px] text-white/60 leading-[1.6]">
-                EA Western is fully licensed and regulated by the Insurance Regulatory Authority (IRA). All policies are issued in accordance with current regulatory standards.
+                eawestern is fully licensed and regulated by the Insurance Regulatory Authority (IRA). All policies are issued in accordance with current regulatory standards.
               </p>
               <div className="flex items-center gap-2 mt-4 text-[11px] uppercase tracking-[0.1em] text-white font-semibold">
                 <ShieldAlert size={14} className="text-[var(--color-green)]" />
@@ -81,7 +81,7 @@ export function InsuranceFooter() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between">
           <p className="text-[12px] text-white/40 mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} EA Western Insurance. All Rights Reserved.
+            &copy; {new Date().getFullYear()} eawestern insurance. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="#" className="text-[12px] text-white/40 hover:text-white transition-colors">Privacy Policy</Link>

@@ -10,14 +10,14 @@ import { Users, Briefcase, Cog, Gauge, Car, Truck } from 'lucide-react';
 const fleetData = [
   {
     category: 'Executive Sedans',
-    description: 'Arrive at your meetings in absolute comfort. Our executive sedans offer a quiet, luxurious ride with professional, vetted chauffeurs.',
+    description: 'Reliable, comfortable transport for corporate travel and executive movement.',
     icon: Car,
     specs: ['Up to 3 Passengers', 'Leather Interiors', 'Climate Control', 'On-Board WiFi'],
     image: '/images/carCard2.png'
   },
   {
-    category: 'Safari & 4x4 Off-Road',
-    description: 'Engineered for the unpredictable terrain of East Africa. Kitted Land Cruisers and Prados ready for remote project sites or wild safaris.',
+    category: 'Safari 4x4',
+    description: 'Built for East African terrain, these vehicles are equipped for both remote travel and structured safari use.',
     icon: Truck,
     specs: ['Up to 5 Passengers', '4WD / Diff-Locks', 'Pop-Up Safari Roof Optional', 'Heavy Duty Suspension'],
     image: '/images/carCard1.png'
