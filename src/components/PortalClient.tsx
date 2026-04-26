@@ -182,7 +182,7 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
                       : `/${locale}/vehicles`;
                 handleCardNavigation(destination);
               }}
-              className="group relative min-h-[280px] h-[320px] sm:h-[350px] md:h-[500px] cursor-pointer bg-[#0B1F2E] transition-all duration-700 overflow-hidden"
+              className="group relative min-h-[380px] sm:min-h-[420px] md:min-h-[520px] cursor-pointer bg-[#0B1F2E] transition-all duration-700 overflow-hidden"
             >
               <div className="absolute inset-0">
                 <img
@@ -191,25 +191,34 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
                   className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-1000"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F2E]/78 via-[#0B1F2E]/38 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F2E]/90 via-[#0B1F2E]/45 via-[42%] to-[#0B1F2E]/10"></div>
+              {/* Darken lower half so body + CTA read clearly on busy / bright image areas */}
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#020a12] via-[#020a12]/88 via-[38%] to-transparent"
+                aria-hidden
+              />
               <div className="absolute inset-0 border border-[var(--color-gold)]/10 pointer-events-none"></div>
               <div className="absolute inset-x-0 bottom-0 h-[1px] bg-[var(--color-gold)]/15 pointer-events-none"></div>
               <div className="absolute inset-x-0 top-0 h-[1px] bg-[var(--color-gold)]/15 pointer-events-none"></div>
 
-              <div className="relative z-10 p-6 sm:p-8 md:p-12 h-full flex flex-col justify-between">
+              <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8 md:p-12">
                 <div>
                   <div className="text-[14px] text-white/30 mb-6 font-light uppercase tracking-widest">0{idx + 1}</div>
-                  <div className="w-16 h-16 border border-[var(--color-gold)]/20 flex items-center justify-center text-[var(--color-gold)] mb-10 group-hover:bg-[var(--color-gold)] group-hover:text-[#0d1b2e] transition-all duration-700">
+                  <div className="mb-10 flex h-16 w-16 items-center justify-center border border-[var(--color-gold)]/20 text-[var(--color-gold)] transition-all duration-700 group-hover:bg-[var(--color-gold)] group-hover:text-[#0d1b2e]">
                     <portfolio.icon size={32} />
                   </div>
-                  <h3 className="serif text-2xl sm:text-3xl md:text-4xl text-white mb-4 sm:mb-6 leading-tight group-hover:text-[var(--color-gold)] transition-colors duration-500">
+                  <h3
+                    className="serif text-2xl sm:text-3xl md:text-4xl text-white mb-4 sm:mb-6 leading-tight transition-colors duration-500 [text-shadow:0_2px_20px_rgba(0,0,0,0.85),0_1px_3px_rgba(0,0,0,0.95)] group-hover:text-[var(--color-gold)]"
+                  >
                     {portfolio.title}
                   </h3>
                 </div>
-                <div className="text-base md:text-lg text-white/60 leading-relaxed font-light transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 max-w-[320px]">
-                  {portfolio.description}
-                  <div className="mt-6 flex items-center gap-4">
-                    <span className="text-[var(--color-gold)] text-[10px] uppercase tracking-[0.3em] font-medium group-hover:text-white transition-colors duration-500">
+                <div className="mt-auto max-w-[20rem] rounded-sm border border-white/10 bg-[#0B1F2E]/55 p-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-[6px] sm:max-w-[22rem] md:p-5">
+                  <p className="text-[15px] font-normal leading-relaxed text-white/95 antialiased [text-shadow:0_1px_2px_rgba(0,0,0,0.5)] sm:text-base md:text-[17px]">
+                    {portfolio.description}
+                  </p>
+                  <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
+                    <span className="text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] text-[#E8D4A4] [text-shadow:0_1px_3px_rgba(0,0,0,0.75)] sm:text-[11px] sm:tracking-[0.28em] group-hover:text-white transition-colors duration-500">
                       {portfolio.id === 'safaris'
                         ? 'Explore Itineraries'
                         : portfolio.id === 'insurance'
