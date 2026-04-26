@@ -68,10 +68,10 @@ export default function ContactPage({ params }: { params: Promise<{ locale: stri
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)] mb-1">Phone</div>
                   <a
-                    href="tel:+254798217201"
+                    href="tel:+254751216699"
                     className="font-sans text-[16px] text-[var(--text-primary)] hover:text-[var(--color-gold)] transition-colors"
                   >
-                    +254 798 217 201
+                    +254 751 216 699
                   </a>
                 </div>
                 <div>

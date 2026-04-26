@@ -44,7 +44,7 @@ export function Footer() {
           <div>
             <h4 className="uppercase-label text-[var(--color-gold)] mb-8 pb-4 border-b border-[var(--color-gold)]/10 inline-block">Global Office</h4>
             <div className="space-y-4 text-[15px] text-white/60 font-light">
-              <div>+254 700 123 456</div>
+              <div>+254 751 216 699</div>
               <a href="mailto:info@eawestern.com" className="block text-white/60 hover:text-[var(--color-gold)] transition-colors">info@eawestern.com</a>
               <div className="leading-relaxed">Utalii House, Utalii Street<br/>Nairobi, Kenya</div>
             </div>

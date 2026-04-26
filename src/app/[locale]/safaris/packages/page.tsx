@@ -5,7 +5,7 @@ import { SafariFooter } from '@/components/SafariFooter';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Binoculars, Camera, Flame, MapPin, Mountain, Tent, Users, Waves, Plane } from 'lucide-react';
+import { Binoculars, Camera, Flame, Mountain, Tent, Users, Waves } from 'lucide-react';
 
 const destinationPackages = [
   {
@@ -217,100 +217,30 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
             </p>
           </div>
 
-          <div className="space-y-16">
-            {destinationPackages.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <motion.article
-                  key={item.destination}
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.55, delay: idx * 0.05 }}
-                  className="overflow-hidden border-y border-black/10 bg-white/90 shadow-[0_12px_30px_rgba(0,0,0,0.04)]"
+          <div className="overflow-hidden rounded-[14px] border border-black/10 bg-white/80 shadow-[0_14px_34px_rgba(0,0,0,0.06)]">
+            <div className="packages-track flex w-max gap-4 p-4">
+              {[...destinationPackages, ...destinationPackages].map((item, idx) => (
+                <Link
+                  key={`${item.destination}-${idx}`}
+                  href={`/${locale}/safaris/contact`}
+                  className="group relative block h-[460px] w-[320px] overflow-hidden rounded-[10px] no-underline"
+                  style={{ backgroundImage: `url('${item.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                 >
-                  <div className={`grid grid-cols-1 lg:grid-cols-[52%_48%] ${idx % 2 === 1 ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1' : ''}`}>
-                    <div className="relative min-h-[320px] lg:min-h-[620px]">
-                      <img src={item.image} alt={item.destination} className="h-full w-full object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/20" />
-                      <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-[rgba(11,31,46,0.62)] px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)] backdrop-blur-md">
-                        <MapPin size={13} />
-                        <span>{item.country}</span>
-                      </div>
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <div className="mb-4 flex flex-wrap gap-2">
-                          <span className="inline-block rounded-full border border-white/30 bg-black/25 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
-                            {item.duration}
-                          </span>
-                          <span className="inline-block rounded-full border border-white/30 bg-black/25 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
-                            Pace: {item.pace}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-3 text-white">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-gold)] text-[var(--color-deep-green)] shadow-sm">
-                            <Icon size={18} strokeWidth={1.8} />
-                          </div>
-                          <h3 className="font-playfair text-[28px] leading-tight md:text-[38px]">{item.destination}</h3>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-[#F8F3E8] p-7 md:p-10 lg:p-14">
-                      <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-[var(--color-terracotta)]">Itinerary Snapshot</div>
-                      <p className="font-sans text-[16px] md:text-[18px] font-light leading-[1.85] text-[#6a5040]">{item.description}</p>
-
-                      <div className="mt-7 rounded-[10px] border border-black/10 bg-white/70 px-5 py-5 md:px-6">
-                        <div className="mb-3 text-[11px] uppercase tracking-[0.15em] text-[var(--color-terracotta)]">Travel Flow</div>
-                        <div className="flex flex-col gap-3">
-                          <div className="flex items-center gap-3">
-                            <MapPin size={15} className="text-[var(--color-terracotta)]" />
-                            <span className="font-sans text-[14px] md:text-[15px] text-[#6a5040]">{item.arrivalHub}</span>
-                          </div>
-                          <div className="ml-[7px] h-4 w-[1px] bg-[var(--color-terracotta)]/35" />
-                          <div className="flex items-center gap-3">
-                            <div className="flex items-center text-[var(--color-terracotta)]">
-                              <span className="w-8 border-t border-dashed border-[var(--color-terracotta)]/70" />
-                              <Plane size={13} className="mx-2" />
-                              <span className="w-8 border-t border-dashed border-[var(--color-terracotta)]/70" />
-                            </div>
-                            <span className="font-sans text-[14px] md:text-[15px] text-[#6a5040]">{item.flightPlan}</span>
-                          </div>
-                          <div className="ml-[7px] h-4 w-[1px] bg-[var(--color-terracotta)]/35" />
-                          <div className="flex items-center gap-3">
-                            <MapPin size={15} className="text-[var(--color-terracotta)]" />
-                            <span className="font-sans text-[14px] md:text-[15px] text-[#6a5040]">Arrive and settle in {item.destination}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="mt-5 flex flex-wrap gap-2">
-                        <span className="rounded-full bg-white px-3 py-1 text-[10px] uppercase tracking-[0.08em] text-[var(--color-deep-green)] border border-black/10">Best For: {item.bestFor}</span>
-                        <span className="rounded-full bg-white px-3 py-1 text-[10px] uppercase tracking-[0.08em] text-[var(--color-deep-green)] border border-black/10">Season: {item.season}</span>
-                      </div>
-
-                      <div className="mt-7 border-t border-black/10 pt-6">
-                        <div className="mb-2 text-[11px] uppercase tracking-[0.18em] text-[var(--color-terracotta)]">Overview</div>
-                        <p className="font-sans text-[15px] md:text-[16px] font-light leading-[1.85] text-[#6a5040]">{item.overview}</p>
-                      </div>
-
-                      <div className="mt-5 border-t border-black/10 pt-6">
-                        <div className="mb-3 text-[11px] uppercase tracking-[0.18em] text-[var(--color-terracotta)]">Day-by-Day</div>
-                        <div className="space-y-2.5">
-                          {item.itinerary.map((step) => (
-                            <div key={`${item.destination}-${step.day}`} className="flex items-start gap-3 font-sans text-[15px] md:text-[16px] font-light leading-[1.85] text-[#6a5040]">
-                              <span className="mt-[10px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[var(--color-terracotta)]" />
-                              <p>
-                                <span className="font-medium text-[var(--color-deep-green)]">{step.day}:</span> {step.plan}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/20 transition-opacity duration-500 group-hover:from-black/72" />
+                  <div className="absolute left-4 top-4 rounded-full border border-white/30 bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+                    {item.country}
                   </div>
-                </motion.article>
-              );
-            })}
+                  <div className="absolute right-4 top-4 rounded-full bg-[var(--color-gold)] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[var(--color-deep-green)]">
+                    {item.duration}
+                  </div>
+                  <div className="absolute bottom-5 left-5 right-5 text-white">
+                    <h3 className="font-playfair text-[38px] leading-[1.03]">{item.destination}</h3>
+                    <p className="mt-2 font-sans text-[14px] font-light leading-[1.6] text-white/85">{item.description}</p>
+                    <p className="mt-3 font-sans text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)]">Tap to plan this package</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -343,6 +273,24 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
       </main>
 
       <SafariFooter />
+      <style jsx>{`
+        .packages-track {
+          animation: packages-scroll-ltr 36s linear infinite;
+        }
+
+        .packages-track:hover {
+          animation-play-state: paused;
+        }
+
+        @keyframes packages-scroll-ltr {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0%);
+          }
+        }
+      `}</style>
     </div>
   );
 }

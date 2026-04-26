@@ -77,3 +77,123 @@
 .bookBtn:hover {
   background: #7d5539;
 }
+
+.scrollerViewport {
+  overflow: hidden;
+  border-radius: 16px;
+  border: 0.5px solid rgba(42, 37, 32, 0.18);
+  box-shadow: 0 18px 50px rgba(26, 22, 18, 0.06);
+}
+
+.scrollerTrack {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  padding: 8px;
+  animation: packagesScrollLtr 34s linear infinite;
+}
+
+.scrollerViewport:hover .scrollerTrack {
+  animation-play-state: paused;
+}
+
+.packageCard {
+  position: relative;
+  width: 320px;
+  height: 440px;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+.packageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 12, 18, 0.2) 0%, rgba(6, 12, 18, 0.74) 68%, rgba(6, 12, 18, 0.88) 100%);
+  z-index: 0;
+}
+
+.packageMetaTop {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.packagePill,
+.packagePillAccent {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #fff;
+}
+
+.packagePill {
+  background: rgba(0, 0, 0, 0.36);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+.packagePillAccent {
+  background: #a0714f;
+}
+
+.packageMetaBottom {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1;
+}
+
+.packageTitle {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1.04;
+  color: #fff;
+}
+
+.packageTagline {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.packagePrice {
+  margin: 14px 0 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #e8d6bf;
+}
+
+@keyframes packagesScrollLtr {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@media (max-width: 768px) {
+  .packageCard {
+    width: 280px;
+    height: 400px;
+  }
+
+  .packageTitle {
+    font-size: 36px;
+  }
+}

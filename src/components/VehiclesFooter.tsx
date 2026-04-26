@@ -32,8 +32,8 @@ export function VehiclesFooter() {
             <h4 className="text-[13px] uppercase tracking-[0.15em] font-bold text-white mb-6">Operations Desk</h4>
             <ul className="space-y-4">
               <li>
-                <a href="tel:1-800-CAR-HIRE" className="flex items-center gap-3 text-[14px] text-white/60 hover:text-white transition-colors group">
-                  <Phone size={16} className="text-white/40 group-hover:text-white" /> 1-800-CAR-HIRE
+                <a href="tel:+254751216699" className="flex items-center gap-3 text-[14px] text-white/60 hover:text-white transition-colors group">
+                  <Phone size={16} className="text-white/40 group-hover:text-white" /> +254 751 216 699
                   <span className="ml-2 text-[10px] bg-white/10 text-white/80 px-2 py-0.5 rounded-[2px] font-mono">24/7 Rescue</span>
                 </a>
               </li>

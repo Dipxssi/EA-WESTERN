@@ -64,7 +64,7 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
                 </div>
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)] mb-1">Call Us</div>
-                  <a href="tel:+254123456789" className="font-sans text-[16px] hover:text-[var(--color-terracotta)] transition-colors">+254 123 456 789</a>
+                  <a href="tel:+254751216699" className="font-sans text-[16px] hover:text-[var(--color-terracotta)] transition-colors">+254 751 216 699</a>
                 </div>
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)] mb-1">Office</div>

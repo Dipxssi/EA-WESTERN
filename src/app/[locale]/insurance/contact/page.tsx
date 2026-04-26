@@ -69,7 +69,7 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                   </div>
                   <div>
                     <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Phone</div>
-                    <a href="tel:+254798217201" className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors">+254 798 217 201</a>
+                    <a href="tel:+254751216699" className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors">+254 751 216 699</a>
                   </div>
                 </div>
 

@@ -125,6 +125,7 @@ export default function About() {
 
   return (
     <div
+      className="ew-about-root"
       style={{
         backgroundColor: "#0D1F2D",
         color: "#FFFFFF",
@@ -137,19 +138,20 @@ export default function About() {
         ["--ew-white" as string]: "#FFFFFF",
         ["--ew-muted" as string]: "rgba(255,255,255,0.65)",
         ["--ew-border" as string]: "rgba(255,255,255,0.1)",
+        ["--ew-section-pad" as string]: "92px",
         ["--font-playfair" as string]: "'Playfair Display', serif",
         ["--font-dm-sans" as string]: "'Jost', sans-serif",
       }}
     >
       <NavBar locale={locale} />
 
-      <main>
+      <main style={{ paddingTop: "82px" }}>
         <section
           className="ew-hero"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            height: "100vh",
+            height: "calc(100vh - 82px)",
             position: "relative",
             overflow: "hidden",
           }}
@@ -215,7 +217,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="ew-hero-photos" style={{ position: "relative", overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "3px" }}>
+          <div className="ew-hero-photos" style={{ position: "relative", overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "auto auto", gap: "3px", width: "100%", alignContent: "start" }}>
             {[
               { bg: "#1C3347", label: "Safari Experience", src: "/images/tours.png" },
               { bg: "#142535", label: "Car Hire", src: "/images/car image.jpg" },
@@ -230,8 +232,10 @@ export default function About() {
                   position: "relative",
                   overflow: "hidden",
                   display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  alignItems: "flex-start",
+                  justifyContent: "flex-end",
+                  width: "100%",
+                  aspectRatio: "1 / 1",
                   cursor: "default",
                 }}
               >
@@ -255,7 +259,9 @@ export default function About() {
                     color: "#FFFFFF",
                     textTransform: "uppercase",
                     letterSpacing: "0.14em",
-                    position: "relative",
+                    position: "absolute",
+                    top: "16px",
+                    right: "16px",
                     zIndex: 1,
                     textShadow: "0 2px 10px rgba(0,0,0,0.8)",
                     background: "rgba(11,31,46,0.55)",
@@ -273,7 +279,7 @@ export default function About() {
           </div>
         </section>
 
-        <section style={{ background: "#0D1F2D", padding: "100px 0" }}>
+        <section className="ew-section" style={{ background: "#0D1F2D" }}>
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
             <div className="ew-story-grid" style={{ display: "grid", gridTemplateColumns: "55% 45%", gap: "36px", alignItems: "start" }}>
               <div>
@@ -324,7 +330,7 @@ export default function About() {
           </div>
         </section>
 
-        <section style={{ background: "#142535", padding: "100px 0", position: "relative", overflow: "hidden" }}>
+        <section className="ew-section" style={{ background: "#142535", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 8%, transparent), color-mix(in srgb, var(--color-gold) 8%, transparent) 2px, transparent 2px, transparent 18px)" }} />
           <div style={{ position: "absolute", inset: 0, background: "rgba(13,31,45,0.85)" }} />
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
@@ -355,7 +361,7 @@ export default function About() {
           </div>
         </section>
 
-        <section style={{ background: "#0D1F2D", padding: "100px 0" }}>
+        <section className="ew-section" style={{ background: "#0D1F2D" }}>
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
             <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "16px", textAlign: "center" }}>What Sets Us Apart</p>
             <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
@@ -403,10 +409,10 @@ export default function About() {
                     }}
                   />
                   <div style={{ position: "relative", zIndex: 1 }}>
-                    <h3 style={{ fontFamily: "var(--font-dm-sans)", fontSize: "38px", marginBottom: "14px", fontWeight: 700, lineHeight: 1.2, color: "#FFFFFF" }}>
+                    <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "44px", marginBottom: "14px", fontWeight: 400, lineHeight: 1.15, color: "#FFFFFF" }}>
                       {item.title}
                     </h3>
-                    <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "15px", lineHeight: 1.8 }}>{item.body}</p>
+                    <p style={{ fontFamily: "var(--font-dm-sans)", color: "rgba(255,255,255,0.68)", fontSize: "15px", fontWeight: 300, lineHeight: 1.8 }}>{item.body}</p>
                   </div>
                 </div>
               ))}
@@ -414,7 +420,7 @@ export default function About() {
           </div>
         </section>
 
-        <section style={{ background: "#0D1F2D", padding: "100px 0" }}>
+        <section className="ew-section" style={{ background: "#0D1F2D" }}>
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
             <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", textAlign: "center", marginBottom: "12px" }}>Our Core Values</p>
             <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
@@ -445,7 +451,7 @@ export default function About() {
           </div>
         </section>
 
-        <section style={{ background: "#142535", padding: "100px 0", position: "relative", overflow: "hidden" }}>
+        <section className="ew-section" style={{ background: "#142535", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--color-gold) 8%, transparent), transparent 50%), radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--color-gold) 6%, transparent), transparent 50%)" }} />
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
             <div className="ew-why-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "center" }}>
@@ -480,7 +486,7 @@ export default function About() {
           </div>
         </section>
 
-        <section style={{ background: "#0D1F2D", padding: "80px 0", borderTop: "1px solid color-mix(in srgb, var(--color-gold) 10%, transparent)" }}>
+        <section className="ew-section" style={{ background: "#0D1F2D", borderTop: "1px solid color-mix(in srgb, var(--color-gold) 10%, transparent)" }}>
           <div style={{ maxWidth: "980px", margin: "0 auto", padding: "0 24px" }}>
             <div style={{ border: "1px solid rgba(255,255,255,0.12)", background: "linear-gradient(180deg, #12283B 0%, #102437 100%)", padding: "72px 40px", textAlign: "center" }}>
               <h2 style={{ fontFamily: "var(--font-playfair)", color: "#FFFFFF", fontSize: "clamp(34px, 4.2vw, 56px)", lineHeight: 1.15, marginBottom: "18px", fontWeight: 400 }}>
@@ -534,6 +540,9 @@ export default function About() {
           border-color: color-mix(in srgb, var(--color-gold) 30%, transparent) !important;
           background: color-mix(in srgb, #0F2A3D 85%, var(--color-gold) 15%) !important;
         }
+        .ew-section {
+          padding: var(--ew-section-pad) 0 !important;
+        }
         .ew-hero-tile-image {
           opacity: 1;
           filter: none;
@@ -573,6 +582,7 @@ export default function About() {
           .ew-why-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 768px) {
+          .ew-about-root { --ew-section-pad: 72px; }
           .ew-hero-left { padding: 100px 24px 60px !important; }
           .ew-stats-row { flex-wrap: wrap; gap: 24px !important; }
           .ew-team-grid { grid-template-columns: 1fr !important; }

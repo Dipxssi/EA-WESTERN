@@ -44,7 +44,7 @@ export function InsuranceFooter() {
                  <Phone size={18} className="text-white/40 mt-[2px]" />
                  <div>
                    <div className="text-[11px] uppercase tracking-[0.1em] text-white/40 mb-1">Phone</div>
-                   <a href="tel:+254798217201" className="text-[15px] font-medium hover:text-[var(--color-blue)] transition-colors">+254 798 217 201</a>
+                   <a href="tel:+254751216699" className="text-[15px] font-medium hover:text-[var(--color-blue)] transition-colors">+254 751 216 699</a>
                  </div>
                </li>
                <li className="flex items-start gap-3">

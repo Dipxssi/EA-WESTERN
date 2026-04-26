@@ -69,7 +69,7 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
                   </div>
                   <div>
                     <div className="text-[12px] uppercase tracking-[0.2em] text-neutral-500 font-bold mb-1">Direct Line / 24-7 Rescue</div>
-                    <a href="tel:1-800-CAR-HIRE" className="text-[18px] font-bold text-black hover:text-neutral-700 transition-colors">1-800-CAR-HIRE</a>
+                    <a href="tel:+254751216699" className="text-[18px] font-bold text-black hover:text-neutral-700 transition-colors">+254 751 216 699</a>
                   </div>
                 </div>
 
