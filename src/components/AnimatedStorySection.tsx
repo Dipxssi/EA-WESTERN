@@ -20,7 +20,7 @@ export function AnimatedStorySection() {
     '/images/nairobi-city.jpg',
     '/images/Diana Beach.jpg',
     '/images/car image.jpg',
-    '/images/insurance-family.jpg'
+    '/images/aboutus.png'
   ];
 
   useEffect(() => {

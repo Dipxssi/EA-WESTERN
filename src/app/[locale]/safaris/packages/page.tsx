@@ -170,6 +170,8 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
     params.then(({ locale }) => setLocale(locale));
   }, [params]);
 
+  const featuredPackages = destinationPackages.slice(0, 3);
+
   return (
     <div className="theme-safari bg-[var(--color-cream)] text-[#333] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-terracotta)] selection:text-[var(--color-cream)]">
       <SafariNavigation locale={locale} />
@@ -213,34 +215,62 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
             <div className="mb-4 h-[1px] w-[48px] bg-[var(--color-terracotta)]" />
             <h2 className="font-playfair text-[32px] text-[var(--color-deep-green)] md:text-[42px]">Editorial Journey Plans</h2>
             <p className="mt-4 max-w-[680px] font-sans text-[15px] font-light leading-[1.8] text-[#6a5040]">
-              A full-bleed itinerary format focused on what matters first: image, duration and pace, then your route and day-by-day plan.
+              Tap a card to flip it and preview what you can do there.
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-[14px] border border-black/10 bg-white/80 shadow-[0_14px_34px_rgba(0,0,0,0.06)]">
-            <div className="packages-track flex w-max gap-4 p-4">
-              {[...destinationPackages, ...destinationPackages].map((item, idx) => (
-                <Link
-                  key={`${item.destination}-${idx}`}
-                  href={`/${locale}/safaris/contact`}
-                  className="group relative block h-[460px] w-[320px] overflow-hidden rounded-[10px] no-underline"
-                  style={{ backgroundImage: `url('${item.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/20 transition-opacity duration-500 group-hover:from-black/72" />
-                  <div className="absolute left-4 top-4 rounded-full border border-white/30 bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
-                    {item.country}
+          <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-6 px-6 md:grid-cols-3 md:px-10">
+            {featuredPackages.map((item) => (
+              <div
+                key={item.destination}
+                className="flip-card h-[460px] w-full text-left"
+              >
+                <div className="flip-card-inner">
+                  <div
+                    className="flip-card-face flip-card-front relative h-full w-full overflow-hidden rounded-[14px]"
+                    style={{ backgroundImage: `url('${item.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/20" />
+                    <div className="absolute left-4 top-4 rounded-full border border-white/30 bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+                      {item.country}
+                    </div>
+                    <div className="absolute right-4 top-4 rounded-full bg-[var(--color-gold)] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[var(--color-deep-green)]">
+                      {item.duration}
+                    </div>
+                    <div className="absolute bottom-5 left-5 right-5 text-white">
+                      <h3 className="font-playfair text-[36px] leading-[1.03]">{item.destination}</h3>
+                      <p className="mt-2 font-sans text-[14px] font-light leading-[1.6] text-white/85">{item.description}</p>
+                      <p className="mt-3 font-sans text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)]">Tap to flip</p>
+                    </div>
                   </div>
-                  <div className="absolute right-4 top-4 rounded-full bg-[var(--color-gold)] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[var(--color-deep-green)]">
-                    {item.duration}
+
+                  <div className="flip-card-face flip-card-back flex h-full w-full flex-col rounded-[14px] border border-black/10 bg-[var(--color-deep-green)] p-6 text-[var(--color-cream)]">
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <item.icon size={20} className="text-[var(--color-gold)]" />
+                        <h3 className="font-playfair text-[28px] leading-none">{item.destination}</h3>
+                      </div>
+                      <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.16em]">{item.duration}</span>
+                    </div>
+                    <p className="mb-4 font-sans text-[11px] uppercase tracking-[0.18em] text-[var(--color-gold)]">What you can do here</p>
+                    <ul className="space-y-3 font-sans text-[14px] leading-[1.5] text-white/85">
+                      {item.activities.slice(0, 4).map((activity) => (
+                        <li key={activity} className="flex gap-2">
+                          <span className="mt-[6px] h-[6px] w-[6px] shrink-0 rounded-full bg-[var(--color-gold)]" />
+                          <span>{activity}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      href={`/${locale}/safaris/contact`}
+                      className="mt-auto inline-flex items-center justify-center border border-[var(--color-gold)] px-5 py-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-gold)] transition-colors hover:bg-[var(--color-gold)] hover:text-[var(--color-deep-green)]"
+                    >
+                      Plan this package
+                    </Link>
                   </div>
-                  <div className="absolute bottom-5 left-5 right-5 text-white">
-                    <h3 className="font-playfair text-[38px] leading-[1.03]">{item.destination}</h3>
-                    <p className="mt-2 font-sans text-[14px] font-light leading-[1.6] text-white/85">{item.description}</p>
-                    <p className="mt-3 font-sans text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)]">Tap to plan this package</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -274,21 +304,31 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
 
       <SafariFooter />
       <style jsx>{`
-        .packages-track {
-          animation: packages-scroll-ltr 36s linear infinite;
+        .flip-card {
+          perspective: 1200px;
         }
 
-        .packages-track:hover {
-          animation-play-state: paused;
+        .flip-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          transition: transform 0.7s ease;
         }
 
-        @keyframes packages-scroll-ltr {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0%);
-          }
+        .flip-card:hover .flip-card-inner {
+          transform: rotateY(180deg);
+        }
+
+        .flip-card-face {
+          position: absolute;
+          inset: 0;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        .flip-card-back {
+          transform: rotateY(180deg);
         }
       `}</style>
     </div>

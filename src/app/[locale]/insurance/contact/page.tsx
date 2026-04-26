@@ -163,7 +163,7 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                         <select id="interest" required
                           className="w-full bg-[var(--color-slate)] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-blue)] focus:ring-1 focus:ring-[var(--color-blue)] transition-all appearance-none"
                         >
-                          <option value="" disabled selected>Select Coverage Type...</option>
+                          <option value="" disabled selected>Select Insurance Type...</option>
                           <option value="life">Life Insurance</option>
                           <option value="health">Health & Medical</option>
                           <option value="auto">Auto & Transit</option>
