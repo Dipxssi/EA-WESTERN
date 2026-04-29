@@ -56,31 +56,24 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
       <InsuranceNavigation locale={locale} />
       
       <main className="w-full">
-        {/* REIMAGINED HERO SECTION - REVERTED COLORS */}
-        <section className="relative w-full min-h-[90vh] flex items-center pt-24 pb-20 overflow-hidden bg-[var(--color-navy)]">
-          {/* Decorative Elements */}
-          <div className="absolute inset-0 opacity-40 pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-navy)] via-[var(--color-navy)]/80 to-transparent z-10"></div>
-            <img 
-              src="/images/insurancebg.png" 
-              alt="Background" 
-              className="w-full h-full object-cover opacity-30" 
-              onError={(e) => { e.currentTarget.src = "/images/contact.png" }}
-            />
-          </div>
+        {/* REDESIGNED HERO SECTION (Split Layout) */}
+        <section className="relative w-full min-h-[95vh] flex items-center pt-32 pb-20 overflow-hidden bg-slate-50">
+          <div className="absolute top-0 right-0 w-[45%] h-full bg-[var(--color-navy)] rounded-bl-[100px] hidden lg:block z-0"></div>
           
-          <div className="relative z-20 max-w-[1300px] mx-auto px-6 md:px-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
+          <div className="relative z-20 max-w-[1300px] mx-auto px-6 md:px-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Content */}
+            <div className="lg:col-span-7 pr-0 lg:pr-10">
               <motion.div
                 custom={0}
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-[var(--color-blue)]/10 border border-[var(--color-blue)]/20 rounded-full px-4 py-1.5 mb-8"
+                className="inline-flex items-center gap-2 bg-[var(--color-blue)]/10 text-[var(--color-blue)] border border-[var(--color-blue)]/20 rounded-full px-4 py-1.5 mb-6"
               >
-                <ShieldCheck size={14} className="text-[var(--color-blue)]" />
-                <span className="text-[10px] uppercase tracking-[0.2em] text-white/90 font-bold">
-                  Trusted by 50,000+ Clients
+                <ShieldCheck size={14} />
+                <span className="text-[10px] uppercase tracking-[0.2em] font-bold">
+                  Kenya's Trusted Independent Broker
                 </span>
               </motion.div>
               
@@ -89,9 +82,9 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
-                className="text-[48px] md:text-[64px] lg:text-[76px] text-white leading-[1] mb-8 font-bold tracking-tight font-playfair"
+                className="text-[48px] md:text-[60px] lg:text-[70px] text-[var(--color-navy)] leading-[1.05] mb-6 font-bold tracking-tight font-playfair"
               >
-                Insurance That <br />
+                Insurance that <br />
                 <span className="text-[var(--color-blue)]">Protects What</span> <br />
                 Matters Most.
               </motion.h1>
@@ -101,9 +94,9 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
-                className="text-[17px] md:text-[19px] text-white/70 leading-[1.6] mb-12 max-w-[500px]"
+                className="text-[16px] md:text-[18px] text-slate-600 leading-[1.6] mb-10 max-w-[480px]"
               >
-                Experience world-class insurance brokerage with personalized service. We simplify the complex, ensuring you get the best coverage at the most competitive rates.
+                Experience world-class insurance brokerage with personalized service. We simplify the complex, ensuring you get the best coverage from top underwriters at competitive rates.
               </motion.p>
               
               <motion.div 
@@ -111,84 +104,71 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
-                className="flex flex-wrap gap-5"
+                className="flex flex-col sm:flex-row flex-wrap gap-4"
               >
                 <Link
                   href={`/${locale}/insurance/contact`}
-                  className="bg-[var(--color-blue)] text-white px-[36px] py-[18px] text-[13px] uppercase tracking-[0.15em] font-bold hover:bg-white hover:text-[var(--color-blue)] transition-all rounded-[4px] shadow-xl flex items-center gap-2 group"
+                  className="bg-[var(--color-blue)] text-white px-[32px] py-[18px] text-[13px] uppercase tracking-[0.15em] font-bold hover:bg-[var(--color-navy)] transition-colors rounded-[6px] shadow-xl shadow-[var(--color-blue)]/20 flex items-center justify-center gap-2 group"
                 >
-                  Request a Quote <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  Get a Quote <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <div className="flex items-center gap-4 text-white/80">
-                  <div className="flex -space-x-2">
-                    {[1,2,3].map(i => (
-                      <div key={i} className="w-10 h-10 rounded-full border-2 border-[var(--color-navy)] bg-slate-200 overflow-hidden">
-                        <img src={`https://i.pravatar.cc/150?u=${i+12}`} alt="User" />
-                      </div>
-                    ))}
-                  </div>
-                  <span className="text-sm font-medium">Joined by 50k+ Kenyans</span>
-                </div>
+                <Link
+                  href={`/${locale}/insurance/contact`}
+                  className="bg-white text-[var(--color-navy)] border-2 border-slate-200 px-[32px] py-[18px] text-[13px] uppercase tracking-[0.15em] font-bold hover:border-[var(--color-navy)] transition-colors rounded-[6px] flex items-center justify-center"
+                >
+                  Free Risk Review
+                </Link>
               </motion.div>
             </div>
 
-            {/* QUICK HELP GRID */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative"
-            >
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[24px] p-8 md:p-10 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-blue)]/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+            {/* Right Content - Quick Links Grid */}
+            <div className="lg:col-span-5 relative mt-10 lg:mt-0">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="bg-white rounded-[24px] p-8 shadow-2xl border border-slate-100 relative z-10"
+              >
+                <div className="flex items-center justify-between mb-8">
+                   <h3 className="text-[var(--color-navy)] text-[22px] font-bold font-playfair">
+                     Quick Quotes
+                   </h3>
+                   <div className="w-12 h-1 bg-[var(--color-blue)] rounded-full"></div>
+                </div>
                 
-                <h3 className="text-white text-[20px] font-bold mb-8 flex items-center gap-3">
-                   <div className="w-8 h-1 bg-[var(--color-blue)]"></div>
-                   How can we help you?
-                </h3>
-                
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   {services.map((s, i) => (
                     <Link 
                       key={i} 
                       href={`/${locale}/insurance/solutions`}
-                      className="group flex flex-col items-center justify-center p-6 rounded-[16px] bg-white/5 hover:bg-white hover:shadow-2xl transition-all duration-500 border border-white/5 hover:border-transparent text-center"
+                      className="group flex items-center gap-4 p-4 rounded-[12px] bg-slate-50 hover:bg-[var(--color-blue)] hover:shadow-lg transition-all duration-300 border border-slate-100 hover:border-[var(--color-blue)]"
                     >
-                      <div className={`w-12 h-12 rounded-[12px] ${s.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                        <s.icon size={24} />
+                      <div className={`w-10 h-10 rounded-[8px] bg-white flex items-center justify-center text-[var(--color-blue)] shadow-sm group-hover:text-[var(--color-blue)]`}>
+                        <s.icon size={20} />
                       </div>
-                      <span className="text-white group-hover:text-[var(--color-navy)] text-sm font-bold uppercase tracking-wider">{s.title}</span>
+                      <span className="text-[var(--color-navy)] group-hover:text-white text-[13px] font-bold">{s.title}</span>
                     </Link>
                   ))}
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-                   <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[var(--color-blue)] flex items-center justify-center text-white">
-                        <FaHeadset />
+                <div className="mt-8 p-6 bg-[var(--color-navy)] rounded-[16px] flex flex-col sm:flex-row items-center justify-between gap-4">
+                   <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white">
+                        <FaHeadset size={20} />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-white/50 text-[10px] uppercase font-bold tracking-widest">Speak to us</span>
-                       <span className="text-white font-bold">+254 751 216 699</span>
+                        <span className="text-white/60 text-[11px] uppercase tracking-widest font-bold">Need assistance?</span>
+                        <a href="tel:+254700000000" className="text-white font-bold text-[18px]">+254 700 000 000</a>
                       </div>
                    </div>
-                   <button className="text-[var(--color-blue)] text-sm font-bold flex items-center gap-2 hover:underline">
-                      View Solutions <Search size={16} />
-                   </button>
                 </div>
-                
-                {/* Floating Badge - MOVED TO TOP RIGHT OF FOOTER AREA TO AVOID OVERLAP */}
-                <div className="absolute bottom-4 right-4 bg-white p-3 rounded-[12px] shadow-2xl border border-slate-100 hidden xl:flex items-center gap-3 z-30 transform hover:scale-105 transition-transform">
-                   <div className="w-10 h-10 rounded-full bg-blue-50 text-[var(--color-blue)] flex items-center justify-center">
-                      <CheckCircle2 size={20} />
-                   </div>
-                   <div>
-                      <div className="text-[8px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">Assurance</div>
-                      <div className="text-[12px] font-bold text-slate-800 leading-none">Licensed Advisor</div>
-                   </div>
-                </div>
+              </motion.div>
+              
+              {/* Decorative Background Image behind the grid */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] -z-10 opacity-20 pointer-events-none hidden lg:block">
+                 <img src="/images/insurancebg.png" alt="" className="w-full h-full object-contain mix-blend-luminosity" />
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -285,51 +265,47 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
           </div>
         </section>
 
-        {/* WHY PARTNER SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden">
-           <div className="max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-              <div className="relative">
-                 <div className="aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl">
-                    <img src="/images/whole%20life.png" alt="Trusted Partner" className="w-full h-full object-cover" />
-                 </div>
-                 <div className="absolute -bottom-10 -left-10 p-10 bg-[var(--color-navy)] rounded-[24px] text-white shadow-2xl hidden md:block border-l-4 border-[var(--color-blue)]">
-                    <div className="text-4xl font-bold mb-1 font-playfair text-white">25+</div>
-                    <div className="text-xs uppercase tracking-widest font-bold text-[var(--color-blue)]">Years of Excellence</div>
-                 </div>
+        {/* WHY CHOOSE AN AGENCY SECTION */}
+        <section className="py-24 bg-slate-50 relative overflow-hidden">
+           <div className="max-w-[1300px] mx-auto px-6 md:px-10">
+              <div className="text-center mb-16 max-w-3xl mx-auto">
+                 <div className="text-[var(--color-blue)] font-bold text-sm uppercase tracking-widest mb-4">Why eawestern?</div>
+                 <h2 className="text-[36px] md:text-[48px] font-bold leading-[1.1] font-playfair text-[var(--color-navy)] mb-6">
+                   The Independent Broker Advantage.
+                 </h2>
+                 <p className="text-slate-600 text-lg">
+                   Unlike dealing directly with a single insurance company, working with eawestern gives you choice, advocacy, and unbiased expert advice.
+                 </p>
               </div>
               
-              <div>
-                 <div className="text-[var(--color-blue)] font-bold text-sm uppercase tracking-widest mb-4">The eawestern difference</div>
-                 <h2 className="text-[40px] md:text-[52px] font-bold leading-[1.1] font-playfair text-[var(--color-navy)] mb-8">
-                   Clear Policies. <br /> Real Support.
-                 </h2>
-                 
-                 <div className="space-y-8">
-                    {[
-                      { title: 'Independent Advocacy', desc: 'As independent brokers, we work for you, not the insurance companies. Our loyalty lies with our clients.' },
-                      { title: 'Fast Claims Support', desc: 'Our dedicated claims team ensures that your payouts are processed efficiently and without unnecessary delays.' },
-                      { title: 'Expert Market Knowledge', desc: 'We have deep relationships with all major Kenyan insurers, giving you access to competitive rates and terms.' }
-                    ].map((item, i) => (
-                       <div key={i} className="flex gap-5">
-                          <div className="w-12 h-12 rounded-[12px] bg-[var(--color-slate)] text-[var(--color-blue)] flex items-center justify-center shrink-0">
-                             <CheckCircle2 size={24} />
-                          </div>
-                          <div>
-                             <h4 className="text-[20px] font-bold text-[var(--color-navy)] mb-2">{item.title}</h4>
-                             <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
-                          </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                 {[
+                   { title: 'Independent Advocacy', desc: 'We work for you, not the insurance companies. In the event of a claim, we are your strongest advocate to ensure a fair and swift settlement.', icon: ShieldCheck },
+                   { title: 'Market-Wide Choice', desc: 'We compare policies from top underwriters across Kenya to find the perfect fit for your specific needs and budget.', icon: Search },
+                   { title: 'Expert Guidance', desc: 'Insurance can be complex. Our licensed professionals explain the fine print so you know exactly what you are covered for.', icon: Award }
+                 ].map((item, i) => (
+                    <div key={i} className="bg-white p-10 rounded-[24px] shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300">
+                       <div className="w-14 h-14 rounded-[12px] bg-[var(--color-blue)]/10 text-[var(--color-blue)] flex items-center justify-center mb-6">
+                          <item.icon size={28} />
                        </div>
-                    ))}
-                 </div>
-                 
-                 <div className="mt-12">
-                    <Link 
-                      href={`/${locale}/insurance/contact`}
-                      className="inline-flex items-center gap-3 bg-[var(--color-blue)] text-white px-8 py-4 rounded-full font-bold hover:bg-[var(--color-navy)] transition-colors shadow-lg shadow-[var(--color-blue)]/20"
-                    >
-                      Speak to an Advisor <ArrowRight size={20} />
-                    </Link>
-                 </div>
+                       <h4 className="text-[22px] font-bold text-[var(--color-navy)] mb-4">{item.title}</h4>
+                       <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+                    </div>
+                 ))}
+              </div>
+           </div>
+        </section>
+
+        {/* TRUSTED UNDERWRITERS SECTION */}
+        <section className="py-16 bg-white border-y border-slate-100">
+           <div className="max-w-[1300px] mx-auto px-6 md:px-10 text-center">
+              <p className="text-[11px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-8">Trusted by Kenya's Leading Underwriters</p>
+              <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                 {['BRITAM', 'JUBILEE', 'APA', 'CIC', 'HERITAGE'].map((partner, idx) => (
+                   <div key={idx} className="text-2xl font-bold font-playfair text-[var(--color-navy)]">
+                      {partner}
+                   </div>
+                 ))}
               </div>
            </div>
         </section>
