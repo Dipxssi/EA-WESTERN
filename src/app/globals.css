@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Match utilities to loaded Google Fonts (see root layout <link>) */
+@theme {
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --font-playfair: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
 :root {
   /* Premium Safari Luxury Theme */
   --color-navy: #0B1F2E;
@@ -58,8 +64,8 @@ body {
   max-width: 100%;
 }
 
-h1, h2, h3, .font-playfair, .serif {
-  font-family: 'Playfair Display', serif;
+h1, h2, h3, .serif {
+  font-family: "Playfair Display", serif;
   font-weight: 400;
 }
 

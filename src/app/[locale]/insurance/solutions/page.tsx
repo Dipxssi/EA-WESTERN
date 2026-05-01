@@ -2,87 +2,18 @@
 
 import { InsuranceNavigation } from '@/components/InsuranceNavigation';
 import { InsuranceFooter } from '@/components/InsuranceFooter';
+import { InsurancePackagesSection } from '@/components/InsurancePackagesSection';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ShieldCheck, 
-  HeartPulse, 
-  Car, 
-  Home, 
-  Briefcase, 
-  Globe, 
   Check, 
   ArrowRight, 
   PhoneCall, 
-  ShieldAlert,
-  Plus,
-  Users,
   Star
 } from 'lucide-react';
 
-const personalPlans = [
-  {
-    id: 'health-wellness',
-    icon: HeartPulse,
-    title: 'Health & Wellness',
-    tagline: 'Care without limits',
-    desc: 'Access reliable, high-quality healthcare coverage with plans tailored for individuals and families.',
-    features: ['Local & International coverage', 'Inpatient & Outpatient options', 'Maternity & Specialized care', '24/7 Medical support'],
-    image: '/images/insurancebg.png',
-    color: 'from-blue-400 to-blue-600'
-  },
-  {
-    id: 'life-legacy',
-    icon: ShieldCheck,
-    title: 'Life & Legacy',
-    tagline: 'Securing generations',
-    desc: 'Protect what matters most with structured life insurance solutions designed for long-term security.',
-    features: ['Term & Whole life options', 'Fixed premium structures', 'Critical illness coverage', 'Legacy planning'],
-    image: '/images/whole%20life.png',
-    color: 'from-indigo-400 to-indigo-600'
-  },
-  {
-    id: 'motor-travel',
-    icon: Car,
-    title: 'Motor & Travel',
-    tagline: 'Protection on the move',
-    desc: 'Stay protected on the road and across borders with comprehensive motor and travel insurance.',
-    features: ['Comprehensive & Third party', 'Roadside assistance', 'Global travel protection', 'Efficient claims process'],
-    image: '/images/insurancebg.png',
-    color: 'from-cyan-400 to-cyan-600'
-  }
-];
-
-const businessPlans = [
-  {
-    id: 'corporate-health',
-    icon: Users,
-    title: 'Corporate Health',
-    desc: 'Wellness programs and medical covers designed for modern Kenyan workforces.',
-    features: ['Group medical schemes', 'Wellness programs', 'Optical & Dental add-ons'],
-    image: '/images/contact.png',
-    color: 'from-blue-500 to-indigo-600'
-  },
-  {
-    id: 'professional-liability',
-    icon: ShieldAlert,
-    title: 'Professional Liability',
-    desc: 'Protect your professional reputation and business against legal liabilities.',
-    features: ['Professional Indemnity', 'Public Liability', 'D&O Liability'],
-    image: '/images/contact.png',
-    color: 'from-slate-600 to-slate-800'
-  },
-  {
-    id: 'business-assets',
-    icon: Home,
-    title: 'Business Assets',
-    desc: 'Coverage for your office, inventory, and physical business infrastructure.',
-    features: ['Fire & Perils', 'Burglary insurance', 'Business interruption'],
-    image: '/images/insurancebg.png',
-    color: 'from-emerald-500 to-teal-600'
-  }
-];
 
 export default function InsuranceSolutionsPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
@@ -143,129 +74,7 @@ export default function InsuranceSolutionsPage({ params }: { params: Promise<{ l
           </div>
         </section>
 
-        {/* PERSONAL INSURANCE SECTION */}
-        <section id="personal" className="py-32 relative bg-[#FAFAFA]">
-           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
-           <div className="max-w-[1300px] mx-auto px-6 md:px-10">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
-                <div className="max-w-2xl">
-                   <div className="text-[var(--color-blue)] font-bold text-xs uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
-                     <span className="w-8 h-px bg-[var(--color-blue)]"></span> Individual & Family
-                   </div>
-                   <h2 className="text-[40px] md:text-[56px] font-bold text-[var(--color-navy)] font-playfair leading-tight">Personal Protection <br />Solutions</h2>
-                </div>
-                <p className="text-slate-500 max-w-md pb-4">
-                   Tailored coverage to safeguard your health, your assets, and your loved ones against life's uncertainties.
-                </p>
-              </div>
-              
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                 {personalPlans.map((plan, idx) => (
-                    <motion.div 
-                      key={plan.id}
-                     whileHover={{ y: -12 }}
-                     initial={{ opacity: 0, y: 30 }}
-                     whileInView={{ opacity: 1, y: 0 }}
-                     viewport={{ once: true, margin: "-100px" }}
-                     transition={{ delay: idx * 0.1, duration: 0.6 }}
-                     className="bg-white rounded-[32px] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] border border-slate-100/60 group overflow-hidden flex flex-col h-full"
-                    >
-                      <div className="h-[240px] relative overflow-hidden">
-                         <img src={plan.image} alt={plan.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                         <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy)]/90 via-[var(--color-navy)]/30 to-transparent"></div>
-                         
-                         <div className="absolute top-6 left-6 right-6 flex justify-between items-start">
-                            <div className="bg-white/20 backdrop-blur-md border border-white/20 text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1.5 rounded-full">
-                               {plan.tagline}
-                            </div>
-                            <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${plan.color} flex items-center justify-center text-white shadow-lg`}>
-                               <plan.icon size={20} />
-                            </div>
-                         </div>
-                         
-                         <h3 className="absolute bottom-6 left-6 text-white text-[28px] font-bold font-playfair leading-tight">{plan.title}</h3>
-                       </div>
-
-                      <div className="p-8 flex flex-col flex-grow">
-                         <p className="text-slate-500 text-sm leading-relaxed mb-8">{plan.desc}</p>
-
-                         <div className="space-y-4 mb-10 flex-grow">
-                             {plan.features.map((f, i) => (
-                               <div key={i} className="flex items-start gap-3 text-sm font-medium text-slate-700">
-                                  <div className="mt-0.5 min-w-[16px]"><Plus size={14} className="text-[var(--color-blue)]" /></div> 
-                                  <span>{f}</span>
-                               </div>
-                             ))}
-                          </div>
-
-                         <Link
-                           href={`/${locale}/insurance/solutions/${plan.id}`}
-                           className="w-full py-4 rounded-xl bg-slate-50 hover:bg-[var(--color-blue)] text-[var(--color-navy)] hover:text-white font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 group/btn"
-                         >
-                            Explore Plan <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                         </Link>
-                       </div>
-                    </motion.div>
-                 ))}
-              </div>
-           </div>
-        </section>
-
-        {/* BUSINESS SOLUTIONS SECTION */}
-        <section id="business" className="py-32 relative bg-[var(--color-navy)] overflow-hidden">
-           {/* Decorative elements */}
-           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[var(--color-blue)]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4"></div>
-           
-           <div className="relative z-10 max-w-[1300px] mx-auto px-6 md:px-10">
-              <div className="text-center mb-20">
-                <div className="inline-block border border-white/20 bg-white/5 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6">
-                  <span className="text-blue-300 font-bold text-xs uppercase tracking-[0.2em]">Enterprise & SME</span>
-                </div>
-                <h2 className="text-[40px] md:text-[64px] font-bold text-white font-playfair mb-6">Business Continuity <br className="hidden md:block"/>Solutions</h2>
-                <p className="text-white/60 max-w-2xl mx-auto text-lg">Comprehensive risk management and insurance strategies to protect your company's assets, employees, and future growth.</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                 {businessPlans.map((plan, idx) => (
-                    <motion.div 
-                      key={plan.id}
-                      whileHover={{ y: -12 }}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ delay: idx * 0.1, duration: 0.6 }}
-                      className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[32px] p-10 group hover:bg-white/[0.06] transition-all duration-500 flex flex-col h-full relative overflow-hidden"
-                    >
-                      {/* Hover glow effect */}
-                      <div className={`absolute -inset-1 bg-gradient-to-r ${plan.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl`}></div>
-                      
-                      <div className="relative z-10 flex flex-col flex-grow">
-                        <div className={`w-16 h-16 rounded-[20px] bg-gradient-to-br ${plan.color} flex items-center justify-center text-white mb-8 shadow-lg`}>
-                           <plan.icon size={28} />
-                        </div>
-                        <h3 className="text-2xl font-bold text-white mb-4">{plan.title}</h3>
-                        <p className="text-white/60 text-sm leading-relaxed mb-8">{plan.desc}</p>
-                        
-                        <div className="w-full h-px bg-white/10 mb-8"></div>
-                        
-                        <ul className="space-y-4 mb-10 flex-grow">
-                           {plan.features.map((f, i) => (
-                              <li key={i} className="flex items-center gap-3 text-sm font-medium text-white/80">
-                                 <Check size={16} className="text-blue-400" /> {f}
-                              </li>
-                           ))}
-                        </ul>
-                        
-                        <Link href={`/${locale}/insurance/solutions/${plan.id}`} className="inline-flex items-center gap-2 text-white font-bold text-sm uppercase tracking-widest group-hover:text-blue-300 transition-colors">
-                           View Details <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                      </div>
-                    </motion.div>
-                 ))}
-              </div>
-           </div>
-        </section>
+        <InsurancePackagesSection locale={locale} variant="full" />
 
         {/* BROKERAGE PROCESS SECTION */}
         <section className="py-32 bg-white">

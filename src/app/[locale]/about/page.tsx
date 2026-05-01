@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import React, { useCallback, useLayoutEffect, useRef } from "react";
 import { NavBar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { HeroSlider } from "@/components/HeroSlider";
 import { Route, ShieldCheck, Award } from "lucide-react";
 
 /** Refs run before useEffect; observer must exist when nodes register — useLayoutEffect + Set. */
@@ -125,11 +126,10 @@ export default function About() {
 
   return (
     <div
-      className="ew-about-root"
+      className="ew-about-root font-sans antialiased"
       style={{
         backgroundColor: "#0D1F2D",
         color: "#FFFFFF",
-        fontFamily: "var(--font-dm-sans)",
         ["--ew-navy" as string]: "#0D1F2D",
         ["--ew-navy-mid" as string]: "#142535",
         ["--ew-navy-light" as string]: "#1C3347",
@@ -139,153 +139,20 @@ export default function About() {
         ["--ew-muted" as string]: "rgba(255,255,255,0.65)",
         ["--ew-border" as string]: "rgba(255,255,255,0.1)",
         ["--ew-section-pad" as string]: "92px",
-        ["--font-playfair" as string]: "'Playfair Display', serif",
-        ["--font-dm-sans" as string]: "'Jost', sans-serif",
       }}
     >
       <NavBar locale={locale} />
 
       <main style={{ paddingTop: "82px" }}>
-        <section
-          className="ew-hero"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            height: "calc(100vh - 82px)",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <div
-            className="ew-hero-left"
-            style={{
-              backgroundColor: "#0D1F2D",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              padding: "80px 72px 80px 120px",
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
-            <div style={{ width: "60px", height: "3px", backgroundColor: "var(--color-gold)", marginBottom: "32px" }} />
-            <p
-              style={{
-                fontFamily: "var(--font-dm-sans)",
-                fontSize: "12px",
-                color: "var(--color-gold)",
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
-                marginBottom: "24px",
-              }}
-            >
-              Who We Are
-            </p>
-            <h1
-              style={{
-                fontFamily: "var(--font-playfair)",
-                fontSize: "clamp(36px, 4vw, 60px)",
-                color: "#FFFFFF",
-                lineHeight: 1.15,
-                marginBottom: "28px",
-                fontWeight: 400,
-              }}
-            >
-              Your Trusted Partner in Travel, Car Hire & Insurance
-            </h1>
-            <p
-              style={{
-                fontFamily: "var(--font-dm-sans)",
-                fontSize: "17px",
-                color: "rgba(255,255,255,0.65)",
-                lineHeight: 1.75,
-                maxWidth: "480px",
-                marginBottom: "48px",
-              }}
-            >
-              At eawestern, we believe every journey deserves confidence — whether you're exploring East Africa's wild beauty, protecting what matters most, or simply getting where you need to go.
-            </p>
-            <div className="ew-stats-row" style={{ display: "flex", gap: "0", paddingTop: "32px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-              {[{ number: "10+", label: "Years of Service" }, { number: "5K+", label: "Happy Clients" }, { number: "3", label: "Service Divisions" }].map((stat, i) => (
-                <div key={stat.label} style={{ flex: 1, paddingLeft: i > 0 ? "28px" : "0", paddingRight: "28px", borderRight: i < 2 ? "1px solid rgba(255,255,255,0.1)" : "none" }}>
-                  <div style={{ fontFamily: "var(--font-playfair)", fontSize: "32px", color: "var(--color-gold)", lineHeight: 1 }}>{stat.number}</div>
-                  <div style={{ fontFamily: "var(--font-dm-sans)", fontSize: "11px", color: "rgba(255,255,255,0.5)", marginTop: "6px", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="ew-hero-photos" style={{ position: "relative", overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "auto auto", gap: "3px", width: "100%", alignContent: "start" }}>
-            {[
-              { bg: "#1C3347", label: "Safari Experience", src: "/images/tours.png" },
-              { bg: "#142535", label: "Car Hire", src: "/images/car image.jpg" },
-              { bg: "#0D1F2D", label: "Insurance", src: "/images/term life.png" },
-              { bg: "#1A2F42", label: "East Africa", src: "/images/tour3.jpg" },
-            ].map((cell, i) => (
-              <div
-                key={i}
-                className="ew-hero-tile"
-                style={{
-                  backgroundColor: cell.bg,
-                  position: "relative",
-                  overflow: "hidden",
-                  display: "flex",
-                  alignItems: "flex-start",
-                  justifyContent: "flex-end",
-                  width: "100%",
-                  aspectRatio: "1 / 1",
-                  cursor: "default",
-                }}
-              >
-                <img
-                  src={cell.src}
-                  alt={cell.label}
-                  className="ew-hero-tile-image"
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-                <span
-                  className="ew-hero-tile-label"
-                  style={{
-                    fontFamily: "var(--font-dm-sans)",
-                    fontSize: "11px",
-                    color: "#FFFFFF",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.14em",
-                    position: "absolute",
-                    top: "16px",
-                    right: "16px",
-                    zIndex: 1,
-                    textShadow: "0 2px 10px rgba(0,0,0,0.8)",
-                    background: "rgba(11,31,46,0.55)",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    padding: "6px 12px",
-                    borderRadius: "999px",
-                    backdropFilter: "blur(2px)",
-                  }}
-                >
-                  {cell.label}
-                </span>
-              </div>
-            ))}
-            <div style={{ position: "absolute", top: 0, right: 0, width: "4px", height: "100%", backgroundColor: "var(--color-gold)" }} />
-          </div>
-        </section>
+        <HeroSlider locale={locale} variant="about" pauseOnHover={false} />
 
         <section className="ew-section" style={{ background: "#0D1F2D" }}>
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
             <div className="ew-story-grid" style={{ display: "grid", gridTemplateColumns: "55% 45%", gap: "36px", alignItems: "start" }}>
               <div>
                 <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "16px" }}>Our Story</p>
-                <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", color: "#FFFFFF", marginBottom: "16px", fontWeight: 400 }}>The eawestern story</h2>
-                <p style={{ fontFamily: "var(--font-playfair)", fontStyle: "italic", fontSize: "22px", color: "var(--color-gold)", marginBottom: "26px" }}>
+                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "42px", color: "#FFFFFF", marginBottom: "16px", fontWeight: 400 }}>The eawestern story</h2>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "22px", color: "var(--color-gold)", marginBottom: "26px" }}>
                   Your Trusted Partner in Travel, Car Hire & Insurance
                 </p>
                 {[
@@ -335,7 +202,7 @@ export default function About() {
           <div style={{ position: "absolute", inset: 0, background: "rgba(13,31,45,0.85)" }} />
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
             <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", textAlign: "center", marginBottom: "18px" }}>Our Philosophy</p>
-            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "48px", textAlign: "center", marginBottom: "22px", fontWeight: 400 }}>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "48px", textAlign: "center", marginBottom: "22px", fontWeight: 400 }}>
               Your <span style={{ color: "var(--color-gold)" }}>Confidence</span> is Our <span style={{ color: "var(--color-gold)" }}>Currency</span>.
             </h2>
             <p style={{ maxWidth: "680px", margin: "0 auto 42px", textAlign: "center", fontSize: "18px", lineHeight: 1.8, color: "rgba(255,255,255,0.7)" }}>
@@ -353,8 +220,10 @@ export default function About() {
                   <div style={{ width: "64px", height: "64px", margin: "0 auto 26px", border: "1px solid color-mix(in srgb, var(--color-gold) 20%, transparent)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-gold)" }}>
                     <Icon size={26} />
                   </div>
-                  <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "44px", marginBottom: "12px", fontWeight: 400, lineHeight: 1.15 }}>{card.t}</h3>
-                  <p style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.85, fontSize: "15px" }}>{card.d}</p>
+                  <h3 className="font-playfair text-[26px] font-semibold leading-snug md:text-[30px]" style={{ marginBottom: "12px" }}>
+                    {card.t}
+                  </h3>
+                  <p className="font-sans text-[15px] leading-[1.85] text-white/70">{card.d}</p>
                 </div>
               )})}
             </div>
@@ -364,7 +233,7 @@ export default function About() {
         <section className="ew-section" style={{ background: "#0D1F2D" }}>
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
             <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "16px", textAlign: "center" }}>What Sets Us Apart</p>
-            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
               The eawestern <span style={{ color: "var(--color-gold)" }}>Pillars of Trust</span>
             </h2>
             <div className="ew-pillars" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
@@ -409,10 +278,13 @@ export default function About() {
                     }}
                   />
                   <div style={{ position: "relative", zIndex: 1 }}>
-                    <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "44px", marginBottom: "14px", fontWeight: 400, lineHeight: 1.15, color: "#FFFFFF" }}>
+                    <h3
+                      className="font-playfair font-semibold tracking-tight text-white md:text-[34px] text-[28px]"
+                      style={{ marginBottom: "14px", lineHeight: 1.2 }}
+                    >
                       {item.title}
                     </h3>
-                    <p style={{ fontFamily: "var(--font-dm-sans)", color: "rgba(255,255,255,0.68)", fontSize: "15px", fontWeight: 300, lineHeight: 1.8 }}>{item.body}</p>
+                    <p className="font-sans text-[15px] font-normal leading-[1.8] text-white/70">{item.body}</p>
                   </div>
                 </div>
               ))}
@@ -423,7 +295,7 @@ export default function About() {
         <section className="ew-section" style={{ background: "#0D1F2D" }}>
           <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
             <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", textAlign: "center", marginBottom: "12px" }}>Our Core Values</p>
-            <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
               How We Deliver <span style={{ color: "var(--color-gold)" }}>Value</span>
             </h2>
             <div className="ew-values-top" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "22px", marginBottom: "22px" }}>
@@ -432,8 +304,10 @@ export default function About() {
                   <div style={{ width: "70px", height: "70px", border: "1px solid color-mix(in srgb, var(--color-gold) 22%, transparent)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", color: "var(--color-gold)" }}>
                     {v.icon}
                   </div>
-                  <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "40px", marginBottom: "14px", fontWeight: 400, lineHeight: 1.15 }}>{v.title}</h3>
-                  <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "15px", lineHeight: 1.9 }}>{v.body}</p>
+                  <h3 className="font-playfair text-[26px] font-semibold leading-snug md:text-[30px]" style={{ marginBottom: "14px" }}>
+                    {v.title}
+                  </h3>
+                  <p className="font-sans text-[15px] leading-[1.9] text-white/60">{v.body}</p>
                 </div>
               ))}
             </div>
@@ -443,8 +317,10 @@ export default function About() {
                   <div style={{ width: "70px", height: "70px", border: "1px solid color-mix(in srgb, var(--color-gold) 22%, transparent)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", color: "var(--color-gold)" }}>
                     {v.icon}
                   </div>
-                  <h3 style={{ fontFamily: "var(--font-playfair)", fontSize: "40px", marginBottom: "14px", fontWeight: 400, lineHeight: 1.15 }}>{v.title}</h3>
-                  <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "15px", lineHeight: 1.9 }}>{v.body}</p>
+                  <h3 className="font-playfair text-[26px] font-semibold leading-snug md:text-[30px]" style={{ marginBottom: "14px" }}>
+                    {v.title}
+                  </h3>
+                  <p className="font-sans text-[15px] leading-[1.9] text-white/60">{v.body}</p>
                 </div>
               ))}
             </div>
@@ -457,7 +333,7 @@ export default function About() {
             <div className="ew-why-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "center" }}>
               <div>
                 <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "12px" }}>Our Home</p>
-                <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "40px", marginBottom: "16px", fontWeight: 400 }}>Deeply Rooted in East Africa</h2>
+                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "40px", marginBottom: "16px", fontWeight: 400 }}>Deeply Rooted in East Africa</h2>
                 <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "16px", lineHeight: 1.8, marginBottom: "14px" }}>
                   East Africa is not just where we operate — it's who we are. From the Maasai Mara to the Nairobi CBD, from Mombasa's coast to Mount Kilimanjaro, we know this region intimately.
                 </p>
@@ -489,7 +365,7 @@ export default function About() {
         <section className="ew-section" style={{ background: "#0D1F2D", borderTop: "1px solid color-mix(in srgb, var(--color-gold) 10%, transparent)" }}>
           <div style={{ maxWidth: "980px", margin: "0 auto", padding: "0 24px" }}>
             <div style={{ border: "1px solid rgba(255,255,255,0.12)", background: "linear-gradient(180deg, #12283B 0%, #102437 100%)", padding: "72px 40px", textAlign: "center" }}>
-              <h2 style={{ fontFamily: "var(--font-playfair)", color: "#FFFFFF", fontSize: "clamp(34px, 4.2vw, 56px)", lineHeight: 1.15, marginBottom: "18px", fontWeight: 400 }}>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#FFFFFF", fontSize: "clamp(34px, 4.2vw, 56px)", lineHeight: 1.15, marginBottom: "18px", fontWeight: 400 }}>
                 Ready to Experience the <span style={{ color: "var(--color-gold)", fontStyle: "italic" }}>eawestern difference?</span>
               </h2>
               <div style={{ width: "86px", height: "2px", background: "var(--color-gold)", margin: "0 auto 26px" }} />

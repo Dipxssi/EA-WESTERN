@@ -23,7 +23,7 @@ export function AnimatedPillarsSection() {
     <section className="py-16 lg:py-24 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-light mb-6 text-gray-900">
+          <h2 className="font-playfair text-3xl lg:text-4xl font-normal mb-6 text-gray-900">
             The eawestern Pillars of Trust
           </h2>
         </div>
@@ -41,8 +41,8 @@ export function AnimatedPillarsSection() {
                   className="w-full h-40 object-cover rounded-md"
                 />
               </div>
-              <h3 className="text-xl font-semibold mb-4">{pillar.title}</h3>
-              <p className="leading-relaxed text-gray-700">
+              <h3 className="font-playfair text-xl font-semibold mb-4">{pillar.title}</h3>
+              <p className="font-sans leading-relaxed text-gray-700">
                 {pillar.description}
               </p>
             </div>

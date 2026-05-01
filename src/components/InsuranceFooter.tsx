@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ShieldAlert, Phone, Mail, MapPin } from 'lucide-react';
+import { SITE_CONTACT } from '@/lib/siteContact';
 
 export function InsuranceFooter() {
   return (
@@ -44,20 +45,20 @@ export function InsuranceFooter() {
                  <Phone size={18} className="text-white/40 mt-[2px]" />
                  <div>
                    <div className="text-[11px] uppercase tracking-[0.1em] text-white/40 mb-1">Phone</div>
-                   <a href="tel:+254751216699" className="text-[15px] font-medium hover:text-[var(--color-blue)] transition-colors">+254 751 216 699</a>
+                   <a href={`tel:${SITE_CONTACT.phoneHref}`} className="text-[15px] font-medium hover:text-[var(--color-blue)] transition-colors">{SITE_CONTACT.phoneDisplay}</a>
                  </div>
                </li>
                <li className="flex items-start gap-3">
                  <Mail size={18} className="text-white/40 mt-[2px]" />
                  <div>
                    <div className="text-[11px] uppercase tracking-[0.1em] text-white/40 mb-1">Email</div>
-                   <a href="mailto:info@eawestern.com" className="text-[14px] hover:text-[var(--color-blue)] transition-colors break-all">info@eawestern.com</a>
+                   <a href={`mailto:${SITE_CONTACT.email}`} className="text-[14px] hover:text-[var(--color-blue)] transition-colors break-all">{SITE_CONTACT.email}</a>
                  </div>
                </li>
                <li className="flex items-start gap-3">
                  <MapPin size={18} className="text-white/40 mt-[2px]" />
                  <div className="text-[14px] text-white/70 leading-relaxed">
-                   Utalii House, Utalii Street<br />Nairobi, Kenya
+                   {SITE_CONTACT.addressLine1}<br />{SITE_CONTACT.addressLine2}
                  </div>
                </li>
              </ul>

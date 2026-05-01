@@ -2,6 +2,7 @@
 
 import { InsuranceNavigation } from '@/components/InsuranceNavigation';
 import { InsuranceFooter } from '@/components/InsuranceFooter';
+import { SITE_CONTACT } from '@/lib/siteContact';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
@@ -9,7 +10,6 @@ import {
   HeartPulse, 
   Car, 
   Home, 
-  Briefcase, 
   Check, 
   ArrowRight, 
   PhoneCall, 
@@ -255,10 +255,10 @@ export default function IndividualSolutionClient({ locale, type }: { locale: str
               <h2 className="text-4xl font-bold text-white mb-6 font-playfair">Need more clarification?</h2>
               <p className="text-white/70 text-lg mb-10">Our dedicated support team is available to answer any questions you have regarding our {data.title} coverage options.</p>
               <a 
-                href="tel:+254700000000"
+                href={`tel:${SITE_CONTACT.phoneHref}`}
                 className="bg-white text-[var(--color-navy)] px-8 py-4 rounded-full font-bold hover:bg-slate-100 transition-all inline-flex items-center gap-3 shadow-xl"
               >
-                 <PhoneCall size={18} /> Call us: +254 700 000 000
+                 <PhoneCall size={18} /> Call us: {SITE_CONTACT.phoneDisplay}
               </a>
            </div>
         </section>

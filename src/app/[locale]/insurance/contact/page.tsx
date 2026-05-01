@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, MapPin, Mail, Phone, CalendarCheck2 } from 'lucide-react';
+import { SITE_CONTACT } from '@/lib/siteContact';
 
 export default function InsuranceContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
@@ -69,7 +70,7 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                   </div>
                   <div>
                     <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Phone</div>
-                    <a href="tel:+254751216699" className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors">+254 751 216 699</a>
+                    <a href={`tel:${SITE_CONTACT.phoneHref}`} className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors">{SITE_CONTACT.phoneDisplay}</a>
                   </div>
                 </div>
 
@@ -79,7 +80,7 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                   </div>
                   <div>
                     <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Email</div>
-                    <a href="mailto:info@eawestern.com" className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors break-all">info@eawestern.com</a>
+                    <a href={`mailto:${SITE_CONTACT.email}`} className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors break-all">{SITE_CONTACT.email}</a>
                   </div>
                 </div>
 
@@ -90,9 +91,9 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                   <div>
                     <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Location</div>
                     <p className="text-[15px] font-medium text-[var(--color-navy)] leading-relaxed">
-                      Utalii House, Utalii Street
+                      {SITE_CONTACT.addressLine1}
                       <br />
-                      Nairobi, Kenya
+                      {SITE_CONTACT.addressLine2}
                     </p>
                   </div>
                 </div>

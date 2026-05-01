@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  FileText, 
   Clock, 
   HelpCircle, 
   PhoneCall, 
@@ -14,8 +13,10 @@ import {
   FileCheck,
   ChevronDown,
   ArrowRight,
-  MessageSquare
+  MessageSquare,
+  MapPin
 } from 'lucide-react';
+import { SITE_CONTACT } from '@/lib/siteContact';
 
 export default function InsuranceClaimsPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
@@ -229,13 +230,27 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
               </p>
               
               <div className="flex flex-wrap justify-center gap-8">
-                 <div className="bg-white/5 border border-white/10 px-10 py-8 rounded-[24px] backdrop-blur-md">
+                 <div className="bg-white/5 border border-white/10 px-10 py-8 rounded-[24px] backdrop-blur-md max-w-full">
                     <div className="text-white/50 text-[10px] uppercase font-bold tracking-widest mb-2">Primary Emergency Line</div>
-                    <div className="text-3xl text-white font-bold">+254 751 216 699</div>
+                    <a href={`tel:${SITE_CONTACT.phoneHref}`} className="text-2xl sm:text-3xl text-white font-bold hover:text-[var(--color-blue)] transition-colors break-all inline-block">
+                      {SITE_CONTACT.phoneDisplay}
+                    </a>
                  </div>
-                 <div className="bg-white/5 border border-white/10 px-10 py-8 rounded-[24px] backdrop-blur-md">
+                 <div className="bg-white/5 border border-white/10 px-10 py-8 rounded-[24px] backdrop-blur-md max-w-full">
                     <div className="text-white/50 text-[10px] uppercase font-bold tracking-widest mb-2">Claims Support Email</div>
-                    <div className="text-3xl text-white font-bold">info@eawestern.com</div>
+                    <a href={`mailto:${SITE_CONTACT.email}`} className="text-2xl sm:text-3xl text-white font-bold hover:text-[var(--color-blue)] transition-colors break-all inline-block">
+                      {SITE_CONTACT.email}
+                    </a>
+                 </div>
+                 <div className="bg-white/5 border border-white/10 px-10 py-8 rounded-[24px] backdrop-blur-md max-w-md text-left">
+                    <div className="text-white/50 text-[10px] uppercase font-bold tracking-widest mb-3 flex items-center gap-2">
+                      <MapPin size={14} className="text-[var(--color-blue)]" /> Office
+                    </div>
+                    <p className="text-lg text-white font-semibold leading-relaxed">
+                      {SITE_CONTACT.addressLine1}
+                      <br />
+                      {SITE_CONTACT.addressLine2}
+                    </p>
                  </div>
               </div>
            </div>
