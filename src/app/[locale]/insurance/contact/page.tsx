@@ -28,18 +28,18 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
   };
 
   return (
-    <div className="theme-insurance bg-[var(--color-slate)] text-[var(--color-charcoal)] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-blue)] selection:text-white">
+    <div className="theme-insurance bg-[#f7f5f0] text-[#4a5568] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[#c9a96e] selection:text-[#1a2e45]">
       <InsuranceNavigation locale={locale} />
       
       <main className="w-full pb-[80px]">
         {/* Header */}
-        <section className="bg-[var(--color-navy)] pt-[140px] pb-[60px] md:pt-[180px] md:pb-[80px] relative overflow-hidden mb-12">
-           <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-navy)] via-[var(--color-navy)]/90 to-[var(--color-slate)] z-10" />
-           <img src="/images/insurancebg.png" alt="Contact Us" className="absolute inset-0 w-full h-full object-cover object-center opacity-30 mix-blend-luminosity" />
+        <section className="bg-[#f7f5f0] pt-[140px] pb-[60px] md:pt-[180px] md:pb-[80px] relative overflow-hidden mb-12">
+           <div className="absolute inset-0 bg-gradient-to-b from-[#f7f5f0] via-[#f7f5f0]/90 to-[#f7f5f0] z-10" />
+           <img src="/images/insurancebg.png" alt="Contact Us" className="absolute inset-0 w-full h-full object-cover object-center opacity-25" />
            <div className="max-w-[1200px] mx-auto px-6 md:px-10 relative z-20">
              <Link 
                href={`/${locale}/insurance`}
-               className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.15em] font-semibold text-white/70 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.15em] font-semibold text-[#4a7fa5] hover:text-[#1e3a5f] transition-colors"
              >
                <ArrowLeft size={16} /> Return to Home
              </Link>
@@ -65,32 +65,32 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
               
               <div className="space-y-10">
                 <div className="flex gap-4">
-                  <div className="w-[48px] h-[48px] rounded-full bg-white shadow-sm flex items-center justify-center text-[var(--color-blue)] flex-shrink-0">
+                  <div className="w-[48px] h-[48px] rounded-full bg-white shadow-sm flex items-center justify-center text-[#4a7fa5] border border-[#dcd8cf] flex-shrink-0">
                     <Phone size={20} />
                   </div>
                   <div>
-                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Phone</div>
-                    <a href={`tel:${SITE_CONTACT.phoneHref}`} className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors">{SITE_CONTACT.phoneDisplay}</a>
+                    <div className="text-[12px] uppercase tracking-[0.1em] text-[#4a7fa5] font-semibold mb-1">Phone</div>
+                    <a href={`tel:${SITE_CONTACT.phoneHref}`} className="text-[18px] font-bold text-[#1a2e45] hover:text-[#a8823d] transition-colors">{SITE_CONTACT.phoneDisplay}</a>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="w-[48px] h-[48px] rounded-full bg-white shadow-sm flex items-center justify-center text-[var(--color-blue)] flex-shrink-0">
+                  <div className="w-[48px] h-[48px] rounded-full bg-white shadow-sm flex items-center justify-center text-[#4a7fa5] border border-[#dcd8cf] flex-shrink-0">
                     <Mail size={20} />
                   </div>
                   <div>
-                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Email</div>
-                    <a href={`mailto:${SITE_CONTACT.email}`} className="text-[18px] font-bold text-[var(--color-navy)] hover:text-[var(--color-blue)] transition-colors break-all">{SITE_CONTACT.email}</a>
+                    <div className="text-[12px] uppercase tracking-[0.1em] text-[#4a7fa5] font-semibold mb-1">Email</div>
+                    <a href={`mailto:${SITE_CONTACT.email}`} className="text-[18px] font-bold text-[#1a2e45] hover:text-[#a8823d] transition-colors break-all">{SITE_CONTACT.email}</a>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="w-[48px] h-[48px] rounded-full bg-white shadow-sm flex items-center justify-center text-[var(--color-blue)] flex-shrink-0">
+                  <div className="w-[48px] h-[48px] rounded-full bg-white shadow-sm flex items-center justify-center text-[#4a7fa5] border border-[#dcd8cf] flex-shrink-0">
                     <MapPin size={20} />
                   </div>
                   <div>
-                    <div className="text-[12px] uppercase tracking-[0.1em] text-[var(--color-charcoal)]/60 font-semibold mb-1">Location</div>
-                    <p className="text-[15px] font-medium text-[var(--color-navy)] leading-relaxed">
+                    <div className="text-[12px] uppercase tracking-[0.1em] text-[#4a7fa5] font-semibold mb-1">Location</div>
+                    <p className="text-[15px] font-medium text-[#1a2e45] leading-relaxed">
                       {SITE_CONTACT.addressLine1}
                       <br />
                       {SITE_CONTACT.addressLine2}
@@ -113,10 +113,10 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                     className="flex flex-col items-center justify-center text-center py-20"
                   >
-                    <div className="w-[80px] h-[80px] rounded-full bg-[var(--color-lightblue)] flex items-center justify-center text-[var(--color-blue)] mb-6">
+                    <div className="w-[80px] h-[80px] rounded-full bg-[#f7f5f0] border border-[#dcd8cf] flex items-center justify-center text-[#4a7fa5] mb-6">
                       <CalendarCheck2 size={36} />
                     </div>
-                    <h3 className="text-[28px] font-bold text-[var(--color-navy)] mb-4">Request Received</h3>
+                    <h3 className="text-[28px] font-bold text-[#1a2e45] mb-4">Request Received</h3>
                     <p className="text-[15px] text-[var(--color-charcoal)]/70 max-w-[340px] leading-[1.7]">
                       Thank you for trusting eawestern. A licensed advisor will review your details and contact you within one business day with a customized quote overview.
                     </p>
@@ -124,45 +124,45 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                 ) : (
                   <>
                     <div className="mb-10 border-b border-[rgba(11,27,61,0.05)] pb-6">
-                      <h3 className="text-[24px] font-bold text-[var(--color-navy)]">Request a Secure Quote</h3>
+                      <h3 className="text-[24px] font-bold text-[#1a2e45]">Request a Secure Quote</h3>
                       <p className="text-[14px] text-[var(--color-charcoal)]/60 mt-2">All information submitted is encrypted and strictly confidential.</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-8">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                          <label htmlFor="firstName" className="block text-[12px] font-bold text-[var(--color-navy)] uppercase tracking-[0.1em] mb-2">First Name</label>
+                          <label htmlFor="firstName" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">First Name</label>
                           <input type="text" id="firstName" required
-                            className="w-full bg-[var(--color-slate)] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-blue)] focus:ring-1 focus:ring-[var(--color-blue)] transition-all"
+                            className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all"
                           />
                         </div>
                         <div>
-                          <label htmlFor="lastName" className="block text-[12px] font-bold text-[var(--color-navy)] uppercase tracking-[0.1em] mb-2">Last Name</label>
+                          <label htmlFor="lastName" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Last Name</label>
                           <input type="text" id="lastName" required
-                            className="w-full bg-[var(--color-slate)] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-blue)] focus:ring-1 focus:ring-[var(--color-blue)] transition-all"
+                            className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all"
                           />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                          <label htmlFor="email" className="block text-[12px] font-bold text-[var(--color-navy)] uppercase tracking-[0.1em] mb-2">Email Address</label>
+                          <label htmlFor="email" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Email Address</label>
                           <input type="email" id="email" required
-                            className="w-full bg-[var(--color-slate)] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-blue)] focus:ring-1 focus:ring-[var(--color-blue)] transition-all"
+                            className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all"
                           />
                         </div>
                         <div>
-                          <label htmlFor="phone" className="block text-[12px] font-bold text-[var(--color-navy)] uppercase tracking-[0.1em] mb-2">Phone Number</label>
+                          <label htmlFor="phone" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Phone Number</label>
                           <input type="tel" id="phone" required
-                            className="w-full bg-[var(--color-slate)] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-blue)] focus:ring-1 focus:ring-[var(--color-blue)] transition-all"
+                            className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label htmlFor="interest" className="block text-[12px] font-bold text-[var(--color-navy)] uppercase tracking-[0.1em] mb-2">Area of Interest</label>
+                        <label htmlFor="interest" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Area of Interest</label>
                         <select id="interest" required
-                          className="w-full bg-[var(--color-slate)] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-blue)] focus:ring-1 focus:ring-[var(--color-blue)] transition-all appearance-none"
+                          className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all appearance-none"
                         >
                           <option value="" disabled selected>Select Insurance Type...</option>
                           <option value="life">Life Insurance</option>
@@ -174,9 +174,9 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                       </div>
 
                       <div>
-                        <label htmlFor="message" className="block text-[12px] font-bold text-[var(--color-navy)] uppercase tracking-[0.1em] mb-2">Additional Details (Optional)</label>
+                        <label htmlFor="message" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Additional Details (Optional)</label>
                         <textarea id="message" rows={4}
-                          className="w-full bg-[var(--color-slate)] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-blue)] focus:ring-1 focus:ring-[var(--color-blue)] transition-all resize-none"
+                          className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all resize-none"
                           placeholder="Please provide any brief details about your assets or family structure..."
                         ></textarea>
                       </div>
@@ -184,7 +184,7 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                       <button 
                         type="submit" 
                         disabled={isSubmitting}
-                        className="w-full bg-[var(--color-blue)] text-white px-[24px] py-[16px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-[var(--color-navy)] transition-colors rounded-[4px] shadow-lg shadow-[var(--color-blue)]/20 disabled:opacity-70 mt-4 flex items-center justify-center"
+                        className="w-full bg-[#c9a96e] text-[#1e3a5f] px-[24px] py-[16px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-[#a8823d] hover:text-[#1a2e45] transition-colors rounded-[4px] shadow-lg shadow-[#c9a96e]/20 disabled:opacity-70 mt-4 flex items-center justify-center"
                       >
                         {isSubmitting ? 'Processing Securely...' : 'Submit Request'}
                       </button>

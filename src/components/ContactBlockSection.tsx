@@ -1,38 +1,35 @@
 "use client";
 
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-export function ContactBlockSection() {
+export function ContactBlockSection({ locale = 'en' }: { locale?: string }) {
   return (
-    <section className="relative pt-[120px] pb-[180px] md:pt-[160px] md:pb-[240px] font-jost flex items-center justify-center overflow-hidden bg-[#0B1F2E]">
-      {/* Cinematic Background */}
-      <div className="absolute inset-0 w-full h-full">
-        <img 
-          src="/images/hero-kenya-bg.png" 
-          alt="eawestern contact" 
-          className="w-full h-full object-cover scale-105 opacity-40 grayscale-[30%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1F2E]/60 via-[#0B1F2E]/90 to-[#0B1F2E]" />
-        <div className="noise-overlay opacity-30" />
-      </div>
-
-      <div className="relative z-10 max-w-[850px] mx-auto px-6 text-center">
-        <div className="uppercase-label mb-8 text-[var(--color-gold)]">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="flex flex-col items-center justify-center overflow-hidden border-t border-[#ede9e1]/80 bg-[#f7f5f0] py-[100px] font-jost md:py-[100px]"
+    >
+      <div className="relative z-10 mx-auto max-w-[850px] px-6 text-center">
+        <div className="mb-8 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#4a7fa5]">
           Global Operations
         </div>
-        <h2 className="serif text-[36px] md:text-[62px] text-white leading-[1.1] mb-10">
-          We Are Ready to Support <span className="italic block mt-2 font-light">Your Journey</span>
+        <h2 className="serif mb-10 text-[36px] leading-[1.1] text-[#1a2e45] md:text-[62px]">
+          We Are Ready to Support{' '}
+          <span className="mt-2 block font-light italic text-[#c9a96e]">Your Journey</span>
         </h2>
-        <p className="text-lg md:text-xl text-white/50 mb-14 max-w-[650px] mx-auto font-light leading-relaxed">
+        <p className="mx-auto mb-14 max-w-[650px] text-lg font-light leading-relaxed text-[#4a5568] md:text-xl">
           Whether you're planning a safari, arranging transport, or securing insurance-our team is ready to assist you.
         </p>
-        <Link 
-          href="/en/contact"
-          className="inline-block border border-[var(--color-gold)] text-[var(--color-gold)] px-12 py-5 text-[11px] font-semibold uppercase tracking-[0.3em] transition-all duration-700 hover:bg-[var(--color-gold)] hover:text-[#0d1b2e] hover:-translate-y-1"
+        <Link
+          href={`/${locale}/contact`}
+          className="inline-block rounded-[4px] border-[1.5px] border-[#1e3a5f] bg-transparent px-12 py-5 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#1e3a5f] transition-all duration-300 ease-[ease] hover:bg-[#1e3a5f] hover:text-[#ffffff]"
         >
           Speak to Our Team
         </Link>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -46,30 +46,30 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
   };
 
   return (
-    <div className="theme-insurance bg-[var(--color-slate)] text-[var(--color-charcoal)] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-blue)] selection:text-white">
+    <div className="theme-insurance bg-[#f7f5f0] text-[#4a5568] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[#c9a96e] selection:text-[#1a2e45]">
       <InsuranceNavigation locale={locale} />
       
       <main className="w-full">
         {/* PREMIUM CLAIMS HERO */}
-        <section className="relative w-full min-h-[60vh] flex items-center pt-32 pb-20 overflow-hidden bg-[var(--color-navy)]">
-          <div className="absolute inset-0 opacity-40">
-             <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-navy)] via-[var(--color-navy)]/90 to-transparent z-10"></div>
+        <section className="relative w-full min-h-[60vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#f7f5f0]">
+          <div className="absolute inset-0 opacity-50">
+             <div className="absolute inset-0 bg-gradient-to-r from-[#f7f5f0] via-[#f7f5f0]/90 to-transparent z-10"></div>
              <img src="/images/contact.png" alt="Claims Support" className="w-full h-full object-cover" />
           </div>
           
           <div className="relative z-20 max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
              <motion.div initial="hidden" animate="visible" variants={fadeInUp} custom={0}>
-                <div className="text-[var(--color-blue)] font-bold text-sm uppercase tracking-[0.3em] mb-6">Claims & Support</div>
-                <h1 className="text-[48px] md:text-[68px] text-white font-bold mb-8 leading-[1.1] font-playfair">
-                  Fast, Compassionate <br /> <span className="italic !text-white font-normal">Resolution.</span>
+                <div className="text-[#4a7fa5] font-bold text-sm uppercase tracking-[0.3em] mb-6">Claims & Support</div>
+                <h1 className="text-[48px] md:text-[68px] text-[#1a2e45] font-bold mb-8 leading-[1.1] font-playfair">
+                  Fast, Compassionate <br /> <span className="italic text-[#4a7fa5] font-normal">Resolution.</span>
                 </h1>
-                <p className="text-white/60 text-lg max-w-xl mb-12">
+                <p className="text-[#4a5568] text-lg max-w-xl mb-12">
                   When the unexpected happens, eawestern is your advocate. Our dedicated claims team works tirelessly to ensure your payouts are fair, fast, and effortless.
                 </p>
                 <div className="flex flex-wrap gap-5">
                    <Link
                      href={`/${locale}/insurance/contact`}
-                     className="bg-[var(--color-blue)] text-white px-10 py-5 rounded-full font-bold flex items-center gap-2 hover:bg-white hover:text-[var(--color-navy)] transition-all shadow-xl shadow-[var(--color-blue)]/20"
+                  className="bg-[#c9a96e] text-[#1e3a5f] px-10 py-5 rounded-full font-bold flex items-center gap-2 hover:bg-[#a8823d] hover:text-[#1a2e45] transition-all shadow-xl shadow-[#c9a96e]/20"
                    >
                      File a Claim Now <ArrowRight size={20} />
                    </Link>
@@ -82,33 +82,33 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
                transition={{ duration: 0.8, delay: 0.4 }}
                className="hidden lg:block relative"
              >
-                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[32px] p-10 shadow-2xl relative overflow-hidden">
-                   <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-blue)]/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                <div className="bg-white/75 backdrop-blur-md border border-[#dcd8cf] rounded-[32px] p-10 shadow-2xl relative overflow-hidden">
+                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#c9a96e]/15 rounded-full blur-3xl -mr-16 -mt-16"></div>
                    
                    <div className="flex items-center gap-4 mb-8">
-                     <div className="w-12 h-12 rounded-full bg-[var(--color-blue)]/20 text-[var(--color-blue)] flex items-center justify-center">
+                     <div className="w-12 h-12 rounded-full bg-[#f7f5f0] text-[#4a7fa5] border border-[#dcd8cf] flex items-center justify-center">
                         <MessageSquare size={24} />
                       </div>
                       <div>
-                         <div className="text-white font-bold text-lg">Active Advocacy</div>
-                         <div className="text-white/40 text-sm">We handle the paperwork, you focus on recovery.</div>
+                         <div className="text-[#1a2e45] font-bold text-lg">Active Advocacy</div>
+                         <div className="text-[#4a5568] text-sm">We handle the paperwork, you focus on recovery.</div>
                       </div>
                    </div>
                    
                    <div className="space-y-6">
-                      <div className="bg-white/5 p-4 rounded-xl border border-white/5 flex items-center justify-between">
+                      <div className="bg-white p-4 rounded-xl border border-[#ede9e1] flex items-center justify-between">
                          <div className="flex items-center gap-3">
-                            <Clock size={18} className="text-[var(--color-blue)]" />
-                            <span className="text-white text-sm font-bold">24/7 Hotline Access</span>
+                            <Clock size={18} className="text-[#4a7fa5]" />
+                            <span className="text-[#1a2e45] text-sm font-bold">24/7 Hotline Access</span>
                          </div>
-                        <span className="text-[var(--color-blue)] text-xs font-bold uppercase tracking-widest">Active</span>
+                        <span className="text-[#4a7fa5] text-xs font-bold uppercase tracking-widest">Active</span>
                       </div>
-                      <div className="bg-white/5 p-4 rounded-xl border border-white/5 flex items-center justify-between">
+                      <div className="bg-white p-4 rounded-xl border border-[#ede9e1] flex items-center justify-between">
                          <div className="flex items-center gap-3">
-                            <FileCheck size={18} className="text-[var(--color-blue)]" />
-                            <span className="text-white text-sm font-bold">Digital Submission</span>
+                            <FileCheck size={18} className="text-[#4a7fa5]" />
+                            <span className="text-[#1a2e45] text-sm font-bold">Digital Submission</span>
                          </div>
-                        <span className="text-[var(--color-blue)] text-xs font-bold uppercase tracking-widest">Available</span>
+                        <span className="text-[#4a7fa5] text-xs font-bold uppercase tracking-widest">Available</span>
                       </div>
                    </div>
                 </div>
@@ -120,14 +120,14 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
         <section className="py-24 bg-white relative overflow-hidden">
            <div className="max-w-[1200px] mx-auto px-6 md:px-10">
               <div className="text-center mb-20">
-                 <div className="text-[var(--color-blue)] font-bold text-sm uppercase tracking-[0.2em] mb-4">Our Methodology</div>
+                 <div className="text-[#4a7fa5] font-bold text-sm uppercase tracking-[0.2em] mb-4">Our Methodology</div>
                  <h2 className="text-[40px] md:text-[52px] font-bold text-[var(--color-navy)] font-playfair">3 Steps to Resolution</h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
                  {/* Connecting Line */}
                  <div className="hidden md:block absolute top-[60px] left-[15%] right-[15%] h-[2px] bg-slate-100">
-                    <div className="h-full bg-gradient-to-r from-transparent via-[var(--color-blue)] to-transparent opacity-30"></div>
+                    <div className="h-full bg-gradient-to-r from-transparent via-[#c9a96e] to-transparent opacity-30"></div>
                  </div>
 
                  {[
@@ -135,19 +135,19 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
                     icon: PhoneCall, 
                      title: 'Step 1: Report', 
                      desc: 'Notify us via our 24/7 emergency line or our online portal within 24 hours of the incident.',
-                    color: 'text-[var(--color-blue)] bg-[var(--color-blue)]/10'
+                    color: 'text-[#4a7fa5] bg-[#f7f5f0]'
                    },
                    { 
                      icon: FileCheck, 
                      title: 'Step 2: Validate', 
                      desc: 'Our specialists review your documents and coordinate with adjusters to validate your claim rapidly.',
-                    color: 'text-[var(--color-blue)] bg-[var(--color-blue)]/10'
+                    color: 'text-[#4a7fa5] bg-[#f7f5f0]'
                    },
                    { 
                     icon: ShieldCheck, 
                      title: 'Step 3: Settle', 
                      desc: 'Once approved, we expedite your payment directly, helping you recover and rebuild immediately.',
-                    color: 'text-[var(--color-blue)] bg-[var(--color-blue)]/10'
+                    color: 'text-[#4a7fa5] bg-[#f7f5f0]'
                    }
                  ].map((item, idx) => (
                     <motion.div 
@@ -170,17 +170,17 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
         </section>
 
         {/* DOCUMENT CHECKLIST SECTION */}
-        <section className="py-24 bg-[var(--color-slate)]">
+        <section className="py-24 bg-[#f7f5f0]">
            <div className="max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div className="relative">
                  <div className="aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl">
                     <img src="/images/insurancebg.png" alt="Checklist" className="w-full h-full object-cover" />
                  </div>
-                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-[var(--color-blue)]/10 rounded-full blur-3xl"></div>
+                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#c9a96e]/15 rounded-full blur-3xl"></div>
               </div>
               
               <div>
-                 <div className="text-[var(--color-blue)] font-bold text-sm uppercase tracking-widest mb-4">Preparation is key</div>
+                 <div className="text-[#4a7fa5] font-bold text-sm uppercase tracking-widest mb-4">Preparation is key</div>
                  <h2 className="text-[40px] font-bold text-[var(--color-navy)] font-playfair mb-8">What You Will Need</h2>
                  <p className="text-slate-500 text-lg mb-10">To ensure the fastest possible turnaround, please have the following documents ready when filing your claim:</p>
                  
@@ -193,7 +193,7 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
                       'Relevant Photographic Evidence'
                     ].map((item, i) => (
                       <div key={i} className="flex items-center gap-4 bg-white p-5 rounded-[16px] shadow-sm border border-slate-50">
-                         <div className="w-6 h-6 rounded-full bg-[var(--color-blue)]/10 text-[var(--color-blue)] flex items-center justify-center shrink-0">
+                         <div className="w-6 h-6 rounded-full bg-[#f7f5f0] text-[#4a7fa5] border border-[#dcd8cf] flex items-center justify-center shrink-0">
                             <FileCheck size={14} strokeWidth={2.5} />
                           </div>
                           <span className="font-bold text-[var(--color-navy)]">{item}</span>
@@ -201,9 +201,9 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
                     ))}
                  </div>
                  
-                <div className="mt-12 bg-white p-8 rounded-[24px] border-l-4 border-[var(--color-blue)] shadow-lg">
+                <div className="mt-12 bg-white p-8 rounded-[24px] border-l-4 border-[#c9a96e] shadow-lg">
                     <div className="flex gap-4">
-                      <Clock className="text-[var(--color-blue)] shrink-0" size={24} />
+                      <Clock className="text-[#4a7fa5] shrink-0" size={24} />
                        <div>
                           <div className="font-bold text-[var(--color-navy)] mb-1">Time Sensitivity Notice</div>
                           <p className="text-sm text-slate-500">Most policies require incident reporting within 24-48 hours. Delayed reporting may impact claim processing speed.</p>
@@ -215,38 +215,38 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
         </section>
 
         {/* EMERGENCY SUPPORT SECTION */}
-        <section className="py-24 bg-[var(--color-navy)] relative overflow-hidden">
+        <section className="py-24 bg-[#f7f5f0] relative overflow-hidden border-y border-[#ede9e1]">
            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,_var(--color-blue)_0%,_transparent_60%)]"></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,_#c9a96e_0%,_transparent_60%)]"></div>
            </div>
            
            <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 text-center">
               <div className="w-20 h-20 rounded-full bg-red-500/20 text-red-500 flex items-center justify-center mx-auto mb-8 animate-pulse">
                  <PhoneCall size={36} />
               </div>
-              <h2 className="text-4xl md:text-5xl text-white font-bold mb-6 font-playfair">Emergency Assistance</h2>
-              <p className="text-white/60 text-lg max-w-2xl mx-auto mb-12">
+              <h2 className="text-4xl md:text-5xl text-[#1a2e45] font-bold mb-6 font-playfair">Emergency Assistance</h2>
+              <p className="text-[#4a5568] text-lg max-w-2xl mx-auto mb-12">
                  Facing an immediate crisis? Our emergency claims response team is available 24 hours a day, 7 days a week, 365 days a year.
               </p>
               
               <div className="flex flex-wrap justify-center gap-8">
-                 <div className="bg-white/5 border border-white/10 px-10 py-8 rounded-[24px] backdrop-blur-md max-w-full">
-                    <div className="text-white/50 text-[10px] uppercase font-bold tracking-widest mb-2">Primary Emergency Line</div>
-                    <a href={`tel:${SITE_CONTACT.phoneHref}`} className="text-2xl sm:text-3xl text-white font-bold hover:text-[var(--color-blue)] transition-colors break-all inline-block">
+                 <div className="bg-white border border-[#ede9e1] px-10 py-8 rounded-[24px] backdrop-blur-md max-w-full">
+                    <div className="text-[#4a7fa5] text-[10px] uppercase font-bold tracking-widest mb-2">Primary Emergency Line</div>
+                    <a href={`tel:${SITE_CONTACT.phoneHref}`} className="text-2xl sm:text-3xl text-[#1a2e45] font-bold hover:text-[#a8823d] transition-colors break-all inline-block">
                       {SITE_CONTACT.phoneDisplay}
                     </a>
                  </div>
-                 <div className="bg-white/5 border border-white/10 px-10 py-8 rounded-[24px] backdrop-blur-md max-w-full">
-                    <div className="text-white/50 text-[10px] uppercase font-bold tracking-widest mb-2">Claims Support Email</div>
-                    <a href={`mailto:${SITE_CONTACT.email}`} className="text-2xl sm:text-3xl text-white font-bold hover:text-[var(--color-blue)] transition-colors break-all inline-block">
+                 <div className="bg-white border border-[#ede9e1] px-10 py-8 rounded-[24px] backdrop-blur-md max-w-full">
+                    <div className="text-[#4a7fa5] text-[10px] uppercase font-bold tracking-widest mb-2">Claims Support Email</div>
+                    <a href={`mailto:${SITE_CONTACT.email}`} className="text-2xl sm:text-3xl text-[#1a2e45] font-bold hover:text-[#a8823d] transition-colors break-all inline-block">
                       {SITE_CONTACT.email}
                     </a>
                  </div>
-                 <div className="bg-white/5 border border-white/10 px-10 py-8 rounded-[24px] backdrop-blur-md max-w-md text-left">
-                    <div className="text-white/50 text-[10px] uppercase font-bold tracking-widest mb-3 flex items-center gap-2">
-                      <MapPin size={14} className="text-[var(--color-blue)]" /> Office
+                 <div className="bg-white border border-[#ede9e1] px-10 py-8 rounded-[24px] backdrop-blur-md max-w-md text-left">
+                    <div className="text-[#4a7fa5] text-[10px] uppercase font-bold tracking-widest mb-3 flex items-center gap-2">
+                      <MapPin size={14} className="text-[#4a7fa5]" /> Office
                     </div>
-                    <p className="text-lg text-white font-semibold leading-relaxed">
+                    <p className="text-lg text-[#1a2e45] font-semibold leading-relaxed">
                       {SITE_CONTACT.addressLine1}
                       <br />
                       {SITE_CONTACT.addressLine2}
@@ -287,12 +287,12 @@ export default function InsuranceClaimsPage({ params }: { params: Promise<{ loca
                  ))}
               </div>
               
-              <div className="mt-16 bg-[var(--color-slate)] p-10 rounded-[32px] text-center">
+              <div className="mt-16 bg-[#f7f5f0] p-10 rounded-[32px] text-center border border-[#ede9e1]">
                  <h4 className="text-xl font-bold text-[var(--color-navy)] mb-4">Still have questions?</h4>
                  <p className="text-slate-500 mb-8">Our advisors are available to guide you through the specifics of your policy.</p>
                  <Link 
                    href={`/${locale}/insurance/contact`}
-                   className="inline-flex items-center gap-2 bg-[var(--color-navy)] text-white px-8 py-4 rounded-full font-bold hover:bg-[var(--color-blue)] transition-colors"
+                   className="inline-flex items-center gap-2 bg-[#c9a96e] text-[#1e3a5f] px-8 py-4 rounded-full font-bold hover:bg-[#a8823d] hover:text-[#1a2e45] transition-colors"
                  >
                     <HelpCircle size={18} /> Visit Help Center
                  </Link>

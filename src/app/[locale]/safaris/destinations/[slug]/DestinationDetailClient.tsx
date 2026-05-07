@@ -341,12 +341,12 @@ export default function DestinationDetailClient({ locale, slug }: { locale: stri
           </div>
         </section>
 
-        <section className="bg-[var(--color-deep-green)] text-center py-16 px-6">
-          <h2 className="font-playfair text-[36px] text-[var(--color-cream)] mb-4">Start Planning Your Safari</h2>
-          <p className="text-[var(--color-sand)] max-w-[680px] mx-auto mb-8 text-[15px] font-light">
+        <section className="bg-[#f7f5f0] text-center py-16 px-6">
+          <h2 className="font-playfair text-[36px] text-[#1a2e45] mb-4">Start Planning Your Safari</h2>
+          <p className="text-[#4a5568] max-w-[680px] mx-auto mb-8 text-[15px] font-light">
             Let us help you plan a seamless safari experience tailored to your schedule and travel style.
           </p>
-          <Link href={`/${locale}/safaris/contact`} className="inline-block border border-[var(--color-gold)] text-[var(--color-gold)] px-8 py-3 text-[10px] uppercase tracking-[0.18em] hover:bg-[var(--color-gold)] hover:text-[var(--color-deep-green)] transition-colors">
+          <Link href={`/${locale}/safaris/contact`} className="inline-block border border-[#c9a96e] bg-[#c9a96e] text-[#1e3a5f] px-8 py-3 text-[10px] uppercase tracking-[0.18em] hover:bg-[#a8823d] hover:text-[#1a2e45] transition-colors">
             Request a Consultation
           </Link>
         </section>

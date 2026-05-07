@@ -1,10 +1,15 @@
 "use client";
 
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Compass, Car, ShieldCheck } from 'lucide-react';
-import { CredentialsSection } from './CredentialsSection';
+import {
+  HomeHeroSlideDots,
+  HomeHeroSlideRoot,
+  useHomeHeroSlideContext,
+  useHomeHeroTextAnimation,
+} from '@/components/HomeHeroSlideRoot';
 
 const portfolios = [
   {
@@ -36,23 +41,163 @@ const portfolios = [
   }
 ];
 
+const HOME_HERO_SLIDES = [
+  {
+    eyebrow: 'Welcome to EA Western',
+    title: 'For all your insurance, safari and mobility needs',
+    subtitle:
+      'We are a trusted East African partner for families and businesses, delivering integrated cover, travel, and transport solutions with responsive support.',
+  },
+  {
+    eyebrow: 'Fast Claims Support',
+    title: 'Protection that responds when it matters most',
+    subtitle:
+      'Our team stays with you through policy setup, renewals, and claims so outcomes are clear, timely, and stress-free.',
+  },
+  {
+    eyebrow: 'Customer First',
+    title: 'Experienced advisors built around your needs',
+    subtitle:
+      'From personal cover to business risk, we simplify decisions and secure solutions that fit your life, budget, and goals.',
+  },
+] as const;
+
+const HOME_HERO_IMAGES = ['/images/insurancebg.png', '/images/safariview.png', '/images/car image.jpg'] as const;
+const SLIDE_PROGRESS_MS = 5000;
+const SERVICE_HIGHLIGHTS = [
+  {
+    index: '01',
+    title: 'Tours & Safaris',
+    icon: Compass,
+    image: '/images/tours.png',
+    href: '/safaris',
+    ctaLabel: 'Explore Itineraries',
+    description:
+      'Curated safari experiences across East Africa with trusted planning, safe logistics, and memorable journeys for families, groups, and private travelers.',
+  },
+  {
+    index: '02',
+    title: 'Insurance',
+    icon: ShieldCheck,
+    image: '/images/fam.png',
+    href: '/insurance',
+    ctaLabel: 'View Coverage and Get a Quote',
+    description:
+      'Structured insurance solutions for individuals and businesses, with practical advisory support from policy selection through renewals and claims.',
+  },
+  {
+    index: '03',
+    title: 'Car Hire',
+    icon: Car,
+    image: '/images/caar.png',
+    href: '/vehicles',
+    ctaLabel: 'Browse Fleet and Availability',
+    description:
+      'Reliable, well-maintained vehicles for business, safari, and everyday travel, coordinated with responsive service and dependable support.',
+  },
+] as const;
+
+function HomeHeroContent({ locale }: { locale: string }) {
+  const slideCtx = useHomeHeroSlideContext();
+  const { textCycle, textDelayMs } = useHomeHeroTextAnimation();
+  const activeSlide = HOME_HERO_SLIDES[slideCtx?.activeDotIndex ?? 0];
+
+  return (
+    <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-0 py-10">
+      <div className="pointer-events-none fixed inset-x-0 top-[72px] z-[80]">
+        <div className="relative h-[4px] w-full overflow-hidden bg-[#3f4650] shadow-[0_0_14px_rgba(0,0,0,0.85)]">
+          <div
+            key={`hero-progress-${slideCtx?.activeDotIndex ?? 0}-${textCycle}`}
+            className="hero-cycle-line absolute inset-y-0 left-0 w-full bg-[#ffffff] shadow-[0_0_18px_rgba(255,255,255,1)]"
+            style={{
+              animationDuration: `${SLIDE_PROGRESS_MS}ms`,
+            }}
+          />
+        </div>
+      </div>
+
+      <button
+        type="button"
+        aria-label="Previous slide"
+        disabled={!slideCtx || slideCtx.transitioning}
+        onClick={() => slideCtx?.goToIndex((slideCtx.activeDotIndex ?? 0) - 1)}
+        className="absolute left-0 top-1/2 z-20 flex h-[78px] w-[52px] -translate-y-1/2 items-center justify-center bg-white/12 text-white/95 opacity-0 backdrop-blur-[1px] transition-all duration-200 group-hover:opacity-100 focus-visible:opacity-100 hover:bg-white/20 active:scale-[0.96] active:bg-white/28 disabled:cursor-not-allowed disabled:opacity-45"
+      >
+        <span className="block h-5 w-5 rotate-45 border-b-[2px] border-l-[2px] border-white" />
+      </button>
+
+      <button
+        type="button"
+        aria-label="Next slide"
+        disabled={!slideCtx || slideCtx.transitioning}
+        onClick={() => slideCtx?.goToIndex((slideCtx.activeDotIndex ?? 0) + 1)}
+        className="absolute right-0 top-1/2 z-20 flex h-[78px] w-[52px] -translate-y-1/2 items-center justify-center bg-white/12 text-white/95 opacity-0 backdrop-blur-[1px] transition-all duration-200 group-hover:opacity-100 focus-visible:opacity-100 hover:bg-white/20 active:scale-[0.96] active:bg-white/28 disabled:cursor-not-allowed disabled:opacity-45"
+      >
+        <span className="block h-5 w-5 -rotate-[135deg] border-b-[2px] border-l-[2px] border-white" />
+      </button>
+
+      <div className="mx-auto max-w-[860px] px-6 text-center sm:px-8 md:px-10">
+        <motion.p
+          key={`eyebrow-${activeSlide.eyebrow}-${textCycle}`}
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.4,
+            delay: Math.max(0, textDelayMs - 120) / 1000,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#d3b076]"
+        >
+          {activeSlide.eyebrow}
+        </motion.p>
+
+        <motion.h1
+          key={`title-${activeSlide.title}-${textCycle}`}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: textDelayMs / 1000, ease: [0.22, 1, 0.36, 1] }}
+          className="serif text-[38px] leading-[1.08] text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-[48px]"
+        >
+          {activeSlide.title}
+        </motion.h1>
+
+        <motion.p
+          key={`subtitle-${activeSlide.subtitle}-${textCycle}`}
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: (textDelayMs + 150) / 1000, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto mt-5 max-w-[720px] text-[16px] leading-relaxed text-white/90 [text-shadow:0_2px_14px_rgba(0,0,0,0.4)] md:text-[20px]"
+        >
+          {activeSlide.subtitle}
+        </motion.p>
+
+        <motion.div
+          key={`cta-${textCycle}`}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: (textDelayMs + 300) / 1000, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 flex flex-wrap items-center justify-center gap-4"
+        >
+          <button
+            type="button"
+            onClick={() => window.location.assign(`/${locale}/contact`)}
+            className="rounded-[50px] bg-[var(--color-gold)] px-8 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1f2430] transition-colors duration-300 hover:bg-[#b79251]"
+          >
+            Get a Quote
+          </button>
+        </motion.div>
+      </div>
+
+      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
+        <HomeHeroSlideDots />
+      </div>
+    </div>
+  );
+}
+
 export function PortalClient({ locale = 'en' }: { locale?: string }) {
   const [activeMicroSite, setActiveMicroSite] = useState<string | null>(null);
-  const serviceHeaderRef = useRef<HTMLDivElement | null>(null);
-  const servicesSectionRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
-  const { scrollYProgress: serviceHeaderProgress } = useScroll({
-    target: serviceHeaderRef,
-    offset: ['start 80%', 'end 35%']
-  });
-  const serviceHeaderY = useTransform(serviceHeaderProgress, [0, 1], [48, -12]);
-  const serviceHeaderOpacity = useTransform(serviceHeaderProgress, [0, 0.25, 1], [0, 1, 0.85]);
-  const serviceHeaderScale = useTransform(serviceHeaderProgress, [0, 1], [0.96, 1.02]);
-  const serviceAccentX = useTransform(serviceHeaderProgress, [0, 1], [-20, 0]);
-
-  const handleExploreClick = () => {
-    servicesSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
 
   useEffect(() => {
     if (activeMicroSite) {
@@ -68,13 +213,9 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
     router.prefetch(`/${locale}/vehicles`);
   }, [locale, router]);
 
-  const handleCardNavigation = (destination: string) => {
-    router.push(destination);
-  };
-
   return (
     <main
-      className="relative flex w-full max-w-full flex-col overflow-x-hidden pt-24 text-[var(--text-primary)]"
+      className="relative flex w-full max-w-full flex-col overflow-x-hidden text-[var(--text-primary)]"
       style={{ background: 'var(--background-gradient)' }}
     >
       {/* Background Ambience */}
@@ -87,162 +228,63 @@ export function PortalClient({ locale = 'en' }: { locale?: string }) {
       <div className="gold-line-v line-left opacity-10"></div>
       <div className="gold-line-v line-right opacity-10"></div>
 
-      {/* Hero Content Section */}
-      <div className="min-h-[85vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 relative z-10 py-14 sm:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="uppercase-label mb-8"
-        >
-          East Africa tours, safaris, insurance and car hire — managed by one trusted company
-        </motion.div>
+      <HomeHeroSlideRoot
+        images={HOME_HERO_IMAGES}
+        ariaLabel="Homepage hero section"
+        pauseOnHover={false}
+        className="group relative z-10 h-[550px] w-full overflow-hidden"
+        overlayClassName="pointer-events-none absolute inset-0 z-[9] bg-[rgba(0,0,0,0.4)]"
+      >
+        <HomeHeroContent locale={locale} />
+      </HomeHeroSlideRoot>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
-          className="serif text-[32px] sm:text-[40px] md:text-[64px] lg:text-[84px] leading-[1.05] mb-8 sm:mb-10 tracking-[0.02em] px-1"
-        >
-          Experience the{' '}
-          <span style={{ color: 'var(--color-gold)', textShadow: 'none' }}>
-            Extraordinary
-          </span>
-        </motion.h1>
+      <section className="relative z-10 bg-[#f7f5f0] py-14 sm:py-16 md:py-20">
+        <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 md:px-10">
+          <div className="mb-8 text-center md:mb-10">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8f7444]">Our Services</p>
+            <h2 className="mt-3 serif text-[30px] leading-tight text-[#1a2e45] md:text-[40px]">
+              Three ways we support you
+            </h2>
+          </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="text-[#A7B1BC]/75 text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-[760px] mb-12 sm:mb-16 leading-[1.7] px-1"
-        >
-          East Africa&apos;s only integrated ecosystem for Premium Safaris, Licensed Insurance, and Reliable Mobility. One trusted partner, zero gaps
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-4 sm:gap-6 px-2 w-full max-w-lg sm:max-w-none"
-        >
-          <button
-            onClick={handleExploreClick}
-            className="bg-[var(--color-gold)] text-[#0B1F2E] px-6 sm:px-10 py-3 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] transition-all duration-500 rounded-[4px] hover:brightness-110 text-center"
-          >
-            Explore Collective
-          </button>
-          <button
-            onClick={() => router.push(`/${locale}/contact`)}
-            className="border border-[var(--color-gold)] text-[var(--color-gold)] bg-transparent px-6 sm:px-10 py-3 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] transition-all duration-500 rounded-[4px] hover:bg-[var(--color-gold)] hover:text-[#0B1F2E] text-center"
-          >
-            Request a Private Consultation
-          </button>
-        </motion.div>
-
-        {/* Scroll Hint */}
-        <div className="mt-4 flex flex-col items-center gap-2">
-          <span className="text-[10px] tracking-[0.4em] text-white/30 uppercase">Scroll</span>
-          <div className="w-[1px] h-8 bg-white/10 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full bg-[var(--color-gold)] animate-scroll-line h-full"></div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {SERVICE_HIGHLIGHTS.map((item) => (
+              <article
+                key={item.index}
+                className="group relative overflow-hidden rounded-[8px] border border-[#e7e1d7] bg-[#f8f6f2] px-6 pb-7 pt-6 shadow-[0_1px_2px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1a2e45] hover:bg-[#1a2e45] hover:shadow-[0_14px_30px_rgba(15,23,42,0.18)]"
+              >
+                <div className="absolute right-5 top-5 text-[48px] font-semibold tracking-tight text-[#ddd7cc] transition-colors duration-300 group-hover:text-[#c9a96e]">
+                  {item.index}
+                </div>
+                <div className="mb-6 flex h-11 w-24 items-center justify-center rounded-br-[36px] rounded-tl-[8px] bg-[#c9a96e] text-[#1a2e45] transition-colors duration-300 group-hover:bg-[#d7bb87]">
+                  <item.icon size={23} strokeWidth={2} />
+                </div>
+                <h3 className="mt-4 text-[26px] font-semibold text-[#1f3148] transition-colors duration-300 group-hover:text-[#f3efe6]">
+                  {item.title}
+                </h3>
+                <div className="mt-4 overflow-hidden rounded-[6px] border border-[#e3ddcf] bg-[#f1ece2] transition-colors duration-300 group-hover:border-[#2e4763]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-[130px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <p className="mt-3 text-[16px] leading-[1.65] text-[#5b6472] transition-colors duration-300 group-hover:text-[#d6deea]">
+                  {item.description}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => router.push(`/${locale}${item.href}`)}
+                  className="mt-5 inline-flex items-center rounded-[4px] bg-[#c9a96e] px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1a2e45] transition-colors duration-300 hover:bg-[#b79251] group-hover:bg-[#d7bb87]"
+                >
+                  {item.ctaLabel}
+                </button>
+              </article>
+            ))}
           </div>
         </div>
-      </div>
-
-      {/* Portfolio Grid Selection */}
-      <section ref={servicesSectionRef} className="relative z-10 w-full px-4 md:px-10 pt-3 pb-4 md:pt-4 md:pb-6">
-        <motion.div
-          ref={serviceHeaderRef}
-          className="text-center mb-4 md:mb-6 px-2"
-        >
-          <motion.h2
-            style={{ y: serviceHeaderY, opacity: serviceHeaderOpacity, scale: serviceHeaderScale }}
-            className="serif text-[26px] sm:text-[30px] md:text-[42px] text-white leading-tight will-change-transform"
-          >
-            Choose a{' '}
-            <motion.span style={{ color: 'var(--color-gold)', x: serviceAccentX }} className="inline-block">
-              Service
-            </motion.span>{' '}
-            to Get Started
-          </motion.h2>
-        </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[var(--color-gold)]/10 border-t border-b border-[var(--color-gold)]/20">
-          {portfolios.map((portfolio, idx) => (
-            <motion.div
-              key={portfolio.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              onClick={() => {
-                const destination =
-                  portfolio.id === 'safaris'
-                    ? `/${locale}/safaris`
-                    : portfolio.id === 'insurance'
-                      ? `/${locale}/insurance`
-                      : `/${locale}/vehicles`;
-                handleCardNavigation(destination);
-              }}
-              className="group relative min-h-[380px] sm:min-h-[420px] md:min-h-[520px] cursor-pointer bg-[#0B1F2E] transition-all duration-700 overflow-hidden"
-            >
-              <div className="absolute inset-0">
-                <img
-                  src={portfolio.bgImage}
-                  alt=""
-                  className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-1000"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F2E]/90 via-[#0B1F2E]/45 via-[42%] to-[#0B1F2E]/10"></div>
-              {/* Darken lower half so body + CTA read clearly on busy / bright image areas */}
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#020a12] via-[#020a12]/88 via-[38%] to-transparent"
-                aria-hidden
-              />
-              <div className="absolute inset-0 border border-[var(--color-gold)]/10 pointer-events-none"></div>
-              <div className="absolute inset-x-0 bottom-0 h-[1px] bg-[var(--color-gold)]/15 pointer-events-none"></div>
-              <div className="absolute inset-x-0 top-0 h-[1px] bg-[var(--color-gold)]/15 pointer-events-none"></div>
-
-              <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8 md:p-12">
-                <div>
-                  <div className="text-[14px] text-white/30 mb-6 font-light uppercase tracking-widest">0{idx + 1}</div>
-                  <div className="mb-10 flex h-16 w-16 items-center justify-center border border-[var(--color-gold)]/20 text-[var(--color-gold)] transition-all duration-700 group-hover:bg-[var(--color-gold)] group-hover:text-[#0d1b2e]">
-                    <portfolio.icon size={32} />
-                  </div>
-                  <h3
-                    className="serif text-2xl sm:text-3xl md:text-4xl text-white mb-4 sm:mb-6 leading-tight transition-colors duration-500 [text-shadow:0_2px_20px_rgba(0,0,0,0.85),0_1px_3px_rgba(0,0,0,0.95)] group-hover:text-[var(--color-gold)]"
-                  >
-                    {portfolio.title}
-                  </h3>
-                </div>
-                <div className="mt-auto max-w-[20rem] rounded-sm border border-white/10 bg-[#0B1F2E]/55 p-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-[6px] sm:max-w-[22rem] md:p-5">
-                  <p className="text-[15px] font-normal leading-relaxed text-white/95 antialiased [text-shadow:0_1px_2px_rgba(0,0,0,0.5)] sm:text-base md:text-[17px]">
-                    {portfolio.description}
-                  </p>
-                  <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
-                    <span className="text-[10px] font-semibold uppercase leading-snug tracking-[0.24em] text-[#E8D4A4] [text-shadow:0_1px_3px_rgba(0,0,0,0.75)] sm:text-[11px] sm:tracking-[0.28em] group-hover:text-white transition-colors duration-500">
-                      {portfolio.id === 'safaris'
-                        ? 'Explore Itineraries'
-                        : portfolio.id === 'insurance'
-                          ? 'View Coverage & Get a Quote'
-                          : 'Browse Fleet & Availability'}
-                    </span>
-                    <span
-                      aria-hidden
-                      className="relative inline-block h-[10px] w-4 align-middle transition-all duration-500 group-hover:w-7 group-active:w-8"
-                    >
-                      <span className="absolute left-0 right-0 top-1/2 h-[1px] -translate-y-1/2 bg-[var(--color-gold)]"></span>
-                      <span className="absolute right-0 top-1/2 h-[6px] w-[6px] -translate-y-1/2 rotate-45 border-r border-t border-[var(--color-gold)]"></span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </section>
-
-      <div className="relative z-10 pt-2 pb-10 md:pt-4 md:pb-12">
-        <CredentialsSection />
-      </div>
 
       {/* Micro-site Overlay System */}
       <AnimatePresence>

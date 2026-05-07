@@ -4,7 +4,14 @@ import { motion } from 'framer-motion';
 import { Route, ShieldCheck, Award } from 'lucide-react';
 import Link from 'next/link';
 
-export function WhatYouGetSection() {
+const fade = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' as const },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+};
+
+export function WhatYouGetSection({ locale = 'en' }: { locale?: string }) {
   const benefits = [
     {
       title: 'Seamless Adventure',
@@ -24,80 +31,85 @@ export function WhatYouGetSection() {
   ];
 
   return (
-    <section className="pt-[56px] pb-[80px] md:pt-[80px] md:pb-[120px] bg-[#0B1F2E] text-white font-jost overflow-hidden border-t border-[var(--color-gold)]/10">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-        
-        <div className="text-center mb-12 md:mb-14">
-          <motion.div 
+    <motion.section
+      {...fade}
+      className="border-t border-[#ede9e1]/80 bg-[#f7f5f0] py-[100px] font-jost text-[#4a5568] md:py-[100px]"
+    >
+      <div className="mx-auto max-w-[1200px] px-6 md:px-10">
+        <div className="mb-14 text-center md:mb-16">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="uppercase-label mb-6"
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-6 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#4a7fa5]"
           >
             The Client Experience
           </motion.div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
-            className="serif text-[36px] md:text-[52px] text-white leading-tight"
+            transition={{ duration: 0.6, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+            className="serif text-[36px] leading-tight text-[#1a2e45] md:text-[52px]"
           >
-            What You <span className="italic text-[var(--color-gold)]">Get</span>
+            What You <span className="italic text-[#c9a96e]">Get</span>
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-28">
+        <div className="mb-28 grid grid-cols-1 gap-10 md:grid-cols-3">
           {benefits.map((benefit, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1, delay: idx * 0.15, ease: [0.19, 1, 0.22, 1] }}
-              className="bg-[#0F2A3D] border border-white/5 p-12 flex flex-col items-center text-center transition-all duration-700 hover:border-[var(--color-gold)]/30"
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-center rounded-[12px] border border-[#ede9e1] bg-[#ffffff] px-7 py-9 text-center shadow-[0_4px_16px_rgba(30,58,95,0.07)] transition-all duration-300 ease-[ease] hover:border-[#4a7fa5] hover:shadow-[0_8px_28px_rgba(30,58,95,0.12)]"
             >
-              <div className="w-[70px] h-[70px] border border-[var(--color-gold)]/20 flex items-center justify-center text-[var(--color-gold)] mb-10 transition-all duration-700 group-hover:rotate-6">
-                <benefit.icon size={32} />
+              <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-[8px] border border-[#c9a96e] text-[#c9a96e]">
+                <benefit.icon size={22} strokeWidth={1.5} />
               </div>
-              <h3 className="serif text-2xl text-white mb-5 transition-colors group-hover:text-[var(--color-gold)]">
+              <h3 className="serif mb-5 text-[20px] text-[#1a2e45]">
                 {benefit.title}
               </h3>
-              <p className="text-base text-white/50 leading-relaxed font-light">
+              <p className="text-base font-light leading-relaxed text-[#4a5568]">
                 {benefit.description}
               </p>
             </motion.div>
           ))}
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
-          className="relative border border-[var(--color-gold)]/20 bg-[#0F2A3D] text-white p-16 md:p-24 text-center overflow-hidden"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="relative overflow-hidden rounded-[12px] border border-[#ede9e1] bg-[#ffffff] p-14 text-center shadow-[0_4px_16px_rgba(30,58,95,0.07)] md:p-24"
         >
-          <div className="absolute top-0 left-0 w-20 h-20 border-t border-l border-[var(--color-gold)]/40" />
-          <div className="absolute bottom-0 right-0 w-20 h-20 border-b border-r border-[var(--color-gold)]/40" />
-          
-          <div className="relative z-10 max-w-[800px] mx-auto">
-            <h3 className="serif text-[32px] md:text-[48px] leading-tight mb-8">
-              Ready to Experience the <span className="italic">eawestern difference?</span>
+          <div
+            className="pointer-events-none absolute inset-5 rounded-[8px] border border-[rgba(201,169,110,0.35)] md:inset-5"
+            aria-hidden
+          />
+
+          <div className="relative z-10 mx-auto max-w-[800px]">
+            <h3 className="serif mb-8 text-[32px] leading-tight text-[#1a2e45] md:text-[48px]">
+              Ready to Experience the{' '}
+              <span className="italic text-[#c9a96e]">eawestern difference?</span>
             </h3>
-            <div className="w-[100px] h-[1px] bg-[var(--color-gold)] mx-auto mb-10" />
-            <p className="text-lg text-[rgba(240,235,227,0.55)] mb-14 font-light leading-relaxed">
+            <div className="mx-auto mb-10 h-[1px] w-[60px] bg-[#c9a96e]" />
+            <p className="mb-14 text-lg font-light leading-relaxed text-[#4a5568]">
               Join the thousands of clients who choose guaranteed excellence over settling for less. Our experts craft your next adventure, secure your legacy, and manage every detail of your travel or corporate logistics.
             </p>
-            <Link 
-              href="/en/contact"
-              className="inline-block bg-[var(--color-gold)] text-[#0B1F2E] px-12 py-5 text-[11px] font-semibold uppercase tracking-[0.3em] transition-all duration-700 hover:bg-[var(--color-gold-light)] hover:-translate-y-1"
-        >
+            <Link
+              href={`/${locale}/contact`}
+              className="inline-block rounded-[4px] bg-[#c9a96e] px-12 py-5 text-[11px] font-semibold uppercase tracking-[0.3em] text-[#1e3a5f] shadow-md transition-all duration-300 ease-[ease] hover:bg-[#a8823d]"
+            >
               Contact Us Today →
             </Link>
           </div>
         </motion.div>
-
       </div>
-    </section>
+    </motion.section>
   );
 }

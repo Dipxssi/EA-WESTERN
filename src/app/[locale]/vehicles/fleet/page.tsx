@@ -39,23 +39,29 @@ export default function VehiclesFleetPage({ params }: { params: Promise<{ locale
   }, [params]);
 
   return (
-    <div className="theme-automotive bg-white text-neutral-600 min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-red)] selection:text-white">
+    <div className="theme-automotive bg-[#f7f5f0] text-[#4a5568] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[#c9a96e] selection:text-[#1a2e45]">
       <VehiclesNavigation locale={locale} />
       
       <main className="w-full pb-[80px]">
         {/* Header */}
-        <section className="bg-black pt-[160px] pb-[80px] md:pt-[200px] md:pb-[120px] relative overflow-hidden">
-           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent z-10" />
-           <img src="/images/luxury-car-background.jpg" alt="Fleet Background" className="absolute inset-0 w-full h-full object-cover object-center opacity-40 mix-blend-luminosity" />
-           <div className="absolute inset-0 bg-white/5 mix-blend-overlay z-10" />
+        <section className="bg-[#f7f5f0] pt-[160px] pb-[80px] md:pt-[200px] md:pb-[120px] relative overflow-hidden">
+           <div className="absolute inset-0 z-0">
+             <img
+               src="/images/car image.jpg"
+               alt="Fleet Background"
+               className="h-full w-full object-cover object-center"
+             />
+             <div className="absolute inset-0 bg-black/45" />
+             <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/25" />
+           </div>
            
            <div className="relative z-20 max-w-[1200px] mx-auto px-6 md:px-10 flex flex-col items-center text-center">
              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-               <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-4">Our Fleet</div>
-               <h1 className="text-[40px] md:text-[56px] text-white font-extrabold mb-6 leading-tight uppercase max-w-[800px]">
+              <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-[#d7b87a] mb-4 [text-shadow:0_2px_10px_rgba(0,0,0,0.55)]">Our Fleet</div>
+              <h1 className="text-[40px] md:text-[56px] text-white font-extrabold mb-6 leading-tight uppercase max-w-[800px] [text-shadow:0_3px_18px_rgba(0,0,0,0.65)]">
                  The Right Vehicle. <br/> Every Time.
                </h1>
-               <p className="text-[16px] text-white/60 max-w-[600px] mx-auto leading-[1.7]">
+              <p className="text-[16px] text-white/90 max-w-[600px] mx-auto leading-[1.7] [text-shadow:0_2px_12px_rgba(0,0,0,0.6)]">
                  From urban executive sedans to rugged off-road Land Cruisers, explore our diverse, meticulously maintained fleet.
                </p>
              </motion.div>
@@ -96,7 +102,7 @@ export default function VehiclesFleetPage({ params }: { params: Promise<{ locale
 
                     {/* Content Column */}
                     <div className="w-full lg:w-1/2">
-                      <h2 className="text-[32px] md:text-[40px] font-extrabold text-black mb-4 uppercase">
+                      <h2 className="text-[32px] md:text-[40px] font-extrabold text-[#1a2e45] mb-4 uppercase">
                         {fleet.category}
                       </h2>
                       <p className="text-[16px] text-neutral-600 leading-[1.7] mb-8">
@@ -104,11 +110,11 @@ export default function VehiclesFleetPage({ params }: { params: Promise<{ locale
                       </p>
                       
                       <div className="bg-white rounded-[4px] p-8 border border-neutral-200 shadow-sm mb-8">
-                         <h4 className="text-[12px] uppercase tracking-[0.2em] font-bold text-black mb-6 border-b border-black/5 pb-3">Vehicle Specifications</h4>
+                         <h4 className="text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a2e45] mb-6 border-b border-black/5 pb-3">Vehicle Specifications</h4>
                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
                            {fleet.specs.map((spec, sIdx) => (
                              <li key={sIdx} className="flex items-center text-[14px] text-neutral-600 font-medium">
-                               <Cog size={16} className="text-black mr-3 flex-shrink-0" />
+                               <Cog size={16} className="text-[#4a7fa5] mr-3 flex-shrink-0" />
                                {spec}
                              </li>
                            ))}
@@ -118,7 +124,7 @@ export default function VehiclesFleetPage({ params }: { params: Promise<{ locale
                       <div className="flex items-center gap-4">
                         <Link
                           href={`/${locale}/vehicles/contact`}
-                          className="bg-[var(--color-red)] text-white px-[32px] py-[16px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-black transition-colors rounded-[2px]"
+                          className="bg-[#c9a96e] text-[#1e3a5f] px-[32px] py-[16px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-[#a8823d] hover:text-[#1a2e45] transition-colors rounded-[2px]"
                         >
                           Request Availability
                         </Link>

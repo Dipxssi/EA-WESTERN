@@ -1,117 +1,113 @@
 "use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 
 type SafariNavigationProps = {
   locale?: string;
 };
 
-export function SafariNavigation({ locale = 'en' }: SafariNavigationProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export function SafariNavigation({ locale = "en" }: SafariNavigationProps) {
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const isActive = (path: string) => {
-    if (!pathname) return false;
-    if (path === `/${locale}` || path === `/${locale}/`) {
-      return pathname === `/${locale}` || pathname === `/${locale}/`;
-    }
-    if (path === `/${locale}/safaris`) {
-      return pathname === `/${locale}/safaris` || pathname === `/${locale}/safaris/`;
-    }
-    return pathname === path || pathname.startsWith(`${path}/`);
+  const navClass = (href: string, exactOnly?: boolean) => {
+    if (!pathname) return "sp-nav-link";
+    const isExact = pathname === href || pathname === `${href}/`;
+    const isPrefix = pathname.startsWith(`${href}/`);
+    const active = exactOnly ? isExact : isExact || isPrefix;
+    return active ? "sp-nav-link sp-nav-active" : "sp-nav-link";
   };
 
-  const navLinkClass = (path: string) => `
-    relative text-[10px] sm:text-[11px] tracking-[0.25em] font-medium uppercase transition-colors duration-500 py-2
-    ${isActive(path) ? 'text-[#C8A96E]' : 'text-white/70 hover:text-[#C8A96E]'}
-    before:absolute before:-bottom-1 before:left-0 before:h-[1px] before:w-full before:origin-right before:scale-x-0 before:bg-[#C8A96E] before:transition-transform before:duration-500 hover:before:origin-left hover:before:scale-x-100
-  `;
-
-  const NavLink = ({ path, label }: { path: string; label: string }) => (
-    <Link href={path} className={navLinkClass(path)} onClick={() => setIsMenuOpen(false)}>
-      {label}
-    </Link>
-  );
-
-  const MobileNavLink = ({ path, label }: { path: string; label: string }) => (
-    <Link
-      href={path}
-      className={`flex items-center gap-4 py-4 px-6 tracking-[0.15em] transition-colors duration-300 text-sm uppercase font-medium ${
-        isActive(path)
-          ? 'text-[#C8A96E] bg-white/5'
-          : 'text-white/60 hover:text-white hover:bg-white/5'
-      }`}
-      onClick={() => setIsMenuOpen(false)}
-    >
-      <span>{label}</span>
-    </Link>
-  );
+  const mainHref = `/${locale}`;
+  const safariHome = `/${locale}/safaris`;
 
   return (
-    <nav className="fixed w-full top-0 z-50 transition-colors duration-500 border-b border-[#C8A96E]/15 bg-[#08172E]/40 backdrop-blur-xl">
-      <div className="mx-auto px-4 sm:px-6 max-w-7xl md:px-10 min-w-0">
-        <div className="flex justify-between items-center py-4 sm:py-5 gap-3 min-w-0">
-          {/* Logo */}
-          <div className="flex items-center min-w-0">
-            <Link href={`/${locale}`} className="flex items-center gap-2 sm:gap-4 no-underline group min-w-0">
-              <div className="w-[35px] h-[35px] border border-[#C8A96E] flex items-center justify-center text-[14px] text-[#C8A96E] font-medium transition-all group-hover:bg-[#C8A96E] group-hover:text-[#08172E]">
-                EW
-              </div>
-              <span className="text-[10px] sm:text-[12px] tracking-[0.12em] sm:tracking-[0.2em] text-white font-medium truncate max-w-[120px] sm:max-w-none">eawestern</span>
-            </Link>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-10">
-            <NavLink path={`/${locale}`} label="MAIN HOME" />
-            <NavLink path={`/${locale}/safaris`} label="HOME" />
-            <NavLink path={`/${locale}/safaris/destinations`} label="DESTINATIONS" />
-            <NavLink path={`/${locale}/safaris/philosophy`} label="PHILOSOPHY" />
-            <NavLink path={`/${locale}/safaris/packages`} label="PACKAGES" />
-            <NavLink path={`/${locale}/safaris/contact`} label="CONTACT" />
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center">
-            <button onClick={toggleMenu} className="text-[#C8A96E]">
-              <div className="w-6 h-5 flex flex-col justify-between">
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-              </div>
-            </button>
-          </div>
+    <header className="sp-nav" style={{ backgroundColor: "#ffffff", borderBottom: "1px solid #ede9e1" }}>
+      <style>{`
+        .sp-nav { position: fixed; top: 0; z-index: 50; width: 100%; }
+        .sp-nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; min-height: 68px; }
+        .sp-left { display: flex; align-items: center; gap: 16px; }
+        .sp-main-home { display: none; align-items: center; gap: 6px; text-decoration: none; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #1a2e45; transition: color 0.3s; }
+        .sp-main-home:hover { color: #c9a96e; }
+        @media (min-width: 768px) { .sp-main-home { display: inline-flex; } }
+        .sp-logo { text-decoration: none; display: flex; align-items: center; }
+        .sp-logo-box { width: 38px; height: 38px; border: 1px solid #c9a96e; color: #1a2e45; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+        .sp-nav-links { display: none; gap: 1.75rem; align-items: center; }
+        @media (min-width: 768px) { .sp-nav-links { display: flex; } }
+        .sp-nav-link { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #1a2e45; text-decoration: none; transition: color 0.3s; }
+        .sp-nav-link:hover { color: #c9a96e; }
+        .sp-nav-active { color: #c9a96e; }
+        .sp-nav-toggle { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+        @media (min-width: 768px) { .sp-nav-toggle { display: none; } }
+        .sp-nav-toggle span { display: block; width: 22px; height: 2px; background: #1a2e45; }
+        .sp-mobile-panel { display: none; flex-direction: column; padding: 0 20px 20px; gap: 0; background: #ffffff; border-top: 1px solid #ede9e1; }
+        .sp-mobile-panel a { color: #1a2e45; text-decoration: none; padding: 14px 0; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid #ede9e1; }
+        .sp-mobile-panel-open { display: flex; }
+        @media (min-width: 768px) { .sp-mobile-panel, .sp-mobile-panel-open { display: none !important; } }
+      `}</style>
+      <div className="sp-nav-inner">
+        <div className="sp-left">
+          <Link href={mainHref} className="sp-main-home" aria-label="Main home">
+            <ArrowLeft size={14} aria-hidden />
+            <span>Main Home</span>
+          </Link>
+          <Link href={mainHref} className="sp-logo" aria-label="eawestern home">
+            <span className="sp-logo-box">EW</span>
+          </Link>
         </div>
-
-        {/* Mobile Menu Dropdown */}
-        <div
-          className={`lg:hidden fixed inset-x-0 top-[76px] bg-[#08172E] border-t border-[#C8A96E]/10 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-            isMenuOpen ? 'h-[calc(100vh-76px)] opacity-100 visible' : 'h-0 opacity-0 invisible overflow-hidden'
-          }`}
+        <nav className="sp-nav-links" aria-label="Safari microsite">
+          <Link className={pathname === safariHome || pathname === `${safariHome}/` ? "sp-nav-link sp-nav-active" : "sp-nav-link"} href={safariHome}>
+            Home
+          </Link>
+          <Link className={navClass(`/${locale}/safaris/destinations`)} href={`/${locale}/safaris/destinations`}>
+            Destinations
+          </Link>
+          <Link className={navClass(`/${locale}/safaris/philosophy`)} href={`/${locale}/safaris/philosophy`}>
+            Philosophy
+          </Link>
+          <Link className={navClass(`/${locale}/safaris/packages`)} href={`/${locale}/safaris/packages`}>
+            Packages
+          </Link>
+          <Link className={navClass(`/${locale}/safaris/contact`)} href={`/${locale}/safaris/contact`}>
+            Contact
+          </Link>
+        </nav>
+        <button
+          type="button"
+          className="sp-nav-toggle"
+          aria-expanded={mobileOpen}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMobileOpen((o) => !o)}
         >
-          <div className="flex flex-col h-full pt-6 pb-20 overflow-y-auto">
-            <MobileNavLink path={`/${locale}`} label="MAIN HOME" />
-            <MobileNavLink path={`/${locale}/safaris`} label="HOME" />
-            <MobileNavLink path={`/${locale}/safaris/destinations`} label="DESTINATIONS" />
-            <MobileNavLink path={`/${locale}/safaris/philosophy`} label="PHILOSOPHY" />
-            <MobileNavLink path={`/${locale}/safaris/packages`} label="PACKAGES" />
-            <MobileNavLink path={`/${locale}/safaris/contact`} label="CONTACT" />
-            <div className="mt-auto px-6 pt-10">
-              <Link
-                href={`/${locale}/contact`}
-                className="w-full flex items-center justify-center py-4 border border-[#C8A96E] text-[#C8A96E] font-medium tracking-[0.2em] text-xs uppercase transition-all hover:bg-[#C8A96E] hover:text-[#08172E]"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                TALK WITH US
-              </Link>
-            </div>
-          </div>
-        </div>
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
-    </nav>
+      <div className={`sp-mobile-panel ${mobileOpen ? "sp-mobile-panel-open" : ""}`}>
+        <Link href={mainHref} onClick={() => setMobileOpen(false)} className="!inline-flex !items-center !gap-2">
+          <ArrowLeft size={14} aria-hidden />
+          Main Home
+        </Link>
+        <Link href={safariHome} onClick={() => setMobileOpen(false)}>
+          Home
+        </Link>
+        <Link href={`/${locale}/safaris/destinations`} onClick={() => setMobileOpen(false)}>
+          Destinations
+        </Link>
+        <Link href={`/${locale}/safaris/philosophy`} onClick={() => setMobileOpen(false)}>
+          Philosophy
+        </Link>
+        <Link href={`/${locale}/safaris/packages`} onClick={() => setMobileOpen(false)}>
+          Packages
+        </Link>
+        <Link href={`/${locale}/safaris/contact`} onClick={() => setMobileOpen(false)}>
+          Contact
+        </Link>
+      </div>
+    </header>
   );
 }

@@ -50,8 +50,8 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
       
       <main className="w-full">
         {/* REDESIGNED HERO SECTION (Split Layout) */}
-        <section className="relative w-full min-h-[95vh] flex items-center pt-32 pb-20 overflow-hidden bg-slate-50">
-          <div className="absolute top-0 right-0 w-[45%] h-full bg-[var(--color-navy)] rounded-bl-[100px] hidden lg:block z-0"></div>
+        <section className="relative w-full min-h-[95vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#f7f5f0]">
+          <div className="absolute top-0 right-0 w-[45%] h-full bg-[#ede9e1] rounded-bl-[100px] hidden lg:block z-0"></div>
           
           <div className="relative z-20 max-w-[1300px] mx-auto px-6 md:px-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -62,7 +62,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-[var(--color-blue)]/10 text-[var(--color-blue)] border border-[var(--color-blue)]/20 rounded-full px-4 py-1.5 mb-6"
+                className="inline-flex items-center gap-2 bg-[#f7f5f0] text-[#4a7fa5] border border-[#c9a96e]/40 rounded-full px-4 py-1.5 mb-6"
               >
                 <ShieldCheck size={14} />
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold">
@@ -78,7 +78,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 className="text-[48px] md:text-[60px] lg:text-[70px] text-[var(--color-navy)] leading-[1.05] mb-6 font-bold tracking-tight font-playfair"
               >
                 Insurance that <br />
-                <span className="text-[var(--color-blue)]">Protects What</span> <br />
+                <span className="italic text-[#c9a96e] font-normal">Protects What</span> <br />
                 Matters Most.
               </motion.h1>
               
@@ -101,13 +101,13 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
               >
                 <Link
                   href={`/${locale}/insurance/contact`}
-                  className="bg-[var(--color-blue)] text-white px-[32px] py-[18px] text-[13px] uppercase tracking-[0.15em] font-bold hover:bg-[var(--color-navy)] transition-colors rounded-[6px] shadow-xl shadow-[var(--color-blue)]/20 flex items-center justify-center gap-2 group"
+                  className="bg-[#c9a96e] text-[#1e3a5f] px-[32px] py-[18px] text-[13px] uppercase tracking-[0.15em] font-bold hover:bg-[#a8823d] hover:text-[#1a2e45] transition-colors rounded-[6px] shadow-xl shadow-[#c9a96e]/20 flex items-center justify-center gap-2 group"
                 >
                   Get a Quote <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href={`/${locale}/insurance/contact`}
-                  className="bg-white text-[var(--color-navy)] border-2 border-slate-200 px-[32px] py-[18px] text-[13px] uppercase tracking-[0.15em] font-bold hover:border-[var(--color-navy)] transition-colors rounded-[6px] flex items-center justify-center"
+                  className="bg-white text-[#1e3a5f] border-2 border-[#dcd8cf] px-[32px] py-[18px] text-[13px] uppercase tracking-[0.15em] font-bold hover:border-[#1e3a5f] transition-colors rounded-[6px] flex items-center justify-center"
                 >
                   Free Risk Review
                 </Link>
@@ -127,7 +127,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                   alt="Professional insurance support"
                   className="block h-[520px] w-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy)]/70 via-[var(--color-navy)]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/60 via-[#1e3a5f]/15 to-transparent" />
               </motion.div>
               
               {/* Decorative Background Image behind the grid */}
@@ -169,7 +169,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="relative overflow-hidden rounded-[18px] border border-[#e8ebef] bg-[#fdfdfd] p-8 shadow-[0_16px_34px_-16px_rgba(11,31,46,0.16)]"
               >
-                <div className="pointer-events-none absolute -left-14 -top-14 size-[11rem] rounded-full bg-[var(--color-blue)]" />
+                <div className="pointer-events-none absolute -left-14 -top-14 size-[11rem] rounded-full bg-[#4a7fa5]" />
                 <div className="absolute left-8 top-8 z-[2] flex h-11 w-11 items-center justify-center text-white">
                   <card.icon size={28} />
                 </div>
@@ -205,10 +205,10 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
         <InsurancePackagesSection locale={locale} variant="popular" />
 
         {/* WHY CHOOSE AN AGENCY SECTION */}
-        <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <section className="py-24 bg-[#f7f5f0] relative overflow-hidden">
            <div className="max-w-[1300px] mx-auto px-6 md:px-10">
               <div className="text-center mb-16 max-w-3xl mx-auto">
-                 <div className="text-[var(--color-blue)] font-bold text-sm uppercase tracking-widest mb-4">Why eawestern?</div>
+                 <div className="text-[#4a7fa5] font-bold text-sm uppercase tracking-widest mb-4">Why eawestern?</div>
                  <h2 className="text-[36px] md:text-[48px] font-bold leading-[1.1] font-playfair text-[var(--color-navy)] mb-6">
                    The Independent Broker Advantage.
                  </h2>
@@ -224,7 +224,7 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
                    { title: 'Expert Guidance', desc: 'Insurance can be complex. Our licensed professionals explain the fine print so you know exactly what you are covered for.', icon: Award }
                  ].map((item, i) => (
                     <div key={i} className="bg-white p-10 rounded-[24px] shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300">
-                       <div className="w-14 h-14 rounded-[12px] bg-[var(--color-blue)]/10 text-[var(--color-blue)] flex items-center justify-center mb-6">
+                       <div className="w-14 h-14 rounded-[12px] bg-[#f7f5f0] text-[#4a7fa5] border border-[#dcd8cf] flex items-center justify-center mb-6">
                           <item.icon size={28} />
                        </div>
                        <h4 className="text-[22px] font-bold text-[var(--color-navy)] mb-4">{item.title}</h4>
@@ -235,32 +235,32 @@ export default function InsurancePage({ params }: { params: Promise<{ locale: st
            </div>
         </section>
 
-        {/* CTA SECTION - REVERTED TO BLUE */}
+        {/* CTA SECTION */}
         <section className="py-32 px-6">
-           <div className="max-w-[1200px] mx-auto bg-[var(--color-navy)] rounded-[40px] p-12 md:p-24 relative overflow-hidden text-center shadow-3xl">
+           <div className="max-w-[1200px] mx-auto bg-[#f7f5f0] border border-[#ede9e1] rounded-[40px] p-12 md:p-24 relative overflow-hidden text-center shadow-[0_20px_60px_rgba(30,58,95,0.08)]">
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
-                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--color-blue)] rounded-full blur-[120px]"></div>
+                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#c9a96e] rounded-full blur-[120px]"></div>
               </div>
               
               <div className="relative z-10">
-                 <h2 className="text-4xl md:text-6xl text-white font-bold mb-8 font-playfair">
+                 <h2 className="text-4xl md:text-6xl text-[#1a2e45] font-bold mb-8 font-playfair">
                    Ready to secure <br /> 
-                   <span className="text-[var(--color-blue)]">your future?</span>
+                   <span className="text-[#4a7fa5]">your future?</span>
                  </h2>
-                 <p className="text-white/60 text-lg mb-12 max-w-2xl mx-auto">
+                 <p className="text-[#4a5568] text-lg mb-12 max-w-2xl mx-auto">
                    Tell us what you need, and we will provide a clear, tailored insurance solution-without unnecessary complexity.
                  </p>
                  <div className="flex flex-wrap justify-center gap-6">
                     <Link 
                       href={`/${locale}/insurance/contact`}
-                      className="bg-[var(--color-blue)] text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-[var(--color-blue)] transition-all shadow-2xl"
+                      className="bg-[#c9a96e] text-[#1e3a5f] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#a8823d] hover:text-[#1a2e45] transition-all shadow-2xl"
                     >
                       Get a Quote
                     </Link>
                     <Link 
                       href={`/${locale}/insurance/contact`}
-                      className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-all"
+                      className="bg-white text-[#1e3a5f] border border-[#dcd8cf] px-10 py-5 rounded-full font-bold text-lg hover:bg-[#ede9e1] transition-all"
                     >
                       Talk to an Expert
                     </Link>

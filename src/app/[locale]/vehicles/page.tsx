@@ -27,33 +27,34 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
   };
 
   return (
-    <div className="theme-automotive bg-white text-neutral-600 min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-red)] selection:text-white">
+    <div className="theme-automotive bg-[#f7f5f0] text-[#4a5568] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[#c9a96e] selection:text-[#1a2e45]">
       <VehiclesNavigation locale={locale} />
       
       <main className="w-full">
         {/* HERO SECTION */}
-        <section className="relative w-full h-[90vh] min-h-[650px] overflow-hidden bg-black flex items-center">
+        <section className="relative w-full h-[90vh] min-h-[650px] overflow-hidden bg-[#f7f5f0] flex items-center">
           <div className="absolute inset-0 w-full h-full">
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30 z-10" />
             <img 
               src="/images/caar.png" 
               alt="Premium Car Hire" 
-              className="w-full h-full object-cover object-center opacity-60" 
+              className="w-full h-full object-cover object-center" 
               onError={(e) => { e.currentTarget.src = "/images/luxury-car-background.jpg" }}
             />
+            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-transparent" />
           </div>
           
           <div className="relative z-20 max-w-[1200px] mx-auto px-6 md:px-10 w-full pt-20">
-            <div className="max-w-[650px]">
+            <div className="max-w-[650px] p-6 md:p-10">
               <motion.div
                 custom={0}
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-white/10 border border-white/25 rounded-full px-4 py-1.5 mb-6"
+                className="inline-flex items-center gap-2 bg-white border border-[#dcd8cf] rounded-full px-4 py-1.5 mb-6"
               >
-                <Gauge size={14} className="text-white" />
-                <span className="text-[11px] uppercase tracking-[0.2em] text-white font-bold">
+                <Gauge size={14} className="text-[#4a7fa5]" />
+                <span className="text-[11px] uppercase tracking-[0.2em] text-[#1a2e45] font-bold">
                   Premium Fleet
                 </span>
               </motion.div>
@@ -63,10 +64,10 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
-                className="text-[48px] md:text-[64px] lg:text-[76px] text-white leading-[1.05] mb-6 font-extrabold tracking-tight uppercase"
+                className="text-[48px] md:text-[64px] lg:text-[76px] text-white leading-[1.05] mb-6 font-extrabold tracking-tight uppercase [text-shadow:0_3px_18px_rgba(0,0,0,0.6)]"
               >
                 Reliable Mobility, <br />
-                <span className="text-white">Without Compromise</span>
+                <span className="text-[#c9a96e] [text-shadow:0_3px_18px_rgba(0,0,0,0.55)]">Without Compromise</span>
               </motion.h1>
               
               <motion.p 
@@ -74,7 +75,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 initial="hidden"
                 animate="visible"
                 variants={fadeInUp}
-                className="text-[16px] md:text-[18px] text-white/70 leading-[1.7] mb-10 max-w-[500px]"
+                className="text-[16px] md:text-[18px] text-white/90 leading-[1.7] mb-10 max-w-[520px] [text-shadow:0_2px_12px_rgba(0,0,0,0.55)]"
               >
                 Fully maintained, insured, and compliant vehicles for business travel, executive movement, safaris, and self-drive.
               </motion.p>
@@ -88,13 +89,13 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
               >
                 <Link
                   href={`/${locale}/vehicles/fleet`}
-                  className="bg-[var(--color-red)] text-white px-[32px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-black transition-colors rounded-[2px] shadow-lg shadow-[var(--color-red)]/20 text-center flex justify-center items-center gap-2 group"
+                  className="bg-[#c9a96e] text-[#1e3a5f] px-[32px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-[#a8823d] hover:text-[#1a2e45] transition-colors rounded-[2px] shadow-lg shadow-[#c9a96e]/20 text-center flex justify-center items-center gap-2 group"
                 >
                   View The Fleet <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href={`/${locale}/vehicles/services`}
-                  className="bg-transparent border border-white/20 text-white px-[32px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white/10 transition-colors rounded-[2px] text-center"
+                  className="bg-white border border-[#dcd8cf] text-[#1e3a5f] px-[32px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-[#ede9e1] transition-colors rounded-[2px] text-center"
                 >
                   Our Services
                 </Link>
@@ -113,10 +114,10 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 { icon: Headphones, title: '24/7 Roadside Support', desc: 'Immediate assistance and dispatch whenever you need help on the road.' },
               ].map((adv, idx) => (
                 <div key={idx} className="flex flex-col items-center justify-center p-10 text-center">
-                  <div className="w-[48px] h-[48px] rounded-full bg-black flex items-center justify-center text-white mb-4">
+                  <div className="w-[48px] h-[48px] rounded-full bg-[#1e3a5f] flex items-center justify-center text-white mb-4">
                     <adv.icon size={20} />
                   </div>
-                  <h4 className="text-[14px] uppercase tracking-[0.1em] font-bold text-black mb-2">{adv.title}</h4>
+                  <h4 className="text-[14px] uppercase tracking-[0.1em] font-bold text-[#1a2e45] mb-2">{adv.title}</h4>
                   <p className="text-[13px] text-neutral-600 leading-[1.6] max-w-[200px]">{adv.desc}</p>
                 </div>
               ))}
@@ -129,14 +130,14 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
           <div className="max-w-[1200px] mx-auto px-6 md:px-10">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
               <div>
-                <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-black mb-3">The Garage</div>
-                <h2 className="text-[36px] md:text-[48px] text-black font-extrabold leading-tight uppercase">
+                <div className="text-[12px] uppercase tracking-[0.2em] font-bold text-[#4a7fa5] mb-3">The Garage</div>
+                <h2 className="text-[36px] md:text-[48px] text-[#1a2e45] font-extrabold leading-tight uppercase">
                   Vehicles Designed for <br/> Your Needs
                 </h2>
               </div>
               <Link 
                 href={`/${locale}/vehicles/fleet`}
-                className="inline-flex items-center text-[13px] uppercase tracking-[0.1em] font-bold text-black hover:text-neutral-600 transition-colors group"
+                className="inline-flex items-center text-[13px] uppercase tracking-[0.1em] font-bold text-[#1e3a5f] hover:text-[#4a7fa5] transition-colors group"
               >
                 Explore Full Directory <ChevronRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -165,7 +166,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                      </div>
                    </div>
                    <div className="p-8">
-                     <h3 className="text-[20px] font-bold text-black mb-3 uppercase tracking-wide">{fleet.title}</h3>
+                     <h3 className="text-[20px] font-bold text-[#1a2e45] mb-3 uppercase tracking-wide">{fleet.title}</h3>
                      <p className="text-[14px] text-neutral-600 leading-[1.6]">
                        {fleet.desc}
                      </p>
@@ -188,7 +189,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 transition={{ duration: 0.7 }}
                 className="relative"
               >
-                <div className="aspect-square relative rounded-[4px] overflow-hidden bg-black shadow-2xl">
+                <div className="aspect-square relative rounded-[4px] overflow-hidden bg-[#1e3a5f] shadow-2xl">
                   <img src="/images/car3.png" alt="Premium Service" className="w-full h-full object-cover opacity-80 mix-blend-luminosity" />
                   <div className="absolute inset-0 bg-gradient-to-tr from-black/80 to-transparent mix-blend-multiply" />
                 </div>
@@ -200,7 +201,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <h2 className="text-[36px] md:text-[44px] text-black font-extrabold mb-6 leading-tight uppercase">
+                <h2 className="text-[36px] md:text-[44px] text-[#1a2e45] font-extrabold mb-6 leading-tight uppercase">
                   More Than Vehicle Hire
                 </h2>
                 <p className="text-[16px] text-neutral-600 leading-[1.7] mb-8">
@@ -215,8 +216,8 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
                      'Custom Corporate Long-Term Leasing'
                    ].map((item, idx) => (
                      <li key={idx} className="flex items-start">
-                       <CheckCircle2 className="mr-3 flex-shrink-0 mt-[2px] text-black" size={20} strokeWidth={2} />
-                       <span className="text-[15px] font-bold text-black">{item}</span>
+                      <CheckCircle2 className="mr-3 flex-shrink-0 mt-[2px] text-[#4a7fa5]" size={20} strokeWidth={2} />
+                      <span className="text-[15px] font-bold text-[#1a2e45]">{item}</span>
                      </li>
                    ))}
                 </ul>
@@ -227,7 +228,7 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
         </section>
 
         {/* CTA */}
-        <section className="py-[100px] bg-black relative overflow-hidden">
+        <section className="py-[100px] bg-[#f7f5f0] relative overflow-hidden border-t border-[#ede9e1]">
           <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
              <div className="absolute w-full h-px bg-white top-1/4 -skew-y-12"></div>
              <div className="absolute w-full h-px bg-white top-2/4 -skew-y-12"></div>
@@ -235,14 +236,14 @@ export default function VehiclesPage({ params }: { params: Promise<{ locale: str
           </div>
 
           <div className="relative z-10 max-w-[800px] mx-auto px-6 text-center">
-            <h2 className="text-[36px] md:text-[48px] text-white font-extrabold mb-6 uppercase tracking-wide">Ready to Hit the Road?</h2>
-            <p className="text-[16px] text-white/50 mb-10 max-w-[600px] mx-auto">
+            <h2 className="text-[36px] md:text-[48px] text-[#1a2e45] font-extrabold mb-6 uppercase tracking-wide">Ready to Hit the Road?</h2>
+            <p className="text-[16px] text-[#4a5568] mb-10 max-w-[600px] mx-auto">
               Contact our bookings desk directly to secure your vehicle. Flexible terms, immediate dispatch.
             </p>
             <div className="flex justify-center flex-col sm:flex-row gap-4">
               <Link
                 href={`/${locale}/vehicles/contact`}
-                className="bg-[var(--color-red)] text-white px-[40px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-black transition-colors rounded-[2px] shadow-xl"
+                className="bg-[#c9a96e] text-[#1e3a5f] px-[40px] py-[18px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-[#a8823d] hover:text-[#1a2e45] transition-colors rounded-[2px] shadow-xl"
               >
                 Inquire Now
               </Link>

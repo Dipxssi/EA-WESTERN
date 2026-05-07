@@ -173,36 +173,35 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
   const featuredPackages = destinationPackages.slice(0, 3);
 
   return (
-    <div className="theme-safari bg-[var(--color-cream)] text-[#333] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[var(--color-terracotta)] selection:text-[var(--color-cream)]">
+    <div className="theme-safari bg-[#f7f5f0] text-[#4a5568] min-h-screen font-sans w-full overflow-x-hidden selection:bg-[#c9a96e] selection:text-[#1a2e45]">
       <SafariNavigation locale={locale} />
 
       <main className="w-full pt-20">
-        <section className="relative w-full overflow-hidden bg-[var(--color-deep-green)] pb-[100px] pt-[100px] md:pt-[120px]">
+        <section className="relative w-full overflow-hidden bg-[#f7f5f0] pb-[100px] pt-[100px] md:pt-[120px]">
           <div className="absolute inset-0">
             <img
-              src="/images/safari-pg.jpg"
+              src="/images/masai mara.png"
               alt=""
-              className="h-full w-full object-cover opacity-40 mix-blend-luminosity"
+              className="h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-deep-green)] via-[var(--color-deep-green)]/90 to-[var(--color-cream)]" />
           </div>
-          <div className="relative z-10 mx-auto max-w-[800px] px-6 text-center md:px-10">
+          <div className="relative z-10 mx-auto max-w-[800px] rounded-[14px] bg-white/55 px-6 py-8 text-center shadow-[0_10px_35px_rgba(0,0,0,0.18)] backdrop-blur-[3px] md:px-10">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
               <div className="mb-6 flex items-center justify-center gap-4">
-                <div className="h-[1px] w-[40px] bg-[var(--color-gold)]" />
-                <span className="font-sans text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--color-gold)]">
+                <div className="h-[1px] w-[40px] bg-[#8a6430]" />
+                <span className="rounded-full bg-white/70 px-3 py-1 font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-[#8a6430]">
                   Packages
                 </span>
-                <div className="h-[1px] w-[40px] bg-[var(--color-gold)]" />
+                <div className="h-[1px] w-[40px] bg-[#8a6430]" />
               </div>
-              <h1 className="font-playfair text-[44px] leading-[1.1] text-[var(--color-cream)] md:text-[56px]">
+              <h1 className="font-playfair text-[44px] font-semibold leading-[1.1] text-[#10233a] [text-shadow:0_2px_8px_rgba(255,255,255,0.5)] md:text-[56px]">
                 What You Can Experience
               </h1>
-              <p className="mx-auto mt-6 max-w-[560px] font-sans text-[16px] font-light leading-[1.75] text-white/80">
+              <p className="mx-auto mt-6 max-w-[560px] font-sans text-[16px] font-normal leading-[1.75] text-[#1f3046] [text-shadow:0_1px_6px_rgba(255,255,255,0.4)]">
                 You&apos;ve explored the destinations. This page answers the next question: what exactly can you do in each one? Browse the
                 destination packages below for a practical view of daily experiences.
               </p>
@@ -212,9 +211,9 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
 
         <section className="w-full py-[80px] md:py-[110px]">
           <div className="mx-auto mb-12 max-w-[1200px] px-6 md:px-10">
-            <div className="mb-4 h-[1px] w-[48px] bg-[var(--color-terracotta)]" />
-            <h2 className="font-playfair text-[32px] text-[var(--color-deep-green)] md:text-[42px]">Editorial Journey Plans</h2>
-            <p className="mt-4 max-w-[680px] font-sans text-[15px] font-light leading-[1.8] text-[#6a5040]">
+            <div className="mb-4 h-[1px] w-[48px] bg-[#c9a96e]" />
+            <h2 className="font-playfair text-[32px] text-[#1a2e45] md:text-[42px]">Editorial Journey Plans</h2>
+            <p className="mt-4 max-w-[680px] font-sans text-[15px] font-light leading-[1.8] text-[#4a5568]">
               Tap a card to flip it and preview what you can do there.
             </p>
           </div>
@@ -234,7 +233,7 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
                     <div className="absolute left-4 top-4 rounded-full border border-white/30 bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
                       {item.country}
                     </div>
-                    <div className="absolute right-4 top-4 rounded-full bg-[var(--color-gold)] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[var(--color-deep-green)]">
+                    <div className="absolute right-4 top-4 rounded-full bg-[#c9a96e] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#1e3a5f]">
                       {item.duration}
                     </div>
                     <div className="absolute bottom-5 left-5 right-5 text-white">
@@ -244,26 +243,26 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
                     </div>
                   </div>
 
-                  <div className="flip-card-face flip-card-back flex h-full w-full flex-col rounded-[14px] border border-black/10 bg-[var(--color-deep-green)] p-6 text-[var(--color-cream)]">
+                  <div className="flip-card-face flip-card-back flex h-full w-full flex-col rounded-[14px] border border-[#dcd8cf] bg-[#f7f5f0] p-6 text-[#1a2e45]">
                     <div className="mb-4 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <item.icon size={20} className="text-[var(--color-gold)]" />
+                        <item.icon size={20} className="text-[#c9a96e]" />
                         <h3 className="font-playfair text-[28px] leading-none">{item.destination}</h3>
                       </div>
-                      <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.16em]">{item.duration}</span>
+                      <span className="rounded-full bg-white px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-[#4a5568] border border-[#ede9e1]">{item.duration}</span>
                     </div>
-                    <p className="mb-4 font-sans text-[11px] uppercase tracking-[0.18em] text-[var(--color-gold)]">What you can do here</p>
-                    <ul className="space-y-3 font-sans text-[14px] leading-[1.5] text-white/85">
+                    <p className="mb-4 font-sans text-[11px] uppercase tracking-[0.18em] text-[#4a7fa5]">What you can do here</p>
+                    <ul className="space-y-3 font-sans text-[14px] leading-[1.5] text-[#4a5568]">
                       {item.activities.slice(0, 4).map((activity) => (
                         <li key={activity} className="flex gap-2">
-                          <span className="mt-[6px] h-[6px] w-[6px] shrink-0 rounded-full bg-[var(--color-gold)]" />
+                          <span className="mt-[6px] h-[6px] w-[6px] shrink-0 rounded-full bg-[#c9a96e]" />
                           <span>{activity}</span>
                         </li>
                       ))}
                     </ul>
                     <Link
                       href={`/${locale}/safaris/contact`}
-                      className="mt-auto inline-flex items-center justify-center border border-[var(--color-gold)] px-5 py-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-gold)] transition-colors hover:bg-[var(--color-gold)] hover:text-[var(--color-deep-green)]"
+                      className="mt-auto inline-flex items-center justify-center border border-[#c9a96e] bg-[#c9a96e] px-5 py-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-[#1e3a5f] transition-colors hover:bg-[#a8823d] hover:text-[#1a2e45]"
                     >
                       Plan this package
                     </Link>
@@ -274,12 +273,12 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
           </div>
         </section>
 
-        <section className="bg-[var(--color-deep-green)] px-6 py-[100px] text-[var(--color-cream)] md:px-10">
+        <section className="bg-[#f7f5f0] px-6 py-[100px] text-[#1a2e45] md:px-10">
           <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-10 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left">
             <div className="max-w-[520px]">
               <Tent className="mx-auto mb-6 text-[var(--color-gold)] lg:mx-0" size={36} strokeWidth={1} />
               <h2 className="font-playfair text-[30px] leading-tight md:text-[38px]">Build Your Own Rhythm</h2>
-              <p className="mt-4 font-sans text-[15px] font-light leading-[1.75] text-white/75">
+              <p className="mt-4 font-sans text-[15px] font-light leading-[1.75] text-[#4a5568]">
                 These are sample activity structures. Your final itinerary is fully customized based on travel duration, preferred pace, season
                 and wildlife movement, and accommodation level. We provide transparent pricing across park fees, transport options, and lodge tiers.
               </p>
@@ -287,13 +286,13 @@ export default function SafariPackagesPage({ params }: { params: Promise<{ local
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
                 href={`/${locale}/safaris/contact`}
-                className="inline-flex items-center justify-center border border-[var(--color-gold)] bg-[var(--color-gold)] px-8 py-4 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-deep-green)] transition-colors hover:bg-transparent hover:text-[var(--color-gold)]"
+                className="inline-flex items-center justify-center border border-[#c9a96e] bg-[#c9a96e] px-8 py-4 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-[#1e3a5f] transition-colors hover:bg-[#a8823d] hover:text-[#1a2e45]"
               >
                 Plan a trip
               </Link>
               <Link
                 href={`/${locale}/safaris/destinations`}
-                className="inline-flex items-center justify-center border border-[var(--color-cream)]/30 px-8 py-4 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-cream)] transition-colors hover:bg-white/10"
+                className="inline-flex items-center justify-center border border-[#1e3a5f]/30 px-8 py-4 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-[#1e3a5f] transition-colors hover:bg-[#ede9e1]"
               >
                 View destinations
               </Link>

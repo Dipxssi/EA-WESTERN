@@ -61,8 +61,17 @@ function GroupRow({
   locale: string;
   rowIndex: number;
 }) {
+  const sectionId =
+    group.title === 'Personal Solutions'
+      ? 'personal'
+      : group.title === 'Corporate Solutions'
+        ? 'business'
+        : group.title === 'Medical Solutions'
+          ? 'medical'
+          : undefined;
+
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+    <div id={sectionId} className="grid scroll-mt-28 grid-cols-1 gap-4 lg:grid-cols-12">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}

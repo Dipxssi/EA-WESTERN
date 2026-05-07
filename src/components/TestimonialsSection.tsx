@@ -1,75 +1,109 @@
 "use client";
 
-import { Quote } from 'lucide-react';
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { Quote } from "lucide-react";
 
-const testimonials = [
+export type TestimonialItem = {
+  quote: string;
+  author: string;
+  location: string;
+};
+
+const defaultTestimonials: TestimonialItem[] = [
   {
-    quote: "Everything was handled seamlessly-from airport pickup to our safari logistics. We did not have to worry about a single detail.",
+    quote:
+      "Everything was handled seamlessly-from airport pickup to our safari logistics. We did not have to worry about a single detail.",
     author: "David L.",
-    location: "UK"
+    location: "UK",
   },
   {
-    quote: "Fast claims, clear communication, and zero stress. They made the entire insurance process simple and efficient.",
+    quote:
+      "Fast claims, clear communication, and zero stress. They made the entire insurance process simple and efficient.",
     author: "Michelle K.",
-    location: "Nairobi"
+    location: "Nairobi",
   },
   {
-    quote: "We needed a reliable partner on the ground in East Africa, and eawestern delivered beyond expectations. The coordination, communication, and execution were top-tier.",
+    quote:
+      "We needed a reliable partner on the ground in East Africa, and eawestern delivered beyond expectations. The coordination, communication, and execution were top-tier.",
     author: "Daniel K.",
-    location: "New York, USA"
+    location: "New York, USA",
   },
   {
-    quote: "eawestern is the only partner I trust. They managed our corporate fleet, insured our offices, and planned our end-of-year safari. Having one team handle everything is a game-changer for my business.",
+    quote:
+      "eawestern is the only partner I trust. They managed our corporate fleet, insured our offices, and planned our end-of-year safari. Having one team handle everything is a game-changer for my business.",
     author: "Allan M",
-    location: "Director, Regional Logistics Firm"
-  }
+    location: "Director, Regional Logistics Firm",
+  },
 ];
 
-export function TestimonialsSection() {
+const ease = [0.22, 1, 0.36, 1] as const;
+
+export type TestimonialsSectionProps = {
+  testimonials?: TestimonialItem[];
+  eyebrow?: string;
+  /** Replaces the default “Standard of Excellence” heading when set. */
+  title?: ReactNode;
+  /** Optional subline under the heading (e.g. About page context). */
+  description?: string | null;
+  className?: string;
+};
+
+export function TestimonialsSection({
+  testimonials = defaultTestimonials,
+  eyebrow = "Client Perspectives",
+  title,
+  description = null,
+  className = "",
+}: TestimonialsSectionProps) {
+  const heading =
+    title ?? (
+      <>
+        The Standard of <span className="italic text-[#c9a96e]">Excellence</span>
+      </>
+    );
+
   return (
-    <section className="py-[120px] md:py-[180px] bg-[#0B1F2E] text-white font-jost overflow-hidden border-t border-[var(--color-gold)]/10">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-        
-        <div className="text-center mb-16 md:mb-24">
-          <div className="uppercase-label mb-6">
-            Client Perspectives
-          </div>
-          <h2 className="serif text-[36px] md:text-[52px] text-white leading-tight">
-            The Standard of <span className="italic text-[var(--color-gold)]">Excellence</span>
-          </h2>
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, ease }}
+      className={`border-t border-[#ede9e1]/80 bg-[#f7f5f0] py-[100px] font-jost md:py-[100px] ${className}`}
+    >
+      <div className="mx-auto max-w-[1200px] px-6 md:px-10">
+        <div className="mb-16 text-center md:mb-24">
+          <div className="mb-6 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#4a7fa5]">{eyebrow}</div>
+          <h2 className="serif text-[36px] leading-tight text-[#1a2e45] md:text-[52px]">{heading}</h2>
+          {description ? (
+            <p className="home-broker-body mx-auto mt-6 max-w-[640px] text-[16px] leading-relaxed text-[#4a5568] md:text-[17px]">
+              {description}
+            </p>
+          ) : null}
         </div>
 
-        <div className="relative w-full">
-          {/* Fading edges for the slider */}
-          <div className="absolute top-0 left-0 w-[50px] md:w-[150px] h-full bg-gradient-to-r from-[#0B1F2E] to-transparent z-10 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-[50px] md:w-[150px] h-full bg-gradient-to-l from-[#0B1F2E] to-transparent z-10 pointer-events-none" />
-
-          <div className="flex animate-[testimonial-slide_40s_linear_infinite] gap-8 md:gap-12 w-max hover:[animation-play-state:paused]">
-            {[...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
-              <div
-                key={idx}
-                className="w-[300px] md:w-[450px] shrink-0 bg-[#0F2A3D] p-10 md:p-14 text-left border border-white/5 transition-all duration-700 hover:border-[var(--color-gold)]/30"
-              >
-                <div className="w-12 h-12 border border-[var(--color-gold)]/20 flex items-center justify-center text-[var(--color-gold)] mb-10">
-                  <Quote size={24} />
-                </div>
-                <p className="serif text-[18px] md:text-[22px] text-white/90 leading-[1.6] mb-12">
-                  "{t.quote}"
-                </p>
-                <div>
-                  <div className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--color-gold)] mb-2">
-                    {t.author}
-                  </div>
-                  <div className="text-[10px] font-light uppercase tracking-[0.2em] text-white/40">
-                    {t.location}
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
+          {testimonials.map((t, idx) => (
+            <motion.article
+              key={`${t.author}-${idx}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.06, ease }}
+              className="rounded-br-[12px] rounded-tr-[12px] border-l-4 border-[#c9a96e] bg-[#ffffff] px-7 py-8 shadow-[0_4px_20px_rgba(30,58,95,0.08)]"
+            >
+              <div className="mb-8 flex text-[#c9a96e]">
+                <Quote size={26} strokeWidth={1.25} />
               </div>
-            ))}
-          </div>
+              <p className="mb-10 text-[15px] italic leading-[1.8] text-[#1a2e45]">&ldquo;{t.quote}&rdquo;</p>
+              <div>
+                <div className="mb-2 text-[12px] font-semibold uppercase tracking-[0.1em] text-[#2c5282]">{t.author}</div>
+                <div className="text-[11px] font-medium text-[#4a5568]">{t.location}</div>
+              </div>
+            </motion.article>
+          ))}
         </div>
-
       </div>
-    </section>
+    </motion.section>
   );
 }

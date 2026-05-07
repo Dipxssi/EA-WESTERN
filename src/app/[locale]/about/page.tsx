@@ -1,479 +1,567 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
-import React, { useCallback, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useAnimationFrame, useMotionValue, useReducedMotion } from "framer-motion";
+import {
+  BookOpen,
+  Binoculars,
+  Car,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardCheck,
+  GitCompareArrows,
+  Headphones,
+  Quote,
+  ShieldCheck,
+  type LucideIcon,
+} from "lucide-react";
 import { NavBar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { HeroSlider } from "@/components/HeroSlider";
-import { Route, ShieldCheck, Award } from "lucide-react";
+import { AboutHeroSection } from "@/components/AboutHeroSection";
+import { HomeTomatoTheme } from "@/components/HomeTomatoTheme";
+import { HOME_NAV_TOTAL_OFFSET_CLASS } from "@/components/Navigation";
 
-/** Refs run before useEffect; observer must exist when nodes register — useLayoutEffect + Set. */
-function useScrollReveal() {
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const pendingRef = useRef(new Set<HTMLDivElement>());
+const easeOut = [0.22, 1, 0.36, 1] as const;
 
-  useLayoutEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-visible");
-          }
-        });
-      },
-      { threshold: 0, rootMargin: "0px 0px 12% 0px" }
-    );
-    observerRef.current = observer;
-    pendingRef.current.forEach((el) => observer.observe(el));
-
-    return () => {
-      observer.disconnect();
-      observerRef.current = null;
-      pendingRef.current.clear();
-    };
-  }, []);
-
-  return useCallback((node: HTMLDivElement | null) => {
-    if (node) {
-      pendingRef.current.add(node);
-      observerRef.current?.observe(node);
-    }
-  }, []);
+function viewportFade(
+  reduceMotion: boolean | null,
+  delay = 0
+): Pick<React.ComponentProps<typeof motion.div>, "initial" | "whileInView" | "viewport" | "transition"> {
+  if (reduceMotion) {
+    return { initial: false, transition: { duration: 0 } };
+  }
+  return {
+    initial: { opacity: 0, y: 26 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-56px" as const, amount: 0.15 },
+    transition: { duration: 0.52, delay, ease: easeOut },
+  };
 }
+
+const whoWeAreParas = [
+  "EA Western Insurance Brokers Limited is a licensed insurance broker in Kenya, operating in line with Insurance Regulatory Authority (IRA) expectations. We are not tied to a single insurer—we represent you, with the freedom to compare cover, explain trade-offs honestly, and recommend what fits how you travel, work, and move.",
+  "That independence lets us look at risk and logistics together: medical and motor lines, safari itineraries, and dependable car hire—so you are not juggling disconnected vendors when timing matters.",
+  "Families, teams, and businesses across the region use us when they want one accountable partner who stays on the thread from first conversation through renewals and claims questions.",
+];
+
+const foundingPrinciple =
+  "We believe protection and travel planning should be straightforward. You deserve clear terms, realistic guidance, and a team that stays visible when schedules change or a claim needs attention. That principle shapes how we advise, coordinate, and follow through.";
+
+const approachItems = [
+  {
+    title: "Understanding your needs",
+    body: "We start with how you actually operate—destinations and dates, assets and exposures, and how you use vehicles—so gaps are visible before you bind cover or confirm a safari leg.",
+    icon: ClipboardCheck,
+    image: "/images/guide.png",
+    imageAlt: "Client planning session with travel and risk guidance",
+  },
+  {
+    title: "Market comparison",
+    body: "We seek competitive options from multiple insurers and align vehicle or itinerary choices with your budget, policy wording, and the standards regulators and partners expect.",
+    icon: GitCompareArrows,
+    image: "/images/insurance-hero-panel.png",
+    imageAlt: "Insurance options and coverage comparison documents",
+  },
+  {
+    title: "Ongoing coordination",
+    body: "Our relationship continues after placement: renewals, policy changes, claims support, and safari or hire handovers—so responsibility stays obvious when you need a fast answer.",
+    icon: Headphones,
+    image: "/images/home.png",
+    imageAlt: "Team coordinating mobility and travel operations",
+  },
+] as const;
+
+const introPillars: { label: string; hint: string; icon: LucideIcon }[] = [
+  {
+    label: "Licensed brokerage",
+    hint: "Independent comparisons and candid guidance across insurers.",
+    icon: ShieldCheck,
+  },
+  {
+    label: "Dependable mobility",
+    hint: "Vehicles and handovers coordinated when schedules matter.",
+    icon: Car,
+  },
+  {
+    label: "Curated safaris",
+    hint: "Itineraries and trusted ground partners across East Africa.",
+    icon: Binoculars,
+  },
+];
+
+const aboutTestimonials = [
+  {
+    quote:
+      "They handled our insurance renewal and safari logistics in one flow. We stopped chasing multiple vendors and finally had one accountable team.",
+    name: "Grace W.",
+    role: "Operations Lead, Nairobi",
+  },
+  {
+    quote:
+      "From quote comparison to claims guidance, communication stayed clear. The team explained trade-offs honestly and helped us choose what fit.",
+    name: "Daniel M.",
+    role: "Family Client, Mombasa",
+  },
+  {
+    quote:
+      "Vehicle handover, itinerary timing, and policy details were coordinated end-to-end. It felt professional, calm, and dependable throughout.",
+    name: "Amina K.",
+    role: "Travel Coordinator, Arusha",
+  },
+] as const;
+
+const firmBookPages = [
+  {
+    paragraph: whoWeAreParas[0],
+    image: "/images/firm-family-consultation.png",
+    imageAlt: "Family meeting with a professional advisor in a bright office with city views",
+  },
+  {
+    paragraph: whoWeAreParas[1],
+    image: "/images/insurancebg.png",
+    imageAlt: "Medical insurance background visual",
+  },
+  {
+    paragraph: whoWeAreParas[2],
+    image: "/images/contact.png",
+    imageAlt: "Vehicle handover and client support",
+  },
+] as const;
+
+/** How long each “Our firm” slide stays still before auto-advancing (~reading time for the paragraph). */
+const FIRM_BOOK_AUTO_ADVANCE_MS = 18_000;
+
+const TESTIMONIAL_SCROLL_PX_PER_SEC = 42;
 
 export default function About() {
   const params = useParams();
   const locale = typeof params?.locale === "string" ? params.locale : "en";
-  const revealRef = useScrollReveal();
+  const reduceMotion = useReducedMotion();
+  const [activeIntroPillar, setActiveIntroPillar] = useState(0);
+  const [activeFirmPage, setActiveFirmPage] = useState(0);
+  const [isFirmBookClosed, setIsFirmBookClosed] = useState(false);
+  const [firmTurnDirection, setFirmTurnDirection] = useState(1);
+  const testimonialTrackRef = useRef<HTMLDivElement | null>(null);
+  const testimonialX = useMotionValue(0);
+  const [testimonialLoopWidth, setTestimonialLoopWidth] = useState(0);
+  const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
 
-  const leadership = [
-    {
-      initials: "JM",
-      name: "James Mwangi",
-      title: "Chief Executive Officer",
-      bio: "Leading eawestern's vision across all service divisions.",
-    },
-    {
-      initials: "AK",
-      name: "Amina Kamau",
-      title: "Head of Insurance",
-      bio: "ICPAK-certified with 15 years in risk management.",
-    },
-    {
-      initials: "DO",
-      name: "David Ochieng",
-      title: "Safari Operations Director",
-      bio: "Expert in East African wildlife and luxury travel.",
-    },
-    {
-      initials: "FW",
-      name: "Faith Wanjiku",
-      title: "Automotive Division Lead",
-      bio: "Overseeing our growing fleet and leasing portfolio.",
-    },
-  ];
+  useEffect(() => {
+    if (reduceMotion) return;
+    const id = window.setInterval(() => {
+      setActiveIntroPillar((prev) => (prev + 1) % introPillars.length);
+    }, 3200);
+    return () => window.clearInterval(id);
+  }, [reduceMotion]);
 
-  const values = [
-    {
-      title: "Integrity",
-      body: "We keep our promises — every time, no exceptions.",
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3L5 6V11C5 16 8.4 20.7 12 22C15.6 20.7 19 16 19 11V6L12 3Z" stroke="var(--color-gold)" strokeWidth="1.8" />
-        </svg>
-      ),
-    },
-    {
-      title: "Excellence",
-      body: "Quality service delivered with precision and care.",
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3L14.8 8.7L21 9.6L16.5 14L17.6 20.2L12 17.3L6.4 20.2L7.5 14L3 9.6L9.2 8.7L12 3Z" stroke="var(--color-gold)" strokeWidth="1.8" />
-        </svg>
-      ),
-    },
-    {
-      title: "Safety",
-      body: "Your security and peace of mind come first.",
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <rect x="6" y="11" width="12" height="9" rx="2" stroke="var(--color-gold)" strokeWidth="1.8" />
-          <path d="M9 11V8.5C9 6.6 10.6 5 12.5 5C14.4 5 16 6.6 16 8.5V11" stroke="var(--color-gold)" strokeWidth="1.8" />
-        </svg>
-      ),
-    },
-    {
-      title: "Customer Care",
-      body: "We serve with heart — going beyond the transaction to build lasting relationships with every client.",
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 20C9 17.4 5 14.7 5 10.8C5 8.7 6.7 7 8.8 7C10.1 7 11.3 7.7 12 8.8C12.7 7.7 13.9 7 15.2 7C17.3 7 19 8.7 19 10.8C19 14.7 15 17.4 12 20Z" stroke="var(--color-gold)" strokeWidth="1.8" />
-        </svg>
-      ),
-    },
-    {
-      title: "Reliability",
-      body: "We deliver what we say we will — on time, every time, across all our service areas.",
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="8" stroke="var(--color-gold)" strokeWidth="1.8" />
-          <path d="M8.8 12.2L10.9 14.3L15.3 9.9" stroke="var(--color-gold)" strokeWidth="1.8" />
-        </svg>
-      ),
-    },
-  ];
+  useEffect(() => {
+    if (reduceMotion || isFirmBookClosed) return;
+    const id = window.setInterval(() => {
+      setFirmTurnDirection(1);
+      setActiveFirmPage((prev) => {
+        if (prev >= firmBookPages.length - 1) {
+          setIsFirmBookClosed(true);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, FIRM_BOOK_AUTO_ADVANCE_MS);
+    return () => window.clearInterval(id);
+  }, [reduceMotion, isFirmBookClosed]);
+
+  useEffect(() => {
+    if (reduceMotion || !isFirmBookClosed) return;
+    const id = window.setTimeout(() => {
+      setActiveFirmPage(0);
+      setFirmTurnDirection(1);
+      setIsFirmBookClosed(false);
+    }, 3200);
+    return () => window.clearTimeout(id);
+  }, [reduceMotion, isFirmBookClosed]);
+
+  useLayoutEffect(() => {
+    const measureTrack = () => {
+      const node = testimonialTrackRef.current;
+      if (!node) return;
+      setTestimonialLoopWidth(node.scrollWidth / 2);
+    };
+    measureTrack();
+    window.addEventListener("resize", measureTrack);
+    return () => window.removeEventListener("resize", measureTrack);
+  }, []);
+
+  useEffect(() => {
+    testimonialX.set(0);
+  }, [testimonialLoopWidth, testimonialX]);
+
+  useAnimationFrame((_, deltaMs) => {
+    if (reduceMotion || isTestimonialPaused || testimonialLoopWidth <= 0) return;
+    const next = testimonialX.get() - (TESTIMONIAL_SCROLL_PX_PER_SEC * deltaMs) / 1000;
+    testimonialX.set(next <= -testimonialLoopWidth ? next + testimonialLoopWidth : next);
+  });
+
+  const goToPrevFirmPage = () => {
+    setFirmTurnDirection(-1);
+    setActiveFirmPage((prev) => (prev - 1 + firmBookPages.length) % firmBookPages.length);
+  };
+  const goToNextFirmPage = () => {
+    setFirmTurnDirection(1);
+    setActiveFirmPage((prev) => (prev + 1) % firmBookPages.length);
+  };
+
+  const sectionShell = "border-t border-[#ede9e1]/80";
+  const wideInner = "mx-auto max-w-[1200px] px-6 md:px-10";
+  const proseNarrow = "mx-auto max-w-[720px]";
+  const h2 = "serif mb-6 text-[30px] font-normal leading-tight text-[#1a2e45] md:text-[36px] lg:text-[38px]";
+  const h3 = "serif mb-4 text-[20px] font-normal text-[#1a2e45] md:text-[22px]";
+  const body = "text-[16px] leading-[1.85] text-[#4a5568] md:text-[17px]";
 
   return (
-    <div
-      className="ew-about-root font-sans antialiased"
-      style={{
-        backgroundColor: "#0D1F2D",
-        color: "#FFFFFF",
-        ["--ew-navy" as string]: "#0D1F2D",
-        ["--ew-navy-mid" as string]: "#142535",
-        ["--ew-navy-light" as string]: "#1C3347",
-        ["--ew-gold" as string]: "var(--color-gold)",
-        ["--ew-gold-light" as string]: "var(--color-gold-light)",
-        ["--ew-white" as string]: "#FFFFFF",
-        ["--ew-muted" as string]: "rgba(255,255,255,0.65)",
-        ["--ew-border" as string]: "rgba(255,255,255,0.1)",
-        ["--ew-section-pad" as string]: "92px",
-      }}
-    >
+    <div className="ew-about-root min-h-screen overflow-x-hidden bg-[#f7f5f0] font-jost text-[#4a5568] antialiased">
+      <HomeTomatoTheme />
       <NavBar locale={locale} />
 
-      <main style={{ paddingTop: "82px" }}>
-        <HeroSlider locale={locale} variant="about" pauseOnHover={false} />
+      <main className={HOME_NAV_TOTAL_OFFSET_CLASS}>
+        <AboutHeroSection locale={locale} />
 
-        <section className="ew-section" style={{ background: "#0D1F2D" }}>
-          <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
-            <div className="ew-story-grid" style={{ display: "grid", gridTemplateColumns: "55% 45%", gap: "36px", alignItems: "start" }}>
-              <div>
-                <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "16px" }}>Our Story</p>
-                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "42px", color: "#FFFFFF", marginBottom: "16px", fontWeight: 400 }}>The eawestern story</h2>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "22px", color: "var(--color-gold)", marginBottom: "26px" }}>
-                  Your Trusted Partner in Travel, Car Hire & Insurance
-                </p>
-                {[
-                  "At eawestern, we believe every journey deserves confidence — whether you're exploring East Africa's wild beauty, protecting what matters most, or simply getting where you need to go.",
-                  "We began with one mission: to make travel, insurance, and mobility effortless for everyone. Today, we connect adventurers, families, and businesses to trusted experiences and reliable solutions across the region.",
-                  "Rooted in local expertise and guided by global standards, we've earned a reputation for transparency, reliability, and personal care. From tailor-made safaris to car rentals and insurance support.",
-                ].map((text) => (
-                  <p key={text} style={{ paddingLeft: "20px", borderLeft: "3px solid var(--color-gold)", fontSize: "16px", color: "rgba(255,255,255,0.7)", lineHeight: 1.8, marginBottom: "24px" }}>
-                    {text}
-                  </p>
-                ))}
-              </div>
-              <div style={{ border: "2px solid var(--color-gold)", padding: "3px" }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px", marginBottom: "3px" }}>
-                  <div className="ew-story-tile" style={{ height: "200px", overflow: "hidden", position: "relative" }}>
-                    <img
-                      src="/images/maasai.jpg"
-                      alt="Safari experience"
-                      className="ew-story-img"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
+        {/* Opening editorial — headline + three lanes (no cards; dividers only) */}
+        <section className={`${sectionShell} relative overflow-hidden bg-white py-16 md:py-24`}>
+          <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+            <Image
+              src="/images/insurance-hero-safari.png"
+              alt=""
+              fill
+              className="object-cover object-center opacity-[0.34]"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/56 via-white/68 to-white/82" />
+          </div>
+          <div className={`${wideInner} relative z-10`}>
+            <div className="mx-auto max-w-[760px] text-center">
+              <motion.p
+                className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#4a7fa5] md:text-[12px]"
+                {...(reduceMotion
+                  ? {}
+                  : {
+                      initial: { opacity: 0, y: 14 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: false, margin: "-48px", amount: 0.2 },
+                      transition: { duration: 0.48, ease: easeOut },
+                    })}
+              >
+                Who we are
+              </motion.p>
+              <motion.h2
+                className={`${h2} mb-5 md:mb-6`}
+                {...(reduceMotion
+                  ? {}
+                  : {
+                      initial: { opacity: 0, y: 22 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: false, margin: "-48px", amount: 0.2 },
+                      transition: { duration: 0.55, delay: 0.04, ease: easeOut },
+                    })}
+              >
+                About EA Western Insurance Brokers
+              </motion.h2>
+              <motion.p
+                className={`${body} mx-auto max-w-[640px] text-[17px] md:text-[18px]`}
+                {...(reduceMotion
+                  ? {}
+                  : {
+                      initial: { opacity: 0, y: 18 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: false, margin: "-48px", amount: 0.2 },
+                      transition: { duration: 0.52, delay: 0.1, ease: easeOut },
+                    })}
+              >
+                Your integrated partner for licensed brokerage, dependable mobility, and curated safaris—so complex plans feel clearer and one team owns the follow-through.
+              </motion.p>
+            </div>
+
+            <div className="mx-auto mt-14 max-w-[960px] border-t border-[#e8e4dc] pt-12 md:mt-16 md:pt-14">
+              <div className="mx-auto max-w-[520px]">
+                <div className="relative min-h-[160px]">
+                  <AnimatePresence mode="wait">
+                    {introPillars.map((item, i) => {
+                      if (i !== activeIntroPillar) return null;
+                      const Icon = item.icon;
+                      return (
+                        <motion.div
+                          key={item.label}
+                          className="absolute inset-0 flex flex-col items-center justify-center px-3 py-2 text-center"
+                          initial={reduceMotion ? false : { opacity: 0, y: 14, scale: 0.985 }}
+                          animate={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
+                          exit={reduceMotion ? {} : { opacity: 0, y: -12, scale: 0.99 }}
+                          transition={{ duration: 0.42, ease: easeOut }}
+                        >
+                          <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#c9a96e]/20 text-[#8f7444]">
+                            <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden />
+                          </span>
+                          <span className="max-w-[380px] text-[32px] font-semibold leading-tight tracking-tight text-[#1a2e45] md:text-[36px]">
+                            {item.label}
+                          </span>
+                          <p className="mt-4 max-w-[460px] text-[20px] leading-relaxed text-[#5c6570] md:text-[22px]">{item.hint}</p>
+                        </motion.div>
+                      );
+                    })}
+                  </AnimatePresence>
+                </div>
+                <div className="mt-5 flex items-center justify-center gap-2" aria-hidden>
+                  {introPillars.map((item, i) => (
+                    <span
+                      key={item.label}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                        i === activeIntroPillar ? "w-6 bg-[#c9a96e]" : "w-2.5 bg-[#cfc9bd]"
+                      }`}
                     />
-                  </div>
-                  <div className="ew-story-tile" style={{ height: "200px", overflow: "hidden", position: "relative" }}>
-                    <img
-                      src="/images/carCard2.png"
-                      alt="Car hire experience"
-                      className="ew-story-img"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
-                    />
-                  </div>
-                </div>
-                <div className="ew-story-tile" style={{ height: "200px", overflow: "hidden", position: "relative" }}>
-                  <img
-                    src="/images/fam.png"
-                    alt="Insurance family"
-                    className="ew-story-img"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="ew-section" style={{ background: "#142535", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 8%, transparent), color-mix(in srgb, var(--color-gold) 8%, transparent) 2px, transparent 2px, transparent 18px)" }} />
-          <div style={{ position: "absolute", inset: 0, background: "rgba(13,31,45,0.85)" }} />
-          <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
-            <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", textAlign: "center", marginBottom: "18px" }}>Our Philosophy</p>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "48px", textAlign: "center", marginBottom: "22px", fontWeight: 400 }}>
-              Your <span style={{ color: "var(--color-gold)" }}>Confidence</span> is Our <span style={{ color: "var(--color-gold)" }}>Currency</span>.
-            </h2>
-            <p style={{ maxWidth: "680px", margin: "0 auto 42px", textAlign: "center", fontSize: "18px", lineHeight: 1.8, color: "rgba(255,255,255,0.7)" }}>
-              We built eawestern to be the single point of accountability for your most critical needs. Every service — Tours, Insurance, Car Hire — is a pillar of our commitment to your Confidence. This isn't just cross-selling; it's a strategic, integrated model.
-            </p>
-            <div className="ew-philosophy-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "18px" }}>
-              {[
-                { t: "A-to-Z Logistics", d: "Total control over the traveler's experience.", icon: Route },
-                { t: "Risk Mitigation", d: "Every service benefits from the deep risk knowledge of our insurance division.", icon: ShieldCheck },
-                { t: "Unwavering Support", d: "A single, dedicated team answers your call, whether you're stranded on a safari road or filing a complex claim.", icon: Award },
-              ].map((card) => {
-                const Icon = card.icon;
-                return (
-                <div key={card.t} className="ew-philosophy-pillar" style={{ background: "#0F2A3D", border: "1px solid rgba(255,255,255,0.06)", padding: "42px 30px", textAlign: "center" }}>
-                  <div style={{ width: "64px", height: "64px", margin: "0 auto 26px", border: "1px solid color-mix(in srgb, var(--color-gold) 20%, transparent)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-gold)" }}>
-                    <Icon size={26} />
-                  </div>
-                  <h3 className="font-playfair text-[26px] font-semibold leading-snug md:text-[30px]" style={{ marginBottom: "12px" }}>
-                    {card.t}
-                  </h3>
-                  <p className="font-sans text-[15px] leading-[1.85] text-white/70">{card.d}</p>
-                </div>
-              )})}
-            </div>
-          </div>
-        </section>
-
-        <section className="ew-section" style={{ background: "#0D1F2D" }}>
-          <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
-            <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "16px", textAlign: "center" }}>What Sets Us Apart</p>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
-              The eawestern <span style={{ color: "var(--color-gold)" }}>Pillars of Trust</span>
-            </h2>
-            <div className="ew-pillars" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
-              {[
-                {
-                  title: "Integrated Local Expertise",
-                  img: "/images/card1.png",
-                  body: "Our team combines F&B (Travel), Finance (Insurance), and Logistics (Car Hire) experts — all locally fluent — to give you an advantage no single-service company can match.",
-                },
-                {
-                  title: "Proactive Claims & Support",
-                  img: "/images/card2.png",
-                  body: "When others stall, we advocate. We see our role as actively securing your peace of mind, not passively providing a service.",
-                },
-                {
-                  title: "Commitment to East Africa",
-                  img: "/images/card3.png",
-                  body: "We are a licensed Kenyan company, deeply invested in sustainable tourism, community support, and providing local employment.",
-                },
-              ].map((item, idx) => (
-                <div
-                  key={item.title}
-                  className="ew-pillar-card"
-                  style={{
-                    background: "#0F2A3D",
-                    color: "#FFFFFF",
-                    padding: "26px",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    borderRadius: "10px",
-                    boxShadow: "none",
-                  }}
-                >
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    style={{
-                      width: "100%",
-                      height: "160px",
-                      objectFit: "cover",
-                      borderRadius: "8px",
-                      marginBottom: "18px",
-                    }}
-                  />
-                  <div style={{ position: "relative", zIndex: 1 }}>
-                    <h3
-                      className="font-playfair font-semibold tracking-tight text-white md:text-[34px] text-[28px]"
-                      style={{ marginBottom: "14px", lineHeight: 1.2 }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p className="font-sans text-[15px] font-normal leading-[1.8] text-white/70">{item.body}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="ew-section" style={{ background: "#0D1F2D" }}>
-          <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
-            <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", textAlign: "center", marginBottom: "12px" }}>Our Core Values</p>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "42px", textAlign: "center", marginBottom: "38px", fontWeight: 400 }}>
-              How We Deliver <span style={{ color: "var(--color-gold)" }}>Value</span>
-            </h2>
-            <div className="ew-values-top" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "22px", marginBottom: "22px" }}>
-              {values.slice(0, 3).map((v) => (
-                <div key={v.title} className="ew-value-card" style={{ background: "#0F2A3D", border: "1px solid rgba(255,255,255,0.06)", padding: "44px 34px", textAlign: "center", transition: "all 0.3s ease" }}>
-                  <div style={{ width: "70px", height: "70px", border: "1px solid color-mix(in srgb, var(--color-gold) 22%, transparent)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", color: "var(--color-gold)" }}>
-                    {v.icon}
-                  </div>
-                  <h3 className="font-playfair text-[26px] font-semibold leading-snug md:text-[30px]" style={{ marginBottom: "14px" }}>
-                    {v.title}
-                  </h3>
-                  <p className="font-sans text-[15px] leading-[1.9] text-white/60">{v.body}</p>
-                </div>
-              ))}
-            </div>
-            <div className="ew-values-bottom" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "18px" }}>
-              {values.slice(3).map((v) => (
-                <div key={v.title} className="ew-value-card" style={{ background: "#0F2A3D", border: "1px solid rgba(255,255,255,0.06)", padding: "44px 34px", textAlign: "center", transition: "all 0.3s ease" }}>
-                  <div style={{ width: "70px", height: "70px", border: "1px solid color-mix(in srgb, var(--color-gold) 22%, transparent)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", color: "var(--color-gold)" }}>
-                    {v.icon}
-                  </div>
-                  <h3 className="font-playfair text-[26px] font-semibold leading-snug md:text-[30px]" style={{ marginBottom: "14px" }}>
-                    {v.title}
-                  </h3>
-                  <p className="font-sans text-[15px] leading-[1.9] text-white/60">{v.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="ew-section" style={{ background: "#142535", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--color-gold) 8%, transparent), transparent 50%), radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--color-gold) 6%, transparent), transparent 50%)" }} />
-          <div ref={revealRef} className="reveal" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
-            <div className="ew-why-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", alignItems: "center" }}>
-              <div>
-                <p style={{ color: "var(--color-gold)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "12px" }}>Our Home</p>
-                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "40px", marginBottom: "16px", fontWeight: 400 }}>Deeply Rooted in East Africa</h2>
-                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "16px", lineHeight: 1.8, marginBottom: "14px" }}>
-                  East Africa is not just where we operate — it's who we are. From the Maasai Mara to the Nairobi CBD, from Mombasa's coast to Mount Kilimanjaro, we know this region intimately.
-                </p>
-                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "16px", lineHeight: 1.8, marginBottom: "20px" }}>
-                  Our local expertise means faster claims, better safari routes, more reliable vehicles, and partners who genuinely understand your needs.
-                </p>
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                  {["Nairobi, Kenya", "Mombasa", "East Africa Region"].map((pill) => (
-                    <span key={pill} style={{ border: "1px solid var(--color-gold)", color: "var(--color-gold)", fontSize: "12px", padding: "6px 16px", borderRadius: "20px" }}>
-                      {pill}
-                    </span>
                   ))}
                 </div>
               </div>
-              <div style={{ height: "400px", background: "#1C3347", border: "1px solid rgba(255,255,255,0.12)", position: "relative", overflow: "hidden" }}>
-                <img
-                  src="/images/map.png"
-                  alt="East Africa region map"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.95 }}
-                />
-                <span style={{ position: "absolute", left: "52.5%", top: "47.5%", width: "10px", height: "10px", borderRadius: "999px", background: "var(--color-gold)", boxShadow: "0 0 0 4px color-mix(in srgb, var(--color-gold) 25%, transparent)" }} />
-                <span style={{ position: "absolute", left: "58.1%", top: "62.2%", width: "10px", height: "10px", borderRadius: "999px", background: "var(--color-gold)", boxShadow: "0 0 0 4px color-mix(in srgb, var(--color-gold) 25%, transparent)" }} />
-                <span style={{ position: "absolute", left: "45.8%", top: "55.8%", width: "10px", height: "10px", borderRadius: "999px", background: "var(--color-gold)", boxShadow: "0 0 0 4px color-mix(in srgb, var(--color-gold) 25%, transparent)" }} />
+            </div>
+          </div>
+        </section>
+
+        {/* Our firm — interactive book with closing principle */}
+        <section className={`${sectionShell} bg-[#fafaf8] py-16 md:py-28`}>
+          <div className={wideInner}>
+            <motion.div {...viewportFade(reduceMotion, 0)} className="mx-auto max-w-[1080px]">
+              <div className="mb-8 text-center">
+                <p className="mb-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#4a7fa5] md:text-[12px]">
+                  <BookOpen className="h-3.5 w-3.5" strokeWidth={1.8} aria-hidden />
+                  Our firm
+                </p>
+                <h2 className={`${h2} mb-0 text-center`}>Who we are</h2>
+              </div>
+
+              <div className="perspective-[1600px]">
+                <AnimatePresence mode="wait">
+                  {!isFirmBookClosed ? (
+                    <motion.div
+                      key="firm-book-open"
+                      initial={reduceMotion ? false : { opacity: 0, rotateX: 3, y: 18 }}
+                      animate={reduceMotion ? {} : { opacity: 1, rotateX: 0, y: 0 }}
+                      exit={reduceMotion ? {} : { opacity: 0, y: 8 }}
+                      transition={{ duration: 0.45, ease: easeOut }}
+                    >
+                      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-stretch md:gap-0">
+                        <div className="relative border-b border-[#e7e1d7] pb-8 md:border-b-0 md:border-r md:py-2 md:pb-2 md:pr-10">
+                          <AnimatePresence mode="wait" custom={firmTurnDirection}>
+                            <motion.div
+                              key={`firm-text-${activeFirmPage}`}
+                              custom={firmTurnDirection}
+                              initial={reduceMotion ? false : { opacity: 0, x: -24 }}
+                              animate={reduceMotion ? {} : { opacity: 1, x: 0 }}
+                              exit={reduceMotion ? {} : { opacity: 0, x: -12 }}
+                              transition={{ duration: 1.05, ease: easeOut }}
+                            >
+                              <p className="text-[18px] leading-[1.9] text-[#445165] md:text-[19px]">
+                                {firmBookPages[activeFirmPage].paragraph}
+                              </p>
+                            </motion.div>
+                          </AnimatePresence>
+                        </div>
+                        <div className="relative min-h-[280px] overflow-hidden rounded-xl perspective-[1400px] md:min-h-[360px]">
+                          <AnimatePresence mode="wait" custom={firmTurnDirection}>
+                            <motion.div
+                              key={`firm-image-${activeFirmPage}`}
+                              className="absolute inset-0 transform-gpu will-change-transform"
+                              initial={
+                                reduceMotion
+                                  ? false
+                                  : {
+                                      opacity: 0,
+                                      x: "100%",
+                                    }
+                              }
+                              animate={reduceMotion ? {} : { opacity: 1, x: 0 }}
+                              exit={
+                                reduceMotion
+                                  ? {}
+                                  : {
+                                      opacity: 0,
+                                      x: "-18%",
+                                    }
+                              }
+                              transition={{ duration: 1.65, ease: easeOut }}
+                            >
+                              <Image
+                                src={firmBookPages[activeFirmPage].image}
+                                alt={firmBookPages[activeFirmPage].imageAlt}
+                                fill
+                                className="object-cover"
+                                sizes="(min-width: 768px) 40vw, 100vw"
+                              />
+                              <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#0000001f] to-transparent" />
+                            </motion.div>
+                          </AnimatePresence>
+                        </div>
+                      </div>
+                      <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={goToPrevFirmPage}
+                            className="inline-flex items-center gap-1 rounded-full border border-[#d8d1c5] bg-white px-3 py-2 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#2f3f55] transition-colors hover:bg-[#f7f3eb]"
+                          >
+                            <ChevronLeft className="h-4 w-4" aria-hidden />
+                            Prev
+                          </button>
+                          <button
+                            type="button"
+                            onClick={goToNextFirmPage}
+                            className="inline-flex items-center gap-1 rounded-full border border-[#d8d1c5] bg-white px-3 py-2 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#2f3f55] transition-colors hover:bg-[#f7f3eb]"
+                          >
+                            Next
+                            <ChevronRight className="h-4 w-4" aria-hidden />
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="firm-book-closed"
+                      className="py-8 text-center md:py-10"
+                      initial={reduceMotion ? false : { opacity: 0, rotateY: 12, scale: 0.98 }}
+                      animate={reduceMotion ? {} : { opacity: 1, rotateY: 0, scale: 1 }}
+                      exit={reduceMotion ? {} : { opacity: 0 }}
+                      transition={{ duration: 0.45, ease: easeOut }}
+                    >
+                      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#745e37]">Our firm</p>
+                      <h3 className="serif mb-5 text-[30px] text-[#1a2e45] md:text-[36px]">Our founding principle</h3>
+                      <div className="mx-auto mb-6 h-[2px] w-14 rounded-full bg-[#c9a96e]/85" aria-hidden />
+                      <p className="mx-auto max-w-[760px] font-serif text-[22px] italic leading-[1.75] text-[#7d6b4e] md:text-[26px]">
+                        {foundingPrinciple}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {!isFirmBookClosed && (
+                <div className="mt-5 flex items-center justify-center gap-2" aria-hidden>
+                  {firmBookPages.map((_, i) => (
+                    <span
+                      key={i}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                        i === activeFirmPage ? "w-6 bg-[#c9a96e]" : "w-2.5 bg-[#d3ccbf]"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Our approach — editorial steps (no cards; numerals + divider columns) */}
+        <section className={`${sectionShell} bg-[#fafbf7] py-16 md:py-24`}>
+          <div className={wideInner}>
+            <motion.div
+              {...viewportFade(reduceMotion, 0)}
+              className="mx-auto mb-2 max-w-[640px] text-center md:mb-4"
+            >
+              <h2 className={h2}>Our approach</h2>
+              <p className={body}>
+                A practical rhythm—listen, compare, then stay available—whether you are binding cover, hiring a vehicle, or locking in safari logistics.
+              </p>
+            </motion.div>
+            <div className="mx-auto mt-12 max-w-[1040px] border-t border-[#e0dcd3] pt-12 md:mt-14 md:pt-14">
+              <div className="grid grid-cols-1 gap-y-8 border-[#e0dcd3] sm:grid-cols-3 sm:gap-y-0 sm:divide-x sm:divide-[#e0dcd3]">
+                {approachItems.map((item, idx) => (
+                  <motion.div
+                    key={item.title}
+                    {...(reduceMotion
+                      ? {}
+                      : {
+                          initial: { opacity: 0, y: 26, scale: 0.86, filter: "blur(10px)" },
+                          whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
+                          viewport: { once: true, margin: "-40px", amount: 0.15 },
+                          transition: { duration: 0.62, delay: 0.1 + idx * 0.22, ease: easeOut },
+                        })}
+                    className="px-4 py-3 text-center md:px-8"
+                  >
+                    <h3 className="serif text-[26px] font-normal leading-tight tracking-tight text-[#1a2e45] md:text-[32px]">
+                      {item.title}
+                    </h3>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section className="ew-section" style={{ background: "#0D1F2D", borderTop: "1px solid color-mix(in srgb, var(--color-gold) 10%, transparent)" }}>
-          <div style={{ maxWidth: "980px", margin: "0 auto", padding: "0 24px" }}>
-            <div style={{ border: "1px solid rgba(255,255,255,0.12)", background: "linear-gradient(180deg, #12283B 0%, #102437 100%)", padding: "72px 40px", textAlign: "center" }}>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", color: "#FFFFFF", fontSize: "clamp(34px, 4.2vw, 56px)", lineHeight: 1.15, marginBottom: "18px", fontWeight: 400 }}>
-                Ready to Experience the <span style={{ color: "var(--color-gold)", fontStyle: "italic" }}>eawestern difference?</span>
-              </h2>
-              <div style={{ width: "86px", height: "2px", background: "var(--color-gold)", margin: "0 auto 26px" }} />
-              <p style={{ color: "rgba(255,255,255,0.58)", fontSize: "17px", lineHeight: 1.85, maxWidth: "760px", margin: "0 auto 40px" }}>
-                Join the thousands of clients who choose guaranteed excellence over settling for less. Our experts craft your next adventure, secure your legacy, and manage every detail of your travel or corporate logistics.
+        {/* Testimonials — infinite right-to-left marquee slider */}
+        <section className={`${sectionShell} overflow-hidden bg-white py-16 md:py-20`}>
+          <div className={wideInner}>
+            <motion.div
+              {...viewportFade(reduceMotion, 0)}
+              className="mx-auto mb-10 max-w-[720px] text-center md:mb-12"
+            >
+              <h2 className={h2}>Testimonials</h2>
+              <p className={body}>
+                What clients say about working with EA Western.
               </p>
-              <Link
-                href={`/${locale}/contact`}
-                style={{
-                  background: "linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold-light) 100%)",
-                  color: "#0D1F2D",
-                  padding: "16px 34px",
-                  textDecoration: "none",
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  letterSpacing: "0.28em",
-                  textTransform: "uppercase",
-                  display: "inline-block",
-                }}
-              >
-                Contact Us Today →
-              </Link>
+            </motion.div>
+            <div
+              className="relative mx-auto max-w-[1160px] overflow-hidden"
+              onMouseEnter={() => setIsTestimonialPaused(true)}
+              onMouseLeave={() => setIsTestimonialPaused(false)}
+              onFocusCapture={() => setIsTestimonialPaused(true)}
+              onBlurCapture={() => setIsTestimonialPaused(false)}
+            >
+              <motion.div ref={testimonialTrackRef} className="flex w-max gap-4 py-2 pr-4 md:gap-6" style={{ x: testimonialX }}>
+                {[...aboutTestimonials, ...aboutTestimonials].map((item, idx) => (
+                  <article
+                    key={`${item.name}-${idx}`}
+                    className="w-[290px] shrink-0 rounded-[14px] border border-[#e7e1d7] bg-[#fcfbf8] p-5 shadow-[0_10px_26px_rgba(30,58,95,0.1)] md:w-[360px] md:p-6"
+                  >
+                    <Quote className="mb-4 h-5 w-5 text-[#c9a96e] md:h-6 md:w-6" strokeWidth={1.4} aria-hidden />
+                    <p className="text-[15px] leading-[1.85] text-[#435065] md:text-[16px]">&ldquo;{item.quote}&rdquo;</p>
+                    <div className="mt-5 border-t border-[#e7e1d7] pt-4">
+                      <p className="text-[14px] font-semibold tracking-tight text-[#1a2e45]">{item.name}</p>
+                      <p className="mt-1 text-[11px] uppercase tracking-[0.12em] text-[#8f7444]">{item.role}</p>
+                    </div>
+                  </article>
+                ))}
+              </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* Work with us — Chestnut-style closing */}
+        <section className={`${sectionShell} bg-white py-16 md:py-24`}>
+          <div className={wideInner}>
+            <motion.div
+              {...viewportFade(reduceMotion, 0)}
+              className={`${proseNarrow} px-4 py-2 text-center md:px-6`}
+            >
+              <h2 className={`${h2} mb-6 text-center`}>Work with EA Western</h2>
+              <p className={`${body} mb-8 text-center`}>
+                Whether you are reviewing insurance, planning travel, or lining up vehicles—we are here with objective,
+                professional guidance and one accountable team from first conversation onward.
+              </p>
+              <motion.div
+                className="inline-block"
+                whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+              >
+                <Link
+                  href={`/${locale}/contact`}
+                  className="inline-block rounded-[4px] bg-[#1e3a5f] px-10 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-colors hover:bg-[#2c5282]"
+                >
+                  Contact us
+                </Link>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
       </main>
 
       <Footer />
-
-      <style>{`
-        .reveal {
-          opacity: 0;
-          transform: translateY(18px);
-          transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .reveal.reveal-visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .reveal {
-            opacity: 1;
-            transform: none;
-            transition: none;
-          }
-        }
-        .ew-value-card:hover {
-          border-color: color-mix(in srgb, var(--color-gold) 30%, transparent) !important;
-          background: color-mix(in srgb, #0F2A3D 85%, var(--color-gold) 15%) !important;
-        }
-        .ew-section {
-          padding: var(--ew-section-pad) 0 !important;
-        }
-        .ew-hero-tile-image {
-          opacity: 1;
-          filter: none;
-          transform: scale(1);
-          transition: transform 900ms ease;
-        }
-        .ew-hero-tile:hover .ew-hero-tile-image {
-          transform: scale(1.04);
-        }
-        .ew-hero-tile:hover .ew-hero-tile-label {
-          color: rgba(255,255,255,0.72) !important;
-        }
-        .ew-story-img {
-          filter: none;
-          transform: scale(1);
-          transition: transform 900ms ease;
-        }
-        .ew-story-tile:hover .ew-story-img {
-          transform: scale(1.04);
-        }
-        .ew-pillar-card:hover .ew-pillar-bg {
-          opacity: 0.32 !important;
-          filter: grayscale(0%) !important;
-          transform: scale(1.02) !important;
-        }
-        @media (max-width: 1024px) {
-          .ew-hero { grid-template-columns: 1fr !important; }
-          .ew-hero-photos { display: none !important; }
-          .ew-story-grid { grid-template-columns: 1fr !important; }
-          .ew-philosophy-grid { grid-template-columns: 1fr !important; }
-          .ew-pillars { grid-template-columns: 1fr !important; }
-          .ew-team-grid { grid-template-columns: 1fr 1fr !important; }
-          .ew-values-top { grid-template-columns: 1fr !important; }
-          .ew-values-bottom { grid-template-columns: 1fr !important; }
-          .ew-credentials { grid-template-columns: 1fr !important; }
-          .ew-testimonials { grid-template-columns: 1fr !important; }
-          .ew-why-grid { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 768px) {
-          .ew-about-root { --ew-section-pad: 72px; }
-          .ew-hero-left { padding: 100px 24px 60px !important; }
-          .ew-stats-row { flex-wrap: wrap; gap: 24px !important; }
-          .ew-team-grid { grid-template-columns: 1fr !important; }
-          .ew-philosophy-pillar { padding: 32px 22px !important; }
-        }
-        @media (max-width: 640px) {
-          .ew-philosophy-grid { gap: 14px !important; }
-          .ew-philosophy-pillar h3 { font-size: 24px !important; line-height: 1.2 !important; }
-          .ew-pillar-card h3 { font-size: 22px !important; line-height: 1.25 !important; }
-          .ew-value-card h3 { font-size: 22px !important; line-height: 1.25 !important; }
-          .ew-story-grid h2 { font-size: 28px !important; }
-          .ew-why-grid h2 { font-size: 28px !important; }
-        }
-      `}</style>
     </div>
   );
 }
-

@@ -1,14 +1,19 @@
 "use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { Phone } from "lucide-react";
+import { SITE_CONTACT } from "@/lib/siteContact";
 
 type NavigationProps = {
   locale?: string;
 };
 
-export function Navigation({ locale = 'en' }: NavigationProps) {
+/** Main navbar height offset (fixed header; no utility bar) */
+export const HOME_NAV_TOTAL_OFFSET_CLASS = "pt-[72px]";
+
+export function Navigation({ locale = "en" }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -21,110 +26,135 @@ export function Navigation({ locale = 'en' }: NavigationProps) {
     return pathname?.startsWith(path);
   };
 
-  // Luxury nav link class (cool gray text, red active, minimal gold hover)
   const navLinkClass = (path: string) => {
     const active = isActive(path);
-    return `
-      relative text-[10px] sm:text-[11px] tracking-[0.25em] font-medium uppercase transition-colors duration-500 py-2
-      ${active ? 'text-[var(--color-gold)]' : 'text-[var(--text-secondary)] hover:text-[var(--color-premium-gold)]'}
-      before:absolute before:-bottom-1 before:left-0 before:h-[1px] before:w-full before:transition-transform before:duration-500
-      ${active
-        ? 'before:origin-left before:scale-x-100 before:bg-[var(--color-gold)]'
-        : 'before:origin-right before:scale-x-0 before:bg-white/10 hover:before:origin-left hover:before:scale-x-100 hover:before:bg-[var(--color-premium-gold)]'
-      }
-    `;
+    return `border-b pb-2 text-[13px] font-medium uppercase tracking-[0.06em] transition-all duration-300 ease-[ease] ${
+      active
+        ? "border-[#c9a96e] text-[#1a2e45]"
+        : "border-transparent text-[#1a2e45] hover:border-[#c9a96e] hover:text-[#c9a96e]"
+    }`;
   };
 
-  const NavLink = ({ path, label }: { path: string, label: string }) => {
-    return (
-      <Link href={path} className={navLinkClass(path)} onClick={() => setIsMenuOpen(false)}>
-        {label}
-      </Link>
-    );
-  };
+  const NavLink = ({ path, label }: { path: string; label: string }) => (
+    <Link href={path} className={navLinkClass(path)} onClick={() => setIsMenuOpen(false)}>
+      {label}
+    </Link>
+  );
 
-  const MobileNavLink = ({ path, label }: { path: string, label: string }) => {
-    return (
-      <Link
-        href={path}
-        className={`flex items-center gap-4 py-4 px-6 tracking-[0.15em] transition-colors duration-300 text-sm uppercase font-medium ${
-          isActive(path)
-            ? 'text-[var(--color-gold)] bg-white/5'
-            : 'text-[var(--text-secondary)] hover:text-[var(--color-premium-gold)] hover:bg-white/5'
-        }`}
-        onClick={() => setIsMenuOpen(false)}
-      >
-        <span>{label}</span>
-      </Link>
-    );
-  };
+  const MobileNavLink = ({ path, label }: { path: string; label: string }) => (
+    <Link
+      href={path}
+      className={`flex items-center gap-4 px-6 py-4 text-[13px] font-medium uppercase tracking-[0.06em] transition-colors duration-300 ease-[ease] ${
+        isActive(path) ? "bg-[#f7f5f0] text-[#c9a96e]" : "text-[#1a2e45] hover:bg-[#f7f5f0]"
+      }`}
+      onClick={() => setIsMenuOpen(false)}
+    >
+      {label}
+    </Link>
+  );
 
   return (
-    <nav className="fixed w-full top-0 z-50 transition-colors duration-500 border-b border-white/5 bg-[#0B1F2E]/30 backdrop-blur-xl">
-      <div className="mx-auto px-4 sm:px-6 max-w-7xl md:px-10 min-w-0">
-        <div className="flex justify-between items-center py-4 sm:py-5 gap-3 min-w-0">
-          {/* Logo */}
-          <div className="flex items-center min-w-0">
-            <Link href={`/${locale}`} className="flex items-center gap-2 sm:gap-4 no-underline group min-w-0">
-              <div className="w-[35px] h-[35px] border border-[var(--color-gold)] flex items-center justify-center text-[14px] text-[var(--color-gold)] font-medium transition-all group-hover:bg-[var(--color-gold)] group-hover:text-[#0d1b2e]">
+    <header className="fixed top-0 z-50 w-full">
+      <nav className="border-b border-[#ede9e1] bg-[#ffffff] shadow-[0_2px_12px_rgba(30,58,95,0.08)]">
+        <div className="mx-auto flex min-w-0 max-w-7xl items-center justify-between gap-3 px-[60px] py-4">
+          <div className="flex min-w-0 items-center">
+            <Link href={`/${locale}`} className="group flex min-w-0 items-center gap-2 sm:gap-4">
+              <div className="flex h-[35px] w-[35px] items-center justify-center border border-[#c9a96e] text-[14px] font-medium text-[#1e3a5f] transition-all duration-300 ease-[ease]">
                 EW
               </div>
-              <span className="text-[10px] sm:text-[12px] tracking-[0.12em] sm:tracking-[0.2em] text-white font-medium truncate max-w-[120px] sm:max-w-none">
+              <span className="truncate text-[12px] font-medium tracking-[0.15em] text-[#1e3a5f]">
                 eawestern
               </span>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-10">
+          <div className="hidden items-center gap-10 lg:flex">
             <NavLink path={`/${locale}`} label="HOME" />
             <NavLink path={`/${locale}/about`} label="ABOUT" />
-            <NavLink path={`/${locale}/safaris`} label="SAFARIS" />
-            <NavLink path={`/${locale}/insurance`} label="INSURANCE" />
+            <NavLink path={`/${locale}/safaris`} label="TOURS & SAFARIS" />
+            <NavLink path={`/${locale}/insurance`} label="INSURANCE SOLUTIONS" />
             <NavLink path={`/${locale}/vehicles`} label="CAR HIRE" />
-            
-            {/* Desktop CTA */}
-            <Link
-              href={`/${locale}/contact`}
-              className="relative overflow-hidden rounded-full bg-[linear-gradient(90deg,var(--color-gold)_0%,var(--color-gold-light)_100%)] text-[#0B1F2E] px-[24px] py-[10px] text-[10px] font-medium uppercase tracking-[0.2em] transition-all duration-300 ml-4 hover:-translate-y-[1px] hover:brightness-105 shadow-[0_8px_18px_rgba(0,0,0,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gold)]"
-            >
-              <span className="relative z-10">TALK WITH US</span>
-            </Link>
+            <div className="ml-2 flex items-center gap-3 xl:gap-4">
+              <Link
+                href={`/${locale}/contact`}
+                className="rounded-[4px] bg-[#1e3a5f] px-7 py-2.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#ffffff] shadow-sm transition-all duration-300 ease-[ease] hover:bg-[#2c5282]"
+              >
+                TALK WITH US
+              </Link>
+              <a
+                href={`tel:${SITE_CONTACT.phoneHref}`}
+                className="group flex max-w-[220px] shrink-0 items-center gap-2.5 rounded-lg py-1 pl-0.5 pr-1 transition-opacity hover:opacity-90"
+                aria-label={`Call ${SITE_CONTACT.phoneDisplay}`}
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#dcd8cf] bg-white text-[#c9a96e] shadow-[0_1px_3px_rgba(30,58,95,0.08)] transition-colors group-hover:border-[#c9a96e]/80">
+                  <Phone className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden />
+                </span>
+                <span className="flex min-w-0 flex-col leading-tight">
+                  <span className="text-[13px] font-semibold tracking-tight text-[#1a2e45]">{SITE_CONTACT.phoneDisplay}</span>
+                  <span className="mt-0.5 text-[11px] font-normal leading-snug text-[#6b7280]">Call Our Experts</span>
+                </span>
+              </a>
+            </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center">
-            <button onClick={toggleMenu} className="text-[var(--color-gold)]">
-              <div className="w-6 h-5 flex flex-col justify-between">
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+          <div className="flex items-center lg:hidden">
+            <button
+              type="button"
+              onClick={toggleMenu}
+              className="text-[#1a2e45]"
+              aria-expanded={isMenuOpen}
+              aria-label="Toggle menu"
+            >
+              <div className="flex h-5 w-6 flex-col justify-between">
+                <span className={`h-0.5 w-full bg-current transition-all ${isMenuOpen ? "translate-y-2 rotate-45" : ""}`} />
+                <span className={`h-0.5 w-full bg-current transition-all ${isMenuOpen ? "opacity-0" : ""}`} />
+                <span className={`h-0.5 w-full bg-current transition-all ${isMenuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
               </div>
             </button>
           </div>
         </div>
+      </nav>
 
-        {/* Mobile Menu Dropdown */}
-        <div className={`lg:hidden fixed inset-x-0 top-[76px] bg-[#0B1F2E] border-t border-white/5 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isMenuOpen ? 'h-[calc(100vh-76px)] opacity-100 visible' : 'h-0 opacity-0 invisible overflow-hidden'}`}>
-          <div className="flex flex-col h-full pt-6 pb-20 overflow-y-auto">
+      {isMenuOpen ? (
+        <>
+          <button
+            type="button"
+            className="fixed inset-0 z-40 bg-black/25 lg:hidden"
+            aria-label="Close menu"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <div className="fixed inset-x-0 top-[72px] z-50 max-h-[min(calc(100vh-72px),560px)] overflow-y-auto border-t border-[#ede9e1] bg-white pb-12 pt-2 shadow-xl lg:hidden">
             <MobileNavLink path={`/${locale}`} label="HOME" />
             <MobileNavLink path={`/${locale}/about`} label="ABOUT" />
-            <MobileNavLink path={`/${locale}/safaris`} label="SAFARIS" />
-            <MobileNavLink path={`/${locale}/insurance`} label="INSURANCE" />
+            <MobileNavLink path={`/${locale}/safaris`} label="TOURS & SAFARIS" />
+            <MobileNavLink path={`/${locale}/insurance`} label="INSURANCE SOLUTIONS" />
             <MobileNavLink path={`/${locale}/vehicles`} label="CAR HIRE" />
-            
-            <div className="mt-auto px-6 pt-10">
+            <div className="mt-8 flex flex-col gap-3 px-6">
               <Link
                 href={`/${locale}/contact`}
-                className="w-full flex items-center justify-center rounded-full py-4 bg-[linear-gradient(90deg,var(--color-gold)_0%,var(--color-gold-light)_100%)] text-[#0B1F2E] font-medium tracking-[0.2em] text-xs uppercase transition-all hover:-translate-y-[1px] hover:brightness-105 shadow-[0_8px_18px_rgba(0,0,0,0.25)]"
+                className="flex w-full items-center justify-center rounded-[4px] bg-[#1e3a5f] py-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white transition-all duration-300 ease-[ease] hover:bg-[#2c5282]"
                 onClick={() => setIsMenuOpen(false)}
               >
                 TALK WITH US
               </Link>
+              <a
+                href={`tel:${SITE_CONTACT.phoneHref}`}
+                className="flex w-full items-center justify-center gap-3 rounded-lg border border-[#ede9e1] bg-[#fafaf8] px-4 py-3.5 shadow-[0_1px_3px_rgba(30,58,95,0.06)] transition-colors hover:border-[#dcd8cf]"
+                aria-label={`Call ${SITE_CONTACT.phoneDisplay}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#dcd8cf] bg-white text-[#c9a96e] shadow-[0_1px_3px_rgba(30,58,95,0.08)]">
+                  <Phone className="h-[20px] w-[20px]" strokeWidth={2} aria-hidden />
+                </span>
+                <span className="flex min-w-0 flex-col text-left leading-tight">
+                  <span className="text-[14px] font-semibold tracking-tight text-[#1a2e45]">{SITE_CONTACT.phoneDisplay}</span>
+                  <span className="mt-1 text-[12px] font-normal text-[#6b7280]">Call Our Experts</span>
+                </span>
+              </a>
             </div>
           </div>
-        </div>
-      </div>
-    </nav>
+        </>
+      ) : null}
+    </header>
   );
 }

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Menu, X, Car } from 'lucide-react';
+import { Menu, X, ArrowLeft } from 'lucide-react';
 
 export function VehiclesNavigation({ locale }: { locale: string }) {
   const pathname = usePathname();
@@ -19,7 +19,6 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
   }, []);
 
   const navLinks = [
-    { name: 'Main Home', href: `/${locale}` },
     { name: 'Car Hire Home', href: `/${locale}/vehicles` },
     { name: 'Fleet', href: `/${locale}/vehicles/fleet` },
     { name: 'Services', href: `/${locale}/vehicles/services` },
@@ -28,23 +27,32 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
   return (
     <nav 
       className={`fixed w-full z-50 transition-all duration-300 font-sans ${
-        scrolled ? 'bg-[var(--color-black)] py-4 shadow-xl' : 'bg-transparent py-6'
+        scrolled ? 'bg-white py-4 shadow-xl border-b border-[#ede9e1]' : 'bg-white py-4 border-b border-[#ede9e1]'
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10 flex justify-between items-center gap-3 min-w-0">
         
-        {/* LOGO */}
-        <Link href={`/${locale}/vehicles`} className="flex items-center gap-2 sm:gap-3 group z-50 min-w-0">
-          <div className="w-9 h-9 sm:w-[40px] sm:h-[40px] rounded-full bg-white flex items-center justify-center text-black shadow-lg overflow-hidden group-hover:scale-105 transition-transform shrink-0">
-            <Car size={20} className="relative z-10" />
-          </div>
-          <div className="flex flex-col min-w-0">
-            <span className="text-[14px] sm:text-[18px] md:text-[20px] font-bold text-white tracking-wide sm:tracking-wider leading-none truncate sm:overflow-visible sm:whitespace-normal">
-              eawestern
-            </span>
-            <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.2em] text-white/60 font-bold mt-0.5 sm:mt-1 truncate">Car Hire & Leasing</span>
-          </div>
-        </Link>
+        <div className="flex items-center gap-5 min-w-0">
+          <Link
+            href={`/${locale}`}
+            className="hidden md:inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.1em] font-bold text-[#1a2e45] transition-colors hover:text-[#1e3a5f]"
+          >
+            <ArrowLeft size={16} aria-hidden />
+            <span>Main Home</span>
+          </Link>
+          {/* LOGO */}
+          <Link href={`/${locale}/vehicles`} className="flex items-center gap-2 sm:gap-3 group z-50 min-w-0">
+            <div className="flex h-[35px] w-[35px] items-center justify-center rounded-[6px] border border-[#c9a96e] text-[14px] font-semibold text-[#1e3a5f] transition-all duration-300 ease-[ease] group-hover:scale-105 shrink-0">
+              EW
+            </div>
+            <div className="flex flex-col min-w-0">
+              <span className="text-[14px] sm:text-[18px] md:text-[20px] font-bold text-[#1a2e45] tracking-wide sm:tracking-wider leading-none truncate sm:overflow-visible sm:whitespace-normal">
+                eawestern
+              </span>
+              <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#4a7fa5] font-bold mt-0.5 sm:mt-1 truncate">Car Hire & Leasing</span>
+            </div>
+          </Link>
+        </div>
 
         {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center gap-10">
@@ -56,10 +64,8 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
               href={link.href}
               className={`text-[13px] uppercase tracking-[0.1em] font-bold transition-colors ${
                 isActive
-                  ? 'text-[var(--color-red)]'
-                  : scrolled
-                    ? 'text-white/80 hover:text-white'
-                    : 'text-white hover:text-white/90'
+                  ? 'text-[#1e3a5f]'
+                  : 'text-[#1a2e45] hover:text-[#1e3a5f]'
               }`}
             >
               {link.name}
@@ -68,7 +74,7 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
           })}
           <Link
             href={`/${locale}/vehicles/contact`}
-            className="bg-[var(--color-red)] text-white px-[26px] py-[12px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-black transition-colors rounded-[2px]"
+            className="bg-[#1e3a5f] text-white px-[26px] py-[12px] text-[13px] uppercase tracking-[0.1em] font-bold hover:bg-[#2c5282] transition-colors rounded-[2px]"
           >
             Book Now
           </Link>
@@ -76,7 +82,7 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
 
         {/* MOBILE MENU TOGGLE */}
         <button 
-          className="md:hidden z-50 text-white"
+          className="md:hidden z-50 text-[#1a2e45]"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -84,10 +90,18 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
 
         {/* MOBILE NAV OVERLAY */}
         <div 
-          className={`fixed inset-0 bg-[var(--color-black)] z-40 transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center justify-center gap-8 ${
+          className={`fixed inset-0 bg-white z-40 transition-transform duration-500 ease-in-out md:hidden flex flex-col items-center justify-center gap-8 ${
             isOpen ? 'translate-y-0' : '-translate-y-full'
           }`}
         >
+          <Link
+            href={`/${locale}`}
+            onClick={() => setIsOpen(false)}
+            className="inline-flex items-center gap-2 text-[14px] uppercase tracking-[0.1em] font-bold text-[#1a2e45] transition-colors hover:text-[#1e3a5f]"
+          >
+            <ArrowLeft size={16} aria-hidden />
+            <span>Main Home</span>
+          </Link>
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -96,7 +110,7 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
               href={link.href}
               onClick={() => setIsOpen(false)}
               className={`text-[24px] uppercase tracking-[0.1em] font-bold transition-colors ${
-                isActive ? 'text-[var(--color-red)]' : 'text-white hover:text-white/80'
+                isActive ? 'text-[#1e3a5f]' : 'text-[#1a2e45] hover:text-[#4a7fa5]'
               }`}
             >
               {link.name}
@@ -106,7 +120,7 @@ export function VehiclesNavigation({ locale }: { locale: string }) {
           <Link
             href={`/${locale}/vehicles/contact`}
             onClick={() => setIsOpen(false)}
-            className="mt-6 border-2 border-[var(--color-red)] text-[var(--color-red)] px-[40px] py-[16px] text-[16px] uppercase tracking-[0.15em] font-bold hover:bg-[var(--color-red)] hover:text-white transition-all rounded-[2px]"
+            className="mt-6 border-2 border-[#1e3a5f] text-[#1e3a5f] px-[40px] py-[16px] text-[16px] uppercase tracking-[0.15em] font-bold hover:bg-[#1e3a5f] hover:text-white transition-all rounded-[2px]"
           >
             Book Now
           </Link>
