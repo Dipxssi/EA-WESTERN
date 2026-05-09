@@ -24,7 +24,8 @@ export default function ContactPage({ params }: { params: Promise<{ locale: stri
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const data = Object.fromEntries(fd.entries());
     setIsSubmitting(true);
     try {
@@ -42,8 +43,8 @@ export default function ContactPage({ params }: { params: Promise<{ locale: stri
         throw new Error('Failed to submit form');
       }
 
+      form.reset();
       setSubmitted(true);
-      e.currentTarget.reset();
     } catch (error) {
       console.error(error);
       alert('Failed to send your request. Please try again.');

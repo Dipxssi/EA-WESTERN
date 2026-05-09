@@ -20,8 +20,9 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setIsSubmitting(true);
-    const fd = new FormData(e.currentTarget);
+    const fd = new FormData(form);
     const data = Object.fromEntries(fd.entries());
 
     try {
@@ -40,8 +41,8 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
         throw new Error('Failed to submit form');
       }
 
+      form.reset();
       setSubmitted(true);
-      e.currentTarget.reset();
     } catch (error) {
       console.error(error);
       alert('Failed to send your request. Please try again.');
