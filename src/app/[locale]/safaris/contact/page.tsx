@@ -17,14 +17,36 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
     params.then(({ locale }) => setLocale(locale));
   }, [params]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const fd = new FormData(e.currentTarget);
+    const data = Object.fromEntries(fd.entries());
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'safaris-contact',
+          locale,
+          ...data,
+          subject: 'Safari Inquiry',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
       setSubmitted(true);
-    }, 1500);
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error(error);
+      alert('Failed to send your request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -104,7 +126,7 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {/* Name */}
                       <div className="relative">
-                        <input type="text" id="name" required
+                        <input type="text" id="name" name="name" required
                           className="w-full bg-transparent border-b border-[#dcd8cf] pb-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-colors peer placeholder-transparent"
                           placeholder="Name"
                         />
@@ -115,7 +137,7 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
                       
                       {/* Email */}
                       <div className="relative">
-                        <input type="email" id="email" required
+                        <input type="email" id="email" name="email" required
                           className="w-full bg-transparent border-b border-[#dcd8cf] pb-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-colors peer placeholder-transparent"
                           placeholder="Email"
                         />
@@ -128,7 +150,7 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {/* Dates */}
                       <div className="relative">
-                        <input type="text" id="dates"
+                        <input type="text" id="dates" name="dates"
                           className="w-full bg-transparent border-b border-[#dcd8cf] pb-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-colors peer placeholder-transparent"
                           placeholder="Dates"
                         />
@@ -139,7 +161,7 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
                       
                       {/* Party Size */}
                       <div className="relative">
-                        <select id="party"
+                        <select id="party" name="party"
                           className="w-full bg-transparent border-b border-[#dcd8cf] pb-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-colors appearance-none"
                         >
                           <option value="" className="bg-white text-[#8a94a3]">Party Size...</option>
@@ -153,7 +175,7 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
 
                     {/* Message */}
                     <div className="relative pt-6">
-                      <textarea id="message" rows={4} required
+                      <textarea id="message" name="message" rows={4} required
                         className="w-full bg-transparent border-b border-[#dcd8cf] pb-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-colors peer placeholder-transparent resize-none"
                         placeholder="Message"
                       ></textarea>

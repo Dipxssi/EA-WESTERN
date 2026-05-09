@@ -21,16 +21,34 @@ export default function ContactPage({ params }: { params: Promise<{ locale: stri
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
-    console.log('Form submitted:', data);
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'main-contact',
+          locale,
+          ...data,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
       setSubmitted(true);
-    }, 1200);
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error(error);
+      alert('Failed to send your request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

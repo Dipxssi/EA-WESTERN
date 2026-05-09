@@ -17,14 +17,36 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
     params.then(({ locale }) => setLocale(locale));
   }, [params]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate secure form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const fd = new FormData(e.currentTarget);
+    const data = Object.fromEntries(fd.entries());
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'insurance-contact',
+          locale,
+          ...data,
+          subject: `Insurance Inquiry: ${String(data.interest || 'General')}`,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
       setSubmitted(true);
-    }, 1500);
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error(error);
+      alert('Failed to send your request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -132,13 +154,13 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                           <label htmlFor="firstName" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">First Name</label>
-                          <input type="text" id="firstName" required
+                          <input type="text" id="firstName" name="firstName" required
                             className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all"
                           />
                         </div>
                         <div>
                           <label htmlFor="lastName" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Last Name</label>
-                          <input type="text" id="lastName" required
+                          <input type="text" id="lastName" name="lastName" required
                             className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all"
                           />
                         </div>
@@ -147,13 +169,13 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                           <label htmlFor="email" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Email Address</label>
-                          <input type="email" id="email" required
+                          <input type="email" id="email" name="email" required
                             className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all"
                           />
                         </div>
                         <div>
                           <label htmlFor="phone" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Phone Number</label>
-                          <input type="tel" id="phone" required
+                          <input type="tel" id="phone" name="phone" required
                             className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all"
                           />
                         </div>
@@ -161,10 +183,10 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
 
                       <div>
                         <label htmlFor="interest" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Area of Interest</label>
-                        <select id="interest" required
+                        <select id="interest" name="interest" defaultValue="" required
                           className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all appearance-none"
                         >
-                          <option value="" disabled selected>Select Insurance Type...</option>
+                          <option value="" disabled>Select Insurance Type...</option>
                           <option value="life">Life Insurance</option>
                           <option value="health">Health & Medical</option>
                           <option value="auto">Auto & Transit</option>
@@ -175,7 +197,7 @@ export default function InsuranceContactPage({ params }: { params: Promise<{ loc
 
                       <div>
                         <label htmlFor="message" className="block text-[12px] font-bold text-[#1a2e45] uppercase tracking-[0.1em] mb-2">Additional Details (Optional)</label>
-                        <textarea id="message" rows={4}
+                        <textarea id="message" name="message" rows={4}
                           className="w-full bg-[#f7f5f0] border border-[rgba(11,27,61,0.1)] rounded-[4px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] focus:ring-1 focus:ring-[#c9a96e] transition-all resize-none"
                           placeholder="Please provide any brief details about your assets or family structure..."
                         ></textarea>

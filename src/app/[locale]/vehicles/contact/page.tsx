@@ -17,14 +17,36 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
     params.then(({ locale }) => setLocale(locale));
   }, [params]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate booking request
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const fd = new FormData(e.currentTarget);
+    const data = Object.fromEntries(fd.entries());
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'vehicles-contact',
+          locale,
+          ...data,
+          subject: `Vehicle Inquiry: ${String(data.vehicle || 'General')}`,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
       setSubmitted(true);
-    }, 1500);
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error(error);
+      alert('Failed to send your request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -128,13 +150,13 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                           <label htmlFor="firstName" className="block text-[11px] font-bold text-[#1a2e45] uppercase tracking-[0.2em] mb-2">First Name</label>
-                          <input type="text" id="firstName" required
+                          <input type="text" id="firstName" name="firstName" required
                             className="w-full bg-neutral-100 border border-black/5 rounded-[2px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-all"
                           />
                         </div>
                         <div>
                           <label htmlFor="lastName" className="block text-[11px] font-bold text-[#1a2e45] uppercase tracking-[0.2em] mb-2">Last Name</label>
-                          <input type="text" id="lastName" required
+                          <input type="text" id="lastName" name="lastName" required
                             className="w-full bg-neutral-100 border border-black/5 rounded-[2px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-all"
                           />
                         </div>
@@ -143,13 +165,13 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                           <label htmlFor="email" className="block text-[11px] font-bold text-[#1a2e45] uppercase tracking-[0.2em] mb-2">Email Address</label>
-                          <input type="email" id="email" required
+                          <input type="email" id="email" name="email" required
                             className="w-full bg-neutral-100 border border-black/5 rounded-[2px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-all"
                           />
                         </div>
                         <div>
                           <label htmlFor="phone" className="block text-[11px] font-bold text-[#1a2e45] uppercase tracking-[0.2em] mb-2">Phone Number</label>
-                          <input type="tel" id="phone" required
+                          <input type="tel" id="phone" name="phone" required
                             className="w-full bg-neutral-100 border border-black/5 rounded-[2px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-all"
                           />
                         </div>
@@ -158,13 +180,13 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                           <label htmlFor="pickupDate" className="block text-[11px] font-bold text-[#1a2e45] uppercase tracking-[0.2em] mb-2">Pick-up Date</label>
-                          <input type="date" id="pickupDate" required
+                          <input type="date" id="pickupDate" name="pickupDate" required
                             className="w-full bg-neutral-100 border border-black/5 rounded-[2px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-all"
                           />
                         </div>
                         <div>
                           <label htmlFor="returnDate" className="block text-[11px] font-bold text-[#1a2e45] uppercase tracking-[0.2em] mb-2">Return Date</label>
-                          <input type="date" id="returnDate" required
+                          <input type="date" id="returnDate" name="returnDate" required
                             className="w-full bg-neutral-100 border border-black/5 rounded-[2px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-all"
                           />
                         </div>
@@ -172,10 +194,10 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
 
                       <div>
                         <label htmlFor="vehicle" className="block text-[11px] font-bold text-[#1a2e45] uppercase tracking-[0.2em] mb-2">Requested Vehicle Category</label>
-                        <select id="vehicle" required
+                        <select id="vehicle" name="vehicle" defaultValue="" required
                           className="w-full bg-neutral-100 border border-black/5 rounded-[2px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-all appearance-none"
                         >
-                          <option value="" disabled selected>Select Category...</option>
+                          <option value="" disabled>Select Category...</option>
                           <option value="sedan">Executive Sedan</option>
                           <option value="4x4">Safari 4x4 Off-Road</option>
                           <option value="van">Corporate Van / Shuttle</option>
@@ -185,7 +207,7 @@ export default function VehiclesContactPage({ params }: { params: Promise<{ loca
 
                       <div>
                         <label htmlFor="message" className="block text-[11px] font-bold text-[#1a2e45] uppercase tracking-[0.2em] mb-2">Trip Details / Requirements</label>
-                        <textarea id="message" rows={4}
+                        <textarea id="message" name="message" rows={4}
                           className="w-full bg-neutral-100 border border-black/5 rounded-[2px] px-4 py-3 text-[15px] font-sans text-[#1a2e45] focus:outline-none focus:border-[#c9a96e] transition-all resize-none"
                           placeholder="Please provide any destinations, chauffeur requirements, or special requests..."
                         ></textarea>
