@@ -8,6 +8,7 @@ import { use, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { SITE_CONTACT } from '@/lib/siteContact';
+import { CONTACT_SUBMIT_URL } from '@/lib/contactSubmitUrl';
 
 /** Light-page inputs (HomeTomatoTheme uses ivory `#f7f5f0` — avoid white text). */
 const peerInput =
@@ -27,7 +28,7 @@ export default function ContactPage({ params }: { params: Promise<{ locale: stri
     const data = Object.fromEntries(fd.entries());
     setIsSubmitting(true);
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(CONTACT_SUBMIT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

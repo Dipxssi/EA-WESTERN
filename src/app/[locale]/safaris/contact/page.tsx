@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { SITE_CONTACT } from '@/lib/siteContact';
+import { CONTACT_SUBMIT_URL } from '@/lib/contactSubmitUrl';
 
 export default function SafariContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const [locale, setLocale] = useState<string>('en');
@@ -24,7 +25,7 @@ export default function SafariContactPage({ params }: { params: Promise<{ locale
     const data = Object.fromEntries(fd.entries());
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(CONTACT_SUBMIT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

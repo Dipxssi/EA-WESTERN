@@ -1,44 +1,47 @@
-# Resend Contact Form Setup
+# Resend contact forms
 
-This project now sends all contact form submissions to Resend through `POST /api/contact`.
+Contact forms POST JSON to a handler that sends mail through [Resend](https://resend.com/).
 
-## 1) Add environment variables
+## Why two handlers?
 
-Create or update `.env.local` with:
+This app uses **`output: 'export'`** (static HTML on shared hosting). **Next.js API routes are not deployed** in that mode, so `POST /api/contact` returns **404** on production.
+
+| Environment | Handler |
+|-------------|---------|
+| Local `npm run dev` | `POST /api/contact` (Next.js route) |
+| Production (FTP static site) | `POST /contact-handler.php` (PHP + Resend HTTP API) |
+
+The browser target is set at build time with `NEXT_PUBLIC_CONTACT_SUBMIT_URL` (see GitHub Actions workflow).
+
+## 1) Local development (`.env.local`)
 
 ```bash
 RESEND_API_KEY=re_xxxxxxxxx
-CONTACT_FROM_EMAIL=Website Contact <contact@yourdomain.com>
-CONTACT_TO_EMAIL=you@yourdomain.com
+CONTACT_FROM_EMAIL=EAWestern Website <contact@eawestern.com>
+CONTACT_TO_EMAIL=info@eawestern.com
 ```
 
-Notes:
-- `CONTACT_FROM_EMAIL` must use a sender from your verified Resend domain.
-- `CONTACT_TO_EMAIL` is the inbox where all form leads are delivered.
+- `CONTACT_FROM_EMAIL` must use an address on your **Resend-verified** domain.
+- Do not commit `.env.local`.
 
-## 2) Verify your domain in Resend
+Run `npm run dev` and test `/contact`, `/insurance/contact`, `/vehicles/contact`, `/safaris/contact`.
 
-In Resend:
-- Go to **Domains**
-- Add your domain and required DNS records (SPF/DKIM)
-- Wait until status is **Verified**
+## 2) Production (GitHub Actions → Host Africa)
 
-## 3) Test locally
+Add these **repository secrets** (Settings → Secrets and variables → Actions):
 
-Run:
+- `RESEND_API_KEY`
+- `CONTACT_FROM_EMAIL` (same values as local)
+- `CONTACT_TO_EMAIL`
 
-```bash
-npm run dev
-```
+The workflow builds with `NEXT_PUBLIC_CONTACT_SUBMIT_URL=/contact-handler.php`, then writes `out/contact-secrets.json` (blocked by `.htaccess`, never commit it).
 
-Submit these pages:
-- `/contact`
-- `/insurance/contact`
-- `/vehicles/contact`
-- `/safaris/contact`
+**Server requirements:** PHP with **cURL** enabled (standard on shared hosting).
 
-Each submission should trigger one email in `CONTACT_TO_EMAIL`.
+## 3) Resend domain
 
-## 4) Deploy
+In Resend → **Domains**, verify `eawestern.com` (DNS), then use that domain on `CONTACT_FROM_EMAIL`.
 
-Add the same env vars in your hosting provider (Vercel/Netlify/etc.) and redeploy.
+## 4) If you ever move to Node hosting
+
+Remove `output: 'export'`, deploy on a platform that runs Next.js server-side, set `NEXT_PUBLIC_CONTACT_SUBMIT_URL` empty or omit it so forms use `/api/contact` only.

@@ -27,7 +27,16 @@ jobs:
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          # Static export has no /api/* — forms POST to contact-handler.php
+          NEXT_PUBLIC_CONTACT_SUBMIT_URL: /contact-handler.php
         run: npm run build
+
+      - name: 📝 Write contact handler secrets (Resend)
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          CONTACT_FROM_EMAIL: ${{ secrets.CONTACT_FROM_EMAIL }}
+          CONTACT_TO_EMAIL: ${{ secrets.CONTACT_TO_EMAIL }}
+        run: node scripts/write-contact-secrets.js
       
       - name: 🔍 Verify Build Output
         run: |
